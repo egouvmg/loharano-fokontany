@@ -1,0 +1,69 @@
+/* STYLE CSS GLOBAL*/
+
+* {-webkit-box-sizing:border-box;-moz-box-sizing:border-box; box-sizing:border-box}
+
+html, body{
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+}
+
+body.login{
+    background: url(../img/1-Login@2x.png) no-repeat center top transparent;
+    background-size: cover;
+}
+
+.login-container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-bloc{
+    background: #ffffff;
+    padding: 16px 56px 32px 56px;
+    border-radius: 16px;
+}
+
+.login-bloc .logo{
+    margin-bottom: 32px;
+}
+
+.login-bloc .form-group{
+    margin-bottom: 32px;
+}
+
+.login-bloc .form-group .form-control{ 
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    color: #023020;
+    padding: 16px 16px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #F26122;
+    border-color: #F26122;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #F26122;
+    border-color: #F26122;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem #F26122;
+}
+
+.info,
+.info a{
+    font-size: 10pt;
+}
+#infoMessage{
+    font-size: 8pt;
+    line-height: 0.2;
+    color: #f00;
+    margin-top: 7px;
+}

@@ -1,0 +1,107 @@
+    1  apt update
+    2  apt upgrade
+    3  reboot
+    4  pwd
+    5  clear
+    6  vi /etc/php/7.2/apache2/php.ini
+    7  more  /etc/php/7.2/apache2/php.ini
+    8  vi /etc/php/7.2/cli/php.ini
+    9  sudo service apache2 restart
+   10  vi /etc/apache2/sites-enabled/000-default.conf 
+   11  vi /etc/apache2/apache2.conf 
+   12  systemctl restart apache2
+   13  cp /var/lib/pgadmin/storage/postgres_localhost/backuplocalloharano/b_ol_20200413.backup /var/www/html/
+   14  exit
+   15  cp /var/lib/pgadmin/storage/postgres_localhost
+   16  cd /var/lib/pgadmin/storage/postgres_localhost
+   17  ls
+   18  cp /var/lib/pgadmin/storage/postgres_localhost/persons.csv /var/www/html/
+   19  iptables -L
+   20  ipetables -A INPUT -p tcp -i etho0 --dport 7014 -j ACCEPT
+   21  iptables -A INPUT -p tcp -i etho0 --dport 7014 -j ACCEPT
+   22  iptables -L
+   23  netstat -pateu | grep LISTEN
+   24  service iptables save
+   25  /sbin/iptables-save
+   26  service apache2 restart
+   27  nano /etc/apache2/ports.conf 
+   28  cd /etc/apache2/
+   29  ls
+   30  nano apache2.conf 
+   31  cd sites-available/
+   32  ls
+   33  nano 000-default.conf 
+   34  nano default-ssl.conf 
+   35  cd ..
+   36  cd sites-enabled/
+   37  ls
+   38  nano 000-default.conf 
+   39  cd ..
+   40  cd sites-available/
+   41  ls
+   42  cp default-ssl.conf env-recette.conf
+   43  nano env-recette.conf 
+   44  a
+   45  service apache2 restart
+   46  a2ensite env-recette.conf 
+   47  service apache2 reload
+   48  nano /etc/hosts
+   49  nano env-recette.conf 
+   50  a2ensite env-recette.conf 
+   51  service apache2 reload
+   52  nano env-recette.conf 
+   53  nano /etc/hosts
+   54  nano env-recette.conf 
+   55  rm env-recette.conf 
+   56  service apache2 reload
+   57  sudo netstat -pltn
+   58  ipconfig
+   59  ifconfig
+   60  exit
+   61  ifconfig
+   62  ping 10.2.250.30
+   63  ping 10.2.250.30 80
+   64  ping 10.2.250.30:80
+   65  telnet 10.2.250.30 80
+   66  nping --tcp -p 80 10.2.250.30
+   67  nc -vz 10.2.250.30 80
+   68  nc -vz 10.2.250.30 2222
+   69  nc -vz 10.2.250.30 8069
+   70  nc -vz 10.2.250.30 9069
+   71  iptables -I INPUT -p tcp --port 8069 -j ACCEPT
+   72  iptables -I INPUT -p tcp -m --dport 8069 -j ACCEPT
+   73  clear
+   74  iptables -I INPUT -p tcp -m tcp --dport 8069 -j ACCEPT
+   75  nc -vz 10.2.250.30 8069
+   76  ifconfig
+   77  iptables -L
+   78  nc -vz 192.168.122.1 8069
+   79  nc -vz 127.0.0.1 8069
+   80  ls /var/www/
+   81  rm -rf /var/www/
+   82  ls
+   83  ls /var/www/
+   84  mkdir /var/www/html
+   85  mkdir /var/www
+   86  mkdir /var/www/html
+   87  cd /var/www/html/
+   88  cd ../
+   89  ls -a
+   90  ls -la
+   91  chmod 777 html/
+   92  chmod 777 -R html/
+   93  clear
+   94  ls
+   95  cd /
+   96  ls
+   97  cd etc/
+   98  ls
+   99  sudo /etc/init.d/postgresql status
+  100  service postgresql status
+  101  clear
+  102  service postgresql status
+  103  ufw status
+  104  iptables -L INPUT
+  105  history
+  106  cd /var/www/html/
+  107  history > history.txt
