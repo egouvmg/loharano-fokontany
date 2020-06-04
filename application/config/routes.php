@@ -56,6 +56,8 @@ $route['translate_uri_dashes'] = FALSE;
 $route['se_connecter'] = 'auth/login';
 $route['se_deconnecter'] = 'auth/logout';
 
-//Superadmin
+// Main App
+$route['changer_langue'] = 'auth/change_language';
 
+//Superadmin
 $route['tableau_de_bords'] = 'superadmin/index';
