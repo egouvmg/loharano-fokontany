@@ -52,9 +52,9 @@
         <ul class="main-menu">
           <li>
             <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> Utilisateurs</a>
-            <ul class="sub-main-menu" style="display:none">
+            <ul class="sub-main-menu">
               <li><a href="ajout_utilisateur">Ajout utilisateur</a></li>
-              <li><a href="ajout_chef_fokontany">Ajout chef fokontany</a></li>
+              <li><a class="active" href="ajout_chef_fokontany">Ajout chef fokontany</a></li>
               <li><a href="#">Liste des utilisateurs</a></li>
               <li><a href="#">Liste des chef fokontany</a></li>
             </ul>
@@ -79,72 +79,78 @@
 
         <!-- Page Content -->
         <div class="container-fluid">
-          <div class="line-bloc">
-            <h6>Gestion des Utilisateurs</h6>
-            <div class="container-bloc-link">
-              <a href="ajout_utilisateur" class="bloc-link">
-                <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> Ajout Utilisateur
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef Fokontany
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des utilisateurs
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Chef Fokontany
-              </a>
+          <div class="row">
+            <div class="col-lg-4">
+              <form>
+                <div class="form-group">
+                  <label for="first_name">Nom</label>
+                  <input type="text" class="form-control" id="first_name" placeholder="...">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="user@loharano.mg">
+                </div>
+                <div class="form-group">
+                  <label for="password">Mot de passe</label>
+                  <input type="password" class="form-control" id="password" placeholder="********">
+                </div>
+                <div class="form-group">
+                  <label for="confirm_password">Confirmation mot de passe</label>
+                  <input type="password" class="form-control" id="confirm_password" placeholder="********">
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+              </form>
             </div>
-          </div>
-          <div class="line-bloc">
-            <h6>Gestion des Fokontany</h6>
-            <div class="container-bloc-link">
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> Ajout Utilisateur
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef Fokontany
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des utilisateurs
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Chef Fokontany
-              </a>
-            </div>
-          </div>
-          <div class="line-bloc">
-            <h6>Gestion des Ménages</h6>
-            <div class="container-bloc-link">
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> Ajout Utilisateur
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef Fokontany
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des utilisateurs
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Chef Fokontany
-              </a>
-            </div>
-          </div>
-          <div class="line-bloc">
-            <h6>Gestion des Citoyens</h6>
-            <div class="container-bloc-link">
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> Ajout Utilisateur
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef Fokontany
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des utilisateurs
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Chef Fokontany
-              </a>
+            <div class="col-lg-8">
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    Choisissez le Fokontany où travail le Chef Fokontany
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="province">Province</label>
+                    <select id="province" class="form-control">
+                      <option selected>...</option>
+                      <option>...</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="region">Région</label>
+                    <select id="region" class="form-control">
+                      <option selected>...</option>
+                      <option>...</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="district">District</label>
+                    <select id="district" class="form-control">
+                      <option selected>...</option>
+                      <option>...</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="common">Commune</label>
+                    <select id="common" class="form-control">
+                      <option selected>...</option>
+                      <option>...</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="borough">Arrondissement</label>
+                    <select id="borough" class="form-control">
+                      <option selected>...</option>
+                      <option>...</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="fokontany">Fokontany</label>
+                    <select id="fokontany" name="fokontany" class="form-control">
+                      <option selected>...</option>
+                      <option>...</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>

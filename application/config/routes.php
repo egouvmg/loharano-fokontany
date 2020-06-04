@@ -61,3 +61,5 @@ $route['changer_langue'] = 'auth/change_language';
 
 //Superadmin
 $route['tableau_de_bords'] = 'superadmin/index';
+$route['ajout_utilisateur'] = 'superadmin/add_user';
+$route['ajout_chef_fokontany'] = 'superadmin/add_chief';

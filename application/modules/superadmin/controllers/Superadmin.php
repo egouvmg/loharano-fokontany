@@ -11,5 +11,17 @@ class Superadmin extends SuperAdmin_Controller
 		$this->data['title'] = "Tableau de bords";
         $this->load->view('index', $this->data);
 	}
+
+	public function add_user()
+	{
+		$this->data['title'] = "Ajout d'un Utilisateur";
+        $this->load->view('add_user', $this->data);
+	}
+
+	public function add_chief()
+	{
+		$this->data['title'] = "Ajout d'un Chef fokontany";
+        $this->load->view('add_chief', $this->data);
+	}
 }
 
