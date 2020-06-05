@@ -1,0 +1,1 @@
+<input type=text value=<?= $childs[0]->name;?>
