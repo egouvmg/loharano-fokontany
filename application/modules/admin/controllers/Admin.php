@@ -667,24 +667,21 @@ class Admin extends Admin_Controller
             exit('Very ianao :O');
         }*/
 
-        $data = $this->input->post();
+        $data = $this->input->post();       
 
         $type_compte = $this->input->post('type_compte');
-        $n_firstname = $this->input->post('n_firstname');
-        $n_email = $this->input->post('n_email');
-        $n_password = $this->input->post('n_password');
-        $n_confirm_pwd = $this->input->post('n_confirm_pwd');
-        $n_province = $this->input->post('n_province');
-        $n_region = $this->input->post('n_region');
-        $n_district = $this->input->post('n_district');
-        $n_commune = $this->input->post('n_commune');
-        $n_arrondissement = $this->input->post('n_arrondissement');
-        $n_fokontany = $this->input->post('n_fokontany');
+        $n_firstname = $this->input->post('first_name');
+        $n_email = $this->input->post('email');
+        $n_password = $this->input->post('password');
+        $n_confirm_pwd = $this->input->post('confirm_password');
+        $fokontany_id = $this->input->post('fokontany');
 
         $missing_fields = [];
         $short_pwd = [];
         $wrong_pwd = [];
-
+        
+        if(empty($type_compte))
+            $missing_fields[] = 'type_compte';
         if(empty($n_firstname))
             $missing_fields[] = 'n_firstname';
         if(empty($n_email))
@@ -693,18 +690,8 @@ class Admin extends Admin_Controller
             $missing_fields[] = 'n_password';
         if(empty($n_confirm_pwd))
             $missing_fields[] = 'n_confirm_pwd';
-        if(empty($n_province))
-            $missing_fields[] = 'n_province';
-        if(empty($n_region))
-            $missing_fields[] = 'n_region';
-        if(empty($n_district))
-            $missing_fields[] = 'n_district';
-        if(empty($n_commune))
-            $missing_fields[] = 'n_commune';
-        if(empty($n_arrondissement))
-            $missing_fields[] = 'n_arrondissement';
-        if(empty($n_fokontany))
-            $missing_fields[] = 'n_fokontany';    
+        if(empty($fokontany_id))
+            $missing_fields[] = 'fokontany_id';    
 
         if(!empty($missing_fields)){
             echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
@@ -713,8 +700,8 @@ class Admin extends Admin_Controller
 
         if(strlen($n_password) < 8)
             $short_pwd[] = 'n_password';
-        if(strlen($no_password) < 8)
-            $short_pwd[] = 'no_password';
+        if(strlen($n_confirm_pwd) < 8)
+            $short_pwd[] = 'n_confirm_pwd';
 
         if(!empty($short_pwd)){
             echo json_encode(['error' => 1, 'short_pwd' => $short_pwd]);
@@ -724,8 +711,6 @@ class Admin extends Admin_Controller
         if($n_password != $n_confirm_pwd){
             $wrong_pwd[] = 'n_password';
         }
-        if($no_password != $no_confirm_pwd)
-            $wrong_pwd[] = 'no_password';
 
         if(!empty($wrong_pwd)){
             echo json_encode(['error' => 1, 'wrong_pwd' => $wrong_pwd]);
@@ -733,25 +718,24 @@ class Admin extends Admin_Controller
         }
         
         if(!empty($type_compte)){
-            //Creating operator
-            if($type_compte=="operator"){
-                if($this->ion_auth->register($n_email, $n_password, $n_email, ['first_name' => $n_firstname, 'current_pwd' => $n_password], [3])){
-                    echo json_encode(['success'=>1, 'msg'=>'Enregistrement réussi']);
+            $type_compte = $type_compte=="sefo_kontany"? 3 : 4 ;
+               try{
+                $user_id = $this->ion_auth->register($n_email, $n_password, $n_email, ['first_name' => $n_firstname, 'current_pwd' => $n_password], [$type_compte]);
+                if($user_id){                   
+                    $data = array(
+                        'user_id' => $user_id ,
+                        'fokontany_id' => $fokontany_id
+                    ); 
+                    // A appeler depuis le model                    
+                    if($this->db->insert("user_fokontany", $data)){
+                        echo json_encode(['success'=>1, 'msg'=>'Enregistrement réussi']);
+                    }else
+                        echo json_encode(['error' => 1, 'msg' => 'Impossible de créer le compte.']); 
+                    }                          
                 }
-                else
-                    echo json_encode(['error' => 1, 'msg' => 'Impossible de créer le compte opérateur.']);  
-            }
-            //Creating sefo_kontany
-            else if($type_compte=="sefo_kontany"){
-                if($this->ion_auth->register($n_email, $n_password, $n_email, ['first_name' => $n_company, 'current_pwd' => $n_password], [3])){
-                    echo json_encode(['success'=>1, 'msg'=>'Enregistrement réussi']);
-                }
-                else
-                    echo json_encode(['error' => 1, 'msg' => 'Impossible de créer le compte sefo fokontany.']);  
-            }
-        }else
-            echo json_encode(['error' => 1, 'msg' => 'Impossible de créer le compte.']);
+                catch(Exception $e){
+                    echo json_encode(['error' => 1, 'msg' => 'Impossible de créer le compte.']);
+                }           
+        }
     }
-
 }
-

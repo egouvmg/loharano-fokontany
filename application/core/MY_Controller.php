@@ -38,7 +38,8 @@ class Admin_Controller extends MY_Controller
 	{
 		parent::__construct();
 
-		if(!$this->egmauth->is_admin())
+		//if(!$this->egmauth->is_admin())
+		if(!$this->egmauth->is_superadmin())
 			redirect('/', 'refresh');
 	}
 }

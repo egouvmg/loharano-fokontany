@@ -79,9 +79,10 @@
 
         <!-- Page Content -->
         <div class="container-fluid">
+        <form method="post" action="create_account">         
           <div class="row">
             <div class="col-lg-4">
-              <form>
+              
                 <div class="form-group">
                   <label for="first_name">Nom</label>
                   <input type="text" class="form-control" id="first_name" placeholder="...">
@@ -99,10 +100,10 @@
                   <input type="password" class="form-control" id="confirm_password" placeholder="********">
                 </div>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
-              </form>
+              
             </div>
             <div class="col-lg-8">
-              <form>
+              
                 <div class="form-row">
                   <div class="form-group col-md-12">
                     Choisissez le Fokontany où travail le Chef Fokontany
@@ -110,49 +111,57 @@
                   <div class="form-group col-md-6">
                     <label for="province">Province</label>
                     <select id="province" class="form-control">
-                      <option selected>...</option>
-                      <option>...</option>
+                      <?php foreach ($provinces as $province): ?>
+                        <option value="<?= $province->id;?>"><?= $province->name;?></option>
+                      <?php endforeach ?>
                     </select>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="region">Région</label>
                     <select id="region" class="form-control">
-                      <option selected>...</option>
-                      <option>...</option>
+                      <?php foreach ($regions as $region): ?>
+                        <option value="<?= $region->id;?>"><?= $region->name;?></option>
+                      <?php endforeach ?>
                     </select>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="district">District</label>
                     <select id="district" class="form-control">
-                      <option selected>...</option>
-                      <option>...</option>
+                      <?php foreach ($districts as $district): ?>
+                        <option value="<?= $district->id;?>"><?= $district->name;?></option>
+                      <?php endforeach ?>
                     </select>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="common">Commune</label>
                     <select id="common" class="form-control">
-                      <option selected>...</option>
-                      <option>...</option>
+                      <?php foreach ($commons as $common): ?>
+                          <option value="<?= $common->id;?>"><?= $common->name;?></option>
+                        <?php endforeach ?>
                     </select>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="borough">Arrondissement</label>
                     <select id="borough" class="form-control">
-                      <option selected>...</option>
-                      <option>...</option>
+                      <?php foreach ($boroughs as $borough): ?>
+                          <option value="<?= $borough->id;?>"><?= $borough->name;?></option>
+                        <?php endforeach ?>
                     </select>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="fokontany">Fokontany</label>
                     <select id="fokontany" name="fokontany" class="form-control">
-                      <option selected>...</option>
-                      <option>...</option>
+                      <?php foreach ($fokontanies as $fokontany): ?>
+                        <option value="<?= $fokontany->id;?>"><?= $fokontany->name;?></option>
+                      <?php endforeach ?>
                     </select>
                   </div>
+                  <input type="hidden" id="type_compte" name="type_compte" value="sefo_kontany">
                 </div>
-              </form>
+              
             </div>
           </div>
+        </form>
         </div>
         <!-- End Page Content -->
       </div>
