@@ -59,10 +59,26 @@ $route['se_deconnecter'] = 'auth/logout';
 // Main App
 $route['changer_langue'] = 'auth/change_language';
 
-//Superadmin
-$route['tableau_de_bords'] = 'superadmin/index';
-$route['ajout_utilisateur'] = 'superadmin/add_user';
-$route['ajout_chef_fokontany'] = 'superadmin/add_chief';
+//User
+$route['tableau_de_bords'] = 'user/index';
+$route['ajout_utilisateur'] = 'user/add_user';
+$route['ajout_chef_fokontany'] = 'user/add_chief';
+$route['liste_utilisateur'] = 'user/list_user';
+$route['enregistrer_operateur'] = 'user/save_user';
 
 //Admin
 $route['create_account'] = 'admin/save_operateur_sefo_account';
+
+//Location
+$route['enfant_province'] = 'territory/procince_get_childs';
+$route['enfant_region'] = 'territory/region_get_childs';
+$route['enfant_district'] = 'territory/district_get_childs';
+$route['enfant_commune'] = 'territory/common_get_childs';
+$route['enfant_commune_avaliable'] = 'territory/common_get_avaliable_childs';
+
+/*
+ * AJAX
+ */
+//User
+$route['les_utilisateurs'] = 'user/a_users';
+$route['les_utilisateurs_fokontany'] = 'user/a_users_fokontany';

@@ -528,8 +528,8 @@ $config['modules_locations'] = array(
 /*
  * USER GROUP
  */
-$config['loharano_operator'] = 2;
-$config['loharano_company'] = 3;
+$config['group_operator'] = 4;
+$config['group_chief'] = 3;
 
 /*
  * API Configuration

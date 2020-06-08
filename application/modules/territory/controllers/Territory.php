@@ -216,25 +216,10 @@ class Territory extends MY_Controller
         	return true;
         }
 
-		$fokontany_list = $this->fokontany->get_all(['common_id' => $id_common]);
-		$ftk_company_id_list = $this->fokontany->get_all_fokontany_id_in_acompany();
-		$ftk_unavailable_list = array();
-
-		if(!empty($ftk_company_id_list)){
-			foreach($ftk_company_id_list as $ftk_comp_id){
-				$ftk_unavail = $this->fokontany->get_fokotany_by_id($ftk_comp_id->fokontany_id);
-				if(!empty($ftk_unavail))array_push($ftk_unavailable_list, $ftk_unavail[0]);
-			}
-		}
-		$fkt_avilables = $fokontany_list;
-		foreach($ftk_unavailable_list as $del_val){
-			if (($key = array_search($del_val, $fkt_avilables)) !== false) {
-				unset($fkt_avilables[$key]);
-			}
-		}
+		$fokontany_list = $this->fokontany->get_all(['borough_id' => $id_common]);
     	
-    	if(!empty($fkt_avilables)){
-    		$this->data['childs'] = $fkt_avilables;
+    	if(!empty($fokontany_list)){
+    		$this->data['childs'] = $fokontany_list;
     		$childs = $this->load->view('childs_option', $this->data, TRUE);
     		echo json_encode(['success' => 1, 'childs' => $childs]);		
     	}

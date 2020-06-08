@@ -789,3 +789,10 @@ body.login {
     color: #F13334;
     font-weight: bold;
 }
+img.loading{
+    width: 35px;
+}
+.error_field {
+    color: red;
+    font-size: 10pt;
+}
