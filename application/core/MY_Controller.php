@@ -12,6 +12,7 @@ class MY_Controller extends CI_Controller {
 		$this->session->set_userdata('site_lang', $language);
 
 		$this->lang->load('auth', $language);
+		$this->lang->load('base', $language);
 	}
 }
 

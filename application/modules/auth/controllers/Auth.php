@@ -25,7 +25,7 @@ class Auth extends MY_Controller {
 		}
 		else if ($this->egmauth->is_operator())
 		{
-			echo 'Operator';
+			redirect('gestion_citoyens', 'refresh');
 		}
 		else redirect('se_connecter', 'refresh');
 	}

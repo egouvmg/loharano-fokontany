@@ -175,9 +175,7 @@
                     </div>
                     <input type="hidden" id="type_compte" name="type_compte" value="operator">
                   </div>
-                
               </div>
-            
             </div>
           </form>
         </div>

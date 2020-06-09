@@ -40,4 +40,15 @@ class User_model extends CI_Model
 		return $query->result();
 	}
 
+	public function getUserFokontany($id = 0) {
+		$this->db->select('*');
+		$this->db->from($this->_v_user_fokontany);
+		
+		$this->db->where(['user_id' => $id]);
+		
+		$query = $this->db->get();
+
+		return $query->first_row();
+	}
+
 }
