@@ -77,7 +77,7 @@ $db['default'] = array(
 	'dsn'	=> 'pgsql:host=localhost;port=5432;dbname=loharano_v2',
 	'hostname' => '',
 	'username' => 'postgres',
-	'password' => '123456',
+	'password' => 'toor',
 	'database' => '',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',

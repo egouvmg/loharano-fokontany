@@ -14,6 +14,8 @@ class Menage extends SuperAdmin_Controller
         $this->load->model('territory/common_model', 'common');
         $this->load->model('territory/borough_model', 'borough');
         $this->load->model('territory/fokontany_model', 'fokontany');
+
+        $this->lang->load('user', $this->session->site_lang);
 		
 	}
 

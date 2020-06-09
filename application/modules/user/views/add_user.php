@@ -49,11 +49,11 @@
   <div class="container-fluid">
     <div class=row>
       <div class="main-side-bar">
-        <ul class="main-menu">
+      <ul class="main-menu">
           <li>
             <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('users');?></a>
             <ul class="sub-main-menu">
-              <li><a class="active" href="ajout_utilisateur"><?=$this->lang->line('add_user');?></a></li>
+              <li><a href="ajout_utilisateur"><?=$this->lang->line('add_user');?></a></li>
               <li><a href="ajout_chef_fokontany"><?=$this->lang->line('add_chief');?></a></li>
               <li><a href="liste_utilisateur"><?=$this->lang->line('list_users');?></a></li>
             </ul>
@@ -63,6 +63,9 @@
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménage</a>
+            <ul class="sub-main-menu">              
+              <li><a href="list_menage">Liste des Ménages</a></li>
+            </ul>
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> Citoyens</a>

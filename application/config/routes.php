@@ -87,3 +87,6 @@ $route['liste_citoyen'] = 'citizen/list_citizen';
 //User
 $route['les_utilisateurs'] = 'user/a_users';
 $route['les_utilisateurs_fokontany'] = 'user/a_users_fokontany';
+
+//Menage
+$route['list_menage'] = 'menage/list_menage';

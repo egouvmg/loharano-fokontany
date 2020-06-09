@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Citizen_model extends CI_Model
+class Menage_model extends CI_Model
 {
 	private $_user = "user";
 	private $_v_user_group = "v_user_group";
