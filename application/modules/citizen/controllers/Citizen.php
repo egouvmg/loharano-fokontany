@@ -29,9 +29,9 @@ class Citizen extends Operator_Controller
         $this->load->view('index', $this->data);
 	}
 
-	public function list_menage()
+	public function list_citizen()
 	{
-		$this->data['title'] = "Liste des Ménages";
+		$this->data['title'] = "Liste des Citoyens";
 
         $this->data['provinces'] = $this->province->get_all();
         $this->data['regions'] = $this->region->get_all(['province_id' => $this->data['provinces'][0]->id]);
@@ -40,7 +40,27 @@ class Citizen extends Operator_Controller
 		$this->data['boroughs'] = $this->borough->get_all(['common_id' => $this->data['commons'][0]->id]);
 		$this->data['fokontanies'] = $this->fokontany->get_all(['borough_id' => $this->data['boroughs'][0]->id]);
 
-        $this->load->view('list_menage', $this->data);
+        $this->load->view('list_citizen', $this->data);
+    }
+
+    public function list_citizen_by_carnet_id()
+	{
+
+        $carnet_id = 2;//$this->input->post('carnet_id');
+        
+        if(!empty($carnet_id)){
+            $citizen = $this->citizen->get_citizen(['numero_carnet'=>$carnet_id]);
+        }    
+        $this->data['title'] = "Liste des Citoyens";
+
+        $this->data['provinces'] = $this->province->get_all();
+        $this->data['regions'] = $this->region->get_all(['province_id' => $this->data['provinces'][0]->id]);
+        $this->data['districts'] = $this->district->get_all(['region_id' => $this->data['regions'][0]->id]);
+		$this->data['commons'] = $this->common->get_all(['district_id' => $this->data['districts'][0]->id]);
+		$this->data['boroughs'] = $this->borough->get_all(['common_id' => $this->data['commons'][0]->id]);
+        $this->data['fokontanies'] = $this->fokontany->get_all(['borough_id' => $this->data['boroughs'][0]->id]);
+
+        $this->load->view('list_citizen', $this->data);
     }
 
 	public function index()

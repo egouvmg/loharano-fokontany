@@ -69,6 +69,9 @@
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> Citoyens</a>
+            <ul class="sub-main-menu">              
+              <li><a href="liste_citoyen">Liste des citoyens</a></li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -163,6 +166,6 @@
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
-	<script src="<?= plugin('modules', 'superadmin', 'list_user.js');?>"></script>
+	<script src="<?= plugin('modules', 'superadmin', 'list_menage.js');?>"></script>
 </body>
 </html>
