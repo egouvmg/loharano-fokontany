@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Menage extends SuperAdmin_Controller
+class Citizen extends Operator_Controller
 {
 	public function __construct(){
         parent::__construct();
         
-        $this->load->model('menage_model', 'menage');
+        $this->load->model('menage/menage_model', 'menage');
         
         //Location Models
         $this->load->model('territory/province_model', 'province');
@@ -13,11 +13,17 @@ class Menage extends SuperAdmin_Controller
         $this->load->model('territory/district_model', 'district');
         $this->load->model('territory/common_model', 'common');
         $this->load->model('territory/borough_model', 'borough');
+        
+        $this->load->model('citizen_model', 'citizen');
+        
         $this->load->model('territory/fokontany_model', 'fokontany');
+        $this->load->model('user/user_model', 'user');
+
+        $this->lang->load('citizen', $this->session->site_lang);
 		
 	}
 
-	public function index()
+	public function index_household()
 	{
 		$this->data['title'] = "Tableau de bords";
         $this->load->view('index', $this->data);
@@ -36,5 +42,29 @@ class Menage extends SuperAdmin_Controller
 
         $this->load->view('list_menage', $this->data);
     }
+
+	public function index()
+	{
+        $this->data['title'] = $this->lang->line('dashboard');
+
+        $user_fokontany = $this->user->getUserFokontany($this->session->user_id);
+
+        $this->data['user_fokontany'] = ($user_fokontany) ? $user_fokontany->fokontany_name : '...';
+
+        $this->load->view('index', $this->data);
+	}
+
+	public function add_citizen()
+	{
+		$this->data['title'] = $this->lang->line('add_citizen');
+
+        $user_fokontany = $this->user->getUserFokontany($this->session->user_id);
+
+        $this->data['user_fokontany'] = ($user_fokontany) ? $user_fokontany->fokontany_name : '...';
+		
+        $this->load->view('add_citizen', $this->data);
+	}
+
+
 }
 
