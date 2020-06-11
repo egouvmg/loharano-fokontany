@@ -10,3 +10,4 @@ $lang['info_parent'] = 'Information des parents';
 $lang['info_job'] = 'Information sur la profession';
 $lang['info_cin'] = 'Information sur la Carte d\'Identité Nationale';
 $lang['info_passport'] = 'Information sur le Passport';
+$lang['citizen_residence'] = 'certificat de résidence';

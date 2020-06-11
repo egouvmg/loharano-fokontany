@@ -10,3 +10,4 @@ $lang['info_parent'] = 'Ray aman-dreny';
 $lang['info_job'] = 'Momban\'ny asa';
 $lang['info_cin'] = 'Momban\'ny Kara-panondro-pirenena';
 $lang['info_passport'] = 'Momban\'ny Pasiporo';
+$lang['citizen_residence'] = 'certificat de résidence';

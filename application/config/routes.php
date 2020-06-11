@@ -81,6 +81,8 @@ $route['gestion_citoyens'] = 'citizen/index';
 $route['ajout_citoyen'] = 'citizen/add_citizen';
 $route['liste_citoyen'] = 'citizen/list_citizen';
 $route['enregistrement_citoyen'] = 'citizen/save_citizen';
+$route['citoyens_list'] = 'citizen/citizens_list';
+$route['certificate'] = 'citizen/load_citizen_certificate';
 
 /*
  * AJAX
@@ -91,3 +93,4 @@ $route['les_utilisateurs_fokontany'] = 'user/a_users_fokontany';
 
 //Menage
 $route['list_menage'] = 'menage/list_menage';
+$route['menages_fokontany'] = 'menage/menages_fokontany';

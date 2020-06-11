@@ -15,11 +15,11 @@ $(function () {
 			{column:"medal", dir:"asc"}
 		],
         columns:[ //Define Table Columns
-            {title:"Numéro carnet", field:"first_name", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Adresse Actuelle", field:"email",headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Ancienne Adresse", field:"group_name",headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Date  Arrivée", field:"active", formatter: status, headerFilter:true, headerFilterParams:{values:{1:"Actif", 0:"Suspendu", "":""}}},
-            {title:"Observations", field:"active", formatter: status, headerFilter:true, headerFilterParams:{values:{1:"Actif", 0:"Suspendu", "":""}}}            
+            {title:"Numéro carnet", field:"numero_carnet", headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"Adresse Actuelle", field:"adresse_actuelle",headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"Ancienne Adresse", field:"ancienne_adresse",headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"Date Arrivée", field:"date_arrivee", headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"Observations", field:"observations", headerFilterPlaceholder:"..." , headerFilter:"input"}            
         ],
         rowClick:function(e, row){
             $('#full_name').text(row.getData().last_name +' '+ row.getData().first_name);
@@ -80,6 +80,6 @@ $(function () {
     $(document).ready(function(e){
         var fokontany_id = $('#fokontany').val() || 0;
 
-        users.setData('les_utilisateurs_fokontany', {fokontany_id:fokontany_id});
+        users.setData('menages_fokontany', {fokontany_id:fokontany_id});
     });
 });
