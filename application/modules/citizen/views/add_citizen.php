@@ -78,7 +78,7 @@
                 <div class="row">   
                     <div class="col-lg-3">
                         <div class="form-row">
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-12 orange">
                                 <?=$this->lang->line('info_citizen');?>
                             </div>
                             <div class="form-group col-md-12">
@@ -92,29 +92,28 @@
                                 <span class="error_field error_first_name"></span>
                             </div>
                             <div class="form-group col-md-12">
+                                <label for="birth"><?=$this->lang->line('birth');?> *</label>
+                                <input type="date" class="form-control" id="birth" name="birth" placeholder="jj/mm/aaaa">
+                                <span class="error_field error_birth"></span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="birth_place"><?=$this->lang->line('birth_place');?> *</label>
+                                <input type="text" class="form-control" id="birth_place" name="birth_place" placeholder="...">
+                                <span class="error_field error_birth_place"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">.
+                            </div>
+                            <div class="form-group col-md-12">
                                 <label for="birth"><?=$this->lang->line('sexe');?> *</label>
                                 <select name="sexe" id="sexe" class="form-control">
                                     <option value="1"><?=$this->lang->line('sexe_male');?></option>
                                     <option value="2"><?=$this->lang->line('sexe_female');?></option>
                                 </select>
                                 <span class="error_field error_sexe"></span>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="birth"><?=$this->lang->line('birth');?> *</label>
-                                <input type="date" class="form-control" id="birth" name="birth" placeholder="jj/mm/aaaa">
-                                <span class="error_field error_birth"></span>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="birth"><?=$this->lang->line('birth_place');?> *</label>
-                                <input type="text" class="form-control" id="birth" name="birth" placeholder="...">
-                                <span class="error_field error_birth"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                .
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="marital_status"><?=$this->lang->line('marital_status');?></label>
@@ -131,21 +130,11 @@
                                 <input type="text" class="form-control" id="phone" name="phone" placeholder="...">
                                 <span class="error_field error_phone"></span>
                             </div>
-                            <div class="form-group col-md-12">
-                                <label for="job"><?=$this->lang->line('job');?> *</label>
-                                <input type="date" class="form-control" id="job" name="job" placeholder="...">
-                                <span class="error_field error_job"></span>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="job_description"><?=$this->lang->line('job_description');?> *</label>
-                                <input type="text" class="form-control" id="job_description" name="job_description" placeholder="...">
-                                <span class="error_field error_job_description"></span>
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="form-row">
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-12 orange">
                                 <?=$this->lang->line('info_parent');?>
                             </div>
                             <div class="form-group col-md-12">
@@ -170,8 +159,70 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-3">
+                        <div class="form-row">
+                            <div class="form-group col-md-12 orange">
+                                <?=$this->lang->line('info_job');?>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="job"><?=$this->lang->line('job');?></label>
+                                <select name="job_id" class="form-control" id="job">
+                                  <option value="">...</option>
+                                  <?php foreach($jobs as $job) : ?>
+                                    <option value="<?= $job->id;?>"><?= $this->lang->line('job_'.$job->id);?></option>
+                                  <?php endforeach;?>
+                                  <option value="-1"><?= $this->lang->line('others');?></option>
+                                </select>
+                                <input type="text" style="margin-top: 20px;display:none;" class="form-control" id="job_other" name="job_other" placeholder="<?= $this->lang->line('job_other');?>">
+                                <span class="error_field error_job_id"></span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="job_status"><?=$this->lang->line('job_description');?> *</label>
+                                <textarea class="form-control" id="job_status" name="job_status" placeholder="..."></textarea>
+                                <span class="error_field error_job_status"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                            <button type="submit" id="saveOperator" class="btn btn-primary">Enregistrer</button>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-row">
+                      <div class="form-group col-md-12 orange">
+                        <?=$this->lang->line('info_cin');?> / <?=$this->lang->line('info_passport');?>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <label for="cin"><?=$this->lang->line('cin');?> *</label>
+                          <input type="text" class="form-control" id="cin" name="cin" placeholder="000 000 000 000">
+                          <span class="error_field error_cin"></span>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <label for="cin_date"><?=$this->lang->line('cin_date');?> *</label>
+                          <input type="date" class="form-control" id="cin_date" name="cin_date">
+                          <span class="error_field error_cin_date"></span>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <label for="cin_place"><?=$this->lang->line('cin_place');?> *</label>
+                          <input type="text" class="form-control" id="cin_place" name="cin_place" placeholder="...">
+                          <span class="error_field error_cin_place"></span>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" id="saveOperator" class="btn btn-primary">Enregistrer</button>
                 <span id="failedMsg" class="error_field"></span>
                 <div id="loadingSave" style="display:none;">
                     <img class="loading" src="<?= img('pulse.gif');?>"/>
@@ -187,5 +238,6 @@
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
+	<script src="<?= plugin('modules', 'citizen', 'add_citizen.js');?>"></script>
 </body>
 </html>

@@ -80,6 +80,7 @@ $route['enfant_commune_avaliable'] = 'territory/common_get_avaliable_childs';
 $route['gestion_citoyens'] = 'citizen/index';
 $route['ajout_citoyen'] = 'citizen/add_citizen';
 $route['liste_citoyen'] = 'citizen/list_citizen';
+$route['enregistrement_citoyen'] = 'citizen/save_citizen';
 
 /*
  * AJAX

@@ -16,7 +16,9 @@ $lang['mother_status'] = 'Mention de la mère';
 $lang['birth'] = 'Daty nahaterahana';
 $lang['birth_place'] = 'Toerana nahaterahana';
 $lang['job'] = 'Asa';
-$lang['job_desctioption'] = 'Momban\'ny asa';
+$lang['job_other'] = 'Asa hafa, mila ampidirina';
+$lang['job_description'] = 'Momban\'ny asa';
+$lang['others'] = 'Hafa';
 
 $lang['sexe_male'] = 'Lahy';
 $lang['sexe_female'] = 'Vavy';

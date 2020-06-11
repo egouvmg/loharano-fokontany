@@ -13,6 +13,8 @@ class Citizen extends Operator_Controller
         $this->load->model('territory/district_model', 'district');
         $this->load->model('territory/common_model', 'common');
         $this->load->model('territory/borough_model', 'borough');
+
+        $this->load->model('job/job_model', 'job');
         
         $this->load->model('citizen_model', 'citizen');
         
@@ -20,6 +22,7 @@ class Citizen extends Operator_Controller
         $this->load->model('user/user_model', 'user');
 
         $this->lang->load('citizen', $this->session->site_lang);
+        $this->lang->load('job', $this->session->site_lang);
 		
 	}
 
@@ -76,14 +79,28 @@ class Citizen extends Operator_Controller
 
 	public function add_citizen()
 	{
-		$this->data['title'] = $this->lang->line('add_citizen');
+        $this->data['title'] = $this->lang->line('add_citizen');
+        $this->data['jobs'] = $this->job->all();
 
         $user_fokontany = $this->user->getUserFokontany($this->session->user_id);
 
         $this->data['user_fokontany'] = ($user_fokontany) ? $user_fokontany->fokontany_name : '...';
 		
         $this->load->view('add_citizen', $this->data);
-	}
+    }
+
+    /*
+     * AJAX
+     */
+    
+    public function save_citizen()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+
+    }
 
 
 }

@@ -16,7 +16,9 @@ $lang['mother_status'] = 'Mention de la mère';
 $lang['birth'] = 'Date de naissance';
 $lang['birth_place'] = 'Lieu de naissance';
 $lang['job'] = 'Profession';
-$lang['job_desctioption'] = 'Description de la profession';
+$lang['job_other'] = 'Autre profession à saisir';
+$lang['job_description'] = 'Description de la profession';
+$lang['others'] = 'Autres';
 
 $lang['sexe_male'] = 'Homme';
 $lang['sexe_female'] = 'Femme';
