@@ -8,6 +8,9 @@ $lang['marital_status'] = 'Situation matrimoniale';
 $lang['cin'] = 'CIN';
 $lang['cin_date'] = 'Daty nazaona CIN';
 $lang['cin_place'] = 'Toerana nazaona CIN';
+$lang['passport'] = 'Laharana Pasiporo';
+$lang['passport_date'] = 'Daty nazaona Pasiporo';
+$lang['passport_place'] = 'Toerana nazaona Pasiporo';
 $lang['sexe'] = 'Sexe';
 $lang['father'] = 'Ray';
 $lang['mother'] = 'Reny';
@@ -18,7 +21,12 @@ $lang['birth_place'] = 'Toerana nahaterahana';
 $lang['job'] = 'Asa';
 $lang['job_other'] = 'Asa hafa, mila ampidirina';
 $lang['job_description'] = 'Momban\'ny asa';
+$lang['nationality'] = 'Zo-pirenena';
 $lang['others'] = 'Hafa';
+$lang['single'] = 'Irery';
+$lang['married'] = 'Manambady';
+$lang['widower'] = 'Maty vady';
+$lang['divorced'] = 'Nisaraka';
 
 $lang['sexe_male'] = 'Lahy';
 $lang['sexe_female'] = 'Vavy';
@@ -35,6 +43,8 @@ $lang['settings'] = 'Fanamboarana';
 $lang['manage_users'] = 'Fitantanana ny Mpampiasa';
 $lang['manage_citizens'] = 'Fitantanana ny olom-pirenena';
 $lang['manage_households'] = 'Fitantanana ny fianakaviana';
+
+$lang['success_save'] = 'Vita ny fampidirana';
 
 $lang['citizens'] = 'Olom-pirenena';
 $lang['households'] = 'Fianakaviana';

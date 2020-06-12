@@ -1,29 +1,25 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Citizen_model extends CI_Model
+class Nationality_model extends CI_Model
 {
-	private $_table = "personne";
+	private $_nationality = "nationality";
 
 	public function __construct(){      
         $this->load->database();
     }
 
-	public function get($criteria = array()) {
+	public function all($criteria = array()) {
 		$this->db->select('*');
-		$this->db->from($this->_table);
+		$this->db->from($this->_nationality);
 		
 		if(!empty($criteria)){
 			$this->db->where($criteria);
 		}
+
+		$this->db->order_by('id', 'asc');
 		
 		$query = $this->db->get();
 
 		return $query->result();
 	}
-
-	public function insert($data) {
-		$this->db->insert($this->_table, $data);
-		return $this->db->insert_id();
-	}
-
 }

@@ -8,6 +8,9 @@ $lang['marital_status'] = 'Situation matrimoniale';
 $lang['cin'] = 'CIN';
 $lang['cin_date'] = 'Date délivrance de la CIN';
 $lang['cin_place'] = 'Lieu délivrance de la CIN';
+$lang['passport'] = 'Numéro Passport';
+$lang['passport_date'] = 'Date délivrance du Passport';
+$lang['passport_place'] = 'Lieu délivrance du Passport';
 $lang['sexe'] = 'Sexe';
 $lang['father'] = 'Père';
 $lang['mother'] = 'Mère';
@@ -18,7 +21,12 @@ $lang['birth_place'] = 'Lieu de naissance';
 $lang['job'] = 'Profession';
 $lang['job_other'] = 'Autre profession à saisir';
 $lang['job_description'] = 'Description de la profession';
+$lang['nationality'] = 'Nationalité';
 $lang['others'] = 'Autres';
+$lang['single'] = 'Célibataire';
+$lang['married'] = 'Marié(e)';
+$lang['widower'] = 'Veuf/Veuve';
+$lang['divorced'] = 'Divorcé(e)';
 
 $lang['sexe_male'] = 'Homme';
 $lang['sexe_female'] = 'Femme';
@@ -35,6 +43,8 @@ $lang['settings'] = 'Paramètres';
 $lang['manage_users'] = 'Gestion des utilisateurs';
 $lang['manage_citizens'] = 'Gestion des citoyens';
 $lang['manage_households'] = 'Gestion des ménages';
+
+$lang['success_save'] = 'Enregistrement réussi';
 
 $lang['citizens'] = 'Citoyens';
 $lang['households'] = 'Ménages';

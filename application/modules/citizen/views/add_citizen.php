@@ -117,7 +117,13 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="marital_status"><?=$this->lang->line('marital_status');?></label>
-                                <input type="text" class="form-control" id="marital_status" name="marital_status" placeholder="...">
+                                <select name="marital_status" id="marital_status" class="form-control">
+                                    <option value="5">...</option>
+                                    <option value="1"><?=$this->lang->line('single');?></option>
+                                    <option value="2"><?=$this->lang->line('married');?></option>
+                                    <option value="3"><?=$this->lang->line('widower');?></option>
+                                    <option value="4"><?=$this->lang->line('divorced');?></option>
+                                </select>
                                 <span class="error_field error_marital_status"></span>
                             </div>
                             <div class="form-group col-md-12">
@@ -144,7 +150,10 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="father_status"><?=$this->lang->line('father_status');?> *</label>
-                                <input type="text" class="form-control" id="father_status" name="father_status" placeholder="...">
+                                <select name="father_status" id="father_status" class="form-control">
+                                    <option value="1"><?=$this->lang->line('dead');?></option>
+                                    <option value="2"><?=$this->lang->line('alive');?></option>
+                                </select>
                                 <span class="error_field error_father_status"></span>
                             </div>
                             <div class="form-group col-md-12">
@@ -154,7 +163,10 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="mother_status"><?=$this->lang->line('mother_status');?> *</label>
-                                <input type="text" class="form-control" id="mother_status" name="mother_status" placeholder="...">
+                                <select name="mother_status" id="mother_status" class="form-control">
+                                    <option value="1"><?=$this->lang->line('dead');?></option>
+                                    <option value="2"><?=$this->lang->line('alive');?></option>
+                                </select>
                                 <span class="error_field error_mother_status"></span>
                             </div>
                         </div>
@@ -197,13 +209,26 @@
                   <div class="col-lg-3">
                     <div class="form-row">
                         <div class="form-group col-md-12">
+                          <label for="nationality"><?=$this->lang->line('nationality');?> *</label>
+                            <select name="nationality_id" class="form-control" id="nationality">
+                              <?php foreach($nationalities as $nationality) : ?>
+                                <option value="<?= $nationality->id;?>"><?= $this->lang->line('nationality_'.$nationality->id);?></option>
+                              <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                  </div>
+                  <!-- CIN -->
+                  <div class="col-lg-3 cin-section">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
                           <label for="cin"><?=$this->lang->line('cin');?> *</label>
-                          <input type="text" class="form-control" id="cin" name="cin" placeholder="000 000 000 000">
+                          <input type="text" maxlenght="15" class="form-control" id="cin" name="cin" placeholder="000 000 000 000">
                           <span class="error_field error_cin"></span>
                         </div>
                     </div>
                   </div>
-                  <div class="col-lg-3">
+                  <div class="col-lg-3 cin-section">
                     <div class="form-row">
                         <div class="form-group col-md-12">
                           <label for="cin_date"><?=$this->lang->line('cin_date');?> *</label>
@@ -212,7 +237,7 @@
                         </div>
                     </div>
                   </div>
-                  <div class="col-lg-3">
+                  <div class="col-lg-3 cin-section">
                     <div class="form-row">
                         <div class="form-group col-md-12">
                           <label for="cin_place"><?=$this->lang->line('cin_place');?> *</label>
@@ -221,6 +246,36 @@
                         </div>
                     </div>
                   </div>
+                  <!-- END CIN -->
+                  <!-- Passport -->
+                  <div class="col-lg-3 passport-section">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <label for="passport"><?=$this->lang->line('passport');?> *</label>
+                          <input type="text" class="form-control" id="passport" name="passport" placeholder="...">
+                          <span class="error_field error_passport"></span>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 passport-section">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <label for="passport_date"><?=$this->lang->line('passport_date');?> *</label>
+                          <input type="date" class="form-control" id="passport_date" name="passport_date">
+                          <span class="error_field error_passport_date"></span>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 passport-section">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <label for="passport_place"><?=$this->lang->line('passport_place');?> *</label>
+                          <input type="text" class="form-control" id="passport_place" name="passport_place" placeholder="...">
+                          <span class="error_field error_passport_place"></span>
+                        </div>
+                    </div>
+                  </div>
+                  <!-- END Passport -->
                 </div>
                 <button type="submit" id="saveOperator" class="btn btn-primary">Enregistrer</button>
                 <span id="failedMsg" class="error_field"></span>
@@ -231,6 +286,22 @@
             </form>
         </div>
         <!-- End Page Content -->
+        
+        <!-- Modal -->
+        <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-body text-center">
+                <span class="icon-check">
+                <span class="iconify" data-inline="false" data-icon="uil:check" style="font-size: 32px;"></span>
+                </span>
+                <p id="confirmResponse"></p>
+                <a href="ajout_citoyen"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal END -->
     </div>
     </div>
 

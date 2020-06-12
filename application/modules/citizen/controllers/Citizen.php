@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Citizen extends SuperAdmin_Controller//Operator_Controller
+class Citizen extends Operator_Controller
 {
 	public function __construct(){
         parent::__construct();
@@ -13,6 +13,7 @@ class Citizen extends SuperAdmin_Controller//Operator_Controller
         $this->load->model('territory/borough_model', 'borough');
 
         $this->load->model('job/job_model', 'job');
+        $this->load->model('nationality/nationality_model', 'nationality');
         
         $this->load->model('citizen_model', 'citizen');
         
@@ -21,6 +22,7 @@ class Citizen extends SuperAdmin_Controller//Operator_Controller
 
         $this->lang->load('citizen', $this->session->site_lang);
         $this->lang->load('job', $this->session->site_lang);
+        $this->lang->load('nationality', $this->session->site_lang);
 		
 	}
 
@@ -44,6 +46,41 @@ class Citizen extends SuperAdmin_Controller//Operator_Controller
         $this->data['carnet_id'] = $this->input->get('carnet_id');
 
         $this->load->view('list_citizen', $this->data);
+    }
+
+	public function index()
+	{
+        $this->data['title'] = $this->lang->line('dashboard');
+
+        $user_fokontany = $this->user->getUserFokontany($this->session->user_id);
+
+        $this->data['user_fokontany'] = ($user_fokontany) ? $user_fokontany->fokontany_name : '...';
+
+        $this->load->view('index', $this->data);
+	}
+
+	public function list_citizens()
+	{
+        $this->data['title'] = $this->lang->line('dashboard');
+
+        $user_fokontany = $this->user->getUserFokontany($this->session->user_id);
+
+        $this->data['user_fokontany'] = ($user_fokontany) ? $user_fokontany->fokontany_name : '...';
+
+        $this->load->view('list_citizen_fk', $this->data);
+	}
+
+	public function add_citizen()
+	{
+        $this->data['title'] = $this->lang->line('add_citizen');
+        $this->data['jobs'] = $this->job->all();
+        $this->data['nationalities'] = $this->nationality->all();
+
+        $user_fokontany = $this->user->getUserFokontany($this->session->user_id);
+
+        $this->data['user_fokontany'] = ($user_fokontany) ? $user_fokontany->fokontany_name : '...';
+		
+        $this->load->view('add_citizen', $this->data);
     }
 
     /*
@@ -81,29 +118,6 @@ class Citizen extends SuperAdmin_Controller//Operator_Controller
         $this->load->view('list_citizen', $this->data);
     }
 
-	public function index()
-	{
-        $this->data['title'] = $this->lang->line('dashboard');
-
-        $user_fokontany = $this->user->getUserFokontany($this->session->user_id);
-
-        $this->data['user_fokontany'] = ($user_fokontany) ? $user_fokontany->fokontany_name : '...';
-
-        $this->load->view('index', $this->data);
-	}
-
-	public function add_citizen()
-	{
-        $this->data['title'] = $this->lang->line('add_citizen');
-        $this->data['jobs'] = $this->job->all();
-
-        $user_fokontany = $this->user->getUserFokontany($this->session->user_id);
-
-        $this->data['user_fokontany'] = ($user_fokontany) ? $user_fokontany->fokontany_name : '...';
-		
-        $this->load->view('add_citizen', $this->data);
-    }
-
     /*
      * AJAX
      */
@@ -114,7 +128,75 @@ class Citizen extends SuperAdmin_Controller//Operator_Controller
             exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
         }
 
+        $data = $this->input->post();
+        $requireds = ['last_name', 'birth', 'birth_place', 'address'];
 
+        if($data){
+            $missing_fields = [];   
+            $cin = [$data['cin'], $data['cin_date'], $data['cin_place']];
+            $passport = [$data['passport'], $data['passport_date'], $data['passport_place']];
+
+            foreach($requireds as $required)
+                if(empty($data[$required])) $missing_fields[] = [$required ,'Champ requis.'];
+            
+            if($data['nationality_id'] == 1){  
+                $requireds_cin = ['cin', 'cin_date', 'cin_place'];      
+                
+                if($cin != ['', '', '']){
+                    foreach($requireds_cin as $required)
+                        if(empty($data[$required])) $missing_fields[] = [$required ,'Champ requis.'];
+                }
+            }else if($data['nationality_id'] > 1){   
+                $requireds_passport = ['passport', 'passport_date', 'passport_place'];     
+                
+                foreach($requireds_passport as $required)
+                    if(empty($data[$required])) $missing_fields[] = [$required ,'Champ requis.'];
+            }
+
+            if(!empty($missing_fields)){
+                echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
+                return FALSE;
+            }
+
+            $data_insert = [
+                'nom' => $data['last_name'],
+                'prenoms' => $data['first_name'],
+                'date_de_naissance' => $data['birth'],
+                'lieu_de_naissance' => $data['birth_place'],
+                'sexe' => $data['sexe'],
+                'situation_matrimoniale' => $data['marital_status'],
+                'phone' => $data['phone'],
+                'father' => $data['father'],
+                'father_status' => $data['father_status'],
+                'mother' => $data['mother'],
+                'mother_status' => $data['mother_status'],
+                'job_id' => $data['job_id'],
+                'job_other' => $data['job_other'],
+                'job_status' => $data['job_status'],
+                'nationality_id' => $data['nationality_id']
+            ];
+
+            if ($cin != ['', '', '']){
+                $data_insert['cin_peronne'] = $data['cin'];
+                $data_insert['date_delivrance_cin'] = $data['cin_date'];
+                $data_insert['lieu_delivrance_cin'] = $data['cin'];
+            }
+            if ($passport != ['', '', '']){
+                $data_insert['passport'] = $data['passport'];
+                $data_insert['passport_date'] = $data['passport_date'];
+                $data_insert['passport_place'] = $data['passport_place'];
+            }
+
+
+            if($this->citizen->insert($data_insert)){
+                echo json_encode(['success' => 1, 'msg' => $this->lang->line('success_save')]);
+            }else{
+                echo json_encode(['error' => 1, 'msg' => $this->lang->line('data_citizen_error')]);
+            }
+        }
+        else{
+            echo json_encode(['error' => 1, 'msg' => $this->lang->line('data_citizen_error')]);
+        }
     }
     
     /**

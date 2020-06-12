@@ -799,3 +799,6 @@ img.loading{
 .orange{
     color: #F26122;
 }
+.passport-section{
+    display: none;
+}

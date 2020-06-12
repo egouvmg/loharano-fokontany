@@ -83,6 +83,7 @@ $route['liste_citoyen'] = 'citizen/list_citizen';
 $route['enregistrement_citoyen'] = 'citizen/save_citizen';
 $route['citoyens_list'] = 'citizen/citizens_list';
 $route['certificate'] = 'citizen/load_citizen_certificate';
+$route['liste_citoyens'] = 'citizen/list_citizens';
 
 /*
  * AJAX

@@ -200,7 +200,7 @@
 				</div>
 			</div>
 		</div>
-  	</div>
+  </div>
   <!-- Modal END -->
 	<script src="<?= js('jquery.min');?>"></script>
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
