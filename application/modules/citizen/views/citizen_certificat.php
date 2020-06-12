@@ -80,7 +80,7 @@
         <!-- End Page title -->
 
         <!-- Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid" id="certificat">
             <div class="row">
                 <div class="col-lg-12">
                     <!-- Location Filter-->
@@ -135,11 +135,116 @@
                 </div>
                 <div class="col-lg-12">
                     <div id="users"></div>
+                    <button type="button" class="btn btn-primary" id="pdf"> Générer pdf</button>
                 </div>
             </div>
         </div>
+        <div id="content">
+          <p>Resize the browser window to see the effect.</p>
+          <!--REPOBLIKAN'I MADAGASIKARA-->
+          <div class="row">
+            <div class="col-sm-4" style="background-color:lavender;"></div>
+            <div class="col-sm-4 text-center" style="background-color:lavender;">
+              <span class="">REPOBLIKAN'I MADAGASIKARA</span><br>
+              <span class="">Fitiavana - Tanindrazana - Fandrosona</span>
+            </div>
+            <div class="col-sm-4" style="background-color:lavender;"></div>
+          </div>
+          <!--MINISTERANY ATITANY-->
+          <div class="row">
+            <div class="col-sm-4 text-center" style="background-color:lavender;">
+              <span class="">MINISTERAN'NY ATITANY SY NY FITSINJARAM-PAHEFANA</span><br>
+              <hr>
+              <span class="">PREFECTIORAN'NY POLISIN'ANTANANARIVO</span><br>
+              <hr class="font-weight-bold">
+              <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO II</span>
+            </div>
+            <div class="col-sm-4" style="background-color:lavender;">
+            </div>
+            <div class="col-sm-4 text-center" style="background-color:lavender;">
+            <span class="font-weight-bold">FANAMARINAM-PONENANA</span><br>
+            <span class="font-weight-bold">CERTIFICAT DE RESIDENCE</span>
+            </div>
+          </div>
+          <!--FOKONTANY-->
+          <div class="row">
+            <div class="col-sm-8" style="background-color:lavender;">
+            <p>FOKONTANY :..................................................................................................</p>
+            <p>Lf :....................................</p>
+            </div>
+            <div class="col-sm-4 text-center" style="background-color:lavender;">
+            <span class="">NY SEFO FOKONTANY DIA MANAMARINA FA :</span><br>
+            <span class="">LE CHEF FOKONTANY CERTIFIE QUE :</span>
+            </div>
+          </div>
+
+          <!--CONTENUS-->
+          <div class="row">
+            <div class="col-sm-12" style="background-color:lavender;">
+             <div class="row">
+              <div class="col-sm-5">
+               Atoa/Rtoa : ...................................................
+               <p class="font-italic">M./Mme/Mr</p>
+              </div>
+              <div class="col-sm-4">..................................................</div>
+              <div class="col-sm-3"> 
+              Asa :..................................................
+              <p class="font-italic">Profession</p>
+              </div>
+            </div>
+             
+             <div class="row">
+                <div class="col-sm-4">
+                Teraka tamin'ny : ......................................................................
+                <p class="font-italic">Né(e) le </p>
+                </div>
+                <div class="col-sm-4">
+                tao :.............................................................................
+                <p class="font-italic">à</p>
+                </div>
+                <div class="col-sm-4">
+                Zom-pirenena :....................................................................
+                <p class="font-italic">Nationalité</p>
+                </div>                                                                 
+             </div>
+             <div class="row">
+             <div class="col-sm-6">
+             Zanak'i : ................................................................................
+             <p class="font-italic">Fils ou fille de </p>
+             </div>
+             <div class="col-sm-6">
+              sy :.......................................................................................
+              <p class="font-italic">et de</p>   
+             </div>
+             </div>
+             <p></p>
+             <p>Dia monina ao amin'ny : ...................................................................................   </p>
+             <p>Dia monina ao amin'ny : ...................................................................................   </p>
+             <p>Antony ilàna azy ( Motif d'usage ): .......................................................................   </p>
+             <p>Noho izany, dia nomena azy ity fanamarinana ity, mba hampiasainy sy hanan-kery amin'izay rehetra mety ilàna: azy.</p>
+             <p class="font-italic">En foi de quoi, le présent certificat lui est délivré pour servir et valoir ce que de droit.</p>
+            </div>
+          </div>
+          <!--FOOTER-->
+          <div class="row">
+            <div class="col-sm-4" style="background-color:lavender;">
+            <p>Fanisam-bahoaka lf:...................................</p>
+            <p>CIN-Passeport N°:.....................................</p>
+            <p>du:....................à..............................</p>
+            <p class="font-weight-bold"> N°                                                    </p>
+            </div>
+            <div class="col-sm-3" style="background-color:lavender;">LOGO</div>
+            <div class="col-sm-5" style="background-color:lavender;">
+            <p>Natao teto:....................androany faha ..............................</p>
+            <p class="font-italic">Fait à                         le                                          </p>
+            </div>
+          </div>
+
+          </div>
+        </div>
         <!-- End Page Content -->
       </div>
+      <div id="editor"></div>
     </div>
   </div>
 
@@ -163,6 +268,7 @@
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
   <script src="<?= plugin('modules', 'common', 'jspdf.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'superadmin', 'list_citizen.js');?>"></script>
 </body>
