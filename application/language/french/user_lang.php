@@ -10,5 +10,5 @@ $lang['manage_household'] = 'Gestion des ménage';
 $lang['manage_citizens'] = 'Gestion des citoyens';
 
 $lang['add_user'] = 'Ajout d\'un utilisateur';
-$lang['add_chief'] = 'Ajout d\'un Chef Fokontany';
+$lang['add_chief'] = 'Ajout d\'un Chef District';
 $lang['list_users'] = 'Liste des utilisateurs';

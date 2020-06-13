@@ -65,6 +65,7 @@ $route['ajout_utilisateur'] = 'user/add_user';
 $route['ajout_chef_fokontany'] = 'user/add_chief';
 $route['liste_utilisateur'] = 'user/list_user';
 $route['enregistrer_operateur'] = 'user/save_user';
+$route['enregistrer_chef'] = 'user/save_chief';
 
 //Admin
 $route['create_account'] = 'admin/save_operateur_sefo_account';

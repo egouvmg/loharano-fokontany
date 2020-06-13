@@ -80,6 +80,8 @@ class User extends SuperAdmin_Controller
         $n_password = $this->input->post('password');
         $n_confirm_pwd = $this->input->post('confirm_password');
         $fokontany_id = $this->input->post('fokontany');
+        $phone = $this->input->post('phone');
+        $address = $this->input->post('address');
 
         $missing_fields = [];
         $short_pwd = [];
@@ -129,6 +131,89 @@ class User extends SuperAdmin_Controller
                     ); 
                     // A appeler depuis le model                    
                     if($this->db->insert("user_fokontany", $data)){
+                        echo json_encode(['success'=>1, 'msg'=>'Enregistrement réussi']);
+                    }else
+                        echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer le compte.']); 
+                }                          
+            }
+            catch(Exception $e){
+                echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer le compte.']);
+            }           
+        }
+        else {
+            echo json_encode(['failed' => 1, 'msg' => 'Type de compte non défini.']); 
+        }
+    }
+
+	public function save_chief()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Very ianao :O');
+        }
+
+        $data = $this->input->post();       
+
+        $type_compte = $this->input->post('type_compte');
+        $n_firstname = $this->input->post('first_name');
+        $n_email = $this->input->post('email');
+        $n_password = $this->input->post('password');
+        $n_confirm_pwd = $this->input->post('confirm_password');
+        $common_id = $this->input->post('common_id');
+        $phone = $this->input->post('phone');
+        $address = $this->input->post('address');
+
+        $missing_fields = [];
+        $short_pwd = [];
+        $wrong_pwd = [];
+        
+        if(empty($type_compte))
+            $missing_fields[] = ['type_compte','Type de compte non défini.'];
+        if(empty($n_firstname))
+            $missing_fields[] = ['first_name', 'Nom de l\'opérateur obligatoire.'];
+        if(empty($n_email))
+            $missing_fields[] = ['email', 'Email obligatoire'];
+        if(empty($n_password))
+            $missing_fields[] = ['password', 'Mot de passe obligatoire'];
+        if(empty($n_confirm_pwd))
+            $missing_fields[] = ['confirm_pwd', 'Veuillez confirmer le mot de passe'];
+        if(empty($common_id))
+            $missing_fields[] = ['common_id', 'Choisissez une Commune']; 
+        if(empty($phone))
+            $missing_fields[] = ['phone', 'Champs requis'];
+        if(empty($address))
+            $missing_fields[] = ['address', 'Champs requis'];     
+
+        if(!empty($missing_fields)){
+            echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
+            return false;
+        }
+
+        if(strlen($n_password) < 8 || strlen($n_confirm_pwd) < 8){
+			$missing_fields[] = ['password', 'La longueur de mote de passe doit être supérieure ou égale à 8'];
+			$missing_fields[] = ['confirm_pwd', 'La longueur de mote de passe doit être supérieure ou égale à 8'];
+
+            echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
+            return false;
+		}
+
+        if($n_password != $n_confirm_pwd){
+			$missing_fields[] = ['confirm_pwd', 'Confirmation incorrecte.'];
+			
+            echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
+			return false;
+		}
+        
+        if(!empty($type_compte)){
+
+            try{
+                $user_id = $this->ion_auth->register($n_email, $n_password, $n_email, ['phone' =>$phone, 'address' => $address, 'first_name' => $n_firstname, 'current_pwd' => $n_password], [$this->config->item('group_chief')]);
+                if($user_id){                   
+                    $data = array(
+                        'user_id' => $user_id ,
+                        'common_id' => $common_id
+                    ); 
+                    // A appeler depuis le model                    
+                    if($this->db->insert("user_common", $data)){
                         echo json_encode(['success'=>1, 'msg'=>'Enregistrement réussi']);
                     }else
                         echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer le compte.']); 

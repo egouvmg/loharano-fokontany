@@ -54,7 +54,7 @@
             <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('users');?></a>
             <ul class="sub-main-menu">
               <li><a href="ajout_utilisateur"><?=$this->lang->line('add_user');?></a></li>
-              <li><a href="ajout_chef_fokontany"><?=$this->lang->line('add_chief');?></a></li>
+              <li><a href="ajout_chef_fokontany" class="active"><?=$this->lang->line('add_chief');?></a></li>
               <li><a href="liste_utilisateur"><?=$this->lang->line('list_users');?></a></li>
             </ul>
           </li>
@@ -115,12 +115,12 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-8">
+              <div class="col-lg-4">
                   <div class="form-row">
                     <div class="form-group col-md-12">
                       Choisissez le Fokontany où travail le Chef Fokontany
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                       <label for="province">Province</label>
                       <select id="province" class="form-control">
                         <?php foreach ($provinces as $province): ?>
@@ -128,7 +128,7 @@
                         <?php endforeach ?>
                       </select>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                       <label for="region">Région</label>
                       <select id="region" class="form-control">
                         <?php foreach ($regions as $region): ?>
@@ -136,7 +136,7 @@
                         <?php endforeach ?>
                       </select>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                       <label for="district">District</label>
                       <select id="district" class="form-control">
                         <?php foreach ($districts as $district): ?>
@@ -144,33 +144,33 @@
                         <?php endforeach ?>
                       </select>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                       <label for="common">Commune</label>
-                      <select id="common" class="form-control">
+                      <select id="common" name="common_id" class="form-control">
                         <?php foreach ($commons as $common): ?>
                             <option value="<?= $common->id;?>"><?= $common->name;?></option>
                           <?php endforeach ?>
                       </select>
                     </div>
-                    <div class="form-group col-md-6">
-                      <label for="borough">Arrondissement</label>
-                      <select id="borough" class="form-control">
-                        <?php foreach ($boroughs as $borough): ?>
-                            <option value="<?= $borough->id;?>"><?= $borough->name;?></option>
-                          <?php endforeach ?>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="fokontany">Fokontany</label>
-                      <select id="fokontany" name="fokontany" class="form-control">
-                        <?php foreach ($fokontanies as $fokontany): ?>
-                          <option value="<?= $fokontany->id;?>"><?= $fokontany->name;?></option>
-                        <?php endforeach ?>
-                      </select>
-                    </div>
                     <input type="hidden" id="type_compte" name="type_compte" value="sefo_kontany">
                   </div>
-                
+              </div>
+              <div class="col-lg-4">
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      Coordonnées
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label for="phone">Téléphones</label>
+                       <input type="text" class="form-control" id="phone" name="phone" placeholder="...">
+                        <span class="error_field error_phone"></span>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label for="address">Adresse</label>
+                      <input type="text" class="form-control" id="address" name="address" placeholder="...">  
+                      <span class="error_field error_address"></span>
+                    </div>
+                  </div>
               </div>
             </div>
           </form>
@@ -267,12 +267,27 @@
       </div>
     </div>
   </div>
-  <!-- Modal END -->
+
+<!-- Modal -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <span class="icon-check">
+        <span class="iconify" data-inline="false" data-icon="uil:check" style="font-size: 32px;"></span>
+        </span>
+        <p id="confirmResponse"></p>
+        <a href="ajout_chef_fokontany"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal END -->
 	<script src="<?= js('jquery.min');?>"></script>
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
-	<script src="<?= plugin('modules', 'superadmin', 'add_user.js');?>"></script>
+	<script src="<?= plugin('modules', 'superadmin', 'add_chief.js');?>"></script>
 </body>
 </html>

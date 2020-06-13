@@ -10,5 +10,5 @@ $lang['manage_household'] = 'Gestion des ménage';
 $lang['manage_citizens'] = 'Gestion des citoyens';
 
 $lang['add_user'] = 'Manampy operatera';
-$lang['add_chief'] = 'Ajout d\'un Chef Fokontany';
+$lang['add_chief'] = 'Manampy sefo Distrika';
 $lang['list_users'] = 'Lisitry ny olona mampiasa';
