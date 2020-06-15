@@ -11,6 +11,8 @@ $(function () {
  
 	var users = new Tabulator("#users", {
         layout:"fitColumns",
+		ajaxURL: "citoyens_list",
+		ajaxConfig: "GET",
 		initialSort:[
 			{column:"medal", dir:"asc"}
 		],
@@ -62,11 +64,5 @@ $(function () {
             pdf.save('test.pdf');
            });
                   
-    });
-
-    $(document).ready(function(e){
-        var fokontany_id = $('#fokontany').val() || 0;
-
-        users.setData('citoyens_list', {fokontany_id:fokontany_id});
     });
 });

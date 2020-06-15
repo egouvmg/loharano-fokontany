@@ -10,4 +10,11 @@ $lang['info_parent'] = 'Information des parents';
 $lang['info_job'] = 'Information sur la profession';
 $lang['info_cin'] = 'Information sur la Carte d\'Identité Nationale';
 $lang['info_passport'] = 'Information sur le Passport';
-$lang['citizen_residence'] = 'certificat de résidence';
+$lang['citizen_residence'] = 'Certificat de résidence';
+
+$lang['adding_citizen'] = 'Ajouter le citoyen dans un ménage existant ou créer un nouveau ménage pour le citoyen.';
+$lang['searching_household'] = 'Entrez les critères de recherche de ménage. Cliquer sur un ménage pour ajout le nouveau citoyen';
+$lang['household_matches'] = 'Le ou les ménages correspondants.';
+$lang['locality_household'] = 'Localisation du ménage';
+$lang['search_household'] = 'Rechercher un ménage';
+$lang['new_household'] = 'Créer un ménage';

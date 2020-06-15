@@ -85,6 +85,18 @@ $route['enregistrement_citoyen'] = 'citizen/save_citizen';
 $route['citoyens_list'] = 'citizen/citizens_list';
 $route['certificate'] = 'citizen/load_citizen_certificate';
 $route['liste_citoyens'] = 'citizen/list_citizens';
+$route['recherche_menage'] = 'citizen/search_household';
+$route['menage_fokontany'] = 'citizen/fokontany_household';
+$route['recherche_menage_fokontany'] = 'citizen/search_household_in_list';
+$route['nouveau_menage_fokontany'] = 'citizen/new_household';
+$route['liste_menage_fokontany'] = 'citizen/list_households';
+
+//Chief
+$route['tableau_de_bord_chef'] = 'chief/index';
+$route['ajout_utilisateur_fokontany'] = 'chief/add_user';
+$route['enregistrer_utilisateur_fokontany'] = 'chief/save_user';
+$route['liste_utilisateur_fokontany'] = 'chief/list_users';
+$route['insertion_citoyen'] = 'citizen/insert_citizen';
 
 /*
  * AJAX
@@ -96,3 +108,12 @@ $route['les_utilisateurs_fokontany'] = 'user/a_users_fokontany';
 //Menage
 $route['list_menage'] = 'menage/list_menage';
 $route['menages_fokontany'] = 'menage/menages_fokontany';
+
+//Chief
+$route['utilisateurs_fokontany'] = 'chief/get_users';
+
+//Citizen
+$route['verifier_localite_menage'] = 'citizen/check_household';
+$route['liste_menages_fokontany'] = 'citizen/households_list';
+$route['citoyen_carnet_fokontany'] = 'citizen/get_notebook';
+$route['insertion_citoyen_dans_menage'] = 'citizen/insert_in_household';

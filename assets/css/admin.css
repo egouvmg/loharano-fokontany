@@ -802,3 +802,17 @@ img.loading{
 .passport-section{
     display: none;
 }
+.info-fokontany span{
+    font-size: 10pt;
+    color: #F26122;
+}
+#addCitizen{
+    margin: 18px 0px;
+    background-color: #e8e8e8;
+    padding: 8px;
+    border-radius: 10px;
+}
+#pills-tab .nav-link.active{
+    color: #F26122;
+    background-color: #fff;
+}

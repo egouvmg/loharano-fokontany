@@ -7,7 +7,7 @@ $(function () {
 
         var data = $('#addCitizen').serializeArray(); 
 
-		$.post('enregistrement_citoyen', data, function (res) {
+		$.post('insertion_citoyen_dans_menage', data, function (res) {
             if(res.error === 1){
                 if(res.missing_fields){
                     $.each( res.missing_fields, function( key, value ) {

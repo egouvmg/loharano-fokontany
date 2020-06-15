@@ -33,7 +33,7 @@
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Fokontany <?= $user_fokontany;?>
+                Fokontany <?= $user_fokontany;?>
               <span class="iconify" data-icon="uil:ellipsis-v" data-inline="false"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -72,37 +72,66 @@
       <div class="main-container">
         <!-- Page title -->
         <p class="info-fokontany"><span>Province : </span><?= $info_fokontany->province_name;?> <span>Région : </span><?= $info_fokontany->region_name;?> <span>District : </span><?= $info_fokontany->district_name;?> <span>Commune : </span><?= $info_fokontany->common_name;?></p>
+        
         <div class="container-fluid page-title">
-          <h1><?= $title;?></h1>
+          <h1><?= $title;?> - <?=$this->lang->line('step');?> 02</h1>
         </div>
         <!-- End Page title -->
 
         <!-- Page Content -->
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-12">
-              <?= $this->lang->line('address');?> : <?= $this->session->address;?> <?= $this->lang->line('household_size');?> : <?= $this->session->household_size;?>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p><?= $this->lang->line('searching_household');?></p>
+                </div>
+                <div class="col-lg-12">
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <div class="form-group col-md-12 orange">
+                          <?=$this->lang->line('info_citizen');?>
+                      </div>
+                      <div class="form-group col-md-12">
+                          <label for="last_name"><?=$this->lang->line('last_name');?> *</label>
+                          <input type="text" class="form-control" id="last_name" name="last_name" placeholder="...">
+                          <span class="error_field error_last_name"></span>
+                      </div>
+                      <div class="form-group col-md-12">
+                          <label for="first_name"><?=$this->lang->line('first_name');?> *</label>
+                          <input type="text" class="form-control" id="first_name" name="first_name" placeholder="...">
+                          <span class="error_field error_first_name"></span>
+                      </div>
+                      <div class="form-group col-md-12">
+                          <label for="birth"><?=$this->lang->line('birth');?> *</label>
+                          <input type="date" class="form-control" id="birth" name="birth" placeholder="jj/mm/aaaa">
+                          <span class="error_field error_birth"></span>
+                      </div>
+                      <div class="form-group col-md-12">
+                          <label for="birth_place"><?=$this->lang->line('birth_place');?> *</label>
+                          <input type="text" class="form-control" id="birth_place" name="birth_place" placeholder="...">
+                          <span class="error_field error_birth_place"></span>
+                      </div>
+                      <div class="form-group col-md-12">
+                          <label for="father"><?=$this->lang->line('father');?></label>
+                          <input type="text" class="form-control" id="father" name="father" placeholder="...">
+                          <span class="error_field error_father"></span>
+                      </div>
+                      <div class="form-group col-md-12">
+                          <label for="mother"><?=$this->lang->line('mother');?></label>
+                          <input type="text" class="form-control" id="mother" name="mother" placeholder="...">
+                          <span class="error_field error_mother"></span>
+                      </div>
+                    </div>
+                    <div class="col-lg-9">
+                      <div class="form-group col-md-12 orange">
+                          <?=$this->lang->line('household_matches');?>
+                      </div>
+                      <div class="form-group col-md-12">
+                          <div id="households"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
-          </div>
-          <form id="addCitizen">
-              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                <?= $tabs_link;?>
-              </ul>
-              <div class="tab-content" id="pills-tabContent">
-                <?= $tabs_content;?>
-              </div>
-          </form>
-          <button id="nextCitizen" class="btn btn-primary"><?= $this->lang->line('next_citizen');?></button>
-          <button id="previousCitizen" class="btn btn-primary"><?= $this->lang->line('previous_citizen');?></button>
-          <div class="float-right">
-            <a href="nouveau_menage_fokontany"><button class="btn btn-primary">Retour au localité</button></a>
-            <button id="saveOperator" class="btn btn-primary">Enregistrer</button>
-            <span id="failedMsg" class="error_field"></span>
-            <div id="loadingSave" style="display:none;">
-                <img class="loading" src="<?= img('pulse.gif');?>"/>
-                Enregistrement ...
-            </div>
-          </div>
         </div>
         <!-- End Page Content -->
         
@@ -111,37 +140,26 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-body text-center">
-                <span class="icon-check">
-                <span class="iconify" data-inline="false" data-icon="uil:check" style="font-size: 32px;"></span>
-                </span>
-                <p id="confirmResponse"></p>
-                <a href="recherche_menage"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="modal fade" id="failedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-body text-center">
-                <span class="icon-check">
-                <span class="iconify" data-icon="si-glyph:button-error" style="font-size: 32px;" data-inline="false"></span>
-                </span>
-                <p id="failedResponse"></p>
-                <button type="button" class="btn btn-primary btn-lg">Ok</button>
+                <p>Voulez-vous mettre le citoyen dans ce ménage?</p>
+                <ul>
+                  <li><strong class="orange">Numéro carnet</strong> : <span id="tmpNotebook"></span></li>
+                  <li><strong class="orange">Adresse</strong> : <span id="tmpAddress"></span></li>
+                  <li><strong class="orange">Chef de ménage</strong> : <span id="tmpHead"></span></li>
+                </ul>
+                <input type="hidden" id="notebook">
+                <button type="button" id="addToHousehold" class="btn btn-primary btn-lg">Ok</button>
               </div>
             </div>
           </div>
         </div>
         <!-- Modal END -->
     </div>
-  </div>
+    </div>
 
 	<script src="<?= js('jquery.min');?>"></script>
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
-	<script src="<?= plugin('modules', 'citizen', 'add_citizen.js');?>"></script>
+	<script src="<?= plugin('modules', 'citizen', 'search_household_in_list.js');?>"></script>
 </body>
 </html>

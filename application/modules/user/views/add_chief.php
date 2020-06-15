@@ -82,45 +82,52 @@
         <!-- Page Content -->
         <div class="container-fluid">
           <form id="userForm">          
-            <div class="row"><div class="col-lg-4">
+            <div class="row">
+            <div class="col-lg-12">
                 <div class="form-row">
                   <div class="form-group col-md-12">
                     Information du compte
                   </div>
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-3">
                     <label for="first_name">Nom</label>
                     <input type="text" class="form-control" id="first_name" name="first_name" placeholder="...">
                     <span class="error_field error_first_name"></span>
                   </div>
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-3">
+                    <label for="phone">Téléphones</label>
+                      <input type="text" class="form-control" id="phone" name="phone" placeholder="...">
+                      <span class="error_field error_phone"></span>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="address">Adresse</label>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="...">  
+                    <span class="error_field error_address"></span>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="user@loharano.mg">
                     <span class="error_field error_email"></span>
                   </div>
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-3">
                     <label for="password">Mot de passe</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="********">
                     <span class="error_field error_password"></span>
                   </div>
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-3">
                     <label for="confirm_password">Confirmation mot de passe</label>
                     <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="********">
                     <span class="error_field error_confirm_pwd"></span>
                   </div>
-                  <button type="submit" id="saveOperator" class="btn btn-primary">Enregistrer</button>
-                  <span id="failedMsg" class="error_field"></span>
-                  <div id="loadingSave" style="display:none;">
-                    <img class="loading" src="<?= img('pulse.gif');?>"/>
-                    Enregistrement ...
-                  </div>
                 </div>
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-12">
                   <div class="form-row">
                     <div class="form-group col-md-12">
                       Choisissez le Fokontany où travail le Chef Fokontany
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-4">
                       <label for="province">Province</label>
                       <select id="province" class="form-control">
                         <?php foreach ($provinces as $province): ?>
@@ -128,7 +135,7 @@
                         <?php endforeach ?>
                       </select>
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-4">
                       <label for="region">Région</label>
                       <select id="region" class="form-control">
                         <?php foreach ($regions as $region): ?>
@@ -136,7 +143,7 @@
                         <?php endforeach ?>
                       </select>
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-4">
                       <label for="district">District</label>
                       <select id="district" class="form-control">
                         <?php foreach ($districts as $district): ?>
@@ -144,7 +151,7 @@
                         <?php endforeach ?>
                       </select>
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-4">
                       <label for="common">Commune</label>
                       <select id="common" name="common_id" class="form-control">
                         <?php foreach ($commons as $common): ?>
@@ -152,118 +159,30 @@
                           <?php endforeach ?>
                       </select>
                     </div>
+                    <div class="form-group col-md-4">
+                      <label for="borough">Arrondissement</label>
+                      <select id="borough" name="borough_id" class="form-control">
+                        <?php foreach ($boroughs as $borough): ?>
+                            <option value="<?= $borough->id;?>"><?= $borough->name;?></option>
+                          <?php endforeach ?>
+                      </select>
+                    </div>
+                    <span class="error_field error_borough_id"></span>
                     <input type="hidden" id="type_compte" name="type_compte" value="sefo_kontany">
                   </div>
               </div>
-              <div class="col-lg-4">
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
-                      Coordonnées
-                    </div>
-                    <div class="form-group col-md-12">
-                      <label for="phone">Téléphones</label>
-                       <input type="text" class="form-control" id="phone" name="phone" placeholder="...">
-                        <span class="error_field error_phone"></span>
-                    </div>
-                    <div class="form-group col-md-12">
-                      <label for="address">Adresse</label>
-                      <input type="text" class="form-control" id="address" name="address" placeholder="...">  
-                      <span class="error_field error_address"></span>
-                    </div>
+              <div class="col-lg-12">
+                  <button type="submit" id="saveOperator" class="btn btn-primary">Enregistrer</button>
+                  <span id="failedMsg" class="error_field"></span>
+                  <div id="loadingSave" style="display:none;">
+                    <img class="loading" src="<?= img('pulse.gif');?>"/>
+                    Enregistrement ...
                   </div>
               </div>
             </div>
           </form>
         </div>
         <!-- End Page Content -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal fade" id="newFirm" tabindex="-1" role="dialog" aria-labelledby="newFirmTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="newFirmTitle">
-            Nouveau compte société
-          </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form id="accountCompanyOperator">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="n_company">Société</label>
-                <input type="text" id="n_company" name="n_company" class="form-control">
-                <div class="errorField" id="error_n_company"></div>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="n_email">Mail</label>
-                <input type="text" id="n_email" name="n_email" class="form-control">
-                <div class="errorField" id="error_n_email"></div>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="n_password">Mot de passe</label>
-                <input type="password" id="n_password" name="n_password" class="form-control">
-                <div class="errorField" id="error_n_password"></div>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="n_confirm_pwd">Confirmation mot de passe</label>
-                <input type="password" id="n_confirm_pwd" name="n_confirm_pwd" class="form-control">
-                <div class="errorField" id="error_n_confirm_pwd"></div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <h5 class="modal-sub-title">Compte opérateur de saisie</h5>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="no_operator">Opérateur</label>
-                <input type="text" id="no_operator" name="no_operator" class="form-control">
-                <div class="errorField" id="error_no_operator"></div>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="no_email">Mail</label>
-                <input type="text" id="no_email" name="no_email" class="form-control">
-                <div class="errorField" id="error_no_email"></div>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="no_password">Mot de passe</label>
-                <input type="password" id="no_password" name="no_password" class="form-control">
-                <div class="errorField" id="error_no_password"></div>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="no_confirm_pwd">Confirmation mot de passe</label>
-                <input type="password" id="no_confirm_pwd" name="no_confirm_pwd" class="form-control">
-                <div class="errorField" id="error_no_confirm_pwd"></div>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <div id="loadingDataCompany" style="display: none;">
-            <center>
-              <img src="<?= img('loading.gif');?>"> Chargement ...
-            </center>
-          </div>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Annuler
-            <span class="iconify" data-icon="uil:times-circle" data-inline="false"></span>
-          </button>
-          <button type="button" class="btn btn-primary" id="validCompanyAccount">
-            Valider
-            <span class="iconify" data-icon="uil:arrow-right" data-inline="false"></span>
-          </button>
-        </div>
       </div>
     </div>
   </div>

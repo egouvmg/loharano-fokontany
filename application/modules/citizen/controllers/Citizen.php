@@ -2,6 +2,8 @@
 
 class Citizen extends Operator_Controller
 {
+    private $fokontany_id;
+
 	public function __construct(){
         parent::__construct();
         
@@ -11,6 +13,7 @@ class Citizen extends Operator_Controller
         $this->load->model('territory/district_model', 'district');
         $this->load->model('territory/common_model', 'common');
         $this->load->model('territory/borough_model', 'borough');
+        $this->load->model('territory/notebook_model', 'notebook');
 
         $this->load->model('job/job_model', 'job');
         $this->load->model('nationality/nationality_model', 'nationality');
@@ -23,7 +26,13 @@ class Citizen extends Operator_Controller
         $this->lang->load('citizen', $this->session->site_lang);
         $this->lang->load('job', $this->session->site_lang);
         $this->lang->load('nationality', $this->session->site_lang);
-		
+
+        $user_fokontany = $this->user->getUserFokontany($this->session->user_id);
+        
+        $this->fokontany_id = (int) $user_fokontany->fokontany_id;
+
+        $this->data['info_fokontany'] = $user_fokontany;
+        $this->data['user_fokontany'] = ($user_fokontany) ? $user_fokontany->fokontany_name : '...';
 	}
 
 	public function index_household()
@@ -51,11 +60,6 @@ class Citizen extends Operator_Controller
 	public function index()
 	{
         $this->data['title'] = $this->lang->line('dashboard');
-
-        $user_fokontany = $this->user->getUserFokontany($this->session->user_id);
-
-        $this->data['user_fokontany'] = ($user_fokontany) ? $user_fokontany->fokontany_name : '...';
-
         $this->load->view('index', $this->data);
 	}
 
@@ -63,15 +67,66 @@ class Citizen extends Operator_Controller
 	{
         $this->data['title'] = $this->lang->line('dashboard');
 
-        $user_fokontany = $this->user->getUserFokontany($this->session->user_id);
-
-        $this->data['user_fokontany'] = ($user_fokontany) ? $user_fokontany->fokontany_name : '...';
-
         $this->load->view('list_citizen_fk', $this->data);
-	}
+    }
+    
+    public function list_households()
+    {
+        $this->data['title'] = 'Liste des ménages';
 
-	public function add_citizen()
+        $this->load->view('list_household', $this->data);
+    }
+
+    public function add_citizen()
 	{
+        if($this->session->address && $this->session->household_size){
+            $this->data['title'] = $this->lang->line('add_citizen');
+            $this->data['jobs'] = $this->job->all();
+            $this->data['nationalities'] = $this->nationality->all();
+
+            $tabs_link = '';
+            $tabs_content = '';
+
+            for ($i=1; $i <= $this->session->household_size; $i++) {
+                $this->data['index'] = $i;
+                $tabs_link .= $this->load->view('tab_list', $this->data, TRUE);
+                $tabs_content .= $this->load->view('tab_content', $this->data, TRUE);
+            }
+
+            $this->data['tabs_link'] = $tabs_link;
+            $this->data['tabs_content'] = $tabs_content;
+            
+            $this->load->view('add_citizen', $this->data);
+        }
+        else{
+            redirect('/', 'refresh');
+        }
+    }
+
+	public function search_household()
+	{
+        $this->data['title'] = $this->lang->line('add_citizen');
+        $this->load->view('search_household', $this->data);
+    }
+
+	public function new_household()
+	{
+        $this->data['title'] = $this->lang->line('add_citizen');
+
+        $this->data['address'] = ($this->session->address) ? $this->session->address : '';
+        $this->data['household_size'] = ($this->session->household_size) ? $this->session->household_size : '';
+
+        $this->load->view('new_household', $this->data);
+    }
+
+    public function search_household_in_list(Type $var = null)
+    {
+        $this->data['title'] = $this->lang->line('add_citizen');
+        $this->load->view('search_household_in_list', $this->data);
+    }
+
+    public function fokontany_household()
+    {
         $this->data['title'] = $this->lang->line('add_citizen');
         $this->data['jobs'] = $this->job->all();
         $this->data['nationalities'] = $this->nationality->all();
@@ -80,22 +135,91 @@ class Citizen extends Operator_Controller
 
         $this->data['user_fokontany'] = ($user_fokontany) ? $user_fokontany->fokontany_name : '...';
 		
-        $this->load->view('add_citizen', $this->data);
+        $this->load->view('search_household', $this->data);
+    }
+
+    public function insert_citizen()
+    {
+        if($this->session->address && $this->session->household_size && $this->session->reference){
+            $this->data['title'] = $this->lang->line('add_citizen');
+            $this->data['jobs'] = $this->job->all();
+            $this->data['nationalities'] = $this->nationality->all();
+
+            $tabs_link = '';
+            $tabs_content = '';
+
+            for ($i=1; $i <= $this->session->household_size; $i++) {
+                $this->data['index'] = $i;
+                $tabs_link .= $this->load->view('tab_list', $this->data, TRUE);
+                $tabs_content .= $this->load->view('tab_content', $this->data, TRUE);
+            }
+
+            $this->data['tabs_link'] = $tabs_link;
+            $this->data['tabs_content'] = $tabs_content;
+            
+            $this->load->view('insert_citizen', $this->data);
+        }
+        else{
+            redirect('/', 'refresh');
+        }
     }
 
     /*
      * AJAX Requests
      */
 
-    public function citizens_list()
+    public function get_notebook()
     {
-        /*
         if (!$this->input->is_ajax_request()) {
             exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
         }
-        */
 
-        $citizens = $this->citizen->get_citizen();
+        if($this->input->get('noteboook')){
+            $notebook = $this->notebook->one(['numero_carnet' => $this->input->get('noteboook')]);
+
+            if($notebook){
+                $data = [
+                    'address' => $notebook->adresse_actuelle,
+                    'household_size' => 1,
+                    'reference' => $notebook->numero_carnet
+                ];
+
+                $this->session->set_userdata($data);
+
+                echo json_encode(['success' => 1, 'link' => 'insertion_citoyen']);
+            }else  echo json_encode(['error' => 1, 'msg' => 'Impossible de récupérer le ménage']);
+        }
+        else echo json_encode(['error' => 1, 'msg' => 'Ménage indéfini']);
+    }
+
+    public function citizens_list()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $citizens = $this->notebook->citizens(['fokontany_id' => $this->fokontany_id]);
+        echo json_encode($citizens);
+    }
+
+    public function households_list()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $data = ['fokontany_id' => $this->fokontany_id, 'chef_menage' => TRUE];
+        
+        if($this->input->get()){
+            if($this->input->get('last_name')) $data['nom LIKE'] = '%'.$this->input->get('last_name').'%';
+            if($this->input->get('first_name')) $data['prenoms LIKE'] = '%'.$this->input->get('first_name').'%';
+            if($this->input->get('birth')) $data['date_de_naissance'] = $this->input->get('birth');
+            if($this->input->get('birth_place')) $data['date_de_naissance'] = $this->input->get('birth_place');
+            if($this->input->get('father')) $data['father LIKE'] = '%'.$this->input->get('father').'%';
+            if($this->input->get('mother')) $data['mother LIKE'] = '%'.$this->input->get('mother').'%';
+        }
+
+        $citizens = $this->notebook->citizens($data);
         echo json_encode($citizens);
     }
 
@@ -129,28 +253,36 @@ class Citizen extends Operator_Controller
         }
 
         $data = $this->input->post();
-        $requireds = ['last_name', 'birth', 'birth_place', 'address'];
+        $requireds = ['last_name', 'birth', 'birth_place'];
 
         if($data){
-            $missing_fields = [];   
-            $cin = [$data['cin'], $data['cin_date'], $data['cin_place']];
-            $passport = [$data['passport'], $data['passport_date'], $data['passport_place']];
+            $missing_fields = [];
 
-            foreach($requireds as $required)
-                if(empty($data[$required])) $missing_fields[] = [$required ,'Champ requis.'];
-            
-            if($data['nationality_id'] == 1){  
-                $requireds_cin = ['cin', 'cin_date', 'cin_place'];      
-                
-                if($cin != ['', '', '']){
-                    foreach($requireds_cin as $required)
-                        if(empty($data[$required])) $missing_fields[] = [$required ,'Champ requis.'];
+            for ($i=0; $i < $this->session->household_size ; $i++) {
+                $index = $i +1;
+
+                foreach($requireds as $required)
+                    if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
+            }
+
+            for ($i=0; $i < $this->session->household_size ; $i++) {
+                $index = $i +1;
+
+                if($data['nationality_id'][$i] == 1){  
+                    $requireds_cin = ['cin', 'cin_date', 'cin_place'];            
+                    $cin = [$data['cin'][$i], $data['cin_date'][$i], $data['cin_place'][$i]];
+                    
+                    if($cin != ['', '', '']){
+                        foreach($requireds_cin as $required)
+                            if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
+                    }
+                }else if($data[$i]['nationality_id'] > 1){   
+                    $requireds_passport = ['passport', 'passport_date', 'passport_place'];   
+                    $passport = [$data['passport'][$i], $data['passport_date'][$i], $data['passport_place'][$i]];  
+                    
+                    foreach($requireds_passport as $required)
+                        if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
                 }
-            }else if($data['nationality_id'] > 1){   
-                $requireds_passport = ['passport', 'passport_date', 'passport_place'];     
-                
-                foreach($requireds_passport as $required)
-                    if(empty($data[$required])) $missing_fields[] = [$required ,'Champ requis.'];
             }
 
             if(!empty($missing_fields)){
@@ -158,37 +290,178 @@ class Citizen extends Operator_Controller
                 return FALSE;
             }
 
-            $data_insert = [
-                'nom' => $data['last_name'],
-                'prenoms' => $data['first_name'],
-                'date_de_naissance' => $data['birth'],
-                'lieu_de_naissance' => $data['birth_place'],
-                'sexe' => $data['sexe'],
-                'situation_matrimoniale' => $data['marital_status'],
-                'phone' => $data['phone'],
-                'father' => $data['father'],
-                'father_status' => $data['father_status'],
-                'mother' => $data['mother'],
-                'mother_status' => $data['mother_status'],
-                'job_id' => $data['job_id'],
-                'job_other' => $data['job_other'],
-                'job_status' => $data['job_status'],
-                'nationality_id' => $data['nationality_id']
-            ];
+            /*
+             *  Création Carnet Fokontany
+             */
 
-            if ($cin != ['', '', '']){
-                $data_insert['cin_peronne'] = $data['cin'];
-                $data_insert['date_delivrance_cin'] = $data['cin_date'];
-                $data_insert['lieu_delivrance_cin'] = $data['cin'];
-            }
-            if ($passport != ['', '', '']){
-                $data_insert['passport'] = $data['passport'];
-                $data_insert['passport_date'] = $data['passport_date'];
-                $data_insert['passport_place'] = $data['passport_place'];
+            $notebook = $this->createNotebook($this->session->address);
+
+            if($notebook == FALSE){
+                echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer un nouveau carnet.']);
+                return FALSE;
             }
 
+            /*
+             *  Insertion Personnes
+             */
 
-            if($this->citizen->insert($data_insert)){
+            $citizens_index = [];
+
+            for ($i=0; $i < $this->session->household_size ; $i++) {
+                $cin = [$data['cin'][$i], $data['cin_date'][$i], $data['cin_place'][$i]];
+                $passport = [$data['passport'][$i], $data['passport_date'][$i], $data['passport_place'][$i]];
+
+                $data_tmp = [
+                    'nom' => $data['last_name'][$i],
+                    'prenoms' => $data['first_name'][$i],
+                    'date_de_naissance' => $data['birth'][$i],
+                    'lieu_de_naissance' => $data['birth_place'][$i],
+                    'sexe' => $data['sexe'][$i],
+                    'situation_matrimoniale' => $data['marital_status'][$i],
+                    'phone' => $data['phone'][$i],
+                    'father' => $data['father'][$i],
+                    'father_status' => $data['father_status'][$i],
+                    'mother' => $data['mother'][$i],
+                    'mother_status' => $data['mother_status'][$i],
+                    'job_id' => ($data['job_id'][$i]) ? $data['job_id'][$i] : 53,
+                    'job_other' => $data['job_other'][$i],
+                    'job_status' => $data['job_status'][$i],
+                    'nationality_id' => $data['nationality_id'][$i],
+                    'numero_carnet' => $notebook
+                ];
+
+                if($i == 0) $data_tmp['chef_menage'] = TRUE;
+    
+                if ($cin != ['', '', '']){
+                    $data_tmp['cin_peronne'] = $data['cin'][$i];
+                    $data_tmp['date_delivrance_cin'] = $data['cin_date'][$i];
+                    $data_tmp['lieu_delivrance_cin'] = $data['cin_place'][$i];
+                }
+                if ($passport != ['', '', '']){
+                    $data_tmp['passport'] = $data['passport'][$i];
+                    $data_tmp['passport_date'] = $data['passport_date'][$i];
+                    $data_tmp['passport_place'] = $data['passport_place'][$i];
+                }
+
+                if(!$this->citizen->insert($data_tmp)) $citizens_index[] = $i;
+            }
+
+            $this->session->unset_userdata('address');
+            $this->session->unset_userdata('household_size');
+
+            if(empty($citizens_index)){
+                echo json_encode(['success' => 1, 'msg' => $this->lang->line('success_save')]);
+            }else{
+                echo json_encode(['error' => 1, 'msg' => $this->lang->line('data_citizen_error')]);
+            }
+        }
+        else{
+            echo json_encode(['error' => 1, 'msg' => $this->lang->line('data_citizen_error')]);
+        }
+    }
+    public function insert_in_household()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $data = $this->input->post();
+        $requireds = ['last_name', 'birth', 'birth_place'];
+
+        if($data){
+            $missing_fields = [];
+
+            for ($i=0; $i < $this->session->household_size ; $i++) {
+                $index = $i +1;
+
+                foreach($requireds as $required)
+                    if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
+            }
+
+            for ($i=0; $i < $this->session->household_size ; $i++) {
+                $index = $i +1;
+
+                if($data['nationality_id'][$i] == 1){  
+                    $requireds_cin = ['cin', 'cin_date', 'cin_place'];            
+                    $cin = [$data['cin'][$i], $data['cin_date'][$i], $data['cin_place'][$i]];
+                    
+                    if($cin != ['', '', '']){
+                        foreach($requireds_cin as $required)
+                            if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
+                    }
+                }else if($data[$i]['nationality_id'] > 1){   
+                    $requireds_passport = ['passport', 'passport_date', 'passport_place'];   
+                    $passport = [$data['passport'][$i], $data['passport_date'][$i], $data['passport_place'][$i]];  
+                    
+                    foreach($requireds_passport as $required)
+                        if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
+                }
+            }
+
+            if(!empty($missing_fields)){
+                echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
+                return FALSE;
+            }
+
+            /*
+             *  Création Carnet Fokontany
+             */
+
+            $notebook = $this->createNotebook($this->session->address);
+
+            if($notebook == FALSE){
+                echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer un nouveau carnet.']);
+                return FALSE;
+            }
+
+            /*
+             *  Insertion Personnes
+             */
+
+            $citizens_index = [];
+
+            for ($i=0; $i < $this->session->household_size ; $i++) {
+                $cin = [$data['cin'][$i], $data['cin_date'][$i], $data['cin_place'][$i]];
+                $passport = [$data['passport'][$i], $data['passport_date'][$i], $data['passport_place'][$i]];
+
+                $data_tmp = [
+                    'nom' => $data['last_name'][$i],
+                    'prenoms' => $data['first_name'][$i],
+                    'date_de_naissance' => $data['birth'][$i],
+                    'lieu_de_naissance' => $data['birth_place'][$i],
+                    'sexe' => $data['sexe'][$i],
+                    'situation_matrimoniale' => $data['marital_status'][$i],
+                    'phone' => $data['phone'][$i],
+                    'father' => $data['father'][$i],
+                    'father_status' => $data['father_status'][$i],
+                    'mother' => $data['mother'][$i],
+                    'mother_status' => $data['mother_status'][$i],
+                    'job_id' => ($data['job_id'][$i]) ? $data['job_id'][$i] : 53,
+                    'job_other' => $data['job_other'][$i],
+                    'job_status' => $data['job_status'][$i],
+                    'nationality_id' => $data['nationality_id'][$i],
+                    'numero_carnet' => $this->session->reference
+                ];
+    
+                if ($cin != ['', '', '']){
+                    $data_tmp['cin_peronne'] = $data['cin'][$i];
+                    $data_tmp['date_delivrance_cin'] = $data['cin_date'][$i];
+                    $data_tmp['lieu_delivrance_cin'] = $data['cin_place'][$i];
+                }
+                if ($passport != ['', '', '']){
+                    $data_tmp['passport'] = $data['passport'][$i];
+                    $data_tmp['passport_date'] = $data['passport_date'][$i];
+                    $data_tmp['passport_place'] = $data['passport_place'][$i];
+                }
+
+                if(!$this->citizen->insert($data_tmp)) $citizens_index[] = $i;
+            }
+
+            $this->session->unset_userdata('address');
+            $this->session->unset_userdata('household_size');
+            $this->session->unset_userdata('reference');
+
+            if(empty($citizens_index)){
                 echo json_encode(['success' => 1, 'msg' => $this->lang->line('success_save')]);
             }else{
                 echo json_encode(['error' => 1, 'msg' => $this->lang->line('data_citizen_error')]);
@@ -215,6 +488,60 @@ class Citizen extends Operator_Controller
         $this->load->view('citizen_certificat', $this->data);
 	}
 
+    /*
+     * Vérification des inputs Adresse et Taille du ménage
+     */
 
+    public function check_household(Type $var = null)
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $address = $this->input->post('address');
+        $household_size = (int) $this->input->post('household_size');
+
+        $missing_fields = [];
+        
+        if(empty($address))
+            $missing_fields[] = ['address', 'Champs requis'];
+        if(empty($household_size))
+            $missing_fields[] = ['household_size', 'Champs requis'];     
+
+        if(!empty($missing_fields)){
+            echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
+            return false;
+        }
+        
+        $this->session->set_userdata($this->input->post());
+        
+        echo json_encode(['success' => 1, 'link' => 'ajout_citoyen']);
+    }
+
+    /*
+     * Private functions
+     */
+
+    private function createNotebook($address = '')
+    {
+        $reference = dechex($this->fokontany_id);
+        $reference .= date("ymd");
+
+        $notebooks = $this->notebook->all(['numero_carnet like' => $reference.'%']);
+
+        $index = ($notebooks) ? count($notebooks) + 1 : 1;
+
+        $reference .= str_pad($index, 4, '0', STR_PAD_LEFT); 
+
+        $data = [
+            'numero_carnet' => $reference,
+            'adresse_actuelle' => $address,
+            'fokontany_id' => $this->fokontany_id
+        ];
+
+        if($this->notebook->insert($data))
+            return $reference;
+        else return false;
+    }
 }
 

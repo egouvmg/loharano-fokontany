@@ -84,8 +84,6 @@ class User extends SuperAdmin_Controller
         $address = $this->input->post('address');
 
         $missing_fields = [];
-        $short_pwd = [];
-        $wrong_pwd = [];
         
         if(empty($type_compte))
             $missing_fields[] = ['type_compte','Type de compte non défini.'];
@@ -158,13 +156,11 @@ class User extends SuperAdmin_Controller
         $n_email = $this->input->post('email');
         $n_password = $this->input->post('password');
         $n_confirm_pwd = $this->input->post('confirm_password');
-        $common_id = $this->input->post('common_id');
+        $borough_id = $this->input->post('borough_id');
         $phone = $this->input->post('phone');
         $address = $this->input->post('address');
 
         $missing_fields = [];
-        $short_pwd = [];
-        $wrong_pwd = [];
         
         if(empty($type_compte))
             $missing_fields[] = ['type_compte','Type de compte non défini.'];
@@ -176,8 +172,8 @@ class User extends SuperAdmin_Controller
             $missing_fields[] = ['password', 'Mot de passe obligatoire'];
         if(empty($n_confirm_pwd))
             $missing_fields[] = ['confirm_pwd', 'Veuillez confirmer le mot de passe'];
-        if(empty($common_id))
-            $missing_fields[] = ['common_id', 'Choisissez une Commune']; 
+        if(empty($borough_id))
+            $missing_fields[] = ['borough_id', 'Choisissez une Commune']; 
         if(empty($phone))
             $missing_fields[] = ['phone', 'Champs requis'];
         if(empty($address))
@@ -210,10 +206,10 @@ class User extends SuperAdmin_Controller
                 if($user_id){                   
                     $data = array(
                         'user_id' => $user_id ,
-                        'common_id' => $common_id
+                        'borough_id' => $borough_id
                     ); 
                     // A appeler depuis le model                    
-                    if($this->db->insert("user_common", $data)){
+                    if($this->db->insert("user_borough", $data)){
                         echo json_encode(['success'=>1, 'msg'=>'Enregistrement réussi']);
                     }else
                         echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer le compte.']); 

@@ -27,6 +27,12 @@ $lang['single'] = 'Irery';
 $lang['married'] = 'Manambady';
 $lang['widower'] = 'Maty vady';
 $lang['divorced'] = 'Nisaraka';
+$lang['step'] = 'Dingana';
+$lang['household_size'] = 'Isan\'ny olona ao anaty tokantrano';
+$lang['next'] = 'Manaraka';
+$lang['dead'] = 'Maty';
+$lang['alive'] = 'Velona';
+$lang['number_notebook'] = 'Numéro carnet Fokontany';
 
 $lang['sexe_male'] = 'Lahy';
 $lang['sexe_female'] = 'Vavy';
@@ -47,4 +53,5 @@ $lang['manage_households'] = 'Fitantanana ny fianakaviana';
 $lang['success_save'] = 'Vita ny fampidirana';
 
 $lang['citizens'] = 'Olom-pirenena';
+$lang['citizen'] = 'Olom-pirenena';
 $lang['households'] = 'Fianakaviana';

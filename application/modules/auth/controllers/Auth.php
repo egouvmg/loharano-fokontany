@@ -21,7 +21,7 @@ class Auth extends MY_Controller {
 		}
 		else if ($this->egmauth->is_chief())
 		{
-			echo 'Chief';
+			redirect('tableau_de_bord_chef', 'refresh');
 		}
 		else if ($this->egmauth->is_operator())
 		{

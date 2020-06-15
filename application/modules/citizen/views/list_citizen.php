@@ -33,7 +33,7 @@
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <?=$this->lang->line('administrator');?>
+              Fokontany <?= $user_fokontany;?>
               <span class="iconify" data-icon="uil:ellipsis-v" data-inline="false"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -54,21 +54,15 @@
             <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('users');?></a>
             <ul class="sub-main-menu">
               <li><a href="ajout_utilisateur"><?=$this->lang->line('add_user');?></a></li>
-              <li><a href="ajout_chef_fokontany"><?=$this->lang->line('add_chief');?></a></li>
               <li><a href="liste_utilisateur"><?=$this->lang->line('list_users');?></a></li>
             </ul>
           </li>
           <li>
-            <a href="#"><span class="iconify" data-icon="ic:round-place" data-inline="false"></span> Fokontany</a>
-          </li>
-          <li>
             <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménage</a>
-            <ul class="sub-main-menu">              
-              <li><a href="list_menage">Liste des Ménages</a></li>
+            <ul class="sub-main-menu" style="display:none;">
+              <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
+              <li><a href="#">Créer nouveau menage</a></li>
             </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> Citoyens</a>
           </li>
         </ul>
       </div>

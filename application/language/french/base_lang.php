@@ -27,6 +27,14 @@ $lang['single'] = 'Célibataire';
 $lang['married'] = 'Marié(e)';
 $lang['widower'] = 'Veuf/Veuve';
 $lang['divorced'] = 'Divorcé(e)';
+$lang['step'] = 'Etape';
+$lang['household_size'] = 'Taille du ménage';
+$lang['next'] = 'Suivant';
+$lang['dead'] = 'Mort(e)';
+$lang['alive'] = 'Vivant(e)';
+$lang['next_citizen'] = 'Citoyen suivant';
+$lang['previous_citizen'] = 'Citoyen précédent';
+$lang['number_notebook'] = 'Numéro carnet Fokontany';
 
 $lang['sexe_male'] = 'Homme';
 $lang['sexe_female'] = 'Femme';
@@ -47,4 +55,5 @@ $lang['manage_households'] = 'Gestion des ménages';
 $lang['success_save'] = 'Enregistrement réussi';
 
 $lang['citizens'] = 'Citoyens';
+$lang['citizen'] = 'Citoyen';
 $lang['households'] = 'Ménages';

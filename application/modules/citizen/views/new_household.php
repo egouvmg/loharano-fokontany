@@ -33,7 +33,7 @@
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Fokontany <?= $user_fokontany;?>
+                Fokontany <?= $user_fokontany;?>
               <span class="iconify" data-icon="uil:ellipsis-v" data-inline="false"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -53,8 +53,8 @@
           <li>
             <a href="gestion_citoyens"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> <?=$this->lang->line('citizens');?></a>
             <ul class="sub-main-menu">
-              <li><a href="recherche_menage"><?=$this->lang->line('add_citizen');?></a></li>
-              <li><a href="liste_citoyens" class="active"><?=$this->lang->line('list_citizen');?></a></li>
+              <li><a href="recherche_menage" class="active"><?=$this->lang->line('add_citizen');?></a></li>
+              <li><a href="liste_citoyens"><?=$this->lang->line('list_citizen');?></a></li>
             </ul>
           </li>
           <li>
@@ -70,15 +70,41 @@
         </ul>
       </div>
       <div class="main-container">
-        <!-- Page title --> 
+        <!-- Page title -->
+        <p class="info-fokontany"><span>Province : </span><?= $info_fokontany->province_name;?> <span>Région : </span><?= $info_fokontany->region_name;?> <span>District : </span><?= $info_fokontany->district_name;?> <span>Commune : </span><?= $info_fokontany->common_name;?></p>
+        
         <div class="container-fluid page-title">
-          <h1><?= $title;?></h1>
+          <h1><?= $title;?> - <?=$this->lang->line('step');?> 02</h1>
         </div>
         <!-- End Page title -->
 
         <!-- Page Content -->
         <div class="container-fluid">
-            <div id="citizens"></div>
+            <div class="row">
+                <div class="col-lg-12 orange">
+                    <p><?= $this->lang->line('locality_household');?></p>
+                </div>
+                <div class="col-lg-4">
+                    <form id="localityHousehold">
+                        <div class="form-group col-md-12">
+                            <label for="address"><?=$this->lang->line('address');?> *</label>
+                            <input type="text" class="form-control" id="address" value="<?= $address;?>" name="address" placeholder="...">
+                            <span class="error_field error_address"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="household_size"><?=$this->lang->line('household_size');?> *</label>
+                            <input type="text" class="form-control" id="household_size" value="<?= $household_size;?>" name="household_size" placeholder="...">
+                            <span class="error_field error_household_size"></span>
+                        </div>
+                        <button type="submit" id="saveLocalityHousehold" class="btn btn-primary"><?= $this->lang->Line('next');?></button>
+                        <span id="failedMsg" class="error_field"></span>
+                        <div id="loadingSave" style="display:none;">
+                            <img class="loading" src="<?= img('pulse.gif');?>"/>
+                            Enregistrement ...
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <!-- End Page Content -->
         
@@ -104,6 +130,6 @@
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
-	<script src="<?= plugin('modules', 'citizen', 'list_citizen_fk.js');?>"></script>
+	<script src="<?= plugin('modules', 'citizen', 'new_household.js');?>"></script>
 </body>
 </html>

@@ -33,7 +33,7 @@
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Fokontany <?= $user_fokontany;?>
+            Fokontany <?= $user_fokontany;?>
               <span class="iconify" data-icon="uil:ellipsis-v" data-inline="false"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -52,15 +52,15 @@
         <ul class="main-menu">
           <li>
             <a href="gestion_citoyens"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> <?=$this->lang->line('citizens');?></a>
-            <ul class="sub-main-menu">
+            <ul class="sub-main-menu" style="display:none;">
               <li><a href="recherche_menage"><?=$this->lang->line('add_citizen');?></a></li>
-              <li><a href="liste_citoyens" class="active"><?=$this->lang->line('list_citizen');?></a></li>
+              <li><a href="liste_citoyens"><?=$this->lang->line('list_citizen');?></a></li>
             </ul>
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="fa-solid:user" data-inline="false"></span> <?=$this->lang->line('households');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
+            <ul class="sub-main-menu">
+              <li><a href="liste_menage_fokontany" class="active">Liste des ménages</a></li>
               <li><a href="#">Créer nouveau menage</a></li>
             </ul>
           </li>
@@ -70,7 +70,8 @@
         </ul>
       </div>
       <div class="main-container">
-        <!-- Page title --> 
+        <!-- Page title -->
+        <p class="info-fokontany"><span>Province : </span><?= $info_fokontany->province_name;?> <span>Région : </span><?= $info_fokontany->region_name;?> <span>District : </span><?= $info_fokontany->district_name;?> <span>Commune : </span><?= $info_fokontany->common_name;?></p>
         <div class="container-fluid page-title">
           <h1><?= $title;?></h1>
         </div>
@@ -78,32 +79,17 @@
 
         <!-- Page Content -->
         <div class="container-fluid">
-            <div id="citizens"></div>
+            <div id="households"></div>
         </div>
         <!-- End Page Content -->
-        
-        <!-- Modal -->
-        <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-body text-center">
-                <span class="icon-check">
-                <span class="iconify" data-inline="false" data-icon="uil:check" style="font-size: 32px;"></span>
-                </span>
-                <p id="confirmResponse"></p>
-                <a href="recherche_menage"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Modal END -->
+      </div>
     </div>
-    </div>
+  </div>
 
 	<script src="<?= js('jquery.min');?>"></script>
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
-	<script src="<?= plugin('modules', 'citizen', 'list_citizen_fk.js');?>"></script>
+	<script src="<?= plugin('modules', 'citizen', 'list_household.js');?>"></script>
 </body>
 </html>

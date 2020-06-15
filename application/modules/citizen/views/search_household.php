@@ -53,8 +53,8 @@
           <li>
             <a href="gestion_citoyens"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> <?=$this->lang->line('citizens');?></a>
             <ul class="sub-main-menu">
-              <li><a href="recherche_menage"><?=$this->lang->line('add_citizen');?></a></li>
-              <li><a href="liste_citoyens" class="active"><?=$this->lang->line('list_citizen');?></a></li>
+              <li><a href="recherche_menage" class="active"><?=$this->lang->line('add_citizen');?></a></li>
+              <li><a href="liste_citoyens"><?=$this->lang->line('list_citizen');?></a></li>
             </ul>
           </li>
           <li>
@@ -70,15 +70,27 @@
         </ul>
       </div>
       <div class="main-container">
-        <!-- Page title --> 
+        <!-- Page title -->
+        <p class="info-fokontany"><span>Province : </span><?= $info_fokontany->province_name;?> <span>Région : </span><?= $info_fokontany->region_name;?> <span>District : </span><?= $info_fokontany->district_name;?> <span>Commune : </span><?= $info_fokontany->common_name;?></p>
+        
         <div class="container-fluid page-title">
-          <h1><?= $title;?></h1>
+          <h1><?= $title;?> - <?=$this->lang->line('step');?> 01</h1>
         </div>
         <!-- End Page title -->
 
         <!-- Page Content -->
         <div class="container-fluid">
-            <div id="citizens"></div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p><?= $this->lang->line('adding_citizen');?></p>
+                    <a href="recherche_menage_fokontany" class="bloc-link">
+                        <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> <?=$this->lang->line('search_household');?>
+                    </a>
+                    <a href="nouveau_menage_fokontany" class="bloc-link">
+                        <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> <?=$this->lang->line('new_household');?>
+                    </a>
+                </div>
+            </div>
         </div>
         <!-- End Page Content -->
         
@@ -104,6 +116,6 @@
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
-	<script src="<?= plugin('modules', 'citizen', 'list_citizen_fk.js');?>"></script>
+	<script src="<?= plugin('modules', 'citizen', 'add_citizen.js');?>"></script>
 </body>
 </html>

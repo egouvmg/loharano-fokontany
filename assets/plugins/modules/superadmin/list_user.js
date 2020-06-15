@@ -81,4 +81,8 @@ $(function () {
 
         users.setData('les_utilisateurs_fokontany', {fokontany_id:fokontany_id});
     });
+
+    $('#fokontany').change(function(){
+        users.setData('les_utilisateurs_fokontany', {fokontany_id: $(this).val()});
+    });
 });
