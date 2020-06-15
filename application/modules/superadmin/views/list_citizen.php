@@ -33,7 +33,7 @@
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <?=$this->lang->line('administrator');?>
+              <?= $this->lang->line('administrator');?>
               <span class="iconify" data-icon="uil:ellipsis-v" data-inline="false"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -49,7 +49,7 @@
   <div class="container-fluid">
     <div class=row>
       <div class="main-side-bar">
-        <ul class="main-menu">
+      <ul class="main-menu">
           <li>
             <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('users');?></a>
             <ul class="sub-main-menu">
@@ -64,13 +64,13 @@
           <li>
             <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménage</a>
             <ul class="sub-main-menu">              
-              <li><a href="list_menage" class="active">Liste des Ménages</a></li>
+              <li><a href="list_menage">Liste des Ménages</a></li>
             </ul>
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> Citoyens</a>
             <ul class="sub-main-menu">              
-              <li><a href="la_liste_citoyens">Liste des citoyens</a></li>
+              <li><a href="la_liste_citoyens" class="active">Liste des citoyens</a></li>
             </ul>
           </li>
         </ul>
@@ -137,20 +137,13 @@
                     <!-- Location -->
                 </div>
                 <div class="col-lg-12">
-                    <div id="carnets"></div>
-                </div>
-                <!-- List des membres d'une ménage --> 
-                <div class="col-lg-12">
-                <h1>Membres du ménage</h1>
-                    <div id="citizens"></div>
+                    <div id="users"></div>
                 </div>
             </div>
         </div>
         <!-- End Page Content -->
       </div>
     </div>
-
-                             
   </div>
 
   <!-- Modal -->
@@ -168,11 +161,12 @@
 		</div>
   	</div>
   <!-- Modal END -->
-	<script src="<?= js('jquery.min');?>"></script>
-  <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
-	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
-	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
-	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
-	<script src="<?= plugin('modules', 'superadmin', 'list_menage.js');?>"></script>
+    <script src="<?= js('jquery.min');?>"></script>
+    <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
+    <script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
+    <script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
+    <script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
+    <script src="<?= plugin('modules', 'common', 'jspdf.min.js');?>"></script>
+    <script src="<?= plugin('modules', 'superadmin', 'list_citizen.js');?>"></script>
 </body>
 </html>

@@ -8,6 +8,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <style>
+  </style>
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<!-- Google Font: Source Sans Pro -->
@@ -74,67 +76,14 @@
         <!-- End Page title -->
 
         <!-- Page Content -->
-        <div class="container-fluid" id="certificat">
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Location Filter-->
-                    <div class="form-row">
-                        <div class="form-group col-md-2">
-                            <label>Province</label>
-                            <select id="province" class="form-control">
-                                <?php foreach ($provinces as $province): ?>
-                                    <option value="<?= $province->id;?>"><?= $province->name;?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label>Région</label>
-                            <select id="region" class="form-control">
-                                <?php foreach ($regions as $region): ?>
-                                    <option value="<?= $region->id;?>"><?= $region->name;?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label>District</label>
-                            <select id="district" class="form-control">
-                                <?php foreach ($districts as $district): ?>
-                                    <option value="<?= $district->id;?>"><?= $district->name;?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label>Commune</label>
-                            <select id="common" class="form-control">
-                                <?php foreach ($commons as $common): ?>
-                                    <option value="<?= $common->id;?>"><?= $common->name;?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label>Arrondissement</label>
-                            <select id="borough" class="form-control">
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label>Fokontany</label>
-                            <select id="fokontany" class="form-control">
-                                <?php foreach ($fokontanies as $fokontany): ?>
-                                    <option value="<?= $fokontany->id;?>"><?= $fokontany->name;?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- Location -->
-                </div>
-                <div class="col-lg-12">
-                    <div id="users"></div>
-                    <button type="button" class="btn btn-primary" id="pdf"> Générer pdf</button>
-                </div>
-            </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="users"></div>
+                <button type="button" class="btn btn-primary" id="pdf"> Générer pdf</button>
+          </div>
         </div>
-        <div id="content">
-          <p>Resize the browser window to see the effect.</p>
+        <div class="container-fluid" id="content">
+        <div >          
           <!--REPOBLIKAN'I MADAGASIKARA-->
           <div class="row">
             <div class="col-sm-4" style="background-color:lavender;"></div>
@@ -161,14 +110,14 @@
             </div>
           </div>
           <!--FOKONTANY-->
-          <div class="row">
-            <div class="col-sm-8" style="background-color:lavender;">
-            <p>FOKONTANY :..................................................................................................</p>
-            <p>Lf :....................................</p>
+          <div class="row"><!-- https://codepen.io/pen/ style="background-color:lavender;"-->
+            <div class="col-sm-8"  style="background-color:lavender;">
+              <span class="font-weight-bold">FOKONTANY :</span> <?= $citizen_data[0]->libelle_fokontany ?>          
+            <p><span class="font-weight-bold">Lf :</span></p>
             </div>
             <div class="col-sm-4 text-center" style="background-color:lavender;">
-            <span class="">NY SEFO FOKONTANY DIA MANAMARINA FA :</span><br>
-            <span class="">LE CHEF FOKONTANY CERTIFIE QUE :</span>
+            <span class="font-weight-bold">NY SEFO FOKONTANY DIA MANAMARINA FA :</span><br>
+            <span class="font-weight-bold">LE CHEF FOKONTANY CERTIFIE QUE :</span>
             </div>
           </div>
 
@@ -177,68 +126,99 @@
             <div class="col-sm-12" style="background-color:lavender;">
              <div class="row">
               <div class="col-sm-5">
-               Atoa/Rtoa : ...................................................
-               <p class="font-italic">M./Mme/Mr</p>
+               <span class="font-weight-bold">Atoa/Rtoa : </span> <?= $citizen_data[0]->nom." ".$citizen_data[0]->prenoms ?>
+               <p class="font-italic">M./Mme/Mlle</p>
               </div>
-              <div class="col-sm-4">..................................................</div>
+              <div class="col-sm-4"></div>
               <div class="col-sm-3"> 
-              Asa :..................................................
+              <span class="font-weight-bold">Asa :</span>
               <p class="font-italic">Profession</p>
               </div>
             </div>
              
              <div class="row">
                 <div class="col-sm-4">
-                Teraka tamin'ny : ......................................................................
+                <span class="font-weight-bold">Teraka tamin'ny :</span> </span><?= $citizen_data[0]->date_de_naissance ?>
                 <p class="font-italic">Né(e) le </p>
                 </div>
                 <div class="col-sm-4">
-                tao :.............................................................................
+                <span class="font-weight-bold">tao :</span><?= $citizen_data[0]->lieu_de_naissance ?>
                 <p class="font-italic">à</p>
                 </div>
                 <div class="col-sm-4">
-                Zom-pirenena :....................................................................
+                <span class="font-weight-bold">Zom-pirenena :</span><?= $citizen_data[0]->nationalite ?>
                 <p class="font-italic">Nationalité</p>
                 </div>                                                                 
              </div>
              <div class="row">
              <div class="col-sm-6">
-             Zanak'i : ................................................................................
+             <span class="font-weight-bold">Zanak'i :</span>
              <p class="font-italic">Fils ou fille de </p>
              </div>
              <div class="col-sm-6">
-              sy :.......................................................................................
+              <span class="font-weight-bold">sy :</span>
               <p class="font-italic">et de</p>   
              </div>
              </div>
-             <p></p>
-             <p>Dia monina ao amin'ny : ...................................................................................   </p>
-             <p>Dia monina ao amin'ny : ...................................................................................   </p>
-             <p>Antony ilàna azy ( Motif d'usage ): .......................................................................   </p>
-             <p>Noho izany, dia nomena azy ity fanamarinana ity, mba hampiasainy sy hanan-kery amin'izay rehetra mety ilàna: azy.</p>
+             <div class="row">
+             <div class="col-sm-12">
+            <span class="font-weight-bold"> Dia monina ao amin'ny :</span><?= $citizen_data[0]->nom." ".$citizen_data[0]->adresse_actuelle ?>    
+             <p class="font-italic">Réside au</p>
+             </div>
+             </div>
+             <div class="row">
+              <div class="col-sm-12">
+                <p><span class="font-weight-bold">Antony ilàna azy</span> (<span class="font-italic">Motif d'usage</span>): </p>
+              </div>
+             </div>
+             <div class="row">
+              <div class="col-sm-12">
+              <span class="font-weight-bold">Noho izany, dia nomena azy ity fanamarinana ity, mba hampiasainy sy hanan-kery amin'izay rehetra mety ilàna: azy.</span>
              <p class="font-italic">En foi de quoi, le présent certificat lui est délivré pour servir et valoir ce que de droit.</p>
-            </div>
+              </div>
+             </div>
+             </div>
+         <!--Eto le div  -->
           </div>
           <!--FOOTER-->
           <div class="row">
             <div class="col-sm-4" style="background-color:lavender;">
             <p>Fanisam-bahoaka lf:...................................</p>
-            <p>CIN-Passeport N°:.....................................</p>
+            <p>CIN-Passeport N°: <?= $citizen_data[0]->cin_personne ?></p>
             <p>du:....................à..............................</p>
             <p class="font-weight-bold"> N°                                                    </p>
             </div>
-            <div class="col-sm-3" style="background-color:lavender;">LOGO</div>
+
+            <!--Ecusson-->
+            <div class="col-sm-3" style="background-color:lavender;">
+              <img src="<?= img('ecussons/cua.png');?>">
+            </div>
             <div class="col-sm-5" style="background-color:lavender;">
-            <p>Natao teto:....................androany faha ..............................</p>
-            <p class="font-italic">Fait à                         le                                          </p>
+             <div class="row">
+              <div class="col-sm-6" style="background-color:lavender;">
+              Natao teto:<br>
+              <span class="font-italic">Fait à</span>
+              </div>
+              <div class="col-sm-6" style="background-color:lavender;">
+              androany faha<br>
+              <span class="font-italic">le</span>
+              </div>
+             </div>            
             </div>
           </div>
 
+          <div class="row">
+            <div class="col-sm-4" style="background-color:lavender;">
+            </div>
+          </div>
+            
           </div>
         </div>
+
+
+        </div>
         <!-- End Page Content -->
-      </div>
-      <div id="editor"></div>
+      </div>      
     </div>
   </div>
 
@@ -264,6 +244,6 @@
 	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
   <script src="<?= plugin('modules', 'common', 'jspdf.min.js');?>"></script>
-	<script src="<?= plugin('modules', 'superadmin', 'list_citizen.js');?>"></script>
+	<script src="<?= plugin('modules', 'superadmin', 'citizen_certificate.js');?>"></script>
 </body>
 </html>
