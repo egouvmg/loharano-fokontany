@@ -137,13 +137,20 @@
                     <!-- Location -->
                 </div>
                 <div class="col-lg-12">
-                    <div id="users"></div>
+                    <div id="carnets"></div>
+                </div>
+                <!-- List des membres d'une ménage --> 
+                <div class="col-lg-12">
+                <h1>Membres du ménage</h1>
+                    <div id="citizens"></div>
                 </div>
             </div>
         </div>
         <!-- End Page Content -->
       </div>
     </div>
+
+                             
   </div>
 
   <!-- Modal -->

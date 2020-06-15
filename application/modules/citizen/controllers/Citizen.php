@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Citizen extends Operator_Controller
+class Citizen extends Superadmin_Controller//Operator_Controller
 {
 	public function __construct(){
         parent::__construct();
@@ -101,11 +101,13 @@ class Citizen extends Operator_Controller
 
     public function list_citizen_by_carnet_id()
 	{        
-        $carnet_id = 2;//$this->input->post('carnet_id');
+        $numero_carnet = $this->input->get('numero_carnet');//;"123456789"
         
-        if(!empty($carnet_id)){
-            $citizen = $this->citizen->get_citizen(['numero_carnet'=>$carnet_id]);
+        if(!empty($numero_carnet)){
+            $citizen = $this->citizen->get_citizen(['numero_carnet'=>$numero_carnet]);
         }
+        echo json_encode($citizen);
+        /*
         $this->data['title'] = "Liste des Citoyens";
 
         $this->data['provinces'] = $this->province->get_all();
@@ -116,6 +118,7 @@ class Citizen extends Operator_Controller
         $this->data['fokontanies'] = $this->fokontany->get_all(['borough_id' => $this->data['boroughs'][0]->id]);
 
         $this->load->view('list_citizen', $this->data);
+        */
     }
 
     /*
@@ -206,9 +209,13 @@ class Citizen extends Operator_Controller
 	{
         $this->data['title'] = $this->lang->line('citizen_residence');
         
-        $cin_personne = 123456789123456789;//$this->input->get('carnet_id');
+        //$cin_personne = $this->input->get('cin');//123456789123456789
 
-        $citizen_data = $this->citizen->get_citizen(['cin_personne'=>$cin_personne]);
+        $str = $this->input->get('cin');//123456789123456789
+        $bigInt = gmp_init($str);
+        $cin_personne = gmp_intval($bigInt);
+
+        $citizen_data = $this->citizen->get_citizen_certificate(['cin_personne'=>$cin_personne]);
 
         $this->data['citizen_data'] = $citizen_data;
 		

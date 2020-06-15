@@ -85,6 +85,7 @@ $route['enregistrement_citoyen'] = 'citizen/save_citizen';
 $route['citoyens_list'] = 'citizen/citizens_list';
 $route['certificate'] = 'citizen/load_citizen_certificate';
 $route['liste_citoyens'] = 'citizen/list_citizens';
+$route['membres_menage'] = 'citizen/list_citizen_by_carnet_id';
 
 /*
  * AJAX
