@@ -62,6 +62,8 @@ $route['changer_langue'] = 'auth/change_language';
 //Superadmin
 $route['la_liste_citoyens'] = 'superadmin/list_citizen';
 $route['recuperer_liste_citoyen'] = 'superadmin/citizens_list';
+$route['les_membres_menage'] = 'superadmin/list_citizen_by_carnet_id';
+$route['gerener_certificat'] = 'superadmin/load_citizen_certificate';
 
 //User
 $route['tableau_de_bords'] = 'user/index';

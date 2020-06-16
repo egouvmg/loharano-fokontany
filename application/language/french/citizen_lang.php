@@ -18,3 +18,6 @@ $lang['household_matches'] = 'Le ou les ménages correspondants.';
 $lang['locality_household'] = 'Localisation du ménage';
 $lang['search_household'] = 'Rechercher un ménage';
 $lang['new_household'] = 'Créer un ménage';
+
+$lang['household_click_for_details'] = 'Cliquez sur un ménage pour voir la liste des parsonnes.';
+$lang['household_content'] = 'Les personnes dans le ménage : ';

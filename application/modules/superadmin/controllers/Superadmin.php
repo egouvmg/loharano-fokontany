@@ -14,6 +14,8 @@ class Superadmin extends SuperAdmin_Controller
         $this->load->model('territory/fokontany_model', 'fokontany');
         $this->load->model('territory/notebook_model', 'notebook');
         
+        $this->load->model('citizen/citizen_model', 'citizen');
+        
         $this->load->model('user/user_model', 'user');
 
         $this->lang->load('user', $this->session->site_lang);
@@ -41,6 +43,19 @@ class Superadmin extends SuperAdmin_Controller
         $this->load->view('list_citizen', $this->data);
     }
 
+    public function load_citizen_certificate()
+	{
+        $this->data['title'] = $this->lang->line('citizen_residence');
+
+        $person_id = $this->input->get('personne');
+
+        $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$person_id]);
+
+        $this->data['citizen_data'] = $citizen_data;
+		
+        $this->load->view('residence_certificat', $this->data);
+	}
+
     /*
      * AJAX Requests
      * */
@@ -56,6 +71,17 @@ class Superadmin extends SuperAdmin_Controller
         $citizens = $this->notebook->citizens(['fokontany_id' => $fokontany_id]);
 
         echo json_encode($citizens);
+    }
+
+    public function list_citizen_by_carnet_id()
+	{        
+        $numero_carnet = $this->input->get('numero_carnet');//;"123456789"
+        
+        if(!empty($numero_carnet)){
+            $citizen = $this->citizen->get_citizen(['numero_carnet'=>$numero_carnet]);
+        }
+
+        echo json_encode($citizen);
     }
 }
 

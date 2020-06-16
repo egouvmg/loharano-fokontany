@@ -225,11 +225,12 @@ class Citizen extends Operator_Controller
 
     public function list_citizen_by_carnet_id()
 	{        
-        $numero_carnet = $this->input->get('numero_carnet');//;"123456789"
+        $numero_carnet = $this->input->get('numero_carnet');
         
         if(!empty($numero_carnet)){
             $citizen = $this->citizen->get_citizen(['numero_carnet'=>$numero_carnet]);
         }
+        
         echo json_encode($citizen);
         /*
         $this->data['title'] = "Liste des Citoyens";
@@ -481,10 +482,8 @@ class Citizen extends Operator_Controller
     public function load_citizen_certificate()
 	{
         $this->data['title'] = $this->lang->line('citizen_residence');
-        
-        //$cin_personne = $this->input->get('cin');//123456789123456789
 
-        $str = $this->input->get('cin');//123456789123456789
+        $str = $this->input->get('cin');
         $bigInt = gmp_init($str);
         $cin_personne = gmp_intval($bigInt);
 

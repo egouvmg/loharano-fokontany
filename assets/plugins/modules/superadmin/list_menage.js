@@ -22,7 +22,7 @@ $(function () {
             { title: "Observations", field: "observations", headerFilterPlaceholder: "...", headerFilter: "input" }
         ],
         rowClick: function (e, row) {
-            citizens.setData('membres_menage', { numero_carnet: row.getData().numero_carnet });
+            citizens.setData('les_membres_menage', { numero_carnet: row.getData().numero_carnet });
             /*
             $.get("membres_menage",function(data, status){
             });
@@ -44,7 +44,7 @@ $(function () {
             { title: "Lieu de Naissance", field: "lieu_de_naissance", headerFilterPlaceholder: "...", headerFilter: "input" }
         ],
         rowClick: function (e, row) {
-            window.location.replace("certificate" + "?cin=" + row.getData().cin_personne);
+            window.location.replace("gerener_certificat" + "?personne=" + row.getData().id_personne);
         },
     });
     //****************************Membres d'une ménage***************************** */
