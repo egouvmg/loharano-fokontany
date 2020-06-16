@@ -54,7 +54,7 @@
             <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('users');?></a>
             <ul class="sub-main-menu">
               <li><a href="ajout_utilisateur"><?=$this->lang->line('add_user');?></a></li>
-              <li><a href="ajout_chef_fokontany"><?=$this->lang->line('add_chief');?></a></li>
+              <li><a href="ajout_de_chef"><?=$this->lang->line('add_chief');?></a></li>
               <li><a href="liste_utilisateur"><?=$this->lang->line('list_users');?></a></li>
             </ul>
           </li>
@@ -87,7 +87,7 @@
               <a href="ajout_utilisateur" class="bloc-link">
                 <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> <?=$this->lang->line('add_user');?>
               </a>
-              <a href="ajout_chef_fokontany" class="bloc-link">
+              <a href="ajout_de_chef" class="bloc-link">
                 <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef Fokontany
               </a>
               <a href="liste_utilisateur" class="bloc-link">
@@ -101,7 +101,7 @@
               <a href="ajout_utilisateur" class="bloc-link">
                 <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> Ajout Utilisateur
               </a>
-              <a href="ajout_chef_fokontany" class="bloc-link">
+              <a href="ajout_de_chef" class="bloc-link">
                 <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef Fokontany
               </a>
               <a href="" class="bloc-link">
@@ -118,7 +118,7 @@
               <a href="ajout_utilisateur" class="bloc-link">
                 <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> Ajout Utilisateur
               </a>
-              <a href="ajout_chef_fokontany" class="bloc-link">
+              <a href="ajout_de_chef" class="bloc-link">
                 <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef Fokontany
               </a>
               <a href="" class="bloc-link">
@@ -135,7 +135,7 @@
               <a href="ajout_utilisateur" class="bloc-link">
                 <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> Ajout Utilisateur
               </a>
-              <a href="ajout_chef_fokontany" class="bloc-link">
+              <a href="ajout_de_chef" class="bloc-link">
                 <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef Fokontany
               </a>
               <a href="" class="bloc-link">

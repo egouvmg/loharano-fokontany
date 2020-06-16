@@ -68,7 +68,7 @@ $route['gerener_certificat'] = 'superadmin/load_citizen_certificate';
 //User
 $route['tableau_de_bords'] = 'user/index';
 $route['ajout_utilisateur'] = 'user/add_user';
-$route['ajout_chef_fokontany'] = 'user/add_chief';
+$route['ajout_de_chef'] = 'user/add_chief';
 $route['liste_utilisateur'] = 'user/list_user';
 $route['enregistrer_operateur'] = 'user/save_user';
 $route['enregistrer_chef'] = 'user/save_chief';
@@ -81,6 +81,7 @@ $route['enfant_province'] = 'territory/procince_get_childs';
 $route['enfant_region'] = 'territory/region_get_childs';
 $route['enfant_district'] = 'territory/district_get_childs';
 $route['enfant_commune'] = 'territory/common_get_childs';
+$route['enfant_arrondissement'] = 'territory/borough_get_childs';
 $route['enfant_commune_avaliable'] = 'territory/common_get_avaliable_childs';
 
 //Citizen

@@ -57,7 +57,7 @@
               <li><a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> Utilisateurs</a>
             <ul class="sub-main-menu">
               <li><a class="active" href="ajout_utilisateur">Ajout utilisateur</a></li>
-              <li><a href="ajout_chef_fokontany">Ajout chef fokontany</a></li>
+              <li><a href="ajout_de_chef">Ajout chef fokontany</a></li>
               <li><a href="#">Liste des utilisateurs</a></li>
               <li><a href="#">Liste des chef fokontany</a></li>              
             </ul>

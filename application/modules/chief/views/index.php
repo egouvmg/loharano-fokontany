@@ -112,7 +112,7 @@
               <a href="ajout_utilisateur_fokontany" class="bloc-link">
                 <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> Ajout Utilisateur
               </a>
-              <a href="ajout_chef_fokontany" class="bloc-link">
+              <a href="ajout_de_chef" class="bloc-link">
                 <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef Fokontany
               </a>
               <a href="" class="bloc-link">
@@ -129,7 +129,7 @@
               <a href="ajout_utilisateur_fokontany" class="bloc-link">
                 <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> Ajout Utilisateur
               </a>
-              <a href="ajout_chef_fokontany" class="bloc-link">
+              <a href="ajout_de_chef" class="bloc-link">
                 <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef Fokontany
               </a>
               <a href="" class="bloc-link">

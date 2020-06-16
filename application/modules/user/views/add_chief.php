@@ -54,7 +54,7 @@
             <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('users');?></a>
             <ul class="sub-main-menu">
               <li><a href="ajout_utilisateur"><?=$this->lang->line('add_user');?></a></li>
-              <li><a href="ajout_chef_fokontany" class="active"><?=$this->lang->line('add_chief');?></a></li>
+              <li><a href="ajout_de_chef" class="active"><?=$this->lang->line('add_chief');?></a></li>
               <li><a href="liste_utilisateur"><?=$this->lang->line('list_users');?></a></li>
             </ul>
           </li>
@@ -196,7 +196,7 @@
         <span class="iconify" data-inline="false" data-icon="uil:check" style="font-size: 32px;"></span>
         </span>
         <p id="confirmResponse"></p>
-        <a href="ajout_chef_fokontany"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
+        <a href="ajout_de_chef"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
       </div>
     </div>
   </div>

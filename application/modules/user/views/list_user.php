@@ -54,7 +54,7 @@
             <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('users');?></a>
             <ul class="sub-main-menu">
               <li><a href="ajout_utilisateur"><?=$this->lang->line('add_user');?></a></li>
-              <li><a href="ajout_chef_fokontany"><?=$this->lang->line('add_chief');?></a></li>
+              <li><a href="ajout_de_chef"><?=$this->lang->line('add_chief');?></a></li>
               <li><a href="liste_utilisateur"><?=$this->lang->line('list_users');?></a></li>
             </ul>
           </li>
@@ -162,7 +162,7 @@
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
-	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
+	<script src="<?= plugin('modules', 'common', 'full_localization.js');?>"></script>
 	<script src="<?= plugin('modules', 'superadmin', 'list_user.js');?>"></script>
 </body>
 </html>

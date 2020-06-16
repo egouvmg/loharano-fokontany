@@ -3,6 +3,18 @@ $(function () {
 	/*
 	 * Function
 	 */
+	function get_fokontany(borough_id) {
+		$('#loadingLocation').show();
+		$.post("enfant_commune_avaliable", {
+			id: borough_id
+		}, function (res) {
+			if (res.success == 1) {
+				$("#fokontany").html(res.childs);
+				$('#loadingLocation').hide();
+			} else if (res.error == 1)
+				alert(res.msg);
+		}, 'JSON');
+	}
 
     $("#province").change(function (e) {
 		$('#loadingLocation').show();
@@ -29,6 +41,8 @@ $(function () {
 								}, function (res) {
 									if (res.success == 1) {						
 										$("#borough").html(res.childs);
+		
+										get_fokontany(res.first_child);
 										$('#loadingLocation').hide();
 									} else if (res.error == 1){
 										alert(res.msg);
@@ -67,6 +81,8 @@ $(function () {
 						}, function (res) {
 							if (res.success == 1) {						
 								$("#borough").html(res.childs);
+
+								get_fokontany(res.first_child);
 								$('#loadingLocation').hide();
 							} else if (res.error == 1){
 								alert(res.msg);
@@ -95,6 +111,8 @@ $(function () {
 				}, function (res) {
 					if (res.success == 1) {						
 						$("#borough").html(res.childs);
+
+						get_fokontany(res.first_child);
 						$('#loadingLocation').hide();
 					} else if (res.error == 1){
 						alert(res.msg);
@@ -114,6 +132,8 @@ $(function () {
 		}, function (res) {
 			if (res.success == 1) {						
 				$("#borough").html(res.childs);
+
+				get_fokontany(res.first_child);
 				$('#loadingLocation').hide();
 			} else if (res.error == 1){
 				alert(res.msg);
@@ -125,6 +145,8 @@ $(function () {
 	$("#borough").change(function (e) {
 		$('#loadingLocation').show();
 		//Récupération fokontany
+
+		get_fokontany($(this).val());
 		$('#loadingLocation').hide();
 	});
 });

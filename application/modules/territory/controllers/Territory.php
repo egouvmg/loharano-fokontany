@@ -9,6 +9,7 @@ class Territory extends MY_Controller
 		$this->load->model('region_model', 'region');
 		$this->load->model('district_model', 'district');
 		$this->load->model('common_model', 'common');
+		$this->load->model('borough_model', 'borough');
 		$this->load->model('fokontany_model', 'fokontany');
 		$this->load->model('territory_model', 'territory');
 	}
@@ -90,11 +91,34 @@ class Territory extends MY_Controller
         $id_common = $this->input->post('id');
 
         if(empty($id_common)){
-        	echo json_encode(['error' => 1, 'msg' => 'Commune non fourni.']);
+        	echo json_encode(['error' => 1, 'msg' => 'Commune non fournies.']);
         	return true;
         }
 
-        $fokontanys = $this->fokontany->get_all(['common_id' => $id_common]);
+        $boroughs = $this->borough->get_all(['common_id' => $id_common]);
+    	
+    	if(!empty($boroughs)){
+    		$this->data['childs'] = $boroughs;
+    		$childs = $this->load->view('childs_option', $this->data, TRUE);
+    		echo json_encode(['success' => 1, 'childs' => $childs, 'first_child' => $boroughs[0]->id]);		
+    	}
+    	else
+    		echo json_encode(['error' => 1, 'msg' => 'Aucun Arrondissement correspondant.', 'childs' => '' ]);
+	}
+
+	public function borough_get_childs(){
+		if (!$this->input->is_ajax_request()) {
+            exit('Very ianao :O');
+        }
+
+        $id_borough = $this->input->post('id');
+
+        if(empty($id_borough)){
+        	echo json_encode(['error' => 1, 'msg' => 'Arrondissement non fourni.']);
+        	return true;
+        }
+
+        $fokontanys = $this->fokontany->get_all(['borough_id' => $id_borough]);
     	
     	if(!empty($fokontanys)){
     		$this->data['childs'] = $fokontanys;
@@ -212,7 +236,7 @@ class Territory extends MY_Controller
 		$id_common = $this->input->post('id');
 
         if(empty($id_common)){
-        	echo json_encode(['error' => 1, 'msg' => 'Commune non fourni.']);
+        	echo json_encode(['error' => 1, 'msg' => 'Commune non fournie.']);
         	return true;
         }
 

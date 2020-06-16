@@ -93,6 +93,10 @@ class User extends SuperAdmin_Controller
             $missing_fields[] = ['email', 'Email obligatoire'];
         if(empty($n_password))
             $missing_fields[] = ['password', 'Mot de passe obligatoire'];
+        if(empty($address))
+            $missing_fields[] = ['address', 'Champs requis'];
+        if(empty($phone))
+            $missing_fields[] = ['phone', 'Champs requis'];
         if(empty($n_confirm_pwd))
             $missing_fields[] = ['confirm_pwd', 'Veuillez confirmer le mot de passe'];
         if(empty($fokontany_id))
@@ -121,7 +125,7 @@ class User extends SuperAdmin_Controller
         if(!empty($type_compte)){
             $type_compte = $type_compte=="sefo_kontany"? 3 : 4 ;
             try{
-                $user_id = $this->ion_auth->register($n_email, $n_password, $n_email, ['first_name' => $n_firstname, 'current_pwd' => $n_password], [$type_compte]);
+                $user_id = $this->ion_auth->register($n_email, $n_password, $n_email, ['phone' =>$phone, 'address' => $address, 'first_name' => $n_firstname, 'current_pwd' => $n_password], [$type_compte]);
                 if($user_id){                   
                     $data = array(
                         'user_id' => $user_id ,
@@ -132,7 +136,7 @@ class User extends SuperAdmin_Controller
                         echo json_encode(['success'=>1, 'msg'=>'Enregistrement réussi']);
                     }else
                         echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer le compte.']); 
-                }                          
+                }else echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer le compte. L\'adresse email est déjà utilisé.']);
             }
             catch(Exception $e){
                 echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer le compte.']);
@@ -200,9 +204,9 @@ class User extends SuperAdmin_Controller
 		}
         
         if(!empty($type_compte)){
-
             try{
                 $user_id = $this->ion_auth->register($n_email, $n_password, $n_email, ['phone' =>$phone, 'address' => $address, 'first_name' => $n_firstname, 'current_pwd' => $n_password], [$this->config->item('group_chief')]);
+
                 if($user_id){                   
                     $data = array(
                         'user_id' => $user_id ,
@@ -213,7 +217,7 @@ class User extends SuperAdmin_Controller
                         echo json_encode(['success'=>1, 'msg'=>'Enregistrement réussi']);
                     }else
                         echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer le compte.']); 
-                }                          
+                }else echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer le compte. L\'adresse email est déjà utilisé.']);                    
             }
             catch(Exception $e){
                 echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer le compte.']);
