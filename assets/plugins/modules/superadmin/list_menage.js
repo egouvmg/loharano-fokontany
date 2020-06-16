@@ -9,6 +9,13 @@ $(function () {
         }
     };
 
+    $('#fokontany').change(function(e){
+        e.preventDefault();
+
+        carnets.setData('menages_fokontany', { fokontany_id: $(this).val() });
+        citizens.setData();
+    });
+
     var carnets = new Tabulator("#carnets", {
         layout: "fitColumns",
         initialSort: [
@@ -23,10 +30,6 @@ $(function () {
         ],
         rowClick: function (e, row) {
             citizens.setData('les_membres_menage', { numero_carnet: row.getData().numero_carnet });
-            /*
-            $.get("membres_menage",function(data, status){
-            });
-            */
         },
     });
 
@@ -44,7 +47,6 @@ $(function () {
             { title: "Lieu de Naissance", field: "lieu_de_naissance", headerFilterPlaceholder: "...", headerFilter: "input" }
         ],
         rowClick: function (e, row) {
-            window.location.replace("gerener_certificat" + "?personne=" + row.getData().id_personne);
         },
     });
     //****************************Membres d'une ménage***************************** */

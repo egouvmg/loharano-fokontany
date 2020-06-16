@@ -114,6 +114,9 @@
                         <div class="form-group col-md-2">
                             <label>Arrondissement</label>
                             <select id="borough" class="form-control">
+                                <?php foreach ($boroughs as $borough): ?>
+                                    <option value="<?= $borough->id;?>"><?= $borough->name;?></option>
+                                <?php endforeach ?>
                             </select>
                         </div>
                         <div class="form-group col-md-2">
@@ -156,8 +159,8 @@
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
-	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
+	<script src="<?= plugin('modules', 'common', 'full_localization.js');?>"></script>
   <script src="<?= plugin('modules', 'common', 'jspdf.min.js');?>"></script>
-	<script src="<?= plugin('modules', 'superadmin', 'list_citizen.js');?>"></script>
+	<script src="<?= plugin('modules', 'citizen', 'list_citizen.js');?>"></script>
 </body>
 </html>

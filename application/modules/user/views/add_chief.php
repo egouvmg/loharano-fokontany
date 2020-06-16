@@ -125,7 +125,7 @@
               <div class="col-lg-12">
                   <div class="form-row">
                     <div class="form-group col-md-12">
-                      Choisissez le Fokontany où travail le Chef Fokontany
+                      Choisissez le Fokontany où travail le Chef d'Arrondissement
                     </div>
                     <div class="form-group col-md-4">
                       <label for="province">Province</label>

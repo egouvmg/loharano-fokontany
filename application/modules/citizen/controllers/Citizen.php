@@ -15,6 +15,8 @@ class Citizen extends Operator_Controller
         $this->load->model('territory/borough_model', 'borough');
         $this->load->model('territory/notebook_model', 'notebook');
 
+        $this->load->model('register/register_model', 'register');
+
         $this->load->model('job/job_model', 'job');
         $this->load->model('nationality/nationality_model', 'nationality');
         
@@ -165,6 +167,30 @@ class Citizen extends Operator_Controller
     }
 
     /*
+     * CERTIFICATES
+     * */
+
+    public function certificate_residence()
+    {
+        $this->data['title'] = $this->lang->line('title_residence');
+
+        $this->load->view('residence', $this->data);
+    }
+
+    public function generate_residence()
+    {
+        $this->data['title'] = $this->lang->line('citizen_residence');
+
+        $person_id = $this->input->get('personne');
+
+        $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$person_id]);
+
+        $this->data['citizen_data'] = $citizen_data;
+		
+        $this->load->view('residence_certificat', $this->data);
+    }
+
+    /*
      * AJAX Requests
      */
 
@@ -232,18 +258,6 @@ class Citizen extends Operator_Controller
         }
         
         echo json_encode($citizen);
-        /*
-        $this->data['title'] = "Liste des Citoyens";
-
-        $this->data['provinces'] = $this->province->get_all();
-        $this->data['regions'] = $this->region->get_all(['province_id' => $this->data['provinces'][0]->id]);
-        $this->data['districts'] = $this->district->get_all(['region_id' => $this->data['regions'][0]->id]);
-		$this->data['commons'] = $this->common->get_all(['district_id' => $this->data['districts'][0]->id]);
-		$this->data['boroughs'] = $this->borough->get_all(['common_id' => $this->data['commons'][0]->id]);
-        $this->data['fokontanies'] = $this->fokontany->get_all(['borough_id' => $this->data['boroughs'][0]->id]);
-
-        $this->load->view('list_citizen', $this->data);
-        */
     }
 
     /*
@@ -542,7 +556,7 @@ class Citizen extends Operator_Controller
         $data = [
             'numero_carnet' => $reference,
             'adresse_actuelle' => $address,
-            'fokontany_id' => $this->fokontany_id
+            'id_registre' => 1
         ];
 
         if($this->notebook->insert($data))

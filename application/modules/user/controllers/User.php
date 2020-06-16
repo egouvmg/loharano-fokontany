@@ -40,7 +40,7 @@ class User extends SuperAdmin_Controller
 
 	public function add_chief()
 	{
-		$this->data['title'] = "Ajout d'un Chef fokontany";
+		$this->data['title'] = "Ajout d'un Chef d'Arrondissement";
 
         $this->data['provinces'] = $this->province->get_all();
         $this->data['regions'] = $this->region->get_all(['province_id' => $this->data['provinces'][0]->id]);

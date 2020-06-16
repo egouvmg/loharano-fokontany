@@ -9,6 +9,7 @@ class Chief extends Chief_Controller
         
         $this->load->model('chief_model', 'chief');
         $this->load->model('user/user_model', 'user');
+        $this->load->model('territory/notebook_model', 'notebook');
         
         //Location Models
 		$this->load->model('territory/province_model', 'province');
@@ -17,11 +18,16 @@ class Chief extends Chief_Controller
 		$this->load->model('territory/common_model', 'common');
 		$this->load->model('territory/borough_model', 'borough');
         $this->load->model('territory/fokontany_model', 'fokontany');
+
+        $this->lang->load('citizen', $this->session->site_lang);
+        $this->lang->load('job', $this->session->site_lang);
+        $this->lang->load('nationality', $this->session->site_lang);
         
         $user_borough = $this->chief->getUserBorough($this->session->user_id);
         $this->borough_id = (int) $user_borough->borough_id;
 
         $this->data['info_borough'] = $user_borough;
+        $this->data['user_borough'] = ($user_borough) ? $user_borough->borough_name : '...';
 
         $this->lang->load('user', $this->session->site_lang);
 	}
@@ -39,7 +45,21 @@ class Chief extends Chief_Controller
 		$this->data['fokontanies'] = $this->fokontany->get_all(['borough_id' => $this->borough_id]);
 		
         $this->load->view('add_user', $this->data);
-	}
+    }
+
+    public function list_households()
+    {
+        $this->data['title'] = 'Liste des ménages';
+
+        $this->load->view('list_household', $this->data);
+    }
+
+	public function list_citizens()
+	{
+        $this->data['title'] = 'Liste des citoyens';
+
+        $this->load->view('list_citizens', $this->data);
+    }
 
 	public function list_users()
 	{
@@ -152,6 +172,37 @@ class Chief extends Chief_Controller
         $users = ($_users) ? $_users : [];
         
         echo json_encode($users);
+    }
+
+    public function households_list()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $data = ['borough_id' => $this->borough_id, 'chef_menage' => TRUE];
+        
+        if($this->input->get()){
+            if($this->input->get('last_name')) $data['nom LIKE'] = '%'.$this->input->get('last_name').'%';
+            if($this->input->get('first_name')) $data['prenoms LIKE'] = '%'.$this->input->get('first_name').'%';
+            if($this->input->get('birth')) $data['date_de_naissance'] = $this->input->get('birth');
+            if($this->input->get('birth_place')) $data['date_de_naissance'] = $this->input->get('birth_place');
+            if($this->input->get('father')) $data['father LIKE'] = '%'.$this->input->get('father').'%';
+            if($this->input->get('mother')) $data['mother LIKE'] = '%'.$this->input->get('mother').'%';
+        }
+
+        $citizens = $this->notebook->citizens($data);
+        echo json_encode($citizens);
+    }
+
+    public function citizens_list()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $citizens = $this->notebook->citizens(['borough_id' => $this->borough_id]);
+        echo json_encode($citizens);
     }
 }
 

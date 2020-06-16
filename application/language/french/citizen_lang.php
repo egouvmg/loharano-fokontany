@@ -21,3 +21,5 @@ $lang['new_household'] = 'Créer un ménage';
 
 $lang['household_click_for_details'] = 'Cliquez sur un ménage pour voir la liste des parsonnes.';
 $lang['household_content'] = 'Les personnes dans le ménage : ';
+$lang['title_residence'] = 'Création certificat de résidence';
+$lang['residence_introduction'] = 'Cliquer sur un citoyen pour générer son certificat de résidence';

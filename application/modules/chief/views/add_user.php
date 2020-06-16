@@ -59,18 +59,34 @@
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménage</a>
-            <ul class="sub-main-menu">              
-              <li><a href="list_menage">Liste des Ménages</a></li>
+            <ul class="sub-main-menu" style="display:none;">              
+              <li><a href="chef_liste_menage">Liste des Ménages</a></li>
             </ul>
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> Citoyens</a>
+            <ul class="sub-main-menu" style="display:none;">              
+              <li><a href="chef_liste_citoyen">Liste des Citoyens</a></li>
+            </ul>
           </li>
         </ul>
       </div>
       <div class="main-container">
         <!-- Page title -->
-        <p class="info-fokontany"><span>Province : </span><?= $info_borough->province_name;?> <span>Région : </span><?= $info_borough->region_name;?> <span>District : </span><?= $info_borough->district_name;?> <span>Commune : </span><?= $info_borough->common_name;?> <span>Arrondissement : </span><?= $info_borough->borough_name;?></p>
+        <div class="container-fluid">
+            <p class="info-fokontany">
+                <span><span class="iconify" data-icon="ic:baseline-place" data-inline="false"></span> Province : </span>
+                <?= $info_borough->province_name;?>
+                <span><span class="iconify" data-icon="ic:baseline-place" data-inline="false"></span> Région : </span>
+                <?= $info_borough->region_name;?>
+                <span><span class="iconify" data-icon="ic:baseline-place" data-inline="false"></span> District : </span>
+                <?= $info_borough->district_name;?>
+                <span><span class="iconify" data-icon="ic:baseline-place" data-inline="false"></span> Commune : </span>
+                <?= $info_borough->common_name;?>
+                <span><span class="iconify" data-icon="ic:baseline-place" data-inline="false"></span> Arrondissement : </span>
+                <?= $info_borough->borough_name;?>
+            </p>
+        </div>
         <div class="container-fluid page-title">
           <h1><?= $title;?></h1>
         </div>

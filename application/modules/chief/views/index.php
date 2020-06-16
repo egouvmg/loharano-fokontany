@@ -52,22 +52,22 @@
       <ul class="main-menu">
           <li>
             <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('users');?></a>
-            <ul class="sub-main-menu">
+            <ul class="sub-main-menu" style="display:none;">
               <li><a href="ajout_utilisateur_fokontany"><?=$this->lang->line('add_user');?></a></li>
               <li><a href="liste_utilisateur_fokontany"><?=$this->lang->line('list_users');?></a></li>
             </ul>
           </li>
           <li>
-            <a href="#"><span class="iconify" data-icon="ic:round-place" data-inline="false"></span> Fokontany</a>
-          </li>
-          <li>
             <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménage</a>
-            <ul class="sub-main-menu">              
-              <li><a href="list_menage">Liste des Ménages</a></li>
+            <ul class="sub-main-menu" style="display:none;">              
+              <li><a href="chef_liste_menage">Liste des Ménages</a></li>
             </ul>
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> Citoyens</a>
+            <ul class="sub-main-menu" style="display:none;">              
+              <li><a href="chef_liste_citoyen">Liste des Citoyens</a></li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -95,48 +95,22 @@
           <div class="line-bloc">
             <h6>Gestion des Fokontany</h6>
             <div class="container-bloc-link">
-              <a href="ajout_utilisateur_fokontany" class="bloc-link">
-                <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> Ajout Utilisateur
-              </a>
-              <a href="liste_utilisateur_fokontany" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des utilisateurs
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Chef Fokontany
-              </a>
+            ...
             </div>
           </div>
           <div class="line-bloc">
             <h6>Gestion des Ménages</h6>
             <div class="container-bloc-link">
-              <a href="ajout_utilisateur_fokontany" class="bloc-link">
-                <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> Ajout Utilisateur
-              </a>
-              <a href="ajout_de_chef" class="bloc-link">
-                <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef Fokontany
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des utilisateurs
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Chef Fokontany
+              <a href="chef_liste_citoyen" class="bloc-link">
+                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Ménages
               </a>
             </div>
           </div>
           <div class="line-bloc">
             <h6>Gestion des Citoyens</h6>
             <div class="container-bloc-link">
-              <a href="ajout_utilisateur_fokontany" class="bloc-link">
-                <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> Ajout Utilisateur
-              </a>
-              <a href="ajout_de_chef" class="bloc-link">
-                <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef Fokontany
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des utilisateurs
-              </a>
-              <a href="" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Chef Fokontany
+              <a href="chef_liste_citoyen" class="bloc-link">
+                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Citoyens
               </a>
             </div>
           </div>

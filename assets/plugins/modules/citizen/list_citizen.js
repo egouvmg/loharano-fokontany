@@ -22,6 +22,21 @@ $(function () {
             { title: "Lieu de Naissance", field: "lieu_de_naissance", headerFilterPlaceholder: "...", headerFilter: "input" }
         ],
         rowClick: function (e, row) {
+            row.getData().last_name;
+            /*
+            var pdf = new jsPDF();
+            pdf.text(20, 20, 'FOKONTANY :....................................................');
+            pdf.text(20, 30, 'Lf :...........................................................');
+            pdf.text(20, 30, 'Lf :...........................................................');
+            pdf.text(20, 30, 'Atoa/Rtoa :....................................................');
+
+            pdf.addPage();
+            pdf.text(20, 20, 'Do you like that?');
+            
+            pdf.save('Test.pdf');
+            */
+
+            window.location.replace("certificate" + "?cin=" + row.getData().cin_personne);
         },
     });
 

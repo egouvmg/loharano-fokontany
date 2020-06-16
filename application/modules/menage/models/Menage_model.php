@@ -6,6 +6,7 @@ class Menage_model extends CI_Model
 	private $_v_user_group = "v_user_group";
 	private $_v_user_fokontany = "v_user_fokontany";
 	private $_v_menage = "carnet_fokontany";
+	private $_v_notebook_citizen = "v_notebook_citizen";
 
 	public function __construct(){      
         $this->load->database();
@@ -43,12 +44,12 @@ class Menage_model extends CI_Model
 
 	public function getMenages($criteria = array()){
 		$this->db->select('*');
-		$this->db->from($this->_v_menage);
-		/*
+		$this->db->from($this->_v_notebook_citizen);
+		
 		if(!empty($criteria)){
 			$this->db->where($criteria);
 		}
-		*/
+		$this->db->where(['chef_menage' => TRUE]);
 		
 		$this->db->order_by('numero_carnet', 'asc');
 		

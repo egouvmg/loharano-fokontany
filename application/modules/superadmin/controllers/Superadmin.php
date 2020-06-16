@@ -74,8 +74,12 @@ class Superadmin extends SuperAdmin_Controller
     }
 
     public function list_citizen_by_carnet_id()
-	{        
-        $numero_carnet = $this->input->get('numero_carnet');//;"123456789"
+	{  
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+              
+        $numero_carnet = $this->input->get('numero_carnet');
         
         if(!empty($numero_carnet)){
             $citizen = $this->citizen->get_citizen(['numero_carnet'=>$numero_carnet]);

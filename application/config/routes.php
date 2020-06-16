@@ -73,6 +73,14 @@ $route['liste_utilisateur'] = 'user/list_user';
 $route['enregistrer_operateur'] = 'user/save_user';
 $route['enregistrer_chef'] = 'user/save_chief';
 
+//Chief
+$route['tableau_de_bord_chef'] = 'chief/index';
+$route['ajout_utilisateur_fokontany'] = 'chief/add_user';
+$route['enregistrer_utilisateur_fokontany'] = 'chief/save_user';
+$route['liste_utilisateur_fokontany'] = 'chief/list_users';
+$route['chef_liste_menage'] = 'chief/list_households';
+$route['chef_liste_citoyen'] = 'chief/list_citizens';
+
 //Admin
 $route['create_account'] = 'admin/save_operateur_sefo_account';
 
@@ -85,11 +93,11 @@ $route['enfant_arrondissement'] = 'territory/borough_get_childs';
 $route['enfant_commune_avaliable'] = 'territory/common_get_avaliable_childs';
 
 //Citizen
+$route['insertion_citoyen'] = 'citizen/insert_citizen';
 $route['gestion_citoyens'] = 'citizen/index';
 $route['ajout_citoyen'] = 'citizen/add_citizen';
 $route['liste_citoyen'] = 'citizen/list_citizen';
 $route['enregistrement_citoyen'] = 'citizen/save_citizen';
-$route['citoyens_list'] = 'citizen/citizens_list';
 $route['certificate'] = 'citizen/load_citizen_certificate';
 $route['liste_citoyens'] = 'citizen/list_citizens';
 $route['membres_menage'] = 'citizen/list_citizen_by_carnet_id';
@@ -98,6 +106,8 @@ $route['menage_fokontany'] = 'citizen/fokontany_household';
 $route['recherche_menage_fokontany'] = 'citizen/search_household_in_list';
 $route['nouveau_menage_fokontany'] = 'citizen/new_household';
 $route['liste_menage_fokontany'] = 'citizen/list_households';
+$route['residence'] = 'citizen/certificate_residence';
+$route['certificat_residence'] = 'citizen/generate_residence';
 
 /*
  * AJAX
@@ -112,9 +122,12 @@ $route['menages_fokontany'] = 'menage/menages_fokontany';
 
 //Chief
 $route['utilisateurs_fokontany'] = 'chief/get_users';
+$route['chef_liste_menages'] = 'chief/households_list';
+$route['citoyens_liste'] = 'chief/citizens_list';
 
 //Citizen
 $route['verifier_localite_menage'] = 'citizen/check_household';
 $route['liste_menages_fokontany'] = 'citizen/households_list';
 $route['citoyen_carnet_fokontany'] = 'citizen/get_notebook';
 $route['insertion_citoyen_dans_menage'] = 'citizen/insert_in_household';
+$route['citoyens_list'] = 'citizen/citizens_list';

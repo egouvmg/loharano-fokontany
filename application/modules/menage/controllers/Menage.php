@@ -45,11 +45,10 @@ class Menage extends SuperAdmin_Controller
 
     public function menages_fokontany()
     {
-        /*
         if (!$this->input->is_ajax_request()) {
             exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
         }
-        */
+        
         $fokontany_id = $this->input->get('fokontany_id');
 
         $menages = $this->menage->getMenages(['fokontany_id' => $fokontany_id]);

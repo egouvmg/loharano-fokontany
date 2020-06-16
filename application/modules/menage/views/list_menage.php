@@ -64,7 +64,7 @@
           <li>
             <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménage</a>
             <ul class="sub-main-menu">              
-              <li><a href="list_menage" class="active">Liste des Ménages</a></li>
+              <li><a href="chef_liste_menage" class="active">Liste des Ménages</a></li>
             </ul>
           </li>
           <li>
@@ -123,6 +123,9 @@
                         <div class="form-group col-md-2">
                             <label>Arrondissement</label>
                             <select id="borough" class="form-control">
+                                <?php foreach ($boroughs as $borough): ?>
+                                    <option value="<?= $borough->id;?>"><?= $borough->name;?></option>
+                                <?php endforeach ?>
                             </select>
                         </div>
                         <div class="form-group col-md-2">
@@ -136,15 +139,22 @@
                     </div>
                     <!-- Location -->
                 </div>
-                <div class="col-lg-12">
-                    <div id="carnets"></div>
-                </div>
-                <!-- List des membres d'une ménage --> 
-                <div class="col-lg-12">
-                <h1>Membres du ménage</h1>
-                    <div id="citizens"></div>
-                </div>
             </div>
+            
+            <div class="row">  
+                  <div class="col-lg-12">
+                      <p>Cliquer sur un ménage pour voir ses membres.</p>
+                      <div id="carnets"></div>
+                  </div>
+                </div> 
+                <!-- List des membres d'une ménage -->
+                <br/>
+                <div class="row mt-4">
+                  <div class="col-lg-12">
+                    <p>Membres du ménage : </p>
+                      <div id="citizens"></div>
+                  </div>
+                </div>
         </div>
         <!-- End Page Content -->
       </div>
@@ -172,7 +182,7 @@
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
-	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
+	<script src="<?= plugin('modules', 'common', 'full_localization.js');?>"></script>
 	<script src="<?= plugin('modules', 'superadmin', 'list_menage.js');?>"></script>
 </body>
 </html>

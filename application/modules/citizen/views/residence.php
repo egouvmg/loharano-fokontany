@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?= APP_NAME;?> - <?= $title;?></title>
+	<title>Loharano - <?= $title;?></title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Font Awesome -->
@@ -33,13 +33,13 @@
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <?=$this->lang->line('administrator');?>
+              Fokontany <?= $user_fokontany;?>
               <span class="iconify" data-icon="uil:ellipsis-v" data-inline="false"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Mon compte</a>
+              <a class="dropdown-item" href="#"><?= $this->lang->line('settings');?></a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="se_deconnecter">Se déconnecter</a>
+              <a class="dropdown-item" href="se_deconnecter"><?= $this->lang->line('logout');?></a>
             </div>
           </li>
         </ul>
@@ -49,44 +49,34 @@
   <div class="container-fluid">
     <div class=row>
       <div class="main-side-bar">
-      <ul class="main-menu">
+        <ul class="main-menu">
           <li>
-            <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('users');?></a>
+            <a href="gestion_citoyens"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> <?=$this->lang->line('citizens');?></a>
+            <ul class="sub-main-menu" style="display:none;">
+              <li><a href="recherche_menage"><?=$this->lang->line('add_citizen');?></a></li>
+              <li><a href="liste_citoyens" class="active"><?=$this->lang->line('list_citizen');?></a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><span class="iconify" data-icon="fa-solid:user" data-inline="false"></span> <?=$this->lang->line('households');?></a>
+            <ul class="sub-main-menu" style="display:none;">
+              <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
+              <li><a href="#">Créer nouveau menage</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> <?=$this->lang->line('certificates');?></a>
             <ul class="sub-main-menu">
-              <li><a href="ajout_utilisateur_fokontany"><?=$this->lang->line('add_user');?></a></li>
-              <li><a href="liste_utilisateur_fokontany" class="active"><?=$this->lang->line('list_users');?></a></li>
+              <li><a href="residence" class="active">Résidence</a></li>
             </ul>
           </li>
           <li>
-            <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménage</a>
-            <ul class="sub-main-menu" style="display:none;">              
-              <li><a href="chef_liste_menage">Liste des Ménages</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> Citoyens</a>
-            <ul class="sub-main-menu" style="display:none;">              
-              <li><a href="chef_liste_citoyen">Liste des Citoyens</a></li>
-            </ul>
+            <a href="#"><span class="iconify" data-icon="ant-design:setting-filled" data-inline="false"></span> <?=$this->lang->line('settings');?></a>
           </li>
         </ul>
       </div>
       <div class="main-container">
-        <!-- Page title -->
-        <div class="container-fluid">
-            <p class="info-fokontany">
-                <span><span class="iconify" data-icon="ic:baseline-place" data-inline="false"></span> Province : </span>
-                <?= $info_borough->province_name;?>
-                <span><span class="iconify" data-icon="ic:baseline-place" data-inline="false"></span> Région : </span>
-                <?= $info_borough->region_name;?>
-                <span><span class="iconify" data-icon="ic:baseline-place" data-inline="false"></span> District : </span>
-                <?= $info_borough->district_name;?>
-                <span><span class="iconify" data-icon="ic:baseline-place" data-inline="false"></span> Commune : </span>
-                <?= $info_borough->common_name;?>
-                <span><span class="iconify" data-icon="ic:baseline-place" data-inline="false"></span> Arrondissement : </span>
-                <?= $info_borough->borough_name;?>
-            </p>
-        </div>
+        <!-- Page title --> 
         <div class="container-fluid page-title">
           <h1><?= $title;?></h1>
         </div>
@@ -96,19 +86,39 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <div id="users"></div>
+                    <p><?=$this->lang->line('residence_introduction');?></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="citizens"></div>
                 </div>
             </div>
         </div>
         <!-- End Page Content -->
-      </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-body text-center">
+                <span class="icon-check">
+                <span class="iconify" data-inline="false" data-icon="uil:check" style="font-size: 32px;"></span>
+                </span>
+                <p id="confirmResponse"></p>
+                <a href="recherche_menage"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal END -->
     </div>
-  </div>
+    </div>
+
 	<script src="<?= js('jquery.min');?>"></script>
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
-	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
-	<script src="<?= plugin('modules', 'chief', 'list_user.js');?>"></script>
+	<script src="<?= plugin('modules', 'citizen', 'residence.js');?>"></script>
 </body>
 </html>

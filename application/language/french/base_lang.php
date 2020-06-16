@@ -57,3 +57,4 @@ $lang['success_save'] = 'Enregistrement réussi';
 $lang['citizens'] = 'Citoyens';
 $lang['citizen'] = 'Citoyen';
 $lang['households'] = 'Ménages';
+$lang['certificates'] = 'Certificats';

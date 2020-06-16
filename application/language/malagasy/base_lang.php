@@ -55,3 +55,4 @@ $lang['success_save'] = 'Vita ny fampidirana';
 $lang['citizens'] = 'Olom-pirenena';
 $lang['citizen'] = 'Olom-pirenena';
 $lang['households'] = 'Fianakaviana';
+$lang['certificates'] = 'Taratasy fanamarinana';
