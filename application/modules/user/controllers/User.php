@@ -15,6 +15,8 @@ class User extends SuperAdmin_Controller
 		$this->load->model('territory/borough_model', 'borough');
         $this->load->model('territory/fokontany_model', 'fokontany');
 
+		$this->load->model('auth/ion_auth_model', 'ion_auth');
+
         $this->lang->load('user', $this->session->site_lang);
 	}
 

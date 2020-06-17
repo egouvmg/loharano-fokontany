@@ -27,9 +27,6 @@ $(function () {
     function update_or_save(){
         $.post("save_citizen", data, function(){
            var data =  [];
-
-           var 
-
         } );
     }
 });

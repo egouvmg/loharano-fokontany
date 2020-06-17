@@ -10,6 +10,8 @@ class Chief extends Chief_Controller
         $this->load->model('chief_model', 'chief');
         $this->load->model('user/user_model', 'user');
         $this->load->model('territory/notebook_model', 'notebook');
+
+		$this->load->model('auth/ion_auth_model', 'ion_auth');
         
         //Location Models
 		$this->load->model('territory/province_model', 'province');
