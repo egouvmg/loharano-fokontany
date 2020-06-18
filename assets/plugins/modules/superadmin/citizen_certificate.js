@@ -45,12 +45,6 @@ $(function () {
             pdf.addHTML($('#content'),0,0, config,function() {
             pdf.save('test.pdf');
            });
-                  
-    });
-
-    function update_or_save(){
-        $.post("save_citizen", data, function(){
-           var data =  [];
-        } );
+        });
     }
 });

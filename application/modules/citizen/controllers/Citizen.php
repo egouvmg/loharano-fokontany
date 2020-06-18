@@ -225,7 +225,7 @@ class Citizen extends Operator_Controller//SuperAdmin_Controller
             exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
         }
 
-        $citizens = $this->notebook->citizens(['fokontany_id' => 5]);
+        $citizens = $this->notebook->citizens(['fokontany_id' => $this->fokontany_id]);
         echo json_encode($citizens);
     }
 
@@ -528,7 +528,8 @@ class Citizen extends Operator_Controller//SuperAdmin_Controller
     private function createNotebook($address = '')
     {
         $reference = dechex($this->fokontany_id);
-        $reference .= date("ymd");
+        $reference = str_pad($reference, 5, '0', STR_PAD_LEFT);
+        $reference .= date("Ymd");
 
         $notebooks = $this->notebook->all(['numero_carnet like' => $reference.'%']);
 

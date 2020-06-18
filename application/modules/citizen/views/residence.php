@@ -70,9 +70,6 @@
               <li><a href="residence" class="active">Résidence</a></li>
             </ul>
           </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="ant-design:setting-filled" data-inline="false"></span> <?=$this->lang->line('settings');?></a>
-          </li>
         </ul>
       </div>
       <div class="main-container">

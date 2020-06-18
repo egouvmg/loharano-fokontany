@@ -65,7 +65,10 @@
             </ul>
           </li>
           <li>
-            <a href="#"><span class="iconify" data-icon="ant-design:setting-filled" data-inline="false"></span> <?=$this->lang->line('settings');?></a>
+            <a href="#"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> <?=$this->lang->line('certificates');?></a>
+            <ul class="sub-main-menu" style="display:none;">
+              <li><a href="residence">Résidence</a></li>
+            </ul>
           </li>
         </ul>
       </div>
