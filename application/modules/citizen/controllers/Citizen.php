@@ -655,6 +655,7 @@ class Citizen extends Operator_Controller//SuperAdmin_Controller
 
         $str = $this->input->get('id_personne');
         $bigInt = gmp_init($str);
+        
         $id_personne = gmp_intval($bigInt);
 
         $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
