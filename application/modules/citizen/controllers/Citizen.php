@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Citizen extends Operator_Controller
+class Citizen extends Operator_Controller//SuperAdmin_Controller
 {
     private $fokontany_id;
 
@@ -30,11 +30,12 @@ class Citizen extends Operator_Controller
         $this->lang->load('nationality', $this->session->site_lang);
 
         $user_fokontany = $this->user->getUserFokontany($this->session->user_id);
-        
-        $this->fokontany_id = (int) $user_fokontany->fokontany_id;
+        if(isset($user_fokontany)){
+            $this->fokontany_id = (int) $user_fokontany->fokontany_id;
 
-        $this->data['info_fokontany'] = $user_fokontany;
-        $this->data['user_fokontany'] = ($user_fokontany) ? $user_fokontany->fokontany_name : '...';
+            $this->data['info_fokontany'] = $user_fokontany;
+            $this->data['user_fokontany'] = ($user_fokontany) ? $user_fokontany->fokontany_name : '...';
+        }
 	}
 
 	public function index_household()
@@ -224,7 +225,7 @@ class Citizen extends Operator_Controller
             exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
         }
 
-        $citizens = $this->notebook->citizens(['fokontany_id' => $this->fokontany_id]);
+        $citizens = $this->notebook->citizens(['fokontany_id' => 5]);
         echo json_encode($citizens);
     }
 
@@ -489,24 +490,6 @@ class Citizen extends Operator_Controller
             echo json_encode(['error' => 1, 'msg' => $this->lang->line('data_citizen_error')]);
         }
     }
-    
-    /**
-     * Load citizen certificate page
-     */
-    public function load_citizen_certificate()
-	{
-        $this->data['title'] = $this->lang->line('citizen_residence');
-
-        $str = $this->input->get('cin');
-        $bigInt = gmp_init($str);
-        $cin_personne = gmp_intval($bigInt);
-
-        $citizen_data = $this->citizen->get_citizen_certificate(['cin_personne'=>$cin_personne]);
-
-        $this->data['citizen_data'] = $citizen_data;
-		
-        $this->load->view('citizen_certificat', $this->data);
-	}
 
     /*
      * Vérification des inputs Adresse et Taille du ménage
@@ -563,5 +546,211 @@ class Citizen extends Operator_Controller
             return $reference;
         else return false;
     }
+
+    /**
+     * Enregistrement/Update from Certificat Résidence
+     */
+    public function save_citizen_from_certificat()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $data = $this->input->post();
+        $requireds = ['last_name', 'birth', 'birth_place'];
+
+        if($data){
+            $missing_fields = [];
+
+            for ($i=0; $i < $this->session->household_size ; $i++) {
+                $index = $i +1;
+
+                foreach($requireds as $required)
+                    if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
+            }
+
+
+                if($data['nationality_id'] == 1){  
+                    $requireds_cin = ['cin', 'cin_date', 'cin_place'];            
+                    $cin = [$data['cin'], $data['cin_date'], $data['cin_place']];
+                    
+                    if($cin != ['', '', '']){
+                        foreach($requireds_cin as $required)
+                            if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
+                    }
+                }else if($data['nationality_id'] > 1){   
+                    $requireds_passport = ['passport', 'passport_date', 'passport_place'];   
+                    $passport = [$data['passport'], $data['passport_date'], $data['passport_place']];  
+                    
+                    foreach($requireds_passport as $required)
+                        if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
+                }
+            
+
+            if(!empty($missing_fields)){
+                echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
+                return FALSE;
+            }
+
+            /*
+             *  Insertion Personnes
+             */
+
+            $citizens_index = [];
+
+            $cin = [$data['cin'][$i], $data['cin_date'][$i], $data['cin_place'][$i]];
+            $passport = [$data['passport'][$i], $data['passport_date'][$i], $data['passport_place'][$i]];
+
+            $data_tmp = [
+                /*'nom' => $data['last_name'],
+                'prenoms' => $data['first_name'],
+                'date_de_naissance' => $data['birth'],*/
+                'id_personne'=> 2,
+                'lieu_de_naissance' => $data['lieu_de_naissance']
+                /*'sexe' => $data['sexe'],
+                'situation_matrimoniale' => $data['marital_status'],
+                'phone' => $data['phone'],
+                'father' => $data['father'],
+                'father_status' => $data['father_status'],
+                'mother' => $data['mother'],
+                'mother_status' => $data['mother_status'],
+                'job_id' => $data['job_id'],
+                'job_other' => $data['job_other'],
+                'job_status' => $data['job_status'],
+                'nationality_id' => $data['nationality_id']*/
+            ];
+
+            if ($cin != ['', '', '']){
+                $data_tmp['cin_personne'] = $data['cin'];
+                $data_tmp['date_delivrance_cin'] = $data['cin_date'];
+                $data_tmp['lieu_delivrance_cin'] = $data['cin_place'];
+            }
+            if ($passport != ['', '', '']){
+                $data_tmp['passport'] = $data['passport'];
+                $data_tmp['passport_date'] = $data['passport_date'];
+                $data_tmp['passport_place'] = $data['passport_place'];
+            }
+
+            if(!$this->citizen->update($data_tmp)) {
+                $citizens_index[] = $i;
+            }
+            if(empty($citizens_index)){
+                echo json_encode(['success' => 1, 'msg' => $this->lang->line('success_save')]);
+            }else{
+                echo json_encode(['error' => 1, 'msg' => $this->lang->line('data_citizen_error')]);
+            }
+        }
+        else{
+            echo json_encode(['error' => 1, 'msg' => $this->lang->line('data_citizen_error')]);
+        }
+    }
+
+    /**
+     * Load citizen certificate of residence page
+     */
+    public function load_citizen_certificate()
+	{
+        $this->data['title'] = $this->lang->line('citizen_residence');
+
+        $str = $this->input->get('id_personne');
+        $bigInt = gmp_init($str);
+        $id_personne = gmp_intval($bigInt);
+
+        $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
+
+        $this->data['citizen_data'] = $citizen_data;
+		
+        $this->load->view('citizen_certificat', $this->data);
+    }
+    
+    /**
+     * Load citizen certificate of life page
+     */
+    public function certificate_life()
+	{
+        $this->data['title'] = $this->lang->line('citizen_life');
+
+        $str = $this->input->get('id_personne');
+        $bigInt = gmp_init($str);
+        $id_personne = gmp_intval($bigInt);
+
+        $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
+
+        $this->data['citizen_data'] = $citizen_data;
+		
+        $this->load->view('life_certificat', $this->data);
+	}
+    
+    /**
+     * Load citizen certificate of supported page
+     */
+    public function certificate_supported()
+	{
+        $this->data['title'] = $this->lang->line('citizen_supported');
+
+        $str = $this->input->get('id_personne');
+        $bigInt = gmp_init($str);
+        $id_personne = gmp_intval($bigInt);
+
+        $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
+
+        $this->data['citizen_data'] = $citizen_data;
+		
+        $this->load->view('supported_certificat', $this->data);
+    }
+    
+    /**
+     * Load citizen certificate of move page
+     */
+    public function certificate_move()
+	{
+        $this->data['title'] = $this->lang->line('citizen_move');
+
+        $str = $this->input->get('id_personne');
+        $bigInt = gmp_init($str);
+        $id_personne = gmp_intval($bigInt);
+
+        $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
+
+        $this->data['citizen_data'] = $citizen_data;
+		
+        $this->load->view('move_certificat', $this->data);
+	}
+    
+    /**
+     * Load citizen certificate of celibacy page
+     */
+    public function certificate_celibat()
+	{
+        $this->data['title'] = $this->lang->line('citizen_celibacy');
+
+        $str = $this->input->get('id_personne');
+        $bigInt = gmp_init($str);
+        $id_personne = gmp_intval($bigInt);
+
+        $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
+
+        $this->data['citizen_data'] = $citizen_data;
+		
+        $this->load->view('celibacy_certificat', $this->data);
+	}
+    
+    /**
+     * Load citizen certificate of good behavior page
+     */
+    public function certificate_behavior()
+	{
+        $this->data['title'] = $this->lang->line('citizen_good_behavior');
+
+        $str = $this->input->get('id_personne');
+        $bigInt = gmp_init($str);
+        $id_personne = gmp_intval($bigInt);
+
+        $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
+
+        $this->data['citizen_data'] = $citizen_data;
+		
+        $this->load->view('behavior_certificat', $this->data);
+	}
 }
 

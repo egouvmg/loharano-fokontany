@@ -102,11 +102,11 @@
               <hr class="font-weight-bold">
               <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO II</span>
             </div>
-            <div class="col-sm-4" style="background-color:white;">
-            </div>
-            <div class="col-sm-4 text-center" style="background-color:white;">
-            <span class="font-weight-bold"><h2>FANAMARINAM-PONENANA</h2></span>
-            <span class="font-weight-bold"><h1>CERTIFICAT DE RESIDENCE</h1></span>
+            <div class="col-sm-3" style="background-color:white;"></div>
+            <div class="col-sm-5 text-center" style="background-color:white;">
+              <span class="font-weight-bold"><h2>FANAMARINAM-PITONDRAN-TENA</h2></span>
+              <span class="font-weight-bold"><h4>CERTIFICAT</h4></span>
+              <span class="font-weight-bold"><h4>DE BONNE CONDUITE - DE BONNE VIE - MOEURS</h4></span>
             </div>
           </div>
           <!--FOKONTANY-->
@@ -227,11 +227,46 @@
                 </div>
               </div>
 
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group row" style="margin-bottom: 0px;">
+                    <div class="col-sm-9 col-form-label">
+                      <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Kara-panondrom-pirenena lf (CNI) :</label>
+                    </div>
+                    <div class="col-sm-3">
+                      <input type="text" class="form-control border-0" style="width:100px;margin-left:-75px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->date_de_naissance."'" ?>> 
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="form-group row" style="margin-bottom: 0px;">
+                    <div class="col-sm-5 col-form-label">
+                      <label for="tao" class="font-weight-bold" style="margin-bottom: 0px;">nomena ny (du) :</label>
+                    </div>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control border-0" style="padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
+                    </div>
+                  </div>
+                </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group row" style="margin-bottom: 0px;">
+                      <div class="col-sm-5 col-form-label">
+                        <label for="Zom" class="font-weight-bold" style="margin-bottom: 0px;">tao (à) :</label>
+                      </div>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                      </div>
+                    </div>
+                  </div> 
+             </div>
+
              <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group row" style="margin-bottom: 0px;">
                         <div class="col-sm-5 col-form-label">
-                          <label for="Monina" class="font-weight-bold" style="margin-bottom: 0px;">Dia monina ao amin'ny :</label>
+                          <label for="Monina" class="font-weight-bold" style="margin-bottom: 0px;">Monina ao amin'ny :</label>
                           <p class="font-italic">Réside au</p>
                         </div>
                         <div class="col-sm-7">
@@ -242,20 +277,15 @@
              </div>
 
              <div class="row">
-                <div class="col-sm-12">
-
-
-                <div class="form-group row" style="margin-bottom: 0px;">
-                        <div class="col-sm-5 col-form-label">
-                          <label for="sy" style="margin-bottom: 0px;"><span class="font-weight-bold">Antony ilàna azy</span> (<span class="font-italic">Motif d'usage</span>): </label>
-                        </div>
-                        <div class="col-sm-7">
-                          <input type="text" class="form-control border-0" style="margin-left:-300px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->adresse_actuelle."'" ?>> 
-                        </div>
-                    </div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                  <span style="padding-left:50px;" class="font-weight-bold">DIA MANANA FITONDRAN-TENA TSARA SY MENDRIKA.</span>
+                  <p style="padding-left:75px;" class="font-italic">A DE BONNE CONDUITE - DE BONNE VIE - MOEURS.</p>
                 </div>
-             </div>
-
+                <div class="col-sm-3"></div>
+             </div>  
+             
+             
              <div class="row">
                 <div class="col-sm-12">
                   <span class="font-weight-bold">Noho izany, dia nomena azy ity fanamarinana ity, mba hampiasainy sy hanan-kery amin'izay rehetra mety ilàna: azy.</span>
@@ -264,12 +294,12 @@
              </div>
           </div>
           </div>
+          
           <!--FOOTER-->
           <div class="row">
             <div class="col-sm-4" style="background-color:white;">
-            <p>Fanisam-bahoaka lf:...................................</p>
-            <p>CIN-Passeport N°: <?= $citizen_data[0]->cin_personne ?></p>
-            <p>du:<?= " ".$citizen_data[0]->date_delivrance_cin. " " ?>à<?= " ".$citizen_data[0]->lieu_delivrance_cin ?></p>
+            Fanisam-bahoaka lf:...................................
+            <p class="font-italic">Recénsement n°</p>
             <p class="font-weight-bold"> N°                                                    </p>
             </div>
 

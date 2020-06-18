@@ -98,7 +98,6 @@ $route['gestion_citoyens'] = 'citizen/index';
 $route['ajout_citoyen'] = 'citizen/add_citizen';
 $route['liste_citoyen'] = 'citizen/list_citizen';
 $route['enregistrement_citoyen'] = 'citizen/save_citizen';
-$route['certificate'] = 'citizen/load_citizen_certificate';
 $route['liste_citoyens'] = 'citizen/list_citizens';
 $route['membres_menage'] = 'citizen/list_citizen_by_carnet_id';
 $route['recherche_menage'] = 'citizen/search_household';
@@ -131,3 +130,12 @@ $route['liste_menages_fokontany'] = 'citizen/households_list';
 $route['citoyen_carnet_fokontany'] = 'citizen/get_notebook';
 $route['insertion_citoyen_dans_menage'] = 'citizen/insert_in_household';
 $route['citoyens_list'] = 'citizen/citizens_list';
+$route['save_citizen_from_certificat'] = 'citizen/save_citizen_from_certificat';
+
+//Certificat
+$route['certificate'] = 'citizen/load_citizen_certificate';
+$route['certificate_life'] = 'citizen/certificate_life';
+$route['certificate_supported'] = 'citizen/certificate_supported';
+$route['certificate_move'] = 'citizen/certificate_move';
+$route['certificate_celibat'] = 'citizen/certificate_celibat';
+$route['certificate_behavior'] = 'citizen/certificate_behavior';

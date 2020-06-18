@@ -105,8 +105,8 @@
             <div class="col-sm-4" style="background-color:white;">
             </div>
             <div class="col-sm-4 text-center" style="background-color:white;">
-            <span class="font-weight-bold"><h2>FANAMARINAM-PONENANA</h2></span>
-            <span class="font-weight-bold"><h1>CERTIFICAT DE RESIDENCE</h1></span>
+            <span class="font-weight-bold"><h2>FANAMARINANANA MAHA-MPITOVO</h2></span>
+            <span class="font-weight-bold"><h1>CERTIFICAT DE CELIBAT</h1></span>
             </div>
           </div>
           <!--FOKONTANY-->

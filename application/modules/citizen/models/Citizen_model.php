@@ -27,6 +27,14 @@ class Citizen_model extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	public function update($data) {
+		$id_personne = $data["id_personne"];
+		$this->db->where('id_personne', $id_personne);
+		unset($data["id_personne"]);
+		$this->db->update($this->_table, $data);
+		return $id_personne;
+	}
+	
 	public function load($data) {
 		return $this->db->insert_batch($this->_table, $data);
 	}

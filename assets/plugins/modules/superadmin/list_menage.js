@@ -28,8 +28,9 @@ $(function () {
             { title: "Date Arrivée", field: "date_arrivee", headerFilterPlaceholder: "...", headerFilter: "input" },
             { title: "Observations", field: "observations", headerFilterPlaceholder: "...", headerFilter: "input" }
         ],
-        rowClick: function (e, row) {
-            citizens.setData('les_membres_menage', { numero_carnet: row.getData().numero_carnet });
+        rowClick: function (e, row) {  
+            var numero_carnet = row.getData().numero_carnet;       
+            citizens.setData('membres_menage', { numero_carnet:  numero_carnet});
         },
     });
 
@@ -44,9 +45,12 @@ $(function () {
             { title: "Nom", field: "nom", headerFilterPlaceholder: "...", headerFilter: "input" },
             { title: "Prénoms", field: "prenoms", headerFilterPlaceholder: "...", headerFilter: "input" },
             { title: "Date de Naissance", field: "date_de_naissance", headerFilterPlaceholder: "...", headerFilter: "input" },
-            { title: "Lieu de Naissance", field: "lieu_de_naissance", headerFilterPlaceholder: "...", headerFilter: "input" }
+            { title: "Lieu de Naissance", field: "lieu_de_naissance", headerFilterPlaceholder: "...", headerFilter: "input" },
+            { title: "Id personne", field: "id_personne", headerFilterPlaceholder: "...", headerFilter: "input" }
         ],
         rowClick: function (e, row) {
+
+            window.location.replace("certificate" + "?id_personne=" + row.getData().id_personne);
         },
     });
     //****************************Membres d'une ménage***************************** */

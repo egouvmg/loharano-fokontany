@@ -10,7 +10,12 @@ $lang['info_parent'] = 'Ray aman-dreny';
 $lang['info_job'] = 'Momban\'ny asa';
 $lang['info_cin'] = 'Momban\'ny Kara-panondro-pirenena';
 $lang['info_passport'] = 'Momban\'ny Pasiporo';
-$lang['citizen_residence'] = 'certificat de résidence';
+$lang['citizen_residence'] = 'Fanamarinam-ponenana';
+$lang['citizen_life'] = 'Fanamarinam-pahavelomana';
+$lang['citizen_supported'] = 'Certificat de prise en charge et de garde';
+$lang['citizen_move'] = 'Fanamarinana fifindra-monina';
+$lang['citizen_celibacy'] = 'Fanamarinana maha-mpitovo';
+$lang['citizen_good_behavior'] = 'Fanamarinam-pitondran-tena';
 
 $lang['adding_citizen'] = 'Ajouter le citoyen dans un ménage existant ou créer un nouveau ménage pour le citoyen.';
 $lang['searching_household'] = 'Entrez les critères de recherche de ménage. Cliquer sur un ménage pour ajout le nouveau citoyen';
