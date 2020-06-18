@@ -74,10 +74,10 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'pgsql:host=localhost;port=5432;dbname=loharano_migre',//loharano_v2
+	'dsn'	=> 'pgsql:host=localhost;port=5432;dbname=loharano_v2',//loharano_v2
 	'hostname' => '',
 	'username' => 'postgres',
-	'password' => 'toor',
+	'password' => '123456',
 	'database' => '',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
