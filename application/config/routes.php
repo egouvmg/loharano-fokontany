@@ -64,6 +64,7 @@ $route['la_liste_citoyens'] = 'superadmin/list_citizen';
 $route['recuperer_liste_citoyen'] = 'superadmin/citizens_list';
 $route['les_membres_menage'] = 'superadmin/list_citizen_by_carnet_id';
 $route['gerener_certificat'] = 'superadmin/load_citizen_certificate';
+$route['8165461654ssdsdq498z'] = 'superadmin/f45644548';
 
 //User
 $route['tableau_de_bords'] = 'user/index';

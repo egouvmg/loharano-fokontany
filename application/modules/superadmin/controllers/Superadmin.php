@@ -87,5 +87,118 @@ class Superadmin extends SuperAdmin_Controller
 
         echo json_encode($citizen);
     }
+
+
+    //Migration de données
+    public function f45644548()
+    {
+		function read($csv){
+			$file = fopen($csv, 'r');
+			while (!feof($file) ) {
+                $line[] = fgetcsv($file, 1024,';');
+			}
+			fclose($file);
+			return $line;
+		}
+		// Définir le chemin d'accès au fichier CSV
+		$csv = 'application/migrate/personne.csv';
+        $csv = read($csv);
+
+        unset($csv[0]);
+        
+        $reference = '';
+        $household = 0;
+        $data_citizens = [];
+		
+		foreach($csv as $key => $csv_value){
+
+            // [0] => id_personne
+            // [1] => fokontany_id
+            // [2] => household_head
+            // [3] => nom
+            // [4] => prenoms
+            // [5] => date_de_naissance
+            // [6] => lieu_de_naissance
+            // [7] => date_delivrance_cin
+            // [8] => lieu_delivrance_cin
+            // [9] => nationalite
+            // [10] => qr_code
+            // [11] => numero_carnet
+            // [12] => father
+            // [13] => mother
+            // [14] => father_status
+            // [15] => mother_status
+            // [16] => job_id
+            // [17] => job_status
+            // [18] => job_other
+            // [19] => phone
+            // [20] => nationality_id
+            // [21] => cin_personne
+            // [22] => sexe
+            // [23] => situation_matrimoniale
+            // [24] => handicape
+
+            $fokontany_id = (int) $csv_value[1];
+            $address = utf8_encode($csv_value[25]);
+            
+            $reference = ($csv_value[2]==1) ? $this->createNotebook($address, $fokontany_id) : $reference;
+
+            $tmp_data = [
+                'chef_menage' => $csv_value[2],
+                'nom' => utf8_encode($csv_value[3]),
+                'prenoms' => utf8_encode($csv_value[4]),
+                'date_de_naissance' => $csv_value[5],
+                'lieu_de_naissance' => utf8_encode($csv_value[6]),
+                'date_delivrance_cin' => ($csv_value[7] == 'NULL') ? '01/01/1900': $csv_value[7],
+                'lieu_delivrance_cin' => utf8_encode($csv_value[8]),
+                'nationality_id' => (empty($csv_value[20])) ? 1 : $csv_value[20],
+                'qr_code' => $csv_value[10],
+                'numero_carnet' => $reference,
+                'father' => utf8_encode($csv_value[12]),
+                'mother' => utf8_encode($csv_value[13]),
+                'father_status' => $csv_value[14],
+                'mother_status' => $csv_value[15],
+                'job_id' => $csv_value[16],
+                'job_status' => utf8_encode($csv_value[17]),
+                'job_other' => utf8_encode($csv_value[18]),
+                'phone' => $csv_value[19],
+                'cin_personne' => $csv_value[21],
+                'sexe' => $csv_value[22],
+                'situation_matrimoniale' => utf8_encode($csv_value[23]),
+                'handicape' => $csv_value[24]
+            ];
+       
+            $this->citizen->insert($tmp_data);
+        }
+    }
+
+    private function createNotebook($address = '', $fokontany_id)
+    {
+        $reference = dechex($fokontany_id);
+        $reference = str_pad($reference, 5, '0', STR_PAD_LEFT);
+
+        //2020 is index 1
+        $index_year = (int) date("Y");
+        $index_year = $index_year - 2019;
+
+        $reference .= $index_year;
+        $reference .= date("ymd");
+
+        $notebooks = $this->notebook->all(['numero_carnet like' => $reference.'%']);
+
+        $index = ($notebooks) ? count($notebooks) + 1 : 1;
+
+        $reference .= str_pad($index, 4, '0', STR_PAD_LEFT); 
+
+        $data = [
+            'numero_carnet' => $reference,
+            'adresse_actuelle' => $address,
+            'id_registre' => $fokontany_id
+        ];
+
+        if($this->notebook->insert($data))
+            return $reference;
+        else return false;
+    }
 }
 

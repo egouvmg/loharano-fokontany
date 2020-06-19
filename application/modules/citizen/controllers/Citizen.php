@@ -529,7 +529,13 @@ class Citizen extends Operator_Controller//SuperAdmin_Controller
     {
         $reference = dechex($this->fokontany_id);
         $reference = str_pad($reference, 5, '0', STR_PAD_LEFT);
-        $reference .= date("Ymd");
+
+        //2020 is index 1
+        $index_year = (int) date("Y");
+        $index_year = $index_year - 2019;
+
+        $reference .= $index_year;
+        $reference .= date("ymd");
 
         $notebooks = $this->notebook->all(['numero_carnet like' => $reference.'%']);
 
