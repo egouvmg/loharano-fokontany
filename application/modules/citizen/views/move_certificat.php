@@ -360,28 +360,85 @@
              <div class="row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-9">
-                  <span style="padding-left:0px;" class="font-weight-bold">DIA HIFINDRA MONINA ARY KOSEHINA TSY HO AO AMIN'NY BOKY FANISAM-BAHOAKA</span><br>
-                  <span style="padding-left:0px;" class="font-weight-bold">SY NY LISITRY NY MPIFIDY ETO AMIN'NY FOKONTANY IADIDIAKO INTSONY</span>
-                  <p style="padding-left:0px;" class="font-italic">S'EST (SE SONT) DÉMÉNAGÉ(E)(S) ET RAYÉ(E)(S) DU REGISTRE DE RECENSEMENT ET LA LISTE ELECTORALE EN MA POSSESSION.</p>
+                  <span class="font-weight-bold">DIA HIFINDRA MONINA ARY KOSEHINA TSY HO AO AMIN'NY BOKY FANISAM-BAHOAKA</span>
                 </div>
              </div> 
 
+             <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9">
+                  <span style="padding-left:28px;" class="font-weight-bold">SY NY LISITRY NY MPIFIDY ETO AMIN'NY FOKONTANY IADIDIAKO INTSONY</span>
+                </div>
+             </div> 
+
+             <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
+                  <span class="font-italic">S'EST (SE SONT) DÉMÉNAGÉ(E)(S) ET RAYÉ(E)(S) DU REGISTRE DE RECENSEMENT ET LA LISTE ELECTORALE EN MA POSSESSION.</span>
+                </div>
+             </div> 
 
           </div>
           </div>
           <!--FOOTER-->
+             <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group row" style="margin-bottom: 0px;">
+                      <div class="col-sm-8 col-form-label">
+                        <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Adiresy taloha (Ancienne adresse) :</label>
+                      </div>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->date_de_naissance."'" ?>> 
+                      </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="form-group row" style="margin-bottom: 0px;">
+                    <div class="col-sm-9 col-form-label">
+                      <label for="tao" class="font-weight-bold" style="margin-bottom: 0px;">Daty hifindrana (date de déménagement) :</label>
+                    </div>
+                    <div class="col-sm-3">
+                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
+                    </div>
+                  </div>
+                </div>
+             </div> 
+
+             <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group row" style="margin-bottom: 0px;">
+                      <div class="col-sm-8 col-form-label">
+                        <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Adiresy vaovao (Nouvelle adresse) :</label>
+                      </div>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->date_de_naissance."'" ?>> 
+                      </div>
+                    </div>
+                </div>
+             </div>
+
+              <div class="row">
+                <div class="col-sm-1" style="background-color:white;"></div>
+                <div class="col-sm-11" style="background-color:white;">
+                 <span class="font-weight-bold">Noho izany, dia omena azy ity fanamarinana ity, mba hampiasainy sy hanan-kery amin'izay rehetra mety ilàna azy</span>
+                 <p class="font-italic">En foi de quoi, le présent certificat lui est délivré pour servir et valoir ce qui est de droit </p>
+                </div>
+              </div>
+
           <div class="row">
             <div class="col-sm-4" style="background-color:white;">
-            <p>Fanisam-bahoaka lf:...................................</p>
-            <p>CIN-Passeport N°: <?= $citizen_data[0]->cin_personne ?></p>
-            <p>du:<?= " ".$citizen_data[0]->date_delivrance_cin. " " ?>à<?= " ".$citizen_data[0]->lieu_delivrance_cin ?></p>
-            <p class="font-weight-bold"> N°                                                    </p>
+              <p></p>
+              <p></p>
+              <p></p>
+              <p class="font-weight-bold"> N°                                                    </p>
             </div>
 
             <!--Ecusson-->
             <div class="col-sm-3" style="background-color:white;">
               <img src="<?= img('ecussons/cua.png');?>">
             </div>
+
             <div class="col-sm-5" style="background-color:white;">
              <div class="row">
               <div class="col-sm-6" style="background-color:white;">
