@@ -13,7 +13,6 @@
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
 	<link href="<?= plugin('bootstrap', 'css', 'bootstrap.min.css');?>" rel="stylesheet">
-	<link href="<?= plugin('tabulator', 'css', 'tabulator.min.css');?>" rel="stylesheet">
 	<?= css('admin');?>
 
 	<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
@@ -63,12 +62,15 @@
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménage</a>
-            <ul class="sub-main-menu">              
+            <ul class="sub-main-menu"  style="display:none;">              
               <li><a href="list_menage">Liste des Ménages</a></li>
             </ul>
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> Citoyens</a>
+            <ul class="sub-main-menu" style="display:none;">              
+              <li><a href="la_liste_citoyens">Liste des citoyens</a></li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -218,7 +220,7 @@
   <!-- Modal END -->
 	<script src="<?= js('jquery.min');?>"></script>
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
-	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
+  <script src="<?= plugin('phone', 'js', 'jquery-input-mask-phone-number.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'full_localization.js');?>"></script>
 	<script src="<?= plugin('modules', 'superadmin', 'add_user.js');?>"></script>

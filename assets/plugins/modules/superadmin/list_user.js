@@ -20,59 +20,41 @@ $(function () {
             {title:"Titre", field:"group_name",headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Statut", field:"active", formatter: status, headerFilter:true, headerFilterParams:{values:{1:"Actif", 0:"Suspendu", "":""}}}
         ],
+        pagination:"local",
+        paginationSize:25,
+        paginationSizeSelector:[25, 50, 100, 200],
+        langs:{
+            "fr-fr":{ //French language definition
+                "columns":{
+                    "name":"Nom",
+                    "progress":"Progression",
+                    "gender":"Genre",
+                    "rating":"Évaluation",
+                    "col":"Couleur",
+                    "dob":"Date de Naissance",
+                },
+                "pagination":{
+                    "first":"Premier",
+                    "first_title":"Première Page",
+                    "last":"Dernier",
+                    "last_title":"Dernière Page",
+                    "prev":"Précédent",
+                    "prev_title":"Page Précédente",
+                    "next":"Suivant",
+                    "next_title":"Page Suivante",
+                },
+            }
+        },
         rowClick:function(e, row){
-            // $('#full_name').text(row.getData().last_name +' '+ row.getData().first_name);
-            // $('#last_name').val(row.getData().last_name);
-            // $('#first_name').val(row.getData().first_name);
-            // $('#sexe').val(row.getData().sexe);
-            // $('#handicapped').val(row.getData().handicapped);
-            // $('#address').val(row.getData().address);
-            // $('#cin').val(row.getData().cin);
-            // $('#cin_date').val(row.getData().cin_date);
-            // $('#cin_place').val(row.getData().cin_place);
-            // $('#birth').val(row.getData().birth);
-            // $('#birth_place').val(row.getData().birth_place);
-            // $('#job').val(row.getData().job);
-            // $('#job_status').val(row.getData().job_status);
-            // $('#phone').val(row.getData().phone);
-            // $('#observation').val(row.getData().observation);
-            // $('#nationality').val(row.getData().nationality);
-            // $('#father').val(row.getData().father);
-            // $('#father_status').val(row.getData().father_status);
-            // $('#mother').val(row.getData().mother);
-            // $('#mother_status').val(row.getData().mother_status);
-            // $('#person_id').val(row.getData().person_id);
-            // $('#parent_link').val(row.getData().parent_link);
-            // $('#marital_status').val(row.getData().marital_status);
-            // $('#passport').val(row.getData().passport);
-            // $('#passport_date').val(row.getData().passport_date);
-            // $('#passport_place').val(row.getData().passport_place);
-            // $('#pdf_file').val(row.getData().pdf_file);
+            $('#first_name').val(row.getData().first_name);
+            $('#email').val(row.getData().email);
+            $('#currentEmail').val(row.getData().email);
+            $('#phone').val(row.getData().phone);
+            $('#address').val(row.getData().address);
+            $('#password').val(row.getData().current_pwd);
+            $('#old_pwd').val(row.getData().current_pwd);
 
-            // $('#otherJob').hide();
-            // $('#otherParentLink').hide();
-
-            // if(row.getData().job == 0){
-            //     $('#otherJob').val(row.getData().profession_name);
-            //     $('#job').val(0);
-            //     $('#otherJob').show();
-            // }
-
-            // if(row.getData().parent_link != 'mere' && row.getData().parent_link != 'pere' && row.getData().parent_link != 'fille' && row.getData().parent_link != 'fils' && row.getData().parent_link != 0){
-            //     $('#otherParentLink').val(row.getData().parent_link);
-            //     $('#parent_link').val('autre');
-            //     $('#otherParentLink').show();
-            // }
-
-            // $('.cin-container').hide();
-            // $('.passport-container').hide();
-
-            // if(row.getData().nationality == "Malgache")
-            //     $('.cin-container').show();
-            // else
-            //     $('.passport-container').show();
-
-            // $('#personDetails').modal();
+            $('#editModal').modal();
         },
     });
 
@@ -85,4 +67,47 @@ $(function () {
     $('#fokontany').change(function(){
         users.setData('les_utilisateurs_fokontany', {fokontany_id: $(this).val()});
     });
+    
+    $(document).ready(function () {
+        $('#phone').usPhoneFormat({
+            format: 'xxx xx xxx xx',
+        });
+    });
+    
+	$('#editOperator').click(function(e){
+        e.preventDefault();
+        
+        loading();
+        $('.error_field').text('');
+
+        var data = $('#editForm').serializeArray();
+
+        $.post('changer_operateur', data, function(res){
+            if(res.error === 1){
+                if(res.missing_fields){
+                    $.each( res.missing_fields, function( key, value ) {
+                        $('.error_' + value[0]).text(value[1]);
+                    });
+                }
+            }
+            if(res.success === 1){
+                $('#confirmResponse').text(res.msg);
+                $('#confirmationModal').modal();
+            }
+            if(res.failed === 1)
+                $('#failedMsg').text(res.msg);
+
+            endLoading();
+        }, 'JSON');
+    });
+
+    function loading(){
+        $(this).prop('disabled', true);
+        $('#loadingSave').show();
+    }
+    
+    function endLoading(){
+        $(this).prop('disabled', false);
+        $('#loadingSave').hide();
+    }
 });

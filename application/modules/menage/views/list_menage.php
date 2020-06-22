@@ -142,19 +142,15 @@
             </div>
             
             <div class="row">  
-                  <div class="col-lg-12">
-                      <p>Cliquer sur un ménage pour voir ses membres.</p>
-                      <div id="carnets"></div>
-                  </div>
-                </div> 
-                <!-- List des membres d'une ménage -->
-                <br/>
-                <div class="row mt-4">
-                  <div class="col-lg-12">
-                    <p>Membres du ménage : </p>
-                      <div id="citizens"></div>
-                  </div>
-                </div>
+              <div class="col-lg-4">
+                  <p>Cliquer sur un ménage pour voir ses membres.</p>
+                  <div id="carnets"></div>
+              </div>
+              <div class="col-lg-8">
+                <p>Membres du ménage : </p>
+                  <div id="citizens"></div>
+              </div>
+            </div>
         </div>
         <!-- End Page Content -->
       </div>

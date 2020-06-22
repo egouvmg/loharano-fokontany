@@ -149,6 +149,56 @@ class User extends SuperAdmin_Controller
         }
     }
 
+    public function edit_user()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Very ianao :O');
+        }
+
+        $data = $this->input->post();       
+
+        $n_firstname = $this->input->post('first_name');
+        $n_email = $this->input->post('email');
+        $n_password = $this->input->post('password');
+        $old_pwd = $this->input->post('old_pwd');
+        $phone = $this->input->post('phone');
+        $address = $this->input->post('address');
+
+        $missing_fields = [];
+        
+        if(empty($n_firstname))
+            $missing_fields[] = ['first_name', 'Nom de l\'opérateur obligatoire.'];
+        if(empty($n_email))
+            $missing_fields[] = ['email', 'Email obligatoire'];
+        if(empty($n_password))
+            $missing_fields[] = ['password', 'Mot de passe obligatoire'];
+        if(empty($address))
+            $missing_fields[] = ['address', 'Champs requis'];
+        if(empty($phone))
+            $missing_fields[] = ['phone', 'Champs requis'];    
+
+        if(!empty($missing_fields)){
+            echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
+            return false;
+        }
+
+        if(strlen($n_password) < 8){
+			$missing_fields[] = ['password', 'La longueur de mote de passe doit être supérieure ou égale à 8'];
+
+            echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
+            return false;
+		}
+
+        try{
+            if($this->ion_auth->change_password($n_email, $old_pwd, $n_password)){
+                echo json_encode(['success'=>1, 'msg'=>'Modification réussie']);
+            }else echo json_encode(['failed' => 1, 'msg' => 'Impossible de modifier le compte.']);
+        }
+        catch(Exception $e){
+            echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer le compte.']);
+        }
+    }
+
 	public function save_chief()
     {
         if (!$this->input->is_ajax_request()) {

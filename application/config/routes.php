@@ -72,6 +72,7 @@ $route['ajout_utilisateur'] = 'user/add_user';
 $route['ajout_de_chef'] = 'user/add_chief';
 $route['liste_utilisateur'] = 'user/list_user';
 $route['enregistrer_operateur'] = 'user/save_user';
+$route['changer_operateur'] = 'user/edit_user';
 $route['enregistrer_chef'] = 'user/save_chief';
 
 //Chief

@@ -23,15 +23,37 @@ $(function () {
         ],
         columns: [ //Define Table Columns
             { title: "Numéro carnet", field: "numero_carnet", headerFilterPlaceholder: "...", headerFilter: "input" },
-            { title: "Adresse Actuelle", field: "adresse_actuelle", headerFilterPlaceholder: "...", headerFilter: "input" },
-            { title: "Ancienne Adresse", field: "ancienne_adresse", headerFilterPlaceholder: "...", headerFilter: "input" },
-            { title: "Date Arrivée", field: "date_arrivee", headerFilterPlaceholder: "...", headerFilter: "input" },
-            { title: "Observations", field: "observations", headerFilterPlaceholder: "...", headerFilter: "input" }
+            { title: "Adresse Actuelle", field: "adresse_actuelle", headerFilterPlaceholder: "...", headerFilter: "input" }
         ],
         rowClick: function (e, row) {  
             var numero_carnet = row.getData().numero_carnet;       
-            citizens.setData('membres_menage', { numero_carnet:  numero_carnet});
+            citizens.setData('les_membres_menage', { numero_carnet:  numero_carnet});
         },
+        pagination:"local",
+        paginationSize:20,
+        paginationSizeSelector:[20, 50, 100, 200],
+        langs:{
+            "fr-fr":{ //French language definition
+                "columns":{
+                    "name":"Nom",
+                    "progress":"Progression",
+                    "gender":"Genre",
+                    "rating":"Évaluation",
+                    "col":"Couleur",
+                    "dob":"Date de Naissance",
+                },
+                "pagination":{
+                    "first":"Premier",
+                    "first_title":"Première Page",
+                    "last":"Dernier",
+                    "last_title":"Dernière Page",
+                    "prev":"Précédent",
+                    "prev_title":"Page Précédente",
+                    "next":"Suivant",
+                    "next_title":"Page Suivante",
+                },
+            }
+        }
     });
 
     //****************************Membres d'une ménage***************************** */
@@ -48,10 +70,31 @@ $(function () {
             { title: "Lieu de Naissance", field: "lieu_de_naissance", headerFilterPlaceholder: "...", headerFilter: "input" },
             { title: "Id personne", field: "id_personne", headerFilterPlaceholder: "...", headerFilter: "input" }
         ],
-        rowClick: function (e, row) {
-
-            window.location.replace("certificate" + "?id_personne=" + row.getData().id_personne);
-        },
+        pagination:"local",
+        paginationSize:25,
+        paginationSizeSelector:[25, 50, 100, 200],
+        langs:{
+            "fr-fr":{ //French language definition
+                "columns":{
+                    "name":"Nom",
+                    "progress":"Progression",
+                    "gender":"Genre",
+                    "rating":"Évaluation",
+                    "col":"Couleur",
+                    "dob":"Date de Naissance",
+                },
+                "pagination":{
+                    "first":"Premier",
+                    "first_title":"Première Page",
+                    "last":"Dernier",
+                    "last_title":"Dernière Page",
+                    "prev":"Précédent",
+                    "prev_title":"Page Précédente",
+                    "next":"Suivant",
+                    "next_title":"Page Suivante",
+                },
+            }
+        }
     });
     //****************************Membres d'une ménage***************************** */
 

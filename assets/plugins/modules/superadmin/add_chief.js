@@ -26,6 +26,12 @@ $(function () {
         }, 'JSON');
     });
     
+    $(document).ready(function () {
+        $('#phone').usPhoneFormat({
+            format: 'xxx xx xxx xx',
+        });
+    });
+    
     function loading(){
         $(this).prop('disabled', true);
         $('#loadingSave').show();
