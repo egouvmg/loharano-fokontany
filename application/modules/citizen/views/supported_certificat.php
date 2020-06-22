@@ -261,7 +261,7 @@
                       <label for="Zanak" class="" style="margin-bottom: 0px;">demeurant à:</label>
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control border-0" style="margin-left:-100px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-100px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->libelle_fokontany."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -272,7 +272,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">Lot</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->adresse_actuelle."'" ?>> 
                       </div>
                   </div>
                 </div>
@@ -283,7 +283,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">depuis</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                        <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->date_arrivee."'" ?>> 
                       </div>
                   </div>
                 </div>
@@ -296,7 +296,7 @@
                       <label for="Zanak" class="font-weight-bold" style="margin-bottom: 0px;">Témoin 1:</label>
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control border-0" style="margin-left:-100px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-100px;padding-bottom: 2px;" id="Zanak" placeholder="Non du Témoin 1" value=""> 
                     </div>
                   </div>
                 </div>
@@ -307,7 +307,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">CIN N°</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="CIN du Témoin 1" value=""> 
                       </div>
                   </div>
                 </div>
@@ -320,7 +320,7 @@
                       <label for="Teraka" class="" style="margin-bottom: 0px;">délivré à</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->date_de_naissance."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" placeholder="Lieu obtention CIN du Témoin 1" value=""> 
                     </div>
                   </div>
                 </div>
@@ -331,7 +331,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">le</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" placeholder="Date obtention CIN du Témoin 1" value=""> 
                     </div>
                   </div>
                 </div>
@@ -344,7 +344,7 @@
                       <label for="Zanak" class="font-weight-bold" style="margin-bottom: 0px;">Témoin 2:</label>
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control border-0" style="margin-left:-100px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-100px;padding-bottom: 2px;" id="Zanak" placeholder="Non du Témoin 2" value=""> 
                     </div>
                   </div>
                 </div>
@@ -355,7 +355,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">CIN N°</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="CIN du Témoin 2" value=""> 
                       </div>
                   </div>
                 </div>
@@ -368,7 +368,7 @@
                       <label for="Teraka" class="" style="margin-bottom: 0px;">délivré à</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->date_de_naissance."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" placeholder="Lieu obtention CIN du Témoin 2" value=""> 
                     </div>
                   </div>
                 </div>
@@ -379,7 +379,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">le</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" placeholder="Date obtention CIN du Témoin 2" value=""> 
                     </div>
                   </div>
                 </div>
@@ -398,7 +398,7 @@
              <div class="row">
                 <div class="col-sm-12">
                     <span>déclarant, ainsi que les deux témoins sont des ressortissants de Fokontany 
-                    d'Ankazotokana Ambony, Commune Urbaine d'Antananarivo, 2ème Arrondissement.</span>
+                    <?= "'".$citizen_data[0]->libelle_fokontany."'" ?>.</span>
                   </div>
              </div>
 
@@ -409,7 +409,7 @@
                           <label for="tao" class="" style="margin-bottom: 0px;">Le présent certificat est établi et délivré à</label>
                         </div>
                         <div class="col-sm-7">
-                          <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
+                          <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" placeholder="Nom à remplir" value=""> 
                         </div>
                   </div>
                 </div>
@@ -427,7 +427,7 @@
                           </label>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
+                          <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" placeholder="Nom à remplir" value=""> 
                         </div>
                   </div>
                 </div>
@@ -463,10 +463,10 @@
 
             <div class="form-group row" style="margin-bottom: 0px;">
                         <div class="col-sm-7 col-form-label">
-                          <label for="tao" class="" style="margin-bottom: 0px;">Ankazotokana Ambony, le</label>
+                          <label for="tao" class="" style="margin-bottom: 0px;"><?= "".$citizen_data[0]->libelle_fokontany."" ?>, le</label>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
+                          <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".date('d-m-Y')."'" ?>> 
                         </div>
                   </div>
             </div>
