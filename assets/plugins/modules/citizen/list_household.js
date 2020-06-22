@@ -2,6 +2,10 @@ $(function () {
     var household_head = function (cell, formatterParams) {
 		return cell.getRow().getData().nom + ' ' + cell.getRow().getData().prenoms;
     };
+
+    var is_household_head = function (cell, formatterParams) {
+        return (cell.getValue()) ? 'Oui' : 'Non';
+    };
     
 	var households = new Tabulator("#households", {
         layout:"fitColumns",
@@ -52,7 +56,7 @@ $(function () {
 			{column:"chef_menage", dir:"asc"}
 		],
         columns:[ //Define Table Columns
-            {title:"Chef", field:"chef_menage"},
+            {title:"Chef", field:"chef_menage", formatter: is_household_head},
             {title:"Nom", field:"nom",headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Prénoms", field:"prenoms",headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Numéro cin", field:"cin_personne", headerFilterPlaceholder:"..." , headerFilter:"input"},
