@@ -55,6 +55,7 @@
               <li><a href="ajout_utilisateur" class="active"><?=$this->lang->line('add_user');?></a></li>
               <li><a href="ajout_de_chef"><?=$this->lang->line('add_chief');?></a></li>
               <li><a href="liste_utilisateur"><?=$this->lang->line('list_users');?></a></li>
+              <li><a href="liste_des_chefs"><?=$this->lang->line('list_chiefs');?></a></li>
             </ul>
           </li>
           <li>

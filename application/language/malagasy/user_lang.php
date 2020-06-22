@@ -12,3 +12,4 @@ $lang['manage_citizens'] = 'Gestion des citoyens';
 $lang['add_user'] = 'Manampy operatera';
 $lang['add_chief'] = 'Manampy sefo Distrika';
 $lang['list_users'] = 'Lisitry ny olona mampiasa';
+$lang['list_chiefs'] = 'Liste des chefs d\'Arrondissemnt';

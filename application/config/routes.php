@@ -71,6 +71,7 @@ $route['tableau_de_bords'] = 'user/index';
 $route['ajout_utilisateur'] = 'user/add_user';
 $route['ajout_de_chef'] = 'user/add_chief';
 $route['liste_utilisateur'] = 'user/list_user';
+$route['liste_des_chefs'] = 'user/list_chief';
 $route['enregistrer_operateur'] = 'user/save_user';
 $route['changer_operateur'] = 'user/edit_user';
 $route['enregistrer_chef'] = 'user/save_chief';
@@ -116,6 +117,7 @@ $route['certificat_residence'] = 'citizen/generate_residence';
 //User
 $route['les_utilisateurs'] = 'user/a_users';
 $route['les_utilisateurs_fokontany'] = 'user/a_users_fokontany';
+$route['les_chefs_arrondissement'] = 'user/a_chiefs_borough';
 
 //Menage
 $route['list_menage'] = 'menage/list_menage';

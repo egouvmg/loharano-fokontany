@@ -147,7 +147,7 @@
                   <li><strong class="orange">Chef de ménage</strong> : <span id="tmpHead"></span></li>
                 </ul>
                 <input type="hidden" id="notebook">
-                <button type="button" id="addToHousehold" class="btn btn-primary btn-lg">Ok</button>
+                <button type="button" id="addToHousehold" data-dismiss="modal" class="btn btn-primary btn-lg">Ok</button>
               </div>
             </div>
           </div>

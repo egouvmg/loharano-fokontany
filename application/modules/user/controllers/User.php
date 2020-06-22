@@ -14,6 +14,7 @@ class User extends SuperAdmin_Controller
 		$this->load->model('territory/common_model', 'common');
 		$this->load->model('territory/borough_model', 'borough');
         $this->load->model('territory/fokontany_model', 'fokontany');
+        $this->load->model('chief/chief_model', 'chief');
 
 		$this->load->model('auth/ion_auth_model', 'ion_auth');
 
@@ -56,7 +57,7 @@ class User extends SuperAdmin_Controller
 
 	public function list_user()
 	{
-		$this->data['title'] = "Liste des opérateurs Fokontany";
+		$this->data['title'] = "Liste des utilisateurs Fokontany";
 
         $this->data['provinces'] = $this->province->get_all();
         $this->data['regions'] = $this->region->get_all(['province_id' => $this->data['provinces'][0]->id]);
@@ -66,6 +67,19 @@ class User extends SuperAdmin_Controller
 		$this->data['fokontanies'] = $this->fokontany->get_all(['borough_id' => $this->data['boroughs'][0]->id]);
 
         $this->load->view('list_user', $this->data);
+    }
+
+	public function list_chief()
+	{
+		$this->data['title'] = "Liste des chefs d'Arrondissment";
+
+        $this->data['provinces'] = $this->province->get_all();
+        $this->data['regions'] = $this->region->get_all(['province_id' => $this->data['provinces'][0]->id]);
+        $this->data['districts'] = $this->district->get_all(['region_id' => $this->data['regions'][0]->id]);
+		$this->data['commons'] = $this->common->get_all(['district_id' => $this->data['districts'][0]->id]);
+		$this->data['boroughs'] = $this->borough->get_all(['common_id' => $this->data['commons'][0]->id]);
+
+        $this->load->view('list_chief', $this->data);
     }
 
 	public function save_user()
@@ -187,7 +201,12 @@ class User extends SuperAdmin_Controller
 
             echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
             return false;
-		}
+        }
+        
+        if($n_password == $old_pwd){
+            echo json_encode(['success'=>1, 'msg'=>'Aucune modification faite.']);
+            return TRUE;
+        }
 
         try{
             if($this->ion_auth->change_password($n_email, $old_pwd, $n_password)){
@@ -293,6 +312,18 @@ class User extends SuperAdmin_Controller
         $fokontany_id = $this->input->get('fokontany_id');
 
         $users = $this->user->getUsersFokontany(['group_id >=' => $this->config->item('group_operator'), 'fokontany_id' => $fokontany_id]);
+        echo json_encode($users);
+    }
+
+    public function a_chiefs_borough()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $borough_id = $this->input->get('borough_id');
+
+        $users = $this->chief->getUsersBorough(['borough_id' => $borough_id]);
         echo json_encode($users);
     }
 }

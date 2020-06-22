@@ -59,13 +59,13 @@ $(function () {
     });
 
     $(document).ready(function(e){
-        var fokontany_id = $('#fokontany').val() || 0;
+        var borough_id = $('#borough').val() || 0;
 
-        users.setData('les_utilisateurs_fokontany', {fokontany_id:fokontany_id});
+        users.setData('les_chefs_arrondissement', {borough_id:borough_id});
     });
 
-    $('#fokontany').change(function(){
-        users.setData('les_utilisateurs_fokontany', {fokontany_id: $(this).val()});
+    $('#borough').change(function(){
+        users.setData('les_chefs_arrondissement', {borough_id: $(this).val()});
     });
     
     $(document).ready(function () {

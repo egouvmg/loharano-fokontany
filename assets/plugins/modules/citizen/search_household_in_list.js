@@ -22,6 +22,31 @@ $(function () {
 
 			$('#confirmationModal').modal();
         },
+        pagination:"local",
+        paginationSize:25,
+        paginationSizeSelector:[25, 50, 100, 200],
+        langs:{
+            "fr-fr":{ //French language definition
+                "columns":{
+                    "name":"Nom",
+                    "progress":"Progression",
+                    "gender":"Genre",
+                    "rating":"Évaluation",
+                    "col":"Couleur",
+                    "dob":"Date de Naissance",
+                },
+                "pagination":{
+                    "first":"Premier",
+                    "first_title":"Première Page",
+                    "last":"Dernier",
+                    "last_title":"Dernière Page",
+                    "prev":"Précédent",
+                    "prev_title":"Page Précédente",
+                    "next":"Suivant",
+                    "next_title":"Page Suivante",
+                },
+            }
+        }
     });
 
 	$('#last_name').on('keyup', function () {
@@ -63,20 +88,5 @@ $(function () {
 	
 	$('#mother').on('keypress', function(e){
 		citizens.setData('liste_menages_fokontany', {mother:$(this).val()});
-	});
-
-	$('#addToHousehold').click(function(e){
-		e.preventDefault();
-
-		var noteboook = $('#notebook').val();
-
-		$.get('citoyen_carnet_fokontany', {noteboook : noteboook}, function(res){
-			if(res.success == 1) window.location = res.link;
-			else alert(res.msg);
-		}, 'JSON')
-		.fail(function () {
-			alert('Une erreur est survenue. Contacter le responsable.');
-			$('#loadingData').hide();
-		});
 	});
 });

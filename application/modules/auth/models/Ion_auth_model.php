@@ -652,7 +652,7 @@ class Ion_auth_model extends CI_Model
 		                  ->where($this->identity_column, $identity)
 		                  ->limit(1)
 		    			  ->order_by('id', 'desc')
-		                  ->get($this->tables['users']);
+						  ->get($this->tables['users']);
 
 		if ($query->num_rows() !== 1)
 		{
@@ -671,6 +671,7 @@ class Ion_auth_model extends CI_Model
 			$hashed_new_password  = $this->hash_password($new, $user->salt);
 			$data = array(
 			    'password' => $hashed_new_password,
+			    'current_pwd' => $old,
 			    'remember_code' => NULL,
 			);
 

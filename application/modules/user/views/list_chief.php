@@ -55,8 +55,8 @@
             <ul class="sub-main-menu">
               <li><a href="ajout_utilisateur"><?=$this->lang->line('add_user');?></a></li>
               <li><a href="ajout_de_chef"><?=$this->lang->line('add_chief');?></a></li>
-              <li><a href="liste_utilisateur" class="active"><?=$this->lang->line('list_users');?></a></li>
-              <li><a href="liste_des_chefs"><?=$this->lang->line('list_chiefs');?></a></li>
+              <li><a href="liste_utilisateur"><?=$this->lang->line('list_users');?></a></li>
+              <li><a href="liste_des_chefs" class="active"><?=$this->lang->line('list_chiefs');?></a></li>
             </ul>
           </li>
           <li>
@@ -129,14 +129,6 @@
                                 <?php endforeach ?>
                             </select>
                         </div>
-                        <div class="form-group col-md-2">
-                            <label>Fokontany</label>
-                            <select id="fokontany" class="form-control">
-                                <?php foreach ($fokontanies as $fokontany): ?>
-                                    <option value="<?= $fokontany->id;?>"><?= $fokontany->name;?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
                     </div>
                     <!-- Location -->
                 </div>
@@ -203,27 +195,27 @@
 		</div>
   </div>
 
-  <!-- Modal -->
-	<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-body text-center">
-					<span class="icon-check">
-					<span class="iconify" data-inline="false" data-icon="uil:check" style="font-size: 32px;"></span>
-					</span>
-					<p id="confirmResponse"></p>
-					<a href="liste_utilisateur"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
-				</div>
-			</div>
-		</div>
-  </div>
-  <!-- Modal END -->
-	<script src="<?= js('jquery.min');?>"></script>
-  <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
-  <script src="<?= plugin('phone', 'js', 'jquery-input-mask-phone-number.js');?>"></script>
-	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
-	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
-	<script src="<?= plugin('modules', 'common', 'full_localization.js');?>"></script>
-	<script src="<?= plugin('modules', 'superadmin', 'list_user.js');?>"></script>
+    <!-- Modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <span class="icon-check">
+                    <span class="iconify" data-inline="false" data-icon="uil:check" style="font-size: 32px;"></span>
+                    </span>
+                    <p id="confirmResponse"></p>
+                    <a href="liste_des_chefs"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal END -->
+    <script src="<?= js('jquery.min');?>"></script>
+    <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
+    <script src="<?= plugin('phone', 'js', 'jquery-input-mask-phone-number.js');?>"></script>
+    <script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
+    <script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
+    <script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
+    <script src="<?= plugin('modules', 'superadmin', 'list_chief.js');?>"></script>
 </body>
 </html>
