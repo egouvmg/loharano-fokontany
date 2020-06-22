@@ -122,7 +122,7 @@
               <div class="form-group row" style="margin-bottom: 0px;">
                <label for="Lf" class="col-sm-2 col-form-label font-weight-bold">Lf :</label>
                <div class="col-sm-10">
-                 <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=""> 
+                 <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->lf_celibacy)."'" ?>> 
                 </div>
               </div>
             </div>
@@ -209,7 +209,7 @@
                       <p class="font-italic">Fils ou fille de </p>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-200px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-200px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->father."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -221,7 +221,7 @@
                         <p class="font-italic">et de</p>
                       </div>
                       <div class="col-sm-7">
-                        <input type="text" class="form-control border-0" style="margin-left:-240px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                        <input type="text" class="form-control border-0" style="margin-left:-240px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->mother."'" ?>> 
                       </div>
                   </div>
                 </div>
@@ -234,7 +234,7 @@
                       <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Kara-panondrom-pirenena lf (CNI) :</label>
                     </div>
                     <div class="col-sm-3">
-                      <input type="text" class="form-control border-0" style="width:100px;margin-left:-75px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->date_de_naissance."'" ?>> 
+                      <input type="text" class="form-control border-0" style="width:100px;margin-left:-75px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->cin_personne."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -245,7 +245,7 @@
                       <label for="tao" class="font-weight-bold" style="margin-bottom: 0px;">nomena ny (du) :</label>
                     </div>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control border-0" style="padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
+                      <input type="text" class="form-control border-0" style="padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->date_delivrance_cin."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -256,7 +256,7 @@
                         <label for="Zom" class="font-weight-bold" style="margin-bottom: 0px;">tao (à) :</label>
                       </div>
                       <div class="col-sm-7">
-                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value=<?= "'".$citizen_data[0]->lieu_delivrance_cin."'" ?>> 
                       </div>
                     </div>
                   </div> 
@@ -307,7 +307,7 @@
                       <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">1- </label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->date_de_naissance."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Vavolombelona voalohany..."> 
                     </div>
                   </div>
                 </div>
@@ -318,7 +318,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">CNI</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value="" placeholder="Kara-panondrom-pirenena..."> 
                     </div>
                   </div>
                 </div>
@@ -329,7 +329,7 @@
                         <label for="Zom" class="" style="margin-bottom: 0px;">Nomeny ny (du)</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="Daty..."> 
                       </div>
                     </div>
                   </div> 
@@ -342,7 +342,7 @@
                       <label for="Zom" class="" style="margin-bottom: 0px;"><span class="">tao <span class="font-italic">(à)</span></span></label>
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="Toerana..."> 
                     </div>
                   </div>
                 </div> 
@@ -353,7 +353,7 @@
                         <label for="Zom" class="" style="margin-bottom: 0px;"><span class="">monina ao <span class="font-italic">domicilié(e) (au)</span></span></label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="Monina..."> 
                       </div>
                     </div>
                 </div>
@@ -366,7 +366,7 @@
                       <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">2- </label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->date_de_naissance."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Vavolombelona faharoa..."> 
                     </div>
                   </div>
                 </div>
@@ -377,7 +377,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">CNI</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value="" placeholder="Kara-panondrom-pirenena..."> 
                     </div>
                   </div>
                 </div>
@@ -388,7 +388,7 @@
                         <label for="Zom" class="" style="margin-bottom: 0px;">Nomeny ny (du)</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="Daty..."> 
                       </div>
                     </div>
                   </div> 
@@ -401,7 +401,7 @@
                       <label for="Zom" class="" style="margin-bottom: 0px;"><span class="">tao <span class="font-italic">(à)</span></span></label>
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="Toerana..."> 
                     </div>
                   </div>
                 </div> 
@@ -412,7 +412,7 @@
                         <label for="Zom" class="" style="margin-bottom: 0px;"><span class="">monina ao <span class="font-italic">domicilié(e) (au)</span></span></label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="Monina..."> 
                       </div>
                     </div>
                 </div>
@@ -429,26 +429,56 @@
           <!--FOOTER-->
           <div class="row">
             <div class="col-sm-4" style="background-color:white;">
-            <p>Fanisam-bahoaka lf:...................................</p>
-            <p>Récensement n°: <?= $citizen_data[0]->cin_personne ?></p>
-            <p class="font-weight-bold"> N°                                                    </p>
+              <div class="form-group row" style="margin-bottom: 0px;">
+              <div class="col-sm-7 col-form-label">
+                <label for="Lf" class="font-weight-bold">Fanisam-bahoaka lf :</label>
+                <p class="font-italic">Recensement n°</p>
+              </div>
+                
+                <div class="col-sm-5">
+                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->lf_residence)."'" ?>> 
+                </div>
+              </div>
+
+              <div class="form-group row" style="margin-bottom: 0px;">
+                <label for="Lf" class="col-sm-7 col-form-label font-weight-bold">N°:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->cin_personne)."'" ?>> 
+                </div>
+              </div>
+
             </div>
 
             <!--Ecusson-->
-            <div class="col-sm-3" style="background-color:white;">
+            <div class="col-sm-2" style="background-color:white;">
               <img src="<?= img('ecussons/cua.png');?>">
             </div>
-            <div class="col-sm-5" style="background-color:white;">
-             <div class="row">
-              <div class="col-sm-6" style="background-color:white;">
-              Natao teto:<br>
-              <span class="font-italic">Fait à</span>
-              </div>
-              <div class="col-sm-6" style="background-color:white;">
-              androany faha<br>
-              <span class="font-italic">le</span>
-              </div>
-             </div>            
+            <div class="col-sm-6" style="background-color:white;">
+            <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group row" style="margin-bottom: 0px;">
+                    <div class="col-sm-5 col-form-label">
+                      <label for="Zanak" class="font-weight-bold" style="margin-bottom: 0px;">Natao teto :</label>
+                      <p class="font-italic">Fait à </p>
+                    </div>
+                    <div class="col-sm-7">
+                      <input type="text" class="form-control border-0" style="margin-left:-30px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->libelle_fokontany."'" ?>> 
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="form-group row" style="margin-bottom: 0px;">
+                      <div class="col-sm-6 col-form-label">
+                        <label for="sy" class="font-weight-bold" style="margin-bottom: 0px;">androany faha</label>
+                        <p class="font-italic">le</p>
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control border-0" style="margin-left: -40px;padding-bottom: 2px;" id="sy" value=<?= "'".date('d-m-Y')."'" ?>> 
+                      </div>
+                  </div>
+                </div>
+              </div>           
             </div>
           </div>
 
