@@ -27,4 +27,4 @@ $lang['new_household'] = 'Amoronta tokantrano';
 $lang['household_click_for_details'] = 'Tsidrio ny tokontrano iray mba ahitano ny olona ao anatiny.';
 $lang['household_content'] = 'Ny olona ao anaty ny tokantrano : ';
 $lang['title_residence'] = 'Fanamboarana certificat de résidence';
-$lang['residence_introduction'] = 'Cliquer sur un citoyen pour générer son certificat de résidence';
+$lang['certificats_introduction'] = 'Création des différents certificats: résidence - Vie - Prise en charge - Déménagement - Célibat - Bonne conduite';

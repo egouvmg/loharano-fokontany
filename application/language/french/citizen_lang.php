@@ -16,6 +16,7 @@ $lang['citizen_supported'] = 'Certificat de prise en charge et de garde';
 $lang['citizen_move'] = 'Certificat de déménagement';
 $lang['citizen_celibacy'] = 'Certificat de célibat';
 $lang['citizen_good_behavior'] = 'Certificat de bonne conduite - bonne vie - moeurs';
+$lang['creation_certificats'] = 'Création certificats';
 
 $lang['adding_citizen'] = 'Ajouter le citoyen dans un ménage existant ou créer un nouveau ménage pour le citoyen.';
 $lang['searching_household'] = 'Entrez les critères de recherche de ménage. Cliquer sur un ménage pour ajout le nouveau citoyen';
@@ -27,4 +28,4 @@ $lang['new_household'] = 'Créer un ménage';
 $lang['household_click_for_details'] = 'Cliquez sur un ménage pour voir la liste des parsonnes.';
 $lang['household_content'] = 'Les personnes dans le ménage : ';
 $lang['title_residence'] = 'Création certificat de résidence';
-$lang['residence_introduction'] = 'Cliquer sur un citoyen pour générer son certificat de résidence';
+$lang['certificats_introduction'] = 'Création des différents certificats: résidence - Vie - Prise en charge - Déménagement - Célibat - Bonne conduite';

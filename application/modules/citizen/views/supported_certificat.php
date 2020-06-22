@@ -141,7 +141,7 @@
                         <label for="Asa" class="font-weight-bold" style="margin-bottom: 0px;">CIN N° :</label>
                       </div>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control border-0" style="margin-left:-55px;padding-bottom: 2px;" id="Asa" value=<?= "'".$citizen_data[0]->job."'" ?>> 
+                        <input type="text" class="form-control border-0" style="margin-left:-55px;padding-bottom: 2px;" id="Asa" value=<?= "'".$citizen_data[0]->cin_personne."'" ?>> 
                       </div>
                     </div>
                   </div>
@@ -154,7 +154,7 @@
                       <label for="Teraka" class="" style="margin-bottom: 0px;">délivré à</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->date_de_naissance."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->lieu_delivrance_cin."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -165,7 +165,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">le</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->date_delivrance_cin."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -202,7 +202,7 @@
                       <label for="Zanak" class="font-weight-bold" style="margin-bottom: 0px;">Fils ou fille de :</label>
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control border-0" style="margin-left:-200px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-200px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->father."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -213,7 +213,7 @@
                         <label for="sy" class="font-weight-bold" style="margin-bottom: 0px;">et de</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-240px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                        <input type="text" class="form-control border-0" style="margin-left:-240px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->mother."'" ?>> 
                       </div>
                   </div>
                 </div>
@@ -226,7 +226,7 @@
                       <label for="Zanak" class="" style="margin-bottom: 0px;">CIN N°:</label>
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control border-0" style="margin-left:-200px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                      <input type="text" class="form-control border-0" style="margin-left:-200px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->cin_personne."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -237,7 +237,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">délivrée le</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->date_delivrance_cin."'" ?>> 
                       </div>
                   </div>
                 </div>
@@ -248,7 +248,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">à</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-240px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                        <input type="text" class="form-control border-0" style="margin-left:-240px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->lieu_delivrance_cin."'" ?>> 
                       </div>
                   </div>
                 </div>

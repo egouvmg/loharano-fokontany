@@ -173,7 +173,8 @@ class Citizen extends Operator_Controller//SuperAdmin_Controller
 
     public function certificate_residence()
     {
-        $this->data['title'] = $this->lang->line('title_residence');
+        $this->data['title'] = $this->lang->line('creation_certificats');
+        $this->data['jobs'] = $this->job->all();
 
         $this->load->view('residence', $this->data);
     }
@@ -759,6 +760,62 @@ class Citizen extends Operator_Controller//SuperAdmin_Controller
         $this->data['citizen_data'] = $citizen_data;
 		
         $this->load->view('behavior_certificat', $this->data);
+    }
+
+    /**
+     * Save modified data from certificate delivery page
+     */
+	public function check_fields()
+	{
+        if (!$this->input->is_ajax_request()) {
+            exit('Very ianao :O');
+		}
+
+		$data = $this->input->post();
+		$person_id = $this->input->post('person_id');
+		$missing_fields = [];
+
+		if(!empty($data)){
+			if($data['address'] == '') $missing_fields[] = 'address';
+			if($data['pdf_file'] == '') $missing_fields[] = 'pdf_file';
+			if($data['last_name'] == '') $missing_fields[] = 'last_name';
+			if($data['last_name'] == '') $missing_fields[] = 'last_name';
+			if($data['birth'] == '') $missing_fields[] = 'birth';
+			if($data['birth_place'] == '') $missing_fields[] = 'birth_place';
+			if($data['cin'] != ''){
+				if($data['cin_place'] == '') $missing_fields[] = 'cin_place';
+				if($data['cin_date'] == '') $missing_fields[] = 'cin_date';
+            }
+
+			if($data['passport_date'] == "") unset($data['passport_date']);
+            
+            if($data['nationality'] != "Malgache"){
+                $data['cin'] = '';
+                $data['cin_date'] = '';
+                $data['cin_place'] = '';
+            }else{
+				$data['passport'] = '';
+				unset($data['passport_date']);
+				$data['passport_place'] = '';
+            }
+            if($data['parent_link'] == 'autre')
+				$data['parent_link'] = $data['other_pl'];
+
+			if(!empty($missing_fields))
+				echo json_encode(['required' => 1, 'missing' => $missing_fields]);
+			else{
+				unset($data['person_id'], $data['other_pl'], $data['other_job']);
+
+				if($data['cin_date'] == '') unset($data['cin_date']); 
+
+				if($this->citizen->update($data, $person_id))
+					echo json_encode(['success' => 1]);
+				else echo json_encode(['error' => 1, 'msg' => 'Modification impossible.']);
+			}
+		}
+		else echo json_encode(['error' => 1, 'msg' => 'Aucune donnée à enregistrer.']);
 	}
+
+
 }
 
