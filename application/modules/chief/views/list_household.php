@@ -95,6 +95,28 @@
         <!-- Page Content -->
         <div class="container-fluid">
           <div class="row">
+              <div class="col-lg-12">
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      Filtre par Fokontany :
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label for="fokontany">Fokontany</label>
+                      <select id="fokontany" name="fokontany" class="form-control">
+                        <?php foreach ($fokontanies as $fokontany): ?>
+                          <option value="<?= $fokontany->id;?>"><?= $fokontany->name;?></option>
+                        <?php endforeach ?>
+                      </select>
+                      <span class="error_field error_fokontany_id"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <div id="loadingLocation" style="display:none;">
+                        <img class="loading" src="<?= img('pulse.gif');?>"/>
+                        Chargement ...
+                      </div>
+                    </div>
+                  </div>
+              </div>
             <div class="col-lg-4">
               <p><?= $this->lang->line('household_click_for_details');?></p>
               <div id="households"></div>

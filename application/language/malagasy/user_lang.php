@@ -9,6 +9,12 @@ $lang['manage_fokontany'] = 'Gestion des Fokontany';
 $lang['manage_household'] = 'Gestion des ménage';
 $lang['manage_citizens'] = 'Gestion des citoyens';
 
+$lang['user_fokontany'] = 'Operatera';
+$lang['user_chief'] = 'Sefo Arrondissement/Sefo District';
+
+$lang['add'] = 'Ampina';
+$lang['list'] = 'Lisitra';
+
 $lang['add_user'] = 'Manampy operatera';
 $lang['add_chief'] = 'Manampy sefo Distrika';
 $lang['list_users'] = 'Lisitry ny olona mampiasa';

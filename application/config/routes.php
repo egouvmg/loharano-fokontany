@@ -127,6 +127,7 @@ $route['menages_fokontany'] = 'menage/menages_fokontany';
 $route['utilisateurs_fokontany'] = 'chief/get_users';
 $route['chef_liste_menages'] = 'chief/households_list';
 $route['citoyens_liste'] = 'chief/citizens_list';
+$route['chef_membres_menage'] = 'chief/list_citizen_by_carnet_id';
 
 //Citizen
 $route['verifier_localite_menage'] = 'citizen/check_household';

@@ -51,12 +51,17 @@
       <div class="main-side-bar">
         <ul class="main-menu">
           <li>
-            <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('users');?></a>
+            <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_fokontany');?></a>
             <ul class="sub-main-menu" style="display:none;">
-              <li><a href="ajout_utilisateur"><?=$this->lang->line('add_user');?></a></li>
-              <li><a href="ajout_de_chef"><?=$this->lang->line('add_chief');?></a></li>
-              <li><a href="liste_utilisateur"><?=$this->lang->line('list_users');?></a></li>
-              <li><a href="liste_des_chefs"><?=$this->lang->line('list_chiefs');?></a></li>
+              <li><a href="ajout_utilisateur"><?=$this->lang->line('add');?></a></li>
+              <li><a href="liste_utilisateur"><?=$this->lang->line('list');?></a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_chief');?></a>
+            <ul class="sub-main-menu" style="display:none;">
+              <li><a href="ajout_de_chef"><?=$this->lang->line('add');?></a></li>
+              <li><a href="liste_des_chefs"><?=$this->lang->line('list');?></a></li>
             </ul>
           </li>
           <li>
@@ -65,13 +70,13 @@
           <li>
             <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménage</a>
             <ul class="sub-main-menu">              
-              <li><a href="chef_liste_menage" class="active">Liste des Ménages</a></li>
+              <li><a href="list_menage" class="active"><?=$this->lang->line('list');?></a></li>
             </ul>
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> Citoyens</a>
             <ul class="sub-main-menu" style="display:none;">              
-              <li><a href="la_liste_citoyens">Liste des citoyens</a></li>
+              <li><a href="la_liste_citoyens"><?=$this->lang->line('list');?></a></li>
             </ul>
           </li>
         </ul>

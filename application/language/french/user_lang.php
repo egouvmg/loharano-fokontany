@@ -9,7 +9,13 @@ $lang['manage_fokontany'] = 'Gestion des Fokontany';
 $lang['manage_household'] = 'Gestion des ménage';
 $lang['manage_citizens'] = 'Gestion des citoyens';
 
+$lang['user_fokontany'] = 'Utilisateur Fokontany';
+$lang['user_chief'] = 'Chef d\'Arrondissement/Chef District';
+
+$lang['add'] = 'Ajout';
+$lang['list'] = 'Liste';
+
 $lang['add_user'] = 'Ajout d\'un utilisateur';
-$lang['add_chief'] = 'Ajout d\'un Chef District';
+$lang['add_chief'] = 'Ajout Chef d\'Arrondissement/Chef District';
 $lang['list_users'] = 'Liste des utilisateurs';
-$lang['list_chiefs'] = 'Liste des chefs d\'Arrondissemnt';
+$lang['list_chiefs'] = 'Liste des Chefs d\'Arrondissement/Chefs District';

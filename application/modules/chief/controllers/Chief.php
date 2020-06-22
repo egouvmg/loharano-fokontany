@@ -10,6 +10,7 @@ class Chief extends Chief_Controller
         $this->load->model('chief_model', 'chief');
         $this->load->model('user/user_model', 'user');
         $this->load->model('territory/notebook_model', 'notebook');
+        $this->load->model('citizen/citizen_model', 'citizen');
 
 		$this->load->model('auth/ion_auth_model', 'ion_auth');
         
@@ -52,6 +53,8 @@ class Chief extends Chief_Controller
     public function list_households()
     {
         $this->data['title'] = 'Liste des ménages';
+        
+		$this->data['fokontanies'] = $this->fokontany->get_all(['borough_id' => $this->borough_id]);
 
         $this->load->view('list_household', $this->data);
     }
@@ -182,7 +185,14 @@ class Chief extends Chief_Controller
             exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
         }
 
-        $data = ['borough_id' => $this->borough_id, 'chef_menage' => TRUE];
+        $fokontany_id = $this->input->get('fokontany_id');
+        
+        if(empty($fokontany_id)){
+            echo json_encode([]);
+            return TRUE;
+        }
+
+        $data = ['fokontany_id' => $fokontany_id, 'chef_menage' => TRUE];
         
         if($this->input->get()){
             if($this->input->get('last_name')) $data['nom LIKE'] = '%'.$this->input->get('last_name').'%';
@@ -205,6 +215,21 @@ class Chief extends Chief_Controller
 
         $citizens = $this->notebook->citizens(['borough_id' => $this->borough_id]);
         echo json_encode($citizens);
+    }
+
+    public function list_citizen_by_carnet_id()
+	{   
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $numero_carnet = $this->input->get('numero_carnet');
+        
+        if(!empty($numero_carnet)){
+            $citizen = $this->citizen->get_citizen(['numero_carnet'=>$numero_carnet]);
+        }
+        
+        echo json_encode($citizen);
     }
 }
 
