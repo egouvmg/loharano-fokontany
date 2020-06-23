@@ -61,7 +61,7 @@
             <a href="#"><span class="iconify" data-icon="fa-solid:user" data-inline="false"></span> <?=$this->lang->line('households');?></a>
             <ul class="sub-main-menu" style="display:none;">
               <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
-              <li><a href="#">Créer nouveau menage</a></li>
+              <li><a href="aide_menage">Liste des aides</a></li>
             </ul>
           </li>
           <li>
@@ -74,7 +74,7 @@
       </div>
       <div class="main-container">
         <!-- Page title -->
-        <p class="info-fokontany"><span>Province : </span><?= $info_fokontany->province_name;?> <span>Région : </span><?= $info_fokontany->region_name;?> <span>District : </span><?= $info_fokontany->district_name;?> <span>Commune : </span><?= $info_fokontany->common_name;?></p>
+        <p class="info-fokontany"><span>Province : </span><?= $info_fokontany->province_name;?> > <span>Région : </span><?= $info_fokontany->region_name;?> > <span>District : </span><?= $info_fokontany->district_name;?> > <span>Commune : </span><?= $info_fokontany->common_name;?> > <span>Arrondissement : </span><?= $info_fokontany->borough_name;?></p>
         <div class="container-fluid page-title">
           <h1><?= $title;?></h1>
         </div>
@@ -82,23 +82,53 @@
 
         <!-- Page Content -->
         <div class="container-fluid">
-          <div class="line-bloc">
-            <h6><?=$this->lang->line('manage_citizens');?></h6>
-            <div class="container-bloc-link">
-              <a href="recherche_menage" class="bloc-link">
-                <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> <?=$this->lang->line('add_citizen');?>
-              </a>
-              <a href="liste_citoyens" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> <?=$this->lang->line('list_citizen');?>
-              </a>
+          <div class="row">
+            <div class="col-lg-5">
+              <div class="line-bloc">
+                <h6>Rapport global</h6>
+                <div class="container-bloc-link">
+                  <a href="#" class="bloc-link-counter">
+                    <span class="iconify">0</span> <?=$this->lang->line('count_citizen');?>
+                  </a>
+                  <a href="#" class="bloc-link-counter">
+                    <span class="iconify">0</span> <?=$this->lang->line('count_household');?>
+                  </a>
+                </div>
+                <h6>Rapport quotidienne</h6>
+                <div class="container-bloc-link">
+                  <a href="#" class="bloc-link-counter">
+                    <span class="iconify">0</span> <?=$this->lang->line('count_citizen');?>
+                  </a>
+                  <a href="#" class="bloc-link-counter">
+                    <span class="iconify">0</span> <?=$this->lang->line('count_household');?>
+                  </a>
+                </div>
+                <h6>Rapport Aide</h6>
+                <div class="container-bloc-link">
+                  <a href="#" class="bloc-link-counter">
+                    <span class="iconify">0</span> Vola be
+                  </a>
+                  <a href="#" class="bloc-link-counter">
+                    <span class="iconify">0</span> PPN
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="line-bloc">
-            <h6><?=$this->lang->line('manage_households');?></h6>
-            <div class="container-bloc-link">
-              <a href="liste_menage_fokontany" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> <?=$this->lang->line('list_household');?>
-              </a>
+            <div class="col-lg-7">
+              <div class="line-bloc">
+                <h6>Accès rapide</h6>
+                <div class="container-bloc-link">
+                  <a href="recherche_menage" class="bloc-link color-1">
+                    <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> <?=$this->lang->line('add_citizen');?>
+                  </a>
+                  <a href="liste_citoyens" class="bloc-link color-2">
+                    <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> <?=$this->lang->line('list_citizen');?>
+                  </a>
+                  <a href="liste_menage_fokontany" class="bloc-link color-3">
+                    <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> <?=$this->lang->line('list_household');?>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

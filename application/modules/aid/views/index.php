@@ -60,8 +60,8 @@
           <li>
             <a href="#"><span class="iconify" data-icon="fa-solid:user" data-inline="false"></span> <?=$this->lang->line('households');?></a>
             <ul class="sub-main-menu">
-              <li><a href="liste_menage_fokontany" class="active">Liste des ménages</a></li>
-              <li><a href="aide_menage">Liste des aides</a></li>
+              <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
+              <li><a href="aide_menage" class="active">Liste des aides</a></li>
             </ul>
           </li>
           <li>
@@ -83,13 +83,14 @@
         <!-- Page Content -->
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-4">
-              <p><?= $this->lang->line('household_click_for_details');?></p>
+            <div class="col-lg-7">
+              <p><?= $this->lang->line('household_aid_for_details');?></p>
               <div id="households"></div>
             </div>
-            <div class="col-lg-8">
-              <p><?= $this->lang->line('household_content');?></p>
-              <div id="householdContent"></div>
+            <div class="col-lg-5">
+              <p><?= $this->lang->line('household_aid_content');?> : <strong class="household">...</strong></p>
+              <button id="addAid">Ajout aide</button>
+              <div id="aidsContent"></div>
             </div>
           </div>           
         </div>
@@ -98,10 +99,68 @@
     </div>
   </div>
 
+  <!-- Aid details -->
+  <div class="modal fade" id="aidModal" tabindex="-1" role="dialog" aria-labelledby="aidTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="aidTitle">
+            Ajout d'aide pour le ménage   :  <span class="household"></span>
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="aidForm">
+            <input id="numero_carnet" name="numero_carnet" type="hidden"/>
+            <div class="row">
+              <!--Form at left side -->
+              <div class=" col-md-12">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="aid">Type d'aide</label>
+                    <select id="aid" class="form-control"  name="aid_id">
+                      <?php foreach ($aids as $aid): ?>
+                        <option value="<?= $aid->id;?>"><?= $aid->name;?></option>
+                      <?php endforeach ?>
+                    </select>
+                    <div class="error_field error_aid"></div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="created_on">Reçu le<span class="text-red">*</span></label>
+                    <input type="date" name="created_on" class="form-control" id="created_on"/>
+                    <div class="error_field error_created_on"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Fermer
+            <span class="iconify" data-icon="uil:times-circle" data-inline="false"></span>
+          </button>
+          <button type="button" class="btn btn-primary" id="validAid">
+            Valider
+            <span class="iconify" data-icon="uil:arrow-right" data-inline="false"></span>
+          </button>
+          <div id="loadingSave" style="display:none;">
+            <img class="loading" src="<?= img('pulse.gif');?>"/>
+            Enregistrement ...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <!-- End Aid details -->
+
 	<script src="<?= js('jquery.min');?>"></script>
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
-	<script src="<?= plugin('modules', 'citizen', 'list_household.js');?>"></script>
+	<script src="<?= plugin('modules', 'aid', 'list_aid.js');?>"></script>
 </body>
 </html>

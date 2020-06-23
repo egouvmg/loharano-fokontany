@@ -83,24 +83,16 @@
         <div class="container-fluid">
           <div class="line-bloc">
             <div class="container-bloc-link">
-              <a href="ajout_utilisateur_fokontany" class="bloc-link">
+              <a href="ajout_utilisateur_fokontany" class="bloc-link color-1">
                 <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> <?=$this->lang->line('add_user');?>
               </a>
-              <a href="liste_utilisateur_fokontany" class="bloc-link">
+              <a href="liste_utilisateur_fokontany" class="bloc-link  color-2">
                 <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> <?=$this->lang->line('list_users');?>
               </a>
-            </div>
-          </div>
-          <div class="line-bloc">
-            <div class="container-bloc-link">
-              <a href="chef_liste_citoyen" class="bloc-link">
+              <a href="chef_liste_citoyen" class="bloc-link color-3">
                 <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Ménages
               </a>
-            </div>
-          </div>
-          <div class="line-bloc">
-            <div class="container-bloc-link">
-              <a href="chef_liste_citoyen" class="bloc-link">
+              <a href="chef_liste_citoyen" class="bloc-link color-4">
                 <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Citoyens
               </a>
             </div>

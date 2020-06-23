@@ -92,27 +92,35 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-5">
-              
-            <div class="line-bloc">
-              <h6>Rapport global</h6>
-              <div class="container-bloc-link">
-                <a href="ajout_utilisateur" class="bloc-link-counter">
-                  <span class="iconify">0</span> <?=$this->lang->line('count_citizen');?>
-                </a>
-                <a href="ajout_utilisateur" class="bloc-link-counter">
-                  <span class="iconify">0</span> <?=$this->lang->line('count_household');?>
-                </a>
+              <div class="line-bloc">
+                <h6>Rapport global</h6>
+                <div class="container-bloc-link">
+                  <a href="#" class="bloc-link-counter">
+                    <span class="iconify">0</span> <?=$this->lang->line('count_citizen');?>
+                  </a>
+                  <a href="#" class="bloc-link-counter">
+                    <span class="iconify">0</span> <?=$this->lang->line('count_household');?>
+                  </a>
+                </div>
+                <h6>Rapport quotidienne</h6>
+                <div class="container-bloc-link">
+                  <a href="#" class="bloc-link-counter">
+                    <span class="iconify">0</span> <?=$this->lang->line('count_citizen');?>
+                  </a>
+                  <a href="#" class="bloc-link-counter">
+                    <span class="iconify">0</span> <?=$this->lang->line('count_household');?>
+                  </a>
+                </div>
+                <h6>Rapport Aide</h6>
+                <div class="container-bloc-link">
+                  <a href="#" class="bloc-link-counter">
+                    <span class="iconify">0</span> Vola be
+                  </a>
+                  <a href="#" class="bloc-link-counter">
+                    <span class="iconify">0</span> PPN
+                  </a>
+                </div>
               </div>
-              <h6>Rapport quotidienne</h6>
-              <div class="container-bloc-link">
-                <a href="ajout_utilisateur" class="bloc-link-counter">
-                  <span class="iconify">0</span> <?=$this->lang->line('count_citizen');?>
-                </a>
-                <a href="ajout_utilisateur" class="bloc-link-counter">
-                  <span class="iconify">0</span> <?=$this->lang->line('count_household');?>
-                </a>
-              </div>
-            </div>
             </div>
             <div class="col-lg-7">
               <div class="line-bloc">

@@ -108,8 +108,11 @@ $route['menage_fokontany'] = 'citizen/fokontany_household';
 $route['recherche_menage_fokontany'] = 'citizen/search_household_in_list';
 $route['nouveau_menage_fokontany'] = 'citizen/new_household';
 $route['liste_menage_fokontany'] = 'citizen/list_households';
-$route['residence'] = 'citizen/certificate_residence';//
+$route['residence'] = 'citizen/certificate_residence';
 $route['certificat_residence'] = 'citizen/generate_residence';
+
+//Aid
+$route['aide_menage'] = 'aid/index';
 
 /*
  * AJAX
@@ -145,3 +148,7 @@ $route['certificate_move'] = 'citizen/certificate_move';
 $route['certificate_celibat'] = 'citizen/certificate_celibat';
 $route['certificate_behavior'] = 'citizen/certificate_behavior';
 $route['verifier_personnne'] = "citizen/check_fields";
+
+//Aid
+$route['aide_par_menage'] = 'aid/aid_by_household';
+$route['ajout_aide'] = 'aid/add_household_aid';

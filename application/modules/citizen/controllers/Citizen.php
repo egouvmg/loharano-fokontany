@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Citizen extends Operator_Controller//SuperAdmin_Controller
+class Citizen extends Operator_Controller
 {
     private $fokontany_id;
 
