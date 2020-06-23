@@ -82,7 +82,6 @@
         <!-- Page Content -->
         <div class="container-fluid">
           <div class="line-bloc">
-            <h6>Gestion des Utilisateurs</h6>
             <div class="container-bloc-link">
               <a href="ajout_utilisateur_fokontany" class="bloc-link">
                 <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> <?=$this->lang->line('add_user');?>
@@ -93,13 +92,6 @@
             </div>
           </div>
           <div class="line-bloc">
-            <h6>Gestion des Fokontany</h6>
-            <div class="container-bloc-link">
-            ...
-            </div>
-          </div>
-          <div class="line-bloc">
-            <h6>Gestion des Ménages</h6>
             <div class="container-bloc-link">
               <a href="chef_liste_citoyen" class="bloc-link">
                 <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Ménages
@@ -107,7 +99,6 @@
             </div>
           </div>
           <div class="line-bloc">
-            <h6>Gestion des Citoyens</h6>
             <div class="container-bloc-link">
               <a href="chef_liste_citoyen" class="bloc-link">
                 <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Citoyens

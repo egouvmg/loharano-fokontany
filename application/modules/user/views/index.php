@@ -90,40 +90,54 @@
 
         <!-- Page Content -->
         <div class="container-fluid">
-          <div class="line-bloc">
-            <h6>Gestion des Utilisateurs</h6>
-            <div class="container-bloc-link">
-              <a href="ajout_utilisateur" class="bloc-link">
-                <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> <?=$this->lang->line('add_user');?>
-              </a>
-              <a href="ajout_de_chef" class="bloc-link">
-                <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef Fokontany
-              </a>
-              <a href="liste_utilisateur" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> <?=$this->lang->line('list_users');?>
-              </a>
+          <div class="row">
+            <div class="col-lg-5">
+              
+            <div class="line-bloc">
+              <h6>Rapport global</h6>
+              <div class="container-bloc-link">
+                <a href="ajout_utilisateur" class="bloc-link-counter">
+                  <span class="iconify">0</span> <?=$this->lang->line('count_citizen');?>
+                </a>
+                <a href="ajout_utilisateur" class="bloc-link-counter">
+                  <span class="iconify">0</span> <?=$this->lang->line('count_household');?>
+                </a>
+              </div>
+              <h6>Rapport quotidienne</h6>
+              <div class="container-bloc-link">
+                <a href="ajout_utilisateur" class="bloc-link-counter">
+                  <span class="iconify">0</span> <?=$this->lang->line('count_citizen');?>
+                </a>
+                <a href="ajout_utilisateur" class="bloc-link-counter">
+                  <span class="iconify">0</span> <?=$this->lang->line('count_household');?>
+                </a>
+              </div>
             </div>
-          </div>
-          <div class="line-bloc">
-            <h6>Gestion des Fokontany</h6>
-            <div class="container-bloc-link">
-              ...
             </div>
-          </div>
-          <div class="line-bloc">
-            <h6>Gestion des Ménages</h6>
-            <div class="container-bloc-link">
-              <a href="list_menage" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Ménages
-              </a>
-            </div>
-          </div>
-          <div class="line-bloc">
-            <h6>Gestion des Citoyens</h6>
-            <div class="container-bloc-link">
-              <a href="la_liste_citoyens" class="bloc-link">
-                <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Liste des Citoyens
-              </a>
+            <div class="col-lg-7">
+              <div class="line-bloc">
+                <h6>Accès rapide</h6>
+                <div class="container-bloc-link">
+                  <a href="ajout_utilisateur" class="bloc-link color-1">
+                    <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> <?=$this->lang->line('add_user');?>
+                  </a>
+                  <a href="liste_utilisateur" class="bloc-link color-3">
+                  <span class="iconify" data-icon="ant-design:unordered-list-outlined" data-inline="false"></span> <?=$this->lang->line('list_users');?>
+                  </a>
+                  <a href="ajout_de_chef" class="bloc-link color-2">
+                    <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef District
+                  </a>
+                  <a href="liste_des_chefs" class="bloc-link color-6">
+                    <span class="iconify" data-icon="ant-design:unordered-list-outlined" data-inline="false"></span> <?=$this->lang->line('list_chiefs');?>
+                  </a>
+                  <a href="list_menage" class="bloc-link color-4">
+                    <span class="iconify" data-icon="ant-design:unordered-list-outlined" data-inline="false"></span> Liste des Ménages
+                  </a>
+                  <a href="la_liste_citoyens" class="bloc-link color-5">
+                    <span class="iconify" data-icon="ant-design:unordered-list-outlined" data-inline="false"></span> Liste des Citoyens
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

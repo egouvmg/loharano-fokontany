@@ -759,19 +759,63 @@ body.login {
     margin-top: 10px;
 }
 .bloc-link {
-    background-color: #fff;
-    color: #212121;
-    border: 1px solid #F13334;
+    color: #fff;
     padding: 25px;
     border-radius: 5px;
-    margin: 0 15px;
+    margin: 0 15px 10px;
     display: inline-block;
+    width: 160px;
+    text-align: center;
 }
 .bloc-link:hover,
 .bloc-link:focus {
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #F26122;
+}
+.bloc-link .iconify{
+    font-size: 40pt;
+    display: block;
+    margin: 0 auto;
+}
+.bloc-link.color-1{
+    background-color: #F26122;
+}
+.bloc-link.color-2{
+    background-color: #EE4266;
+}
+.bloc-link.color-3{
+    background-color: #FFD23F;
+}
+.bloc-link.color-4{
+    background-color: #3BCEAC;
+}
+.bloc-link.color-5{
+    background-color: #0EAD69;
+}
+.bloc-link.color-6{
+    background-color: #540d6e;
+}
+.bloc-link-counter {
+    background-color: #118ab2;
+    color: #fff;
+    padding: 25px;
+    border-radius: 5px;
+    margin: 0 15px 10px;
+    display: inline-block;
+    width: 210px;
+    text-align: center;
+}
+.bloc-link-counter:hover,
+.bloc-link-counter:focus {
     background-color: #F13334;
     text-decoration: none;
     color: #fff;
+}
+.bloc-link-counter .iconify{
+    font-size: 40pt;
+    display: block;
+    margin: 0 auto;
 }
 .line-bloc{
     padding: 0 15px;
