@@ -675,7 +675,7 @@ class Citizen extends Operator_Controller
                 /*'nom' => $data['last_name'],
                 'prenoms' => $data['first_name'],
                 'date_de_naissance' => $data['birth'],*/
-                'id_personne'=> 2,
+                'id_personne'=> (int)$data['id_personne'],
                 'lieu_de_naissance' => $data['lieu_de_naissance']
                 /*'sexe' => $data['sexe'],
                 'situation_matrimoniale' => $data['marital_status'],
@@ -701,7 +701,32 @@ class Citizen extends Operator_Controller
                 $data_tmp['passport_place'] = $data['passport_place'];
             }
 
-            if(!$this->citizen->update($data_tmp)) {
+            $data_personne = $this->fokontany->get_fokotany_by_id((int)$data['fokontany_id']);
+
+            
+
+            $lf_residence = $data_personne[0]->lf_residence;
+            $lf_vie = $data_personne[0]->lf_vie;
+            $lf_move = $data_personne[0]->lf_move;
+            $lf_support = $data_personne[0]->lf_support;
+            $lf_celibacy = $data_personne[0]->lf_celibacy;
+            $lf_behavior = $data_personne[0]->lf_behavior;
+            $data_tmp = [
+                            'fokontany_id'=> (int)$data['fokontany_id'],
+                        ];
+
+            $origin_page = $data['origin_page'];
+            if($origin_page==="residence"){
+                ++$lf_residence;
+                $data_tmp['lf_residence']= $lf_residence;
+            }
+            if($origin_page==="vie"){++$lf_vie;$data_tmp ['lf_vie']=$lf_vie;}
+            if($origin_page==="move"){++$lf_move;$data_tmp['lf_move']= $lf_move;}
+            if($origin_page==="support"){++$lf_support;$data_tmp['lf_support']= $lf_support;}
+            if($origin_page==="celibacy"){++$lf_celibacy;$data_tmp['lf_celibacy']= $lf_celibacy;}
+            if($origin_page==="behavior"){++$lf_behavior;$data_tmp['lf_behavior']= $lf_behavior;}
+
+            if(!$this->fokontany->update($data_tmp)) {
                 $citizens_index[] = $i;
             }
             if(empty($citizens_index)){
@@ -736,6 +761,9 @@ class Citizen extends Operator_Controller
         $reference = $this->nomenclature->generate_certificat_reference("residence",$this->fokontany_id, $citizen_data[0]->lf_residence);
         
         $this->data['reference'] = $reference;
+        $this->data['id_personne'] = $id_personne;
+        $this->data['origin_page'] = "residence";
+        $this->data['fokontany_id'] = $citizen_data[0]->fokontany_id;
 		
         $this->load->view('citizen_certificat', $this->data);
     }
@@ -760,6 +788,9 @@ class Citizen extends Operator_Controller
         $reference = $this->nomenclature->generate_certificat_reference("life",$this->fokontany_id, $citizen_data[0]->lf_vie);
         
         $this->data['reference'] = $reference;
+        $this->data['id_personne'] = $id_personne;
+        $this->data['origin_page'] = "vie";
+        $this->data['fokontany_id'] = $citizen_data[0]->fokontany_id;
 		
         $this->load->view('life_certificat', $this->data);
 	}
@@ -784,6 +815,9 @@ class Citizen extends Operator_Controller
         $reference = $this->nomenclature->generate_certificat_reference("support",$this->fokontany_id, $citizen_data[0]->lf_support);
         
         $this->data['reference'] = $reference;
+        $this->data['id_personne'] = $id_personne;
+        $this->data['origin_page'] = "support";
+        $this->data['fokontany_id'] = $citizen_data[0]->fokontany_id;
 		
         $this->load->view('supported_certificat', $this->data);
     }
@@ -808,6 +842,9 @@ class Citizen extends Operator_Controller
         $reference = $this->nomenclature->generate_certificat_reference("move",$this->fokontany_id, $citizen_data[0]->lf_move);
         
         $this->data['reference'] = $reference;
+        $this->data['id_personne'] = $id_personne;
+        $this->data['origin_page'] = "move";
+        $this->data['fokontany_id'] = $citizen_data[0]->fokontany_id;
 		
         $this->load->view('move_certificat', $this->data);
 	}
@@ -832,6 +869,9 @@ class Citizen extends Operator_Controller
         $reference = $this->nomenclature->generate_certificat_reference("celibacy",$this->fokontany_id, $citizen_data[0]->lf_celibacy);
         
         $this->data['reference'] = $reference;
+        $this->data['id_personne'] = $id_personne;
+        $this->data['origin_page'] = "celibacy";
+        $this->data['fokontany_id'] = $citizen_data[0]->fokontany_id;
 
         $this->load->view('celibacy_certificat', $this->data);
 	}
@@ -856,6 +896,9 @@ class Citizen extends Operator_Controller
         $reference = $this->nomenclature->generate_certificat_reference("behavior",$this->fokontany_id, $citizen_data[0]->lf_behavior);
         
         $this->data['reference'] = $reference;
+        $this->data['id_personne'] = $id_personne;
+        $this->data['origin_page'] = "behavior";
+        $this->data['fokontany_id'] = $citizen_data[0]->fokontany_id;
 		
         $this->load->view('behavior_certificat', $this->data);
     }

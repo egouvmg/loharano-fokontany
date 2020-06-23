@@ -17,21 +17,24 @@ $(function () {
         var data =  [];
         data.push({name: 'nom', value:$("#Teraka").val()});
         data.push({name: 'prenoms', value: $("#Teraka").val()});
-        data.push({name: 'date_de_naissance', value: $("#Teraka").val()});// Done
-        data.push({name: 'lieu_de_naissance', value: $("#tao").val()});// Done
+        data.push({name: 'date_de_naissance', value: $("#Teraka").val()});
+        data.push({name: 'lieu_de_naissance', value: $("#tao").val()});
         data.push({name: 'cin', value: $("#cin").val()});
         data.push({name: 'date_cin', value: $("#date_cin").val()});
         data.push({name: 'lieu_cin', value: $("#lieu_cin").val()});
         data.push({name: 'nationality_id', value: $("#Zom").val()});
         data.push({name: 'situation_matrimoniale', value: $("#Teraka").val()});
         data.push({name: 'phone', value: $("#Teraka").val()});
-        data.push({name: 'father', value: $("#Zanak").val()});// Done
+        data.push({name: 'father', value: $("#Zanak").val()});
         data.push({name: 'father_status', value: $("#Teraka").val()});
-        data.push({name: 'mother', value: $("#sy").val()});// Done
+        data.push({name: 'mother', value: $("#sy").val()});
         data.push({name: 'mother_status', value: $("#Teraka").val()});
         data.push({name: 'job_id', value: $("#Teraka").val()});
         data.push({name: 'job_other', value: $("#Teraka").val()});
         data.push({name: 'job_status', value: $("#Teraka").val()});
+        data.push({name: 'id_personne', value: $("#id_personne").val()});
+        data.push({name: 'origin_page', value: $("#origin_page").val()});
+        data.push({name: 'fokontany_id', value: $("#fokontany_id").val()});
         
         $.post("save_citizen_from_certificat", data, function(){
            var pdf = new jsPDF('l','px','a5');

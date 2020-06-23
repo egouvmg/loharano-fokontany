@@ -131,5 +131,13 @@ class Fokontany_model extends CI_Model
 		return $query->result();
 	}
 
+	public function update($data) {
+		$fokontany_id = $data["fokontany_id"];
+		$this->db->where('id', $fokontany_id);
+		unset($data["fokontany_id"]);
+		$this->db->update($this->_table, $data);
+		return $fokontany_id;
+	}
+
 
 }

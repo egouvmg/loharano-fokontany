@@ -29,7 +29,9 @@
       <div class="logo-container">
         <a href="/"><img src="<?= img('Logo-Loharano-mini.png');?>"/></a>
       </div>
-      
+      <input type="hidden" id="id_personne" name="id_personne" value="<?= $id_personne?>"/>
+      <input type="hidden" id="origin_page" name="origin_page" value="<?= $origin_page?>"/>
+      <input type="hidden" id="fokontany_id" name="fokontany_id" value="<?= $fokontany_id?>"/>
       <img src="<?= img('sautRep.png');?>">
       <div class="menu">
         <ul class="navbar-nav">
