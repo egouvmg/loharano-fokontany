@@ -658,6 +658,8 @@ class Citizen extends Operator_Controller
      */
     public function load_citizen_certificate()
 	{
+        $this->load->library('nomenclature');
+
         $this->data['title'] = $this->lang->line('citizen_residence');
 
         $str = $this->input->get('id_personne');
@@ -666,8 +668,12 @@ class Citizen extends Operator_Controller
         $id_personne = gmp_intval($bigInt);
 
         $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
-
+        
         $this->data['citizen_data'] = $citizen_data;
+        
+        $reference = $this->nomenclature->generate_certificat_reference("residence",$this->fokontany_id, $citizen_data[0]->lf_residence);
+        
+        $this->data['reference'] = $reference;
 		
         $this->load->view('citizen_certificat', $this->data);
     }
@@ -677,6 +683,8 @@ class Citizen extends Operator_Controller
      */
     public function certificate_life()
 	{
+        $this->load->library('nomenclature');
+
         $this->data['title'] = $this->lang->line('citizen_life');
 
         $str = $this->input->get('id_personne');
@@ -686,6 +694,10 @@ class Citizen extends Operator_Controller
         $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
 
         $this->data['citizen_data'] = $citizen_data;
+
+        $reference = $this->nomenclature->generate_certificat_reference("life",$this->fokontany_id, $citizen_data[0]->lf_vie);
+        
+        $this->data['reference'] = $reference;
 		
         $this->load->view('life_certificat', $this->data);
 	}
@@ -695,6 +707,8 @@ class Citizen extends Operator_Controller
      */
     public function certificate_supported()
 	{
+        $this->load->library('nomenclature');
+
         $this->data['title'] = $this->lang->line('citizen_supported');
 
         $str = $this->input->get('id_personne');
@@ -704,6 +718,10 @@ class Citizen extends Operator_Controller
         $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
 
         $this->data['citizen_data'] = $citizen_data;
+
+        $reference = $this->nomenclature->generate_certificat_reference("support",$this->fokontany_id, $citizen_data[0]->lf_support);
+        
+        $this->data['reference'] = $reference;
 		
         $this->load->view('supported_certificat', $this->data);
     }
@@ -713,6 +731,8 @@ class Citizen extends Operator_Controller
      */
     public function certificate_move()
 	{
+        $this->load->library('nomenclature');
+
         $this->data['title'] = $this->lang->line('citizen_move');
 
         $str = $this->input->get('id_personne');
@@ -722,6 +742,10 @@ class Citizen extends Operator_Controller
         $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
 
         $this->data['citizen_data'] = $citizen_data;
+
+        $reference = $this->nomenclature->generate_certificat_reference("move",$this->fokontany_id, $citizen_data[0]->lf_move);
+        
+        $this->data['reference'] = $reference;
 		
         $this->load->view('move_certificat', $this->data);
 	}
@@ -731,6 +755,8 @@ class Citizen extends Operator_Controller
      */
     public function certificate_celibat()
 	{
+        $this->load->library('nomenclature');
+
         $this->data['title'] = $this->lang->line('citizen_celibacy');
 
         $str = $this->input->get('id_personne');
@@ -740,7 +766,11 @@ class Citizen extends Operator_Controller
         $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
 
         $this->data['citizen_data'] = $citizen_data;
-		
+
+        $reference = $this->nomenclature->generate_certificat_reference("celibacy",$this->fokontany_id, $citizen_data[0]->lf_celibacy);
+        
+        $this->data['reference'] = $reference;
+
         $this->load->view('celibacy_certificat', $this->data);
 	}
     
@@ -749,6 +779,8 @@ class Citizen extends Operator_Controller
      */
     public function certificate_behavior()
 	{
+        $this->load->library('nomenclature');
+
         $this->data['title'] = $this->lang->line('citizen_good_behavior');
 
         $str = $this->input->get('id_personne');
@@ -758,6 +790,10 @@ class Citizen extends Operator_Controller
         $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
 
         $this->data['citizen_data'] = $citizen_data;
+
+        $reference = $this->nomenclature->generate_certificat_reference("behavior",$this->fokontany_id, $citizen_data[0]->lf_behavior);
+        
+        $this->data['reference'] = $reference;
 		
         $this->load->view('behavior_certificat', $this->data);
     }
@@ -814,7 +850,34 @@ class Citizen extends Operator_Controller
 			}
 		}
 		else echo json_encode(['error' => 1, 'msg' => 'Aucune donnée à enregistrer.']);
-	}
+    }
+    
+    public function generate_certificat_reference(){
+        //$reference = dechex($this->fokontany_id);
+        $reference = dechex(2);
+        
+        //$reference = str_pad($reference, 5, '0', STR_PAD_LEFT);
+        $reference = str_pad($reference, 5, '0', STR_PAD_LEFT);
+
+        $reference .= '1';
+
+        //2020 is index 1
+        $index_year = (int) date("Y");
+        $index_year = $index_year - 2019;
+
+        $reference .= $index_year;
+
+        //Ampina date androany
+        $reference .= date("ymd");
+
+        // Charger un fichier de configuration des Code des certificats
+
+        //$index = ($certificats) ? count($certificats) + 1 : 1;
+        $index = 10;
+
+        $reference .= str_pad($index, 4, '0', STR_PAD_LEFT);
+     return $reference;   
+    }
 
 
 }

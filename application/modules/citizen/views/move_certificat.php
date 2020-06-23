@@ -433,17 +433,17 @@
               </div>
 
           <div class="row">
-            <div class="col-sm-4" style="background-color:white;">
+            <div class="col-sm-5" style="background-color:white;">
             <div class="form-group row" style="margin-bottom: 0px;">
                 <label for="Lf" class="col-sm-7 col-form-label font-weight-bold">N°:</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->cin_personne)."'" ?>> 
+                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($reference)."'" ?>> 
                 </div>
               </div>
             </div>
 
             <!--Ecusson-->
-            <div class="col-sm-3" style="background-color:white;">
+            <div class="col-sm-2" style="background-color:white;">
               <img src="<?= img('ecussons/cua.png');?>">
             </div>
 
