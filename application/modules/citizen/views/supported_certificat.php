@@ -478,7 +478,14 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-6" style="background-color:white;"></div>
+            <div class="col-sm-6" style="background-color:white;">
+            <div class="form-group row" style="margin-bottom: 0px;">
+                <label for="Lf" class="col-sm-5 col-form-label font-weight-bold">N°:</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($reference)."'" ?>> 
+                </div>
+              </div>
+            </div>
             <div class="col-sm-6" style="background-color:white;">
               <u>LE CHEF DU FOKONTANY </u>
             </div>
