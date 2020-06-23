@@ -1,4 +1,131 @@
 $(function () {
+    $("#province").change(function (e) {
+        $('#loadingLocation').show();
+        $.post("enfant_province", {
+            id: $(this).val()
+        }, function (res) {
+            if (res.success == 1) {
+                $("#region").html(res.childs);
+                //Récupération districts
+                $.post("enfant_region", {
+                    id: res.first_child
+                }, function (res) {
+                    if (res.success == 1) {
+                        $("#district").html(res.childs);
+
+                        //Récupération communes
+                        $.post("enfant_district", {
+                            id: res.first_child
+                        }, function (res) {
+                            if (res.success == 1) {
+                                $("#common").html(res.childs);
+                                $.post("enfant_commune",{
+                                    id : res.first_child
+                                }, function (res) {
+                                    if (res.success == 1) {						
+                                        $("#borough").html(res.childs);
+                                        $('#loadingLocation').hide();
+                                        users.setData('les_chefs_arrondissement', {borough_id: $("#borough").val()});
+                                    } else if (res.error == 1){
+                                        alert(res.msg);
+                                        $("#borough").html(res.childs);
+                                    }
+                                }, 'JSON');
+                            } else if (res.error == 1)
+                                alert(res.msg);
+                        }, 'JSON');
+                    } else if (res.error == 1)
+                        alert(res.msg);
+                }, 'JSON');
+            } else if (res.error == 1)
+                alert(res.msg);
+        }, 'JSON');
+    });
+
+    $("#region").change(function (e) {
+        $('#loadingLocation').show();
+        //Récupération districts
+        $.post("enfant_region", {
+            id: $(this).val()
+        }, function (res) {
+            if (res.success == 1) {
+                $("#district").html(res.childs);
+
+                //Récupération communes
+                $.post("enfant_district", {
+                    id: res.first_child
+                }, function (res) {
+                    if (res.success == 1) {
+                        $("#common").html(res.childs);
+
+                        $.post("enfant_commune",{
+                            id : res.first_child
+                        }, function (res) {
+                            if (res.success == 1) {						
+                                $("#borough").html(res.childs);
+                                $('#loadingLocation').hide();
+                                users.setData('les_chefs_arrondissement', {borough_id: $("#borough").val()});
+                            } else if (res.error == 1){
+                                alert(res.msg);
+                                $("#borough").html(res.childs);
+                            }
+                        }, 'JSON');
+                    } else if (res.error == 1)
+                        alert(res.msg);
+                }, 'JSON');
+            } else if (res.error == 1)
+                alert(res.msg);
+        }, 'JSON');
+
+    });
+
+    $("#district").change(function (e) {
+        $('#loadingLocation').show();
+        //Récupération communes
+        $.post("enfant_district", {
+            id: $(this).val()
+        }, function (res) {
+            if (res.success == 1) {
+                $("#common").html(res.childs);
+                $.post("enfant_commune",{
+                    id : res.first_child
+                }, function (res) {
+                    if (res.success == 1) {						
+                        $("#borough").html(res.childs);
+                        $('#loadingLocation').hide();
+                        users.setData('les_chefs_arrondissement', {borough_id: $("#borough").val()});
+                    } else if (res.error == 1){
+                        alert(res.msg);
+                        $("#borough").html(res.childs);
+                    }
+                }, 'JSON');
+            } else if (res.error == 1)
+                alert(res.msg);
+        }, 'JSON');
+    });
+
+    $("#common").change(function (e) {
+        $('#loadingLocation').show();
+        //Récupération fokontany
+        $.post("enfant_commune",{
+            id : $(this).val()
+        }, function (res) {
+            if (res.success == 1) {						
+                $("#borough").html(res.childs);
+                $('#loadingLocation').hide();
+                users.setData('les_chefs_arrondissement', {borough_id: $("#borough").val()});
+            } else if (res.error == 1){
+                alert(res.msg);
+                $("#borough").html(res.childs);
+            }
+        }, 'JSON');
+    });
+
+    $("#borough").change(function (e) {
+        $('#loadingLocation').show();
+        users.setData('les_chefs_arrondissement', {borough_id: $(this).val()});
+        $('#loadingLocation').hide();
+    });
 
     var status = function(cell, formatterParams){
         var value = cell.getValue();
@@ -57,21 +184,15 @@ $(function () {
             $('#editModal').modal();
         },
     });
-
-    $(document).ready(function(e){
-        var borough_id = $('#borough').val() || 0;
-
-        users.setData('les_chefs_arrondissement', {borough_id:borough_id});
-    });
-
-    $('#borough').change(function(){
-        users.setData('les_chefs_arrondissement', {borough_id: $(this).val()});
-    });
     
     $(document).ready(function () {
         $('#phone').usPhoneFormat({
             format: 'xxx xx xxx xx',
         });
+
+        var borough_id = $('#borough').val() || 0;
+
+        users.setData('les_chefs_arrondissement', {borough_id:borough_id});
     });
     
 	$('#editOperator').click(function(e){

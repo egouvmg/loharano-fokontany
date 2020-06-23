@@ -220,7 +220,6 @@
     <script src="<?= plugin('phone', 'js', 'jquery-input-mask-phone-number.js');?>"></script>
     <script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
     <script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
-    <script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
     <script src="<?= plugin('modules', 'superadmin', 'list_chief.js');?>"></script>
 </body>
 </html>
