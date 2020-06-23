@@ -22,8 +22,8 @@ $(function () {
             { title: "Lieu de Naissance", field: "lieu_de_naissance", headerFilterPlaceholder: "...", headerFilter: "input" }
         ],
         pagination:"local",
-        paginationSize:25,
-        paginationSizeSelector:[25, 50, 100, 200],
+        paginationSize:20,
+        paginationSizeSelector:[20, 50, 100, 200],
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{

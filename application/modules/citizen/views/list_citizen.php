@@ -61,7 +61,7 @@
             <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménage</a>
             <ul class="sub-main-menu" style="display:none;">
               <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
-              <li><a href="#">Créer nouveau menage</a></li>
+              <li><a href="aide_menage">Liste des aides</a></li>
             </ul>
           </li>
         </ul>

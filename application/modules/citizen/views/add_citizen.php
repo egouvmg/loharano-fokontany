@@ -61,7 +61,7 @@
             <a href="#"><span class="iconify" data-icon="fa-solid:user" data-inline="false"></span> <?=$this->lang->line('households');?></a>
             <ul class="sub-main-menu" style="display:none;">
               <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
-              <li><a href="#">Créer nouveau menage</a></li>
+              <li><a href="aide_menage">Liste des aides</a></li>
             </ul>
           </li>
           <li>

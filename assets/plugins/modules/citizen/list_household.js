@@ -24,8 +24,8 @@ $(function () {
             citizens.setData('membres_menage', {numero_carnet:row.getData().numero_carnet});
         },
         pagination:"local",
-        paginationSize:25,
-        paginationSizeSelector:[25, 50, 100, 200],
+        paginationSize:15,
+        paginationSizeSelector:[15, 30, 100, 200],
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{

@@ -61,7 +61,7 @@
             <a href="#"><span class="iconify" data-icon="fa-solid:user" data-inline="false"></span> <?=$this->lang->line('households');?></a>
             <ul class="sub-main-menu" style="display:none;">
               <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
-              <li><a href="#">Créer nouveau menage</a></li>
+              <li><a href="aide_menage">Liste des aides</a></li>
             </ul>
           </li>
           <li>
@@ -86,10 +86,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <p><?= $this->lang->line('adding_citizen');?></p>
-                    <a href="recherche_menage_fokontany" class="bloc-link">
+                    <a href="recherche_menage_fokontany" class="bloc-link color-1">
                         <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> <?=$this->lang->line('search_household');?>
                     </a>
-                    <a href="nouveau_menage_fokontany" class="bloc-link">
+                    <a href="nouveau_menage_fokontany" class="bloc-link color-2">
                         <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> <?=$this->lang->line('new_household');?>
                     </a>
                 </div>
