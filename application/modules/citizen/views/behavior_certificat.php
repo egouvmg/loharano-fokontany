@@ -112,7 +112,7 @@
             </div>
             <div class="col-sm-3" style="background-color:white;"></div>
             <div class="col-sm-5 text-center" style="background-color:white;">
-              <span class="font-weight-bold"><h2>FANAMARINAM-PITONDRAN-TENA</h2></span>
+              <span class="font-weight-bold"><h3>FANAMARINAM-PITONDRAN-TENA</h3></span>
               <span class="font-weight-bold"><h4>CERTIFICAT</h4></span>
               <span class="font-weight-bold"><h4>DE BONNE CONDUITE - DE BONNE VIE - MOEURS</h4></span>
             </div>
@@ -130,7 +130,7 @@
               <div class="form-group row" style="margin-bottom: 0px;">
                <label for="Lf" class="col-sm-2 col-form-label font-weight-bold">Lf :</label>
                <div class="col-sm-10">
-                 <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->lf_behavior)."'" ?>> 
+                 <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->lf_behavior+1).' . '.date('y')."'" ?>> 
                 </div>
               </div>
             </div>
@@ -183,19 +183,12 @@
                     </div>
                   </div>
                 </div>
-
-                <div class="col-sm-4">
-                  <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-5 col-form-label">
-                      <label for="tao" class="font-weight-bold" style="margin-bottom: 0px;">tao :</label>
-                      <p class="font-italic">à</p>
-                    </div>
-                    <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
-                    </div>
+                
+                  <div class="col-sm-4">
+                    <span class="font-weight-bold" style="margin-bottom: 0px;">tao :</span><?=$citizen_data[0]->lieu_de_naissance?>
+                    <p class="font-italic">à</p>
                   </div>
-                </div>
-
+                
                   <div class="col-sm-4">
                     <div class="form-group row" style="margin-bottom: 0px;">
                       <div class="col-sm-5 col-form-label">
@@ -237,14 +230,7 @@
 
               <div class="row">
                 <div class="col-sm-4">
-                  <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-9 col-form-label">
-                      <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Kara-panondrom-pirenena lf (CNI) :</label>
-                    </div>
-                    <div class="col-sm-3">
-                      <input type="text" class="form-control border-0" style="width:100px;margin-left:-75px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->cin_personne."'" ?>> 
-                    </div>
-                  </div>
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">Kara-panondrom-pirenena lf (CNI) :</span><?= $citizen_data[0]->cin_personne?>
                 </div>
 
                 <div class="col-sm-4">
@@ -313,14 +299,14 @@
               </div>
                 
                 <div class="col-sm-5">
-                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->lf_residence)."'" ?>> 
+                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value="" placeholder="Fanisana..."> 
                 </div>
               </div>
 
               <div class="form-group row" style="margin-bottom: 0px;">
                 <label for="Lf" class="col-sm-5 col-form-label font-weight-bold">N°:</label>
                 <div class="col-sm-7">
-                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($reference)."'" ?>> 
+                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($reference).'  ./'.date('y')."'" ?>> 
                 </div>
               </div>
 

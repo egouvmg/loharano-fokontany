@@ -9,6 +9,7 @@
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <style>
+   input[readonly] {background-color: white !important;}
   </style>
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -137,7 +138,7 @@
                       <label for="Atoa" class="font-weight-bold" style="margin-bottom: 0px;">Le déclarant(e) :</label>
                     </div>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control border-0" style="margin-left:-30px;padding-bottom: 2px;" id="Atoa" value=<?= "'".$citizen_data[0]->nom." ".$citizen_data[0]->prenoms."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-30px;padding-bottom: 2px;" id="Atoa" value=<?= "'".$citizen_data[0]->nom." ".$citizen_data[0]->prenoms."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -149,7 +150,7 @@
                         <label for="Asa" class="font-weight-bold" style="margin-bottom: 0px;">CIN N° :</label>
                       </div>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control border-0" style="margin-left:-55px;padding-bottom: 2px;" id="Asa" value=<?= "'".$citizen_data[0]->cin_personne."'" ?>> 
+                        <input readonly type="text" class="form-control border-0" style="margin-left:-55px;padding-bottom: 2px;" id="Asa" value=<?= "'".$citizen_data[0]->cin_personne."'" ?>> 
                       </div>
                     </div>
                   </div>
@@ -162,7 +163,7 @@
                       <label for="Teraka" class="" style="margin-bottom: 0px;">délivré à</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->lieu_delivrance_cin."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->lieu_delivrance_cin."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -173,7 +174,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">le</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->date_delivrance_cin."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->date_delivrance_cin."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -186,7 +187,7 @@
                       <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Né(e) le :</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->date_de_naissance."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->date_de_naissance."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -197,7 +198,7 @@
                       <label for="tao" class="font-weight-bold" style="margin-bottom: 0px;">à :</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -210,7 +211,7 @@
                       <label for="Zanak" class="font-weight-bold" style="margin-bottom: 0px;">Fils ou fille de :</label>
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control border-0" style="margin-left:-200px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->father."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-200px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->father."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -221,7 +222,7 @@
                         <label for="sy" class="font-weight-bold" style="margin-bottom: 0px;">et de</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-240px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->mother."'" ?>> 
+                        <input readonly type="text" class="form-control border-0" style="margin-left:-240px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->mother."'" ?>> 
                       </div>
                   </div>
                 </div>
@@ -234,7 +235,7 @@
                       <label for="Zanak" class="" style="margin-bottom: 0px;">CIN N°:</label>
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control border-0" style="margin-left:-200px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->cin_personne."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-200px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->cin_personne."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -245,7 +246,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">délivrée le</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->date_delivrance_cin."'" ?>> 
+                        <input readonly type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->date_delivrance_cin."'" ?>> 
                       </div>
                   </div>
                 </div>
@@ -256,7 +257,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">à</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-240px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->lieu_delivrance_cin."'" ?>> 
+                        <input readonly type="text" class="form-control border-0" style="margin-left:-240px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->lieu_delivrance_cin."'" ?>> 
                       </div>
                   </div>
                 </div>
@@ -269,7 +270,7 @@
                       <label for="Zanak" class="" style="margin-bottom: 0px;">demeurant à:</label>
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control border-0" style="margin-left:-100px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->libelle_fokontany."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-100px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->libelle_fokontany."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -280,7 +281,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">Lot</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->adresse_actuelle."'" ?>> 
+                        <input readonly type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->adresse_actuelle."'" ?>> 
                       </div>
                   </div>
                 </div>
@@ -291,7 +292,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">depuis</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->date_arrivee."'" ?>> 
+                        <input readonly type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->date_arrivee."'" ?>> 
                       </div>
                   </div>
                 </div>
@@ -315,7 +316,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">CIN N°</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="CIN du Témoin 1" value=""> 
+                        <input readonly type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="CIN du Témoin 1" value=""> 
                       </div>
                   </div>
                 </div>
@@ -339,7 +340,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">le</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" placeholder="Date obtention CIN du Témoin 1" value=""> 
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" placeholder="Date obtention CIN du Témoin 1" value=""> 
                     </div>
                   </div>
                 </div>
@@ -484,7 +485,7 @@
             <div class="form-group row" style="margin-bottom: 0px;">
                 <label for="Lf" class="col-sm-5 col-form-label font-weight-bold">N°:</label>
                 <div class="col-sm-7">
-                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($reference)."'" ?>> 
+                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($reference).'  ./'.date('y')."'" ?>> 
                 </div>
               </div>
             </div>

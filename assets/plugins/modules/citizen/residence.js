@@ -136,6 +136,7 @@ function customFormatter(cell, formatterParams){
             $('#passport_place').val(row.getData().passport_place);
             $('#pdf_file').val(row.getData().pdf_file);
             $('#person_id').val(row.getData().id_personne);
+            $('#numero_carnet').val(row.getData().numero_carnet);
 
             var  person_id= row.getData().id_personne;
 
@@ -202,74 +203,74 @@ function customFormatter(cell, formatterParams){
     });
 
 
-    $(document).on('click', '#validEditPerson', function(e){
+    $('#validEditPerson').click(function(e){
         e.preventDefault();
         
-        $('#loadingSaveData').show();
-        $('.error_field').text('');
-
-        var cin = $("#cin").val();
-
-        var cin_date = $('#cin_date').val();
-		var cin_place = $('#cin_place').val();
-
-		$('.cin_dateError').text('');
-        $('.cin_placeError').text('');
-        $('.cinError').text('');
-
-        if(cin != ''){
-            if(cin.length != 15){
-                $('.cinError').text('Le numéro CIN ne doit pas contenir de lettres et doit être composé de  12 chiffres.');
-                $('#loadingSaveData').hide();
-				return false;
-            }
-			if(cin_date == ''){
-                $('.cin_dateError').text('Préciser la date de délivrance de la CIN');
-                $('#loadingSaveData').hide();
-				return false;
-			}
-			if(cin_place == ''){
-                $('.cin_placeErro').text('Préciser le lieu de délivrance de la CIN');
-                $('#loadingSaveData').hide();
-				return false;
-			}
-		}
-
-        //Check date
-		var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
-
-		if(!($("#birth").val()).match(dateformat)){
-            $('.birthError').text('Mauvais format de la date');
-            $('#loadingSaveData').hide();
-			return false;
-		}
-		if($("#cin_date").val() != ''){
-			if(!($("#cin_date").val()).match(dateformat)){
-                $('.cin_dateError').text('Mauvais format de la date');
-                $('#loadingSaveData').hide();
-				return false;
-			}
-		}
         
-        var data = $('#formEditPerson').serializeArray();
+        /*
+        //loading();
+        var data = $('#personDetails').serializeArray();
 
-        $.post('verifier_personnne', data, function(res){
-            if(res.required == 1){
-                for (let index = 0; index < res.missing.length; index++) {
-                    $('.'+res.missing[index]+'Error').text('Champs obligatoire');
+        $.post('save_citizen_from_certificat', data, function(res){
+            if(res.error === 1){
+                if(res.missing_fields){
+                    $.each( res.missing_fields, function( key, value ) {
+                        $('.error_' + value[0]).text(value[1]);
+                    });
                 }
             }
-            else if(res.success == 1){
-                alert('Modification terminée. Rechargement de la liste');
-                location.reload();
+            if(res.success === 1){
+                $('#confirmResponse').text(res.msg);
+                $('#confirmationModal').modal();
             }
-            else if(res.error ==1) alert(res.msg);
+            if(res.failed === 1)
+                $('#failedMsg').text(res.msg);
 
-            $('#loadingSaveData').hide();
-        },'JSON')
-        .fail(function () {
-            alert('Une erreur est survenue. Contacter le responsable.');
-        });
+            //endLoading();
+        }, 'JSON');
+        */
+        var data =  [];
+        data.push({name: 'id_personne', value: $("#person_id").val()});
+        data.push({name: 'numero_carnet', value: $("#numero_carnet").val()});
+        data.push({name: 'lieu_de_naissance', value: $("#birth_place").val()});
+        data.push({name: 'for_person', value: "true"});
+        data.push({name: 'address', value: $("#address").val()});
+        data.push({name: 'last_name', value: $("#last_name").val()});
+        data.push({name: 'first_name', value: $("#first_name").val()});
+        data.push({name: 'marital_status', value: $("#marital_status").val()});
+        data.push({name: 'parent_link', value: $("#parent_link").val()});
+        data.push({name: 'birth', value: $("#birth").val()});
+        data.push({name: 'sexe', value: $("#sexe").val()});
+        data.push({name: 'handicapped', value: $("#handicapped").val()});
+        data.push({name: 'nationality', value: $("#nationality").val()});
+        data.push({name: 'cin', value: $("#cin").val()});
+        data.push({name: 'cin_date', value: $("#cin_date").val()});
+        data.push({name: 'cin_place', value: $("#cin_place").val()});
+        data.push({name: 'father', value: $("#father").val()});
+        data.push({name: 'father_status', value: $("#father_status").val()});
+        data.push({name: 'mother', value: $("#mother").val()});
+        data.push({name: 'mother_status', value: $("#mother_status").val()});
+        data.push({name: 'phone', value: $("#phone").val()});
+        data.push({name: 'job', value: $("#job").val()});
+        data.push({name: 'job_status', value: $("#job_status").val()});
+
+        $.post('save_citizen_from_certificat', data, function(res){
+            if(res.error === 1){
+                if(res.missing_fields){
+                    $.each( res.missing_fields, function( key, value ) {
+                        $('.error_' + value[0]).text(value[1]);
+                    });
+                }
+            }
+            if(res.success === 1){
+                $('#confirmResponse').text(res.msg);
+                $('#confirmationModal').modal();
+            }
+            if(res.failed === 1)
+                $('#failedMsg').text(res.msg);
+
+        }, 'JSON');
+
     });
 
 });

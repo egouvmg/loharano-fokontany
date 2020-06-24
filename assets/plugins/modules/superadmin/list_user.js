@@ -22,7 +22,7 @@ $(function () {
         ],
         pagination:"local",
         paginationSize:25,
-        paginationSizeSelector:[25, 50, 100, 200],
+        /*paginationSizeSelector:[25, 50, 100, 200],
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
@@ -44,7 +44,7 @@ $(function () {
                     "next_title":"Page Suivante",
                 },
             }
-        },
+        },*/
         rowClick:function(e, row){
             $('#first_name').val(row.getData().first_name);
             $('#email').val(row.getData().email);

@@ -110,8 +110,8 @@
         </div>
         <!-- Modal END -->
 
-  <!-- Person details -->
-  <div class="modal fade" id="personDetails" tabindex="-1" role="dialog" aria-labelledby="newRegisterTitle" aria-hidden="true">
+<!-- Person details -->
+<div class="modal fade" id="personDetails" tabindex="-1" role="dialog" aria-labelledby="newRegisterTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -128,25 +128,32 @@
         <div class="row">
           <!--Form at left side -->
           <div class=" col-md-9">
-              <div class="form-row">
-                <div class="form-group col-md-5">
-                    <label for="address"><?= $this->lang->line('address');?><span class="text-red">*</span></label>
-                    <input type="text" name="address" class="form-control address" id="address"/>
-                <div class="error_field addressError"></div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="address"><?= $this->lang->line('address');?><span class="text-red">*</span></label>
+                  <input type="text" name="address" class="form-control address" id="address"/>
+                  <div class="error_field addressError"></div>
               </div>
+              <div class="form-group col-md-6">
+                  <label for="address">Numero Carnet<span class="text-red">*</span></label>
+                  <input type="text" name="address" class="form-control address" id="numero_carnet"/>
+              </div>
+            </div>
 
-              <div class="form-row">
-            <div class="form-group col-md-4">
+            <div class="form-row">
+              <div class="form-group col-md-4">
                 <label for="last_name">Nom<span class="text-red">*</span></label>
                 <input type="text" name="last_name" class="form-control last_name" id="last_name"/>
                 <div class="error_field last_nameError"></div>
-            </div>
-            <div class="form-group col-md-4">
+              </div>
+
+              <div class="form-group col-md-4">
                 <label for="first_name">Prénom(s)</label>
                 <input type="text" name="first_name" class="form-control first_name" id="first_name"/>
                 <div class="error_field first_nameError"></div>
-            </div>
-            <div class="form-group col-md-4">
+              </div>
+
+              <div class="form-group col-md-4">
                 <label for="marital_status">Situation matrimoniale</label>
                 <select id="marital_status" class="form-control"  name="marital_status">
                     <option value="5"></option>
@@ -156,11 +163,11 @@
                     <option value="4">Divorcé(e)</option>
                 </select>
                 <div class="error_field marital_statusError"></div>
+              </div>
             </div>
-        </div>
 
-        <div class="form-row">
-            <div class="form-group col-md-4">
+            <div class="form-row">
+              <div class="form-group col-md-4">
                 <label for="parent_link">Lien parenté</label>
                 <select id="parent_link" onchange="controlFilsFille('#parent_link', '#sexe');" class="form-control parent_link" name="parent_link">
                   <option value="0"></option>
@@ -172,21 +179,21 @@
                 </select>
                 <input type="text" name="other_pl" id="otherParentLink" placeholder="Préciser le lien de parenté" style="display: none; margin-top: 3px;" class="form-control" />
                 <div class="error_field parent_linkError"></div>
-            </div>
-            <div class="form-group col-md-4">
+              </div>
+              <div class="form-group col-md-4">
                 <label for="birth">Date naissance<span class="text-red">*</span></label>
                 <input type="text" class="form-control date_type" placeholder="jj/mm/aaaa" name="birth" id="birth"/>
                 <div class="error_field birthError"></div>
-            </div>
-            <div class="form-group col-md-4">
+              </div>
+              <div class="form-group col-md-4">
                 <label for="birth_place">Lieu de naissance<span class="text-red">*</span></label>
                 <input type="text" class="form-control" name="birth_place" id="birth_place"/>
                 <div class="error_field birth_placeError"></div>
+              </div>
             </div>
-        </div>
 
-        <div class="form-row">
-            <div class="form-group col-md-4">
+            <div class="form-row">
+              <div class="form-group col-md-4">
                 <label for="sexe">Sexe (H/F)</label>
                 <select id="sexe" class="form-control" name="sexe">
                     <option value="2"></option>
@@ -194,16 +201,16 @@
                     <option value="0">Femme</option>
                 </select>
                 <div class="error_field sexeError"></div>
-            </div>
-            <div class="form-group col-md-4">
+              </div>
+              <div class="form-group col-md-4">
                 <label for="handicapped">Handicapé(e)</label>
                 <select id="handicapped" class="form-control" name="handicapped">
                     <option value="0">Non</option>
                     <option value="1">Oui</option>
                 </select>
                 <div class="error_field handicappedError"></div>
-            </div>
-            <div class="form-group col-md-4">
+              </div>
+              <div class="form-group col-md-4">
                 <label for="nationality">Nationalité</label>
                 <select class="form-control" name="nationality" id="nationality">
                     <option value="0"></option>
@@ -403,50 +410,52 @@
                     <option value="Zimbabweenne">Zimbabweenne</option>
                 </select>
                 <div class="error_field nationalityError"></div>
+              </div>
             </div>
-        </div>
 
-        <div class="form-row cin-container">
-          <div class="form-group col-md-3">
-              <label for="cin">Numéro CIN</label>
-              <input type="text" maxlength="15" placeholder="000 000 000 000" class="form-control cin" name="cin" id="cin"/>
-              <div class="error_field cinError"></div>
-          </div>
-          <div class="form-group col-md-3">
-              <label for="cin_date">Date CIN</label>
-              <input type="text" class="form-control date_type" placeholder="jj/mm/aaaa" name="cin_date" id="cin_date"/>
-              <div class="error_field cin_dateError"></div>
-          </div>
-          <div class="form-group col-md-3">
-              <label for="cin_place">Lieu CIN</label>
-              <input type="text" class="form-control" name="cin_place" id="cin_place"/>
-              <div class="error_field cin_placeError"></div>
-          </div>
-        </div>
-        <div class="form-row passport-container"  style="display:none;">
-          <div class="form-group col-md-4">
-            <label for="passport">Numéro CIN/Passeport/Carte de résident</label>
-            <input type="text" class="form-control" maxlenght="20" placeholder="xxxxxxxxxxxxxxxxxxxx" name="passport" id="passport"/>
-            <div class="error_field passportError"></div>
-          </div>
-          <div class="form-group col-md-4">
-            <label for="passport_date">Date CIN/Passeport/Carte de résident</label>
-            <input type="text" class="form-control date_type" placeholder="jj/mm/aaaa" name="passport_date" id="passport_date"/>
-            <div class="error_field passport_dateError"></div>
-          </div>
-          <div class="form-group col-md-4">
-            <label for="passport_place">Lieu CIN/Passeport/Carte de résident</label>
-            <input type="text" class="form-control" placeholder="..." name="passport_place" id="passport_place"/>
-            <div class="error_field passport_placeError"></div>
-          </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
+            <div class="form-row cin-container">
+              <div class="form-group col-md-4">
+                <label for="cin">Numéro CIN</label>
+                <input type="text" maxlength="15" placeholder="000 000 000 000" class="form-control cin" name="cin" id="cin"/>
+                <div class="error_field cinError"></div>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="cin_date">Date CIN</label>
+                <input type="text" class="form-control date_type" placeholder="jj/mm/aaaa" name="cin_date" id="cin_date"/>
+                <div class="error_field cin_dateError"></div>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="cin_place">Lieu CIN</label>
+                <input type="text" class="form-control" name="cin_place" id="cin_place"/>
+                <div class="error_field cin_placeError"></div>
+              </div>
+            </div>
+
+            <div class="form-row passport-container"  style="display:none;">
+              <div class="form-group col-md-4">
+                <label for="passport">Numéro CIN/Passeport/Carte de résident</label>
+                <input type="text" class="form-control" maxlenght="20" placeholder="xxxxxxxxxxxxxxxxxxxx" name="passport" id="passport"/>
+                <div class="error_field passportError"></div>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="passport_date">Date CIN/Passeport/Carte de résident</label>
+                <input type="text" class="form-control date_type" placeholder="jj/mm/aaaa" name="passport_date" id="passport_date"/>
+                <div class="error_field passport_dateError"></div>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="passport_place">Lieu CIN/Passeport/Carte de résident</label>
+                <input type="text" class="form-control" placeholder="..." name="passport_place" id="passport_place"/>
+                <div class="error_field passport_placeError"></div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
                 <label for="father">Père</label>
                 <input type="text" class="form-control father" name="father" id="father"/>
                 <div class="error_field fatherError"></div>
-            </div>
-            <div class="form-group col-md-2">
+              </div>
+              <div class="form-group col-md-6">
                 <label for="father_status">Mention</label>
                 <select name="father_status"  class="form-control" id="father_status">
                     <option value="2"></option>
@@ -454,13 +463,15 @@
                     <option value="1">Mort</option>
                 </select>
                 <div class="error_field father_statusError"></div>
+              </div>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-row">
+              <div class="form-group col-md-6">
                 <label for="mother">Mère</label>
                 <input type="text" class="form-control" name="mother" id="mother"/>
                 <div class="error_field motherError"></div>
-            </div>
-            <div class="form-group col-md-2">
+              </div>
+              <div class="form-group col-md-6">
                 <label for="mother_status">Mention</label>
                 <select name="mother_status"  class="form-control" id="mother_status">
                     <option value="2"></option>
@@ -468,42 +479,52 @@
                     <option value="1">Morte</option>
                 </select>
                 <div class="error_field mother_statusError"></div>
-            </div>
-        </div>
-
-          <div class="form-row">
-              <div class="form-group col-md-6">
-                  <label for="phone">Téléphone(s)</label>
-                  <input type="text" placeholder="032 00 000 00; 033 00 000 00; 034 00 000 00" class="form-control" name="phone" id="phone"/>
-                  <div class="error_field phoneError"></div>
               </div>
-          
-          
-                <div class="form-group col-md-4">
-                    <label for="job">Profession</label>
-                    <select id="job" class="form-control job" name="job">
-                            <option value="-1"></option>
-                        <?php foreach ($jobs as $key => $job): ?>
-                          <option value="<?= $job->id;?>"><?= $job->id;?> - <?= $this->lang->line('mg_job_'.$job->id);?> - <?= $this->lang->line('fr_job_'.$job->id);?></option>
-                        <?php endforeach ?>
-                            <option value="0">Autres</option>
-                    </select>
-                    <input type="text" name="job_other" id="otherJob" placeholder="Préciser la profession" style="display: none; margin-top: 3px;" class="form-control" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="phone">Téléphone(s)</label>
+                <input type="text" placeholder="032 00 000 00; 033 00 000 00; 034 00 000 00" class="form-control" name="phone" id="phone"/>
+                <div class="error_field phoneError"></div>
+              </div>
+        
+              <div class="form-group col-md-6">
+                <label for="job">Profession</label>
+                <select id="job" class="form-control job" name="job">
+                        <option value="-1"></option>
+                    <?php foreach ($jobs as $key => $job): ?>
+                      <option value="<?= $job->id;?>"><?= $job->id;?> - <?= $this->lang->line('mg_job_'.$job->id);?> - <?= $this->lang->line('fr_job_'.$job->id);?></option>
+                    <?php endforeach ?>
+                        <option value="0">Autres</option>
+                </select>
+                <input type="text" name="job_other" id="otherJob" placeholder="Préciser la profession" style="display: none; margin-top: 3px;" class="form-control" />
                 <div class="error_field jobError"></div>
-          </div>
-            <div class="form-group col-md-5">
+              </div>
+              <div class="form-group col-md-5">
                 <label for="job_status">Situation actuelle dans l'emploi</label>
                 <input type="text" class="form-control" name="job_status" id="job_status"/>
                 <div class="error_field job_statusError"></div>
+              </div>
             </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-12">
+            <div class="form-row">
+              <div class="form-group col-md-12">
                 <label for="observation">Observation</label>
                 <textarea class="form-control" placeholer="..." name="observation" id="observation"></textarea>
                 <div class="error_field observationError"></div>
-        </div>
-         
+              </div>
+            </div>
+          </div>
+          <!--Form at Right side -->
+          <div class=" col-md-3">                     
+            <a class="btn btn-primary btn-block" id="residence" href="certificate?id_personne=" + id_personne target="_blank" role="button">Créer Certificat de résidence</a><br>
+            <a class="btn btn-primary btn-block" id="life" href="" + id_personne target="_blank" role="button">Créer Certificat de vie indiviudel</a><br>
+            <a class="btn btn-primary btn-block" id="support" href="" + id_personne target="_blank" role="button">Créer Certificat de prise en charge et de garde</a><br>
+            <a class="btn btn-primary btn-block" id="move" href="" + id_personne target="_blank" role="button">Créer Certificat de déménagement</a><br>
+            <a class="btn btn-primary btn-block" id="celibacy" href="" + id_personne target="_blank" role="button">Créer Certificat de célibat</a><br>
+            <a class="btn btn-primary btn-block" id="behavior" href="" + id_personne target="_blank" role="button">Créer Certificat de bonne conduite - de bonne vie - moeurs</a><br>
+          </div> 
+          <!--End Form at Right side -->
 
         </div>
         </form>
@@ -524,18 +545,6 @@
           </button>
         </div>
       </div>
-
- <!--Form at Right side -->
- <div class=" col-md-3">                     
-    <a class="btn btn-primary btn-block" id="residence" href="certificate?id_personne=" + id_personne target="_blank" role="button">Créer Certificat de résidence</a><br>
-    <a class="btn btn-primary btn-block" id="life" href="" + id_personne target="_blank" role="button">Créer Certificat de vie indiviudel</a><br>
-    <a class="btn btn-primary btn-block" id="support" href="" + id_personne target="_blank" role="button">Créer Certificat de prise en charge et de garde</a><br>
-    <a class="btn btn-primary btn-block" id="move" href="" + id_personne target="_blank" role="button">Créer Certificat de déménagement</a><br>
-    <a class="btn btn-primary btn-block" id="celibacy" href="" + id_personne target="_blank" role="button">Créer Certificat de célibat</a><br>
-    <a class="btn btn-primary btn-block" id="behavior" href="" + id_personne target="_blank" role="button">Créer Certificat de bonne conduite - de bonne vie - moeurs</a><br>
-</div> 
-<!--End Form at Right side -->
-
           </div> 
           <!--End Form at left side -->
         </div>
@@ -545,6 +554,7 @@
   <!-- END Person details -->    
 
 
+    </div>
     </div>
     </div>
 

@@ -9,6 +9,7 @@
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <style>
+   input[readonly] {background-color: white !important;}
   </style>
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -123,14 +124,14 @@
               <div class="form-group row" style="margin-bottom: 0px;">
                <label for="fokontany" class="col-sm-2 col-form-label font-weight-bold">FOKONTANY :</label>
                <div class="col-sm-10">
-                 <input type="text" class="form-control border-0" style="margin-left:-50px;" id="fokontany" value=<?= "'".addslashes($citizen_data[0]->libelle_fokontany)."'" ?>> 
+                 <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="fokontany" value=<?= "'".addslashes($citizen_data[0]->libelle_fokontany)."'" ?>> 
                 </div>
               </div>
 
               <div class="form-group row" style="margin-bottom: 0px;">
                <label for="Lf" class="col-sm-2 col-form-label font-weight-bold">Lf :</label>
                <div class="col-sm-10">
-                 <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->lf_celibacy)."'" ?>> 
+                 <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->lf_celibacy+1).' . '.date('y')."'" ?>> 
                 </div>
               </div>
             </div>
@@ -151,7 +152,7 @@
                       <p class="font-italic">M./Mme/Mlle</p>
                     </div>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Atoa" value=<?= "'".$citizen_data[0]->nom." ".$citizen_data[0]->prenoms."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Atoa" value=<?= "'".$citizen_data[0]->nom." ".$citizen_data[0]->prenoms."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -164,7 +165,7 @@
                         <p class="font-italic">Profession</p>
                       </div>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control border-0" style="margin-left:-75px;padding-bottom: 2px;" id="Asa" value=<?= "'".$citizen_data[0]->job."'" ?>> 
+                        <input readonly type="text" class="form-control border-0" style="margin-left:-75px;padding-bottom: 2px;" id="Asa" value=<?= "'".$citizen_data[0]->job."'" ?>> 
                       </div>
                     </div>
                   </div>
@@ -179,7 +180,7 @@
                       <p class="font-italic">Né(e) le </p>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->date_de_naissance."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->date_de_naissance."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -191,7 +192,7 @@
                       <p class="font-italic">à</p>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->lieu_de_naissance."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -203,7 +204,7 @@
                         <p class="font-italic">Nationalité</p>
                       </div>
                       <div class="col-sm-7">
-                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
+                        <input readonly type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
                       </div>
                     </div>
                   </div> 
@@ -217,7 +218,7 @@
                       <p class="font-italic">Fils ou fille de </p>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-200px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->father."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-200px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->father."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -229,7 +230,7 @@
                         <p class="font-italic">et de</p>
                       </div>
                       <div class="col-sm-7">
-                        <input type="text" class="form-control border-0" style="margin-left:-240px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->mother."'" ?>> 
+                        <input readonly type="text" class="form-control border-0" style="margin-left:-240px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->mother."'" ?>> 
                       </div>
                   </div>
                 </div>
@@ -242,7 +243,7 @@
                       <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Kara-panondrom-pirenena lf (CNI) :</label>
                     </div>
                     <div class="col-sm-3">
-                      <input type="text" class="form-control border-0" style="width:100px;margin-left:-75px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->cin_personne."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="width:100px;margin-left:-75px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->cin_personne."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -253,7 +254,7 @@
                       <label for="tao" class="font-weight-bold" style="margin-bottom: 0px;">nomena ny (du) :</label>
                     </div>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control border-0" style="padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->date_delivrance_cin."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="padding-bottom: 2px;" id="tao" value=<?= "'".$citizen_data[0]->date_delivrance_cin."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -264,7 +265,7 @@
                         <label for="Zom" class="font-weight-bold" style="margin-bottom: 0px;">tao (à) :</label>
                       </div>
                       <div class="col-sm-7">
-                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value=<?= "'".$citizen_data[0]->lieu_delivrance_cin."'" ?>> 
+                        <input readonly type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value=<?= "'".$citizen_data[0]->lieu_delivrance_cin."'" ?>> 
                       </div>
                     </div>
                   </div> 
@@ -278,7 +279,7 @@
                           <p class="font-italic">Résidant au</p>
                         </div>
                         <div class="col-sm-7">
-                          <input type="text" class="form-control border-0" style="margin-left:-350px;padding-bottom: 2px;" id="Monina" value=<?= "'".$citizen_data[0]->adresse_actuelle."'" ?>> 
+                          <input readonly type="text" class="form-control border-0" style="margin-left:-350px;padding-bottom: 2px;" id="Monina" value=<?= "'".$citizen_data[0]->adresse_actuelle."'" ?>> 
                         </div>
                     </div>
                 </div>
@@ -444,14 +445,14 @@
               </div>
                 
                 <div class="col-sm-5">
-                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->lf_residence)."'" ?>> 
+                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value="" placeholder="Fanisana..."> 
                 </div>
               </div>
 
               <div class="form-group row" style="margin-bottom: 0px;">
                 <label for="Lf" class="col-sm-5 col-form-label font-weight-bold">N°:</label>
                 <div class="col-sm-7">
-                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($reference)."'" ?>> 
+                  <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($reference).'  ./'.date('y')."'" ?>> 
                 </div>
               </div>
 
@@ -470,7 +471,7 @@
                       <p class="font-italic">Fait à </p>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-30px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->libelle_fokontany."'" ?>> 
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-30px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->libelle_fokontany."'" ?>> 
                     </div>
                   </div>
                 </div>
@@ -482,7 +483,7 @@
                         <p class="font-italic">le</p>
                       </div>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control border-0" style="margin-left: -40px;padding-bottom: 2px;" id="sy" value=<?= "'".date('d-m-Y')."'" ?>> 
+                        <input readonly type="text" class="form-control border-0" style="margin-left: -40px;padding-bottom: 2px;" id="sy" value=<?= "'".date('d-m-Y')."'" ?>> 
                       </div>
                   </div>
                 </div>

@@ -9,6 +9,7 @@
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <style>
+   input[readonly] {background-color: white !important;}
   </style>
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -123,14 +124,14 @@
               <div class="form-group row" style="margin-bottom: 0px;">
                <label for="fokontany" class="col-sm-3 col-form-label font-weight-bold">FOKONTANY :</label>
                <div class="col-sm-9">
-                 <input type="text" class="form-control border-0" style="margin-left:-50px;" id="fokontany" value=<?= "'".addslashes($citizen_data[0]->libelle_fokontany)."'" ?>> 
+                 <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="fokontany" value=<?= "'".addslashes($citizen_data[0]->libelle_fokontany)."'" ?>> 
                 </div>
               </div>
 
               <div class="form-group row" style="margin-bottom: 0px;">
                <label for="Lf" class="col-sm-2 col-form-label font-weight-bold">Lf :</label>
                <div class="col-sm-10">
-                 <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->lf_move)."'" ?>> 
+                 <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->lf_move+1).' . '.date('y')."'" ?>> 
                 </div>
               </div>
             </div>
@@ -437,9 +438,9 @@
           <div class="row">
             <div class="col-sm-5" style="background-color:white;">
             <div class="form-group row" style="margin-bottom: 0px;">
-                <label for="Lf" class="col-sm-7 col-form-label font-weight-bold">N°:</label>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($reference)."'" ?>> 
+                <label for="Lf" class="col-sm-5 col-form-label font-weight-bold">N°:</label>
+                <div class="col-sm-7">
+                  <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($reference).'  ./'.date('y')."'" ?>> 
                 </div>
               </div>
             </div>
@@ -453,24 +454,24 @@
             <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-5 col-form-label">
+                    <div class="col-sm-4 col-form-label">
                       <label for="Zanak" class="font-weight-bold" style="margin-bottom: 0px;">Natao teto :</label>
                       <p class="font-italic">Fait à </p>
                     </div>
-                    <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-30px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->libelle_fokontany."'" ?>> 
+                    <div class="col-sm-8">
+                      <input readonly type="text" class="form-control border-0" style="margin-left:-30px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->libelle_fokontany."'" ?>> 
                     </div>
                   </div>
                 </div>
 
                 <div class="col-sm-6">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-6 col-form-label">
+                      <div class="col-sm-5 col-form-label">
                         <label for="sy" class="font-weight-bold" style="margin-bottom: 0px;">androany faha</label>
                         <p class="font-italic">le</p>
                       </div>
-                      <div class="col-sm-6">
-                        <input type="text" class="form-control border-0" style="margin-left: -20px;padding-bottom: 2px;" id="sy" value=<?= "'".date('d-m-Y')."'" ?>> 
+                      <div class="col-sm-7">
+                        <input readonly type="text" class="form-control border-0" style="margin-left: -20px;padding-bottom: 2px;" id="sy" value=<?= "'".date('d-m-Y')."'" ?>> 
                       </div>
                   </div>
                 </div>

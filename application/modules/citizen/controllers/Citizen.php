@@ -80,6 +80,7 @@ class Citizen extends Operator_Controller
     public function list_households()
     {
         $this->data['title'] = 'Liste des ménages';
+        $this->data['jobs'] = $this->job->all();
 
         $this->load->view('list_household', $this->data);
     }
@@ -258,7 +259,8 @@ class Citizen extends Operator_Controller
         $numero_carnet = $this->input->get('numero_carnet');
         
         if(!empty($numero_carnet)){
-            $citizen = $this->citizen->get_citizen(['numero_carnet'=>$numero_carnet]);
+            //$citizen = $this->citizen->get_citizen(['numero_carnet'=>$numero_carnet]);
+            $citizen = $this->citizen->get_citizen_certificate(['numero_carnet'=>$numero_carnet]);
         }
         
         echo json_encode($citizen);
@@ -618,7 +620,7 @@ class Citizen extends Operator_Controller
     }
 
     /**
-     * Enregistrement/Update from Certificat Résidence
+     * Enregistrement from Certificat
      */
     public function save_citizen_from_certificat()
     {
@@ -671,24 +673,7 @@ class Citizen extends Operator_Controller
             $cin = [$data['cin'][$i], $data['cin_date'][$i], $data['cin_place'][$i]];
             $passport = [$data['passport'][$i], $data['passport_date'][$i], $data['passport_place'][$i]];
 
-            $data_tmp = [
-                /*'nom' => $data['last_name'],
-                'prenoms' => $data['first_name'],
-                'date_de_naissance' => $data['birth'],*/
-                'id_personne'=> (int)$data['id_personne'],
-                'lieu_de_naissance' => $data['lieu_de_naissance']
-                /*'sexe' => $data['sexe'],
-                'situation_matrimoniale' => $data['marital_status'],
-                'phone' => $data['phone'],
-                'father' => $data['father'],
-                'father_status' => $data['father_status'],
-                'mother' => $data['mother'],
-                'mother_status' => $data['mother_status'],
-                'job_id' => $data['job_id'],
-                'job_other' => $data['job_other'],
-                'job_status' => $data['job_status'],
-                'nationality_id' => $data['nationality_id']*/
-            ];
+            $data_tmp = [];
 
             if ($cin != ['', '', '']){
                 $data_tmp['cin_personne'] = $data['cin'];
@@ -703,17 +688,18 @@ class Citizen extends Operator_Controller
 
             $data_personne = $this->fokontany->get_fokotany_by_id((int)$data['fokontany_id']);
 
-            
-
             $lf_residence = $data_personne[0]->lf_residence;
             $lf_vie = $data_personne[0]->lf_vie;
             $lf_move = $data_personne[0]->lf_move;
             $lf_support = $data_personne[0]->lf_support;
             $lf_celibacy = $data_personne[0]->lf_celibacy;
             $lf_behavior = $data_personne[0]->lf_behavior;
-            $data_tmp = [
-                            'fokontany_id'=> (int)$data['fokontany_id'],
-                        ];
+
+
+            if(isset($data['fokontany_id'])){
+                $data_tmp['fokontany_id'] = (int)$data['fokontany_id'];
+            }
+            
 
             $origin_page = $data['origin_page'];
             if($origin_page==="residence"){
@@ -726,8 +712,78 @@ class Citizen extends Operator_Controller
             if($origin_page==="celibacy"){++$lf_celibacy;$data_tmp['lf_celibacy']= $lf_celibacy;}
             if($origin_page==="behavior"){++$lf_behavior;$data_tmp['lf_behavior']= $lf_behavior;}
 
-            if(!$this->fokontany->update($data_tmp)) {
-                $citizens_index[] = $i;
+            
+            if(isset($data['for_person'])){
+                if(isset($data['numero_carnet'])){
+                    $data_tmp['numero_carnet']= $data['numero_carnet'];
+                }
+                if(isset($data['id_personne'])){
+                    $data_tmp['id_personne']= $data['id_personne'];
+                }
+                if(isset($data['lieu_de_naissance'])){
+                    $data_tmp['lieu_de_naissance']= $data['lieu_de_naissance'];
+                }
+                if(isset($data['last_name'])){
+                    $data_tmp['nom']= $data['last_name'];
+                }
+                if(isset($data['first_name'])){
+                    $data_tmp['prenoms']= $data['first_name'];
+                }
+                if(isset($data['marital_status'])){
+                    $data_tmp['situation_matrimoniale']= $data['marital_status'];
+                }
+                if(isset($data['parent_link'])){
+                    $data_tmp['parent_link']= $data['parent_link'];
+                }
+                if(isset($data['birth'])){
+                    $data_tmp['date_de_naissance']= $data['birth'];
+                }
+                if(isset($data['sexe'])){
+                    $data_tmp['sexe']= $data['sexe'];
+                }
+                /*if(isset($data['handicapped'])){
+                    $data_tmp['handicape']= (int)$data['handicapped']===0?false:true;
+                }
+                if(isset($data['nationality'])){
+                    $data_tmp['nationality_id']= $data['nationality'];
+                }*/
+                if(isset($data['cin'])){
+                    $data_tmp['cin_personne']= $data['cin'];
+                }
+                if(isset($data['cin_date'])){
+                    $data_tmp['date_delivrance_cin']= $data['cin_date'];
+                }
+                if(isset($data['cin_place'])){
+                    $data_tmp['lieu_delivrance_cin']= $data['cin_place'];
+                }
+                if(isset($data['father'])){
+                    $data_tmp['father']= $data['father'];
+                }
+                if(isset($data['father_status'])){
+                    $data_tmp['father_status']= $data['father_status'];
+                }
+                if(isset($data['mother'])){
+                    $data_tmp['mother']= $data['mother'];
+                }
+                if(isset($data['mother_status'])){
+                    $data_tmp['mother_status']= $data['mother_status'];
+                }
+                if(isset($data['phone'])){
+                    $data_tmp['phone']= $data['phone'];
+                }
+                if(isset($data['job'])){
+                    $data_tmp['job_id']= $data['job'];
+                }
+                if(isset($data['job_status'])){
+                    $data_tmp['job_status']= $data['job_status'];
+                }
+               
+                $this->citizen->update($data_tmp);  
+            }
+            else{
+                if(!$this->fokontany->update($data_tmp)) {
+                    $citizens_index[] = $i;
+                }
             }
             if(empty($citizens_index)){
                 echo json_encode(['success' => 1, 'msg' => $this->lang->line('success_save')]);
