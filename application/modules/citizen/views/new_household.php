@@ -52,16 +52,16 @@
         <ul class="main-menu">
           <li>
             <a href="gestion_citoyens"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> <?=$this->lang->line('citizens');?></a>
-            <ul class="sub-main-menu">
-              <li><a href="recherche_menage" class="active"><?=$this->lang->line('add_citizen');?></a></li>
+            <ul class="sub-main-menu" style="display:none;">
               <li><a href="liste_citoyens"><?=$this->lang->line('list_citizen');?></a></li>
             </ul>
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="fa-solid:user" data-inline="false"></span> <?=$this->lang->line('households');?></a>
-            <ul class="sub-main-menu" style="display:none;">
+            <ul class="sub-main-menu">
               <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
-              <li><a href="#">Créer nouveau menage</a></li>
+              <li><a href="aide_menage">Liste des aides</a></li>
+              <li><a href="nouveau_menage_fokontany" class="active">Création ménage</a></li>
             </ul>
           </li>
           <li>
@@ -74,7 +74,7 @@
         <p class="info-fokontany"><span>Province : </span><?= $info_fokontany->province_name;?> <span>Région : </span><?= $info_fokontany->region_name;?> <span>District : </span><?= $info_fokontany->district_name;?> <span>Commune : </span><?= $info_fokontany->common_name;?></p>
         
         <div class="container-fluid page-title">
-          <h1><?= $title;?> - <?=$this->lang->line('step');?> 02</h1>
+          <h1>Création de nouveau ménage</h1>
         </div>
         <!-- End Page title -->
 

@@ -63,6 +63,10 @@ class Citizen extends Operator_Controller
 	public function index()
 	{
         $this->data['title'] = $this->lang->line('dashboard');
+
+		$this->data['nationalities'] = $this->nationality->all();
+        $this->data['jobs'] = $this->job->all();
+        
         $this->load->view('index', $this->data);
 	}
 
@@ -83,7 +87,7 @@ class Citizen extends Operator_Controller
     public function add_citizen()
 	{
         if($this->session->address && $this->session->household_size){
-            $this->data['title'] = $this->lang->line('add_citizen');
+            $this->data['title'] = $this->lang->line('add_citizens');
             $this->data['jobs'] = $this->job->all();
             $this->data['nationalities'] = $this->nationality->all();
 
@@ -170,7 +174,6 @@ class Citizen extends Operator_Controller
     /*
      * CERTIFICATES
      * */
-
     public function certificate_residence()
     {
         $this->data['title'] = $this->lang->line('creation_certificats');
@@ -195,7 +198,6 @@ class Citizen extends Operator_Controller
     /*
      * AJAX Requests
      */
-
     public function get_notebook()
     {
         if (!$this->input->is_ajax_request()) {
@@ -379,6 +381,66 @@ class Citizen extends Operator_Controller
             echo json_encode(['error' => 1, 'msg' => $this->lang->line('data_citizen_error')]);
         }
     }
+
+    public function edit_citizen(Type $var = null)
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $data = $this->input->post();
+
+        $nom = $this->input->post('nom');
+        $date_de_naissance = $this->input->post('date_de_naissance');
+
+        $cin_personne = $this->input->post('cin_personne');
+        $date_delivrance_cin = $this->input->post('date_delivrance_cin');
+        $lieu_delivrance_cin = $this->input->post('lieu_delivrance_cin');
+        $passport_place = $this->input->post('passport_place');
+        $passport_date = $this->input->post('passport_date');
+        $passport = $this->input->post('passport');
+
+        $missing_fields = [];
+
+        if(empty($nom))
+            $missing_fields[] = ['nom', 'Champs requis'];
+        if(empty($date_de_naissance))
+            $missing_fields[] = ['date_de_naissance', 'Champs requis'];
+
+        
+        if([$cin_personne, $date_delivrance_cin, $lieu_delivrance_cin] != ['', '', '']){
+            if(empty($cin_personne))
+                $missing_fields[] = ['cin_personne', 'Champs requis'];
+            if(empty($date_delivrance_cin))
+                $missing_fields[] =  ['date_delivrance_cin', 'Champs requis'];
+            if(empty($lieu_delivrance_cin))
+                $missing_fields[] =  ['lieu_delivrance_cin', 'Champs requis'];
+        }
+
+        if(!empty($missing_fields)){
+            echo json_encode(['failed' => 1, 'missing_fields' => $missing_fields]);
+            return false;
+        }
+
+        if([$cin_personne, $date_delivrance_cin, $lieu_delivrance_cin] == ['', '', '']){
+            unset($data['cin_personne']);
+            unset($data['date_delivrance_cin']);
+            unset($data['lieu_delivrance_cin']);
+        }
+
+        if([$passport_place, $passport_date, $passport] == ['', '', '']){
+            unset($data['passport_place']);
+            unset($data['passport_date']);
+            unset($data['passport']);
+        }
+
+        unset($data['adresse_actuelle']);
+
+        if($this->citizen->update($data))
+            echo json_encode(['success' => 1, 'msg' => 'Modification réussie']);
+        else echo json_encode(['error' => 1, 'msg' => 'Modification impossible']);
+    }
+
     public function insert_in_household()
     {
         if (!$this->input->is_ajax_request()) {
@@ -879,6 +941,35 @@ class Citizen extends Operator_Controller
      return $reference;   
     }
 
+    public function speed_search()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Very ianao :O');
+        }
+        
+        $data = $this->input->get();
+        $last_name = $this->input->get('nom');
+        $first_name = $this->input->get('prenoms');
+        $cin = $this->input->get('cin_personne');
+
+        if($data){
+            $criteria = [];
+            foreach($data as $key => $value)
+                if(!empty($value)) $criteria['LOWER('.$key . ') LIKE '] = '%'.strtolower($value).'%';
+
+            if(empty($criteria)){
+                echo json_encode(['success' => 1, 'data' => []]);
+                return TRUE;
+            }
+
+            $criteria['fokontany_id'] = $this->fokontany_id;
+            $citizens = $this->notebook->citizens($criteria);
+
+            if($citizens) echo json_encode(['success' => 1, 'data' => $citizens]);
+            else echo json_encode(['success' => 1, 'data' => []]);
+        }
+        else echo json_encode(['success' => 1, 'data' => []]);
+    }
 
 }
 

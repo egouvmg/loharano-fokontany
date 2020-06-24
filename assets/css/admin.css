@@ -860,3 +860,30 @@ img.loading{
     color: #F26122;
     background-color: #fff;
 }
+.modal-xl{
+    width: 100%;
+}
+.btn-color-1{
+    background-color: #FFADAD;
+}
+.btn-color-2{
+    background-color: #FFD6A5;
+}
+.btn-color-3{
+    background-color: #FDFFB6;
+}
+.btn-color-4{
+    background-color: #CAFFBF;
+}
+.btn-color-5{
+    background-color: #9BF6FF;
+}
+.btn-color-6{
+    background-color: #A0C4FF;
+}
+.btn-color-7{
+    background-color: #BDB2FF;
+}
+.btn-color-8{
+    background-color: #FFC6FF;
+}

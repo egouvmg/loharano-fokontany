@@ -25,7 +25,9 @@ $lang['locality_household'] = 'Localisation du ménage';
 $lang['search_household'] = 'Rechercher un ménage';
 $lang['new_household'] = 'Créer un ménage';
 
-$lang['household_click_for_details'] = 'Cliquez sur un ménage pour voir la liste des parsonnes.';
+$lang['add_citizens'] = 'Ajout de citoyen(s)';
+
+$lang['household_click_for_details'] = 'Cliquez sur un ménage pour voir la liste des personnes.';
 $lang['household_content'] = 'Les personnes dans le ménage : ';
 $lang['title_residence'] = 'Création certificat de résidence';
 $lang['certificats_introduction'] = 'Création des différents certificats: résidence - Vie - Prise en charge - Déménagement - Célibat - Bonne conduite';

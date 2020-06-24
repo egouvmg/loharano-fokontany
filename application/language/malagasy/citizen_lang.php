@@ -24,6 +24,8 @@ $lang['locality_household'] = 'Ny toerana misy ny tokantrano';
 $lang['search_household'] = 'Mitady tokantrano';
 $lang['new_household'] = 'Amoronta tokantrano';
 
+$lang['add_citizens'] = 'Manampy olona';
+
 $lang['household_click_for_details'] = 'Tsidrio ny tokontrano iray mba ahitano ny olona ao anatiny.';
 $lang['household_content'] = 'Ny olona ao anaty ny tokantrano : ';
 $lang['title_residence'] = 'Fanamboarana certificat de résidence';

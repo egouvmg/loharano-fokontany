@@ -133,10 +133,12 @@ $route['citoyens_liste'] = 'chief/citizens_list';
 $route['chef_membres_menage'] = 'chief/list_citizen_by_carnet_id';
 
 //Citizen
+$route['recherche_rapide'] = 'citizen/speed_search';
 $route['verifier_localite_menage'] = 'citizen/check_household';
 $route['liste_menages_fokontany'] = 'citizen/households_list';
 $route['citoyen_carnet_fokontany'] = 'citizen/get_notebook';
 $route['insertion_citoyen_dans_menage'] = 'citizen/insert_in_household';
+$route['modifier_citoyen'] = 'citizen/edit_citizen';
 $route['citoyens_list'] = 'citizen/citizens_list';
 $route['save_citizen_from_certificat'] = 'citizen/save_citizen_from_certificat';
 
