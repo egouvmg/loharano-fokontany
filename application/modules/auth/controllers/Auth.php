@@ -17,7 +17,7 @@ class Auth extends MY_Controller {
 		}
 		else if ($this->egmauth->is_admin())
 		{
-			echo 'Admin';
+			echo 'Diso ianao';
 		}
 		else if ($this->egmauth->is_chief())
 		{

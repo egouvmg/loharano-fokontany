@@ -62,6 +62,8 @@ class Chief extends Chief_Controller
 	public function list_citizens()
 	{
         $this->data['title'] = 'Liste des citoyens';
+        
+		$this->data['fokontanies'] = $this->fokontany->get_all(['borough_id' => $this->borough_id]);
 
         $this->load->view('list_citizens', $this->data);
     }
@@ -212,8 +214,14 @@ class Chief extends Chief_Controller
         if (!$this->input->is_ajax_request()) {
             exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
         }
+        $fokontany_id = $this->input->get('fokontany_id');
+        
+        if(empty($fokontany_id)){
+            echo json_encode([]);
+            return TRUE;
+        }
 
-        $citizens = $this->notebook->citizens(['borough_id' => $this->borough_id]);
+        $citizens = $this->notebook->citizens(['fokontany_id' => $fokontany_id]);
         echo json_encode($citizens);
     }
 
