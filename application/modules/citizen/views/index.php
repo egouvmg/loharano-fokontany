@@ -107,7 +107,7 @@
                 </div>
               </form>
             </div>
-            <div class="col-lg-12">
+            <div class="col-lg-12 mb-2">
               <a href="nouveau_menage_fokontany"><button id="createHousehold" class="btn btn-color-1" style="display:none;">Créer un nouveau ménage</button></a>
             </div>
             <div class="col-lg-12">
@@ -352,11 +352,21 @@
                     <a id="certificat_residence" href="">
                       <button class="btn btn-color-2 mb-1 mr-1">Certificat de Résidence</button>
                     </a>
-                    <button class="btn btn-color-6 mb-1 mr-1">Certificat de Démnagement</button>
-                    <button class="btn btn-color-3 mb-1 mr-1">Certificat de Célibat</button>
-                    <button class="btn btn-color-4 mb-1 mr-1">Certificat de Vie Individuelle</button>
-                    <button class="btn btn-color-5 mb-1 mr-1">Certificat de Prise en charge et de garde</button>
-                    <button class="btn btn-color-7 mb-1 mr-1">Certificat de Bonne conduite - de Bonne Vie - Moeurs</button>
+                    <a id="certificat_move" href="">
+                      <button class="btn btn-color-6 mb-1 mr-1">Certificat de Démnagement</button>
+                    </a>
+                    <a id="certificat_celibat" href="">
+                      <button class="btn btn-color-3 mb-1 mr-1">Certificat de Célibat</button>
+                    </a>
+                    <a id="certificat_life" href="">
+                      <button class="btn btn-color-4 mb-1 mr-1">Certificat de Vie Individuelle</button>
+                    </a>
+                    <a id="certificat_supported" href="">
+                      <button class="btn btn-color-5 mb-1 mr-1">Certificat de Prise en charge et de garde</button>
+                    </a>
+                    <a id="certificat_behavior" href="">
+                      <button class="btn btn-color-7 mb-1 mr-1">Certificat de Bonne conduite - de Bonne Vie - Moeurs</button>
+                    </a>                  
                   </div>
                 </div>
               </div>

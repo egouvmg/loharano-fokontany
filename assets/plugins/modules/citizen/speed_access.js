@@ -9,9 +9,6 @@ $(function () {
             {title:"Adresse", field:"adresse_actuelle", headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Nom", field:"nom",headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Prénoms", field:"prenoms",headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"phone", field:"phone",headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"job_id", field:"job_id",headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"job_status", field:"job_status",headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Date de Naissance", field:"date_de_naissance", headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Lieu de Naissance", field:"lieu_de_naissance", headerFilterPlaceholder:"..." , headerFilter:"input"}, 
             {title:"Numéro cin", field:"cin_personne", headerFilterPlaceholder:"..." , headerFilter:"input"},          
@@ -25,8 +22,8 @@ $(function () {
             $('#prenoms_info').val(row.getData().prenoms);
             $('#sexe').val(row.getData().sexe);
             $('#cin_personne_info').val(row.getData().cin_personne);
-            $('#date_delivrance_cin').val(splitDate(row.getData().date_delivrance_cin));
-            $('#lieu_delivrance_cin').val(row.getData().lieu_delivrance_cin);
+            $('#date_delivrance_cin').val(splitDate(row.getData().cin_date));
+            $('#lieu_delivrance_cin').val(row.getData().cin_place);
             $('#date_de_naissance').val(splitDate(row.getData().date_de_naissance));
             $('#lieu_de_naissance').val(row.getData().lieu_de_naissance);
             $('#father').val(row.getData().father);
@@ -34,12 +31,17 @@ $(function () {
             $('#mother').val(row.getData().mother);
             $('#mother_status').val(row.getData().mother_status);
             $('#phone').val(row.getData().phone);
-            $('#job').val(row.getData().job_id);
+            $('#job').val(row.getData().job);
             $('#job_status').val(row.getData().job_status);
             $('#situation_matrimoniale').val(row.getData().situation_matrimoniale);
             $('#id_personne').val(row.getData().id_personne);
 
             $('#certificat_residence').attr("href", "certificate?id_personne="+row.getData().id_personne);
+            $('#certificat_move').attr("href", "certificate_move?id_personne="+row.getData().id_personne);
+            $('#certificat_celibat').attr("href", "certificate_celibat?id_personne="+row.getData().id_personne);
+            $('#certificat_life').attr("href", "certificate_life?id_personne="+row.getData().id_personne);
+            $('#certificat_supported').attr("href", "certificate_supported?id_personne="+row.getData().id_personne);
+            $('#certificat_behavior').attr("href", "certificate_behavior?id_personne="+row.getData().id_personne);
 
             $('#personDetails').modal();
         },
@@ -70,7 +72,7 @@ $(function () {
         }
     });
 
-    $('.speed_access').on('keyup keypress keydown', function(e){
+    $('.speed_access').on('keyup change', function(e){
         var data = $('#speedForm').serializeArray();
 
         $.get('recherche_rapide', data, function(res){
@@ -121,9 +123,13 @@ $(function () {
         });
     });
 
-    function splitDate(date){
-        from = date.split("/");
-        return  from[2]+'-'+from[1]+'-'+from[0];
+    function splitDate(mydate){
+        console.log(mydate);
+        if(mydate != ''){
+            var from = mydate.split("/");
+            return  from[2] +'-'+ from[1] +'-'+ from[0];
+        }
+        return '';
     }
 
     $('#validEditPerson').click(function(e){
