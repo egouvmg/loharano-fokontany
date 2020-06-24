@@ -502,12 +502,12 @@
           </div>
           <!--Form at Right side -->
           <div class=" col-md-3">                     
-            <a class="btn btn-primary btn-block" id="residence" href="certificate?id_personne=" + id_personne target="_blank" role="button">Créer Certificat de résidence</a><br>
-            <a class="btn btn-primary btn-block" id="life" href="" + id_personne target="_blank" role="button">Créer Certificat de vie indiviudel</a><br>
-            <a class="btn btn-primary btn-block" id="support" href="" + id_personne target="_blank" role="button">Créer Certificat de prise en charge et de garde</a><br>
-            <a class="btn btn-primary btn-block" id="move" href="" + id_personne target="_blank" role="button">Créer Certificat de déménagement</a><br>
-            <a class="btn btn-primary btn-block" id="celibacy" href="" + id_personne target="_blank" role="button">Créer Certificat de célibat</a><br>
-            <a class="btn btn-primary btn-block" id="behavior" href="" + id_personne target="_blank" role="button">Créer Certificat de bonne conduite - de bonne vie - moeurs</a><br>
+            <a class="btn btn-primary btn-block" id="residence" href="certificate?id_personne=" + id_personne target="_blank" role="button">Certificat de résidence</a><br>
+            <a class="btn btn-primary btn-block" id="life" href="" + id_personne target="_blank" role="button">Certificat de vie indiviudel</a><br>
+            <a class="btn btn-primary btn-block" id="support" href="" + id_personne target="_blank" role="button">Certificat de prise en charge et de garde</a><br>
+            <a class="btn btn-primary btn-block" id="move" href="" + id_personne target="_blank" role="button">Certificat de déménagement</a><br>
+            <a class="btn btn-primary btn-block" id="celibacy" href="" + id_personne target="_blank" role="button">Certificat de célibat</a><br>
+            <a class="btn btn-primary btn-block" id="behavior" href="" + id_personne target="_blank" role="button">Certificat de bonne conduite - de bonne vie - moeurs</a><br>
           </div> 
           <!--End Form at Right side -->
 
