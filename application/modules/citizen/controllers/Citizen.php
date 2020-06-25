@@ -73,20 +73,48 @@ class Citizen extends Operator_Controller
 
         $this->data['household_count'] = ($household_count) ? number_format($household_count->household_count, 0, '', ' ') : 0;
         $this->data['citizen_count'] = number_format($citizen_count, 0, '', ' ');
-
         
         //Ration sexe
         $this->data['female_ratio'] = 0;
         $this->data['male_ratio'] = 0;
+        $this->data['minor_ratio'] = 0;
+        $this->data['major_ratio'] = 0;
 
         if($citizen_count){
             $ratio_sexe = $this->citizen->ratio_sexe(['fokontany_id' => $this->fokontany_id]);
+
+            $_minor = 0;
+            $_major = 0;
+            $_total = 0;
+
             foreach($ratio_sexe as $value){
-                if($value->sexe == 0)
+                $_total += $value->minor + $value->major;
+
+                if($value->sexe == 0){
                     $this->data['female_ratio'] = number_format(($value->number/$citizen_count)*100, 2, ',', '');
-                if($value->sexe == 1)
+                    $this->data['female_avg_age'] = number_format($value->avg_age, 0, ',', '');
+                    $this->data['minor_female'] = number_format($value->minor, 0, ',', ' ');
+                    $this->data['major_female'] = number_format($value->major, 0, ',', ' ');
+
+                    $_minor += $value->minor;
+                    $_major += $value->major;
+                }
+                if($value->sexe == 1){
                     $this->data['male_ratio'] =  number_format(($value->number/$citizen_count)*100, 2, ',', '');
+                    $this->data['male_avg_age'] = number_format($value->avg_age, 0, ',', '');
+                    $this->data['minor_male'] = number_format($value->minor, 0, ',', ' ');
+                    $this->data['major_male'] = number_format($value->major, 0, ',', ' ');
+
+                    $_minor += $value->minor;
+                    $_major += $value->major;
+                }
             }
+
+            if($_total != 0){
+                $this->data['minor_ratio'] = number_format(($_minor/$_total)*100, 2, ',', '');
+                $this->data['major_ratio'] = number_format(($_major/$_total)*100, 2, ',', '');
+            }
+
         }
         
         $this->load->view('index', $this->data);
@@ -326,6 +354,21 @@ class Citizen extends Operator_Controller
                     if($cin != ['', '', '']){
                         foreach($requireds_cin as $required)
                             if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
+
+                        //Check if cin is >= 16
+                        for ($j=0; $j < $this->session->household_size ; $j++) {
+                            $_index = $j +1;
+
+                            foreach($requireds as $required){
+                                $d1 = new DateTime($data['cin_date'][$i]);
+                                $d2 = new DateTime();
+
+                                $diff = $d2->diff($d1);
+
+                                if($diff->y < 16)
+                                    $missing_fields[] = ['cin'.$_index ,'Le citoyen doit avoir plus de 16 ans pour avoir une CIN.'];
+                            }
+                        }
                     }
                 }else if($data[$i]['nationality_id'] > 1){   
                     $requireds_passport = ['passport', 'passport_date', 'passport_place'];   

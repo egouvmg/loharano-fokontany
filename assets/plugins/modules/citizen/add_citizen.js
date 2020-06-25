@@ -81,6 +81,7 @@ $(function () {
 
             $(this).val(foo);
         }
+        $(this).attr('maxlength', '15');
     });
     
     $(document).ready(function () {

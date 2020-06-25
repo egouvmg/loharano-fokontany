@@ -110,11 +110,11 @@
                   <div class="line-bloc">
                     <h6>Indicateurs démographiques</h6>
                     <div class="container-bloc-link">
-                      <a href="#" class="bloc-link color-6">
+                      <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<ul class='m-0'><li>Moyenne d'age des hommes : <strong><?=$male_avg_age;?></strong></li><li>Moyenne d'age des femmes : <strong><?=$female_avg_age;?></strong></li></ul>">
                         <span class="pourcent"><?= $female_ratio;?>% / <?= $male_ratio;?>%</span> <?=$this->lang->line('count_citizen');?> Hommes/Femmes
                       </a>
-                      <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" title="Tooltip on top">
-                        <span class="pourcent">70% / 30%</span> <?=$this->lang->line('count_household');?> Majeurs/Mineurs
+                      <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<ul class='m-0'><li>Nombre de mineurs masculins : <strong><?=$minor_male;?></strong></li><li>Nombre de mineurs féminins : <strong><?=$minor_female;?></strong></li><li>Nombre de majeurs masculins : <strong><?=$major_male;?></strong></li><li>Nombre de majeurs féminins : <strong><?=$major_female;?></strong></li></ul>">
+                        <span class="pourcent"><?= $minor_ratio;?>% / <?= $major_ratio;?>%</span> <?=$this->lang->line('count_household');?> Majeurs/Mineurs
                       </a>
                     </div>
                   </div>
@@ -178,6 +178,9 @@
             <div class="col-lg-12">
               <h6>Liste des individus</h6>
               <div id="citizens"></div>
+            </div>
+            <div class="col-lg-12">
+              <h6>Visible dans d'autres Fokontany :</h6>
             </div>
           </div>
         </div>
@@ -374,32 +377,32 @@
                   <div class="col-lg-5">
                     <h6>Cliquez sur un bouton pour générer un certificat</h6>
                     <div>
-                      <a id="certificat_residence" href="">
+                      <a id="certificat_residence" target="_blank" href="">
                         <button class="btn btn-color-2 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Résidence</button>
                       </a>
                     </div>
                     <div>
-                      <a id="certificat_move" href="">
+                      <a id="certificat_move" target="_blank"  href="">
                         <button class="btn btn-color-6 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Démnagement</button>
                       </a>
                     </div>
                     <div>
-                      <a id="certificat_celibat" href="">
+                      <a id="certificat_celibat" target="_blank"  href="">
                         <button class="btn btn-color-3 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Célibat</button>
                       </a>
                     </div>
                     <div>
-                      <a id="certificat_life" href="">
+                      <a id="certificat_life" target="_blank"  href="">
                         <button class="btn btn-color-4 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Vie Individuelle</button>
                       </a>
                     </div>
                     <div>
-                      <a id="certificat_supported" href="">
+                      <a id="certificat_supported" target="_blank"  href="">
                         <button class="btn btn-color-5 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Prise en charge et de garde</button>
                       </a>
                     </div>
                     <div>
-                      <a id="certificat_behavior" href="">
+                      <a id="certificat_behavior" target="_blank"  href="">
                         <button class="btn btn-color-7 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Bonne conduite - de Bonne Vie - Moeurs</button>
                       </a>
                     </div>                  

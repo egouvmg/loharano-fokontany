@@ -75,14 +75,14 @@
                     <form id="localityHousehold">
                       <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="locality">Localité *</label>
-                            <input type="text" class="form-control" id="locality" value="<?= $address;?>" name="locality" placeholder="...">
-                            <span class="error_field error_locality"></span>
-                        </div>
-                        <div class="form-group col-md-4">
                             <label for="address"><?=$this->lang->line('address');?> *</label>
                             <input type="text" class="form-control" id="address" value="<?= $address;?>" name="address" placeholder="...">
                             <span class="error_field error_address"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="locality">Secteur/Localité *</label>
+                            <input type="text" class="form-control" id="locality" value="<?= $address;?>" name="locality" placeholder="...">
+                            <span class="error_field error_locality"></span>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="household_size"><?=$this->lang->line('household_size');?> *</label>

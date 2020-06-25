@@ -531,6 +531,8 @@ $config['modules_locations'] = array(
 $config['group_operator'] = 4;
 $config['group_chief'] = 3;
 
+$config['malagasy_major_age'] = 16;
+
 /*
  * API Configuration
  */
