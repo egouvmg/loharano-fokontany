@@ -92,14 +92,109 @@ $(function () {
         }
     });
 
+	var other_citizens = new Tabulator("#other_citizens", {
+        layout:"fitColumns",
+		initialSort:[
+			{column:"chef_menage", dir:"desc"}
+		],
+        columns:[ //Define Table Columns
+            {title:"Chef", width:80, formatter: is_household_head, field:"chef_menage"},
+            {title:"Nom", field:"nom"},
+            {title:"Prénoms", field:"prenoms"},
+            {title:"Date de Naissance", field:"date_de_naissance"},
+            {title:"Lieu de Naissance", field:"lieu_de_naissance"}, 
+            {title:"Numéro cin", field:"cin_personne"}      
+        ],
+        rowClick:function(e, row){
+            $('.error_field').text('');
+            $('#nom_complet').text(row.getData().nom + ' ' + row.getData().prenoms);
+            $('#numero_carnet').val(row.getData().numero_carnet);
+            $('#adresse_actuelle').val(row.getData().adresse_actuelle);
+            $('#nom_info').val(row.getData().nom);
+            $('#prenoms_info').val(row.getData().prenoms);
+            $('#sexe').val(row.getData().sexe);
+            $('#cin_personne_info').val(row.getData().cin_personne);
+            $('#lieu_de_naissance').val(row.getData().lieu_de_naissance);
+            $('#father').val(row.getData().father);
+            $('#father_status').val(row.getData().father_status);
+            $('#mother').val(row.getData().mother);
+            $('#mother_status').val(row.getData().mother_status);
+            $('#phone').val(row.getData().phone);
+            $('#job').val(row.getData().job);
+            $('#job_status').val(row.getData().job_status);
+            $('#situation_matrimoniale').val(row.getData().situation_matrimoniale);
+            $('#id_personne').val(row.getData().id_personne);
+            $('#observation').val(row.getData().observation);
+
+            if(row.getData().date_de_naissance){
+                console.log('cin_date ' + row.getData().cin_date);
+                $('#date_de_naissance').val(splitDate(row.getData().date_de_naissance));
+            }
+            if(row.getData().cin_date){
+                console.log('cin_date ' + row.getData().cin_date);
+                $('#date_delivrance_cin').val(splitDate(row.getData().cin_date));
+                $('#lieu_delivrance_cin').val(row.getData().cin_place);
+            }         
+            if(row.getData().date_delivrance_cin){
+                console.log('date_delivrance_cin ' + row.getData().date_delivrance_cin);
+                $('#date_delivrance_cin').val(splitDate(row.getData().date_delivrance_cin));
+                $('#lieu_delivrance_cin').val(splitDate(row.getData().lieu_delivrance_cin));
+            }
+
+            $('#certificat_residence').attr("href", "certificate?id_personne="+row.getData().id_personne);
+            $('#certificat_move').attr("href", "certificate_move?id_personne="+row.getData().id_personne);
+            $('#certificat_celibat').attr("href", "certificate_celibat?id_personne="+row.getData().id_personne);
+            $('#certificat_life').attr("href", "certificate_life?id_personne="+row.getData().id_personne);
+            $('#certificat_supported').attr("href", "certificate_supported?id_personne="+row.getData().id_personne);
+            $('#certificat_behavior').attr("href", "certificate_behavior?id_personne="+row.getData().id_personne);
+
+            $('#personDetails').modal();
+        },
+        pagination:"local",
+        paginationSize:10,
+        paginationSizeSelector:[10, 20, 50, 100, 200],
+        langs:{
+            "fr-fr":{ //French language definition
+                "columns":{
+                    "name":"Nom",
+                    "progress":"Progression",
+                    "gender":"Genre",
+                    "rating":"Évaluation",
+                    "col":"Couleur",
+                    "dob":"Date de Naissance",
+                },
+                "pagination":{
+                    "first":"Premier",
+                    "first_title":"Première Page",
+                    "last":"Dernier",
+                    "last_title":"Dernière Page",
+                    "prev":"Précédent",
+                    "prev_title":"Page Précédente",
+                    "next":"Suivant",
+                    "next_title":"Page Suivante",
+                },
+            }
+        }
+    });
+
     $('.speed_access').on('keyup change', function(e){
         var data = $('#speedForm').serializeArray();
+
+        
+        $('.btn-migration').hide();
+        $('.btn-certificate').show();
 
         $.get('recherche_rapide', data, function(res){
             if(res.success == 1){
                 citizens.setData(res.citizens);
 
-                if(res.citizens.length == 0) $('#createHousehold').show();
+                if(res.citizens.length == 0){
+                    $('.btn-migration').show();
+                    $('.btn-certificate').hide();
+
+                    $('#createHousehold').show();
+                    other_citizens.setData(res.other_citizens);
+                }
                 else $('#createHousehold').hide();
             }
             else alert(res.msg);

@@ -48,30 +48,6 @@
 
   <div class="container">
     <div class=row>
-      <!-- <div class="main-side-bar">
-        <ul class="main-menu">
-          <li>
-            <a href="gestion_citoyens"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> <?=$this->lang->line('citizens');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="liste_citoyens"><?=$this->lang->line('list_citizen');?></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="fa-solid:user" data-inline="false"></span> <?=$this->lang->line('households');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
-              <li><a href="aide_menage">Liste des aides</a></li>
-              <li><a href="nouveau_menage_fokontany">Création ménage</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> <?=$this->lang->line('certificates');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="residence">Résidence</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div> -->
       <div class="main-container">
         <!-- Page title -->
         <div class="text-center">
@@ -181,6 +157,7 @@
             </div>
             <div class="col-lg-12">
               <h6>Visible dans d'autres Fokontany :</h6>
+              <div id="other_citizens"></div>
             </div>
           </div>
         </div>
@@ -376,34 +353,39 @@
                   </div>
                   <div class="col-lg-5">
                     <h6>Cliquez sur un bouton pour générer un certificat</h6>
-                    <div>
+                    <div class="btn-certificate">
                       <a id="certificat_residence" target="_blank" href="">
                         <button class="btn btn-color-2 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Résidence</button>
                       </a>
                     </div>
-                    <div>
+                    <div class="btn-certificate">
                       <a id="certificat_move" target="_blank"  href="">
                         <button class="btn btn-color-6 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Démnagement</button>
                       </a>
                     </div>
-                    <div>
+                    <div class="btn-certificate">
                       <a id="certificat_celibat" target="_blank"  href="">
                         <button class="btn btn-color-3 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Célibat</button>
                       </a>
                     </div>
-                    <div>
+                    <div class="btn-certificate">
                       <a id="certificat_life" target="_blank"  href="">
                         <button class="btn btn-color-4 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Vie Individuelle</button>
                       </a>
                     </div>
-                    <div>
+                    <div class="btn-certificate">
                       <a id="certificat_supported" target="_blank"  href="">
                         <button class="btn btn-color-5 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Prise en charge et de garde</button>
                       </a>
                     </div>
-                    <div>
+                    <div class="btn-certificate">
                       <a id="certificat_behavior" target="_blank"  href="">
                         <button class="btn btn-color-7 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Bonne conduite - de Bonne Vie - Moeurs</button>
+                      </a>
+                    </div> 
+                    <div class="btn-migration" style="display:none;">
+                      <a id="certificat_behavior" target="_blank"  href="">
+                        <button class="btn btn-color-8 mb-1 mr-1"><span class="iconify" data-icon="mdi:file-move-outline" data-inline="false"></span> Migrer le citoyen</button>
                       </a>
                     </div>                  
                   </div>

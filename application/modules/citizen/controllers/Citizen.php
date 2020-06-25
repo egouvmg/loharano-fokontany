@@ -1133,7 +1133,7 @@ class Citizen extends Operator_Controller
                 if(!empty($value)) $criteria['LOWER('.$key . ') LIKE '] = '%'.strtolower($value).'%';
 
             if(empty($criteria)){
-                echo json_encode(['success' => 1, 'citizens' => [], 'households' => []]);
+                echo json_encode(['success' => 1, 'citizens' => [], 'households' => [], 'other_citizens' => []]);
                 return TRUE;
             }
 
@@ -1144,11 +1144,21 @@ class Citizen extends Operator_Controller
             $households = $this->notebook->citizens($criteria);
 
             if(!empty($citizens) && !empty($households)){
-                echo json_encode(['success' => 1, 'citizens' => $citizens, 'households' => $households]);
+                echo json_encode(['success' => 1, 'citizens' => $citizens, 'households' => $households, 'other_citizens' => []]);
             }
-            else echo json_encode(['success' => 1, 'citizens' => [], 'households' => []]);
+            else if(empty($citizens)){
+                unset($criteria['fokontany_id']);
+
+                $criteria['fokontany_id !='] = $this->fokontany_id;
+                
+                $other_citizens = $this->notebook->citizens($criteria);
+                if($other_citizens)
+                    echo json_encode(['success' => 1, 'citizens' => [], 'households' => [], 'other_citizens' => $other_citizens]);
+                else echo json_encode(['success' => 1, 'citizens' => [], 'households' => [], 'other_citizens' => []]);
+            }
+            else echo json_encode(['success' => 1, 'citizens' => [], 'households' => [], 'other_citizens' => []]);
         }
-        else echo json_encode(['success' => 1, 'citizens' => [], 'households' => []]);
+        else echo json_encode(['success' => 1, 'citizens' => [], 'households' => [], 'other_citizens' => []]);
     }
 
 }

@@ -81,7 +81,7 @@
           </li>
         </ul>
       </div>
-      <div class="main-container">
+      <div class="main-container admin-container">
         <!-- Page title --> 
         <div class="container-fluid page-title">
           <h1><?= $title;?></h1>
@@ -102,7 +102,7 @@
                     <span class="iconify">0</span> <?=$this->lang->line('count_household');?>
                   </a>
                 </div>
-                <h6>Rapport quotidienne</h6>
+                <h6>Rapport quotidien</h6>
                 <div class="container-bloc-link">
                   <a href="#" class="bloc-link-counter">
                     <span class="iconify">0</span> <?=$this->lang->line('count_citizen');?>

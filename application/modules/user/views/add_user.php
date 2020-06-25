@@ -80,7 +80,7 @@
           </li>
         </ul>
       </div>
-      <div class="main-container">
+      <div class="main-container admin-container">
         <!-- Page title --> 
         <div class="container-fluid page-title">
           <h1><?= $title;?></h1>
