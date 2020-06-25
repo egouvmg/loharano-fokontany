@@ -15,17 +15,16 @@ $(function () {
 			{column:"medal", dir:"asc"}
 		],
         columns:[ //Define Table Columns
-            {title:"Numéro Carnet", field:"numero_carnet", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Adresse", field:"adresse_actuelle", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Date d'arrivée", field:"date_arrivee", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Chef ménage", field:"chef_menage", formatter: household_head ,headerFilterPlaceholder:"..." , headerFilter:"input"}         
+            {title:"Numéro Carnet", field:"numero_carnet"},
+            {title:"Adresse", field:"adresse_actuelle"},
+            {title:"Chef ménage", width:300, field:"chef_menage", formatter: household_head}         
         ],
         rowClick:function(e, row){
             citizens.setData('membres_menage', {numero_carnet:row.getData().numero_carnet});
         },
         pagination:"local",
-        paginationSize:25,
-        /*paginationSizeSelector:[25, 50, 100, 200],
+        paginationSize:10,
+        paginationSizeSelector:[10, 20, 50, 100, 200],
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
@@ -47,88 +46,83 @@ $(function () {
                     "next_title":"Page Suivante",
                 },
             }
-        }*/
+        }
     });
 
-	var citizens = new Tabulator("#householdContent", {
+	var citizens = new Tabulator("#citizens", {
         layout:"fitColumns",
 		initialSort:[
 			{column:"chef_menage", dir:"asc"}
 		],
         columns:[ //Define Table Columns
             {title:"Chef", field:"chef_menage", formatter: is_household_head},
-            {title:"Nom", field:"nom",headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Prénoms", field:"prenoms",headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Numéro cin", field:"cin_personne", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Date de Naissance", field:"date_de_naissance", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Lieu de Naissance", field:"lieu_de_naissance", headerFilterPlaceholder:"..." , headerFilter:"input"} ,
-            { title: "id_personne", field: "person_id", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },
-            { title: "situation_matrimoniale", field: "situation_matrimoniale", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },
-            { title: "parent_link", field: "parent_link", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },
-            { title: "handicapped", field: "handicape", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },
-            { title: "nationalite", field: "nationalite", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },
-            { title: "cin_date", field: "date_delivrance_cin", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },
-            { title: "cin_place", field: "lieu_delivrance_cin", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },
-            { title: "job", field: "job", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },
-            { title: "job_status", field: "job_status", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },
-            { title: "phone", field: "phone", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },           
-            { title: "numero_carnet", field: "numero_carnet", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },
-            { title: "sexe", field: "sexe", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },          
-            { title: "father_status", field: "father_status", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },
-            { title: "job_id", field: "job_id", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },
-            { title: "job_status", field: "job_status", headerFilterPlaceholder: "...", headerFilter: "input", visible: false },
-            { title: "mother_status", field: "mother_status", headerFilterPlaceholder: "...", headerFilter: "input", visible: false }           
+            {title:"Nom", field:"nom"},
+            {title:"Prénoms", field:"prenoms"},
+            {title:"Numéro cin", field:"cin_personne"},
+            {title:"Date de Naissance", field:"date_de_naissance"},
+            {title:"Lieu de Naissance", field:"lieu_de_naissance"} ,
+            { title: "id_personne", field: "person_id", visible: false },
+            { title: "situation_matrimoniale", field: "situation_matrimoniale", visible: false },
+            { title: "parent_link", field: "parent_link", visible: false },
+            { title: "handicapped", field: "handicape", visible: false },
+            { title: "nationalite", field: "nationalite", visible: false },
+            { title: "cin_date", field: "date_delivrance_cin", visible: false },
+            { title: "cin_place", field: "lieu_delivrance_cin", visible: false },
+            { title: "job", field: "job", visible: false },
+            { title: "job_status", field: "job_status", visible: false },
+            { title: "phone", field: "phone", visible: false },           
+            { title: "numero_carnet", field: "numero_carnet", visible: false },
+            { title: "sexe", field: "sexe", visible: false },          
+            { title: "father_status", field: "father_status", visible: false },
+            { title: "job_id", field: "job_id", visible: false },
+            { title: "job_status", field: "job_status", visible: false },
+            { title: "mother_status", field: "mother_status", visible: false }           
         ],
         rowClick:function(e, row){
-            $('#full_name').text(row.getData().nom +' '+ row.getData().prenoms);
-            $('#last_name').val(row.getData().nom);
-            $('#first_name').val(row.getData().prenoms);
+            $('.error_field').text('');
+            $('#nom_complet').text(row.getData().nom + ' ' + row.getData().prenoms);
+            $('#numero_carnet').val(row.getData().numero_carnet);
+            $('#adresse_actuelle').val(row.getData().adresse_actuelle);
+            $('#nom_info').val(row.getData().nom);
+            $('#prenoms_info').val(row.getData().prenoms);
             $('#sexe').val(row.getData().sexe);
-            $('#handicapped').val(row.getData().handicape===false?0:1);
-            $('#address').val(row.getData().adresse_actuelle);
-            $('#cin').val(row.getData().cin_personne);
-            $('#cin_date').val(row.getData().date_delivrance_cin);
-            $('#cin_place').val(row.getData().lieu_delivrance_cin);
-            $('#birth').val(row.getData().date_de_naissance);
-            $('#birth_place').val(row.getData().lieu_de_naissance);
-            $('#job').val(row.getData().job_id);
-            $('#job_status').val(row.getData().job_status);
-            $('#phone').val(row.getData().phone);
-            $('#observation').val(row.getData().observation);
-            $('#nationality').val(row.getData().nationalite);
+            $('#cin_personne_info').val(row.getData().cin_personne);
+            $('#lieu_de_naissance').val(row.getData().lieu_de_naissance);
             $('#father').val(row.getData().father);
             $('#father_status').val(row.getData().father_status);
             $('#mother').val(row.getData().mother);
             $('#mother_status').val(row.getData().mother_status);
-            $('#person_id').val(row.getData().person_id);
-            $('#parent_link').val(row.getData().parent_link);
-            $('#marital_status').val(row.getData().situation_matrimoniale);
-            $('#passport').val(row.getData().passport);
-            $('#passport_date').val(row.getData().passport_date);
-            $('#passport_place').val(row.getData().passport_place);
-            $('#pdf_file').val(row.getData().pdf_file);
-            $('#numero_carnet').val(row.getData().numero_carnet);
-            $('#marital_status').val(row.getData().situation_matrimoniale);
-            $('#father_status').val(row.getData().father_status);
-            $('#mother_status').val(row.getData().mother_status);
+            $('#phone').val(row.getData().phone);
+            $('#job').val(row.getData().job);
             $('#job_status').val(row.getData().job_status);
+            $('#situation_matrimoniale').val(row.getData().situation_matrimoniale);
+            $('#id_personne').val(row.getData().id_personne);
+            $('#observation').val(row.getData().observation);
 
-            var  person_id= row.getData().person_id;
-            
-            // Setting href values
-            $("#residence").attr("href","certificate?id_personne="+person_id);
-            $("#life").attr("href","certificate_life?id_personne="+person_id);
-            $("#support").attr("href","certificate_supported?id_personne="+person_id);
-            $("#move").attr("href","certificate_move?id_personne="+person_id);
-            $("#celibacy").attr("href","certificate_celibat?id_personne="+person_id);
-            $("#behavior").attr("href","certificate_behavior?id_personne="+person_id);
+            if(row.getData().date_de_naissance){
+                $('#date_de_naissance').val(splitDate(row.getData().date_de_naissance));
+            }
+            if(row.getData().cin_date){
+                $('#date_delivrance_cin').val(splitDate(row.getData().cin_date));
+                $('#lieu_delivrance_cin').val(row.getData().cin_place);
+            }         
+            if(row.getData().date_delivrance_cin){
+                $('#date_delivrance_cin').val(splitDate(row.getData().date_delivrance_cin));
+                $('#lieu_delivrance_cin').val(splitDate(row.getData().lieu_delivrance_cin));
+            }
+
+            $('#certificat_residence').attr("href", "certificate?id_personne="+row.getData().id_personne);
+            $('#certificat_move').attr("href", "certificate_move?id_personne="+row.getData().id_personne);
+            $('#certificat_celibat').attr("href", "certificate_celibat?id_personne="+row.getData().id_personne);
+            $('#certificat_life').attr("href", "certificate_life?id_personne="+row.getData().id_personne);
+            $('#certificat_supported').attr("href", "certificate_supported?id_personne="+row.getData().id_personne);
+            $('#certificat_behavior').attr("href", "certificate_behavior?id_personne="+row.getData().id_personne);
 
             $('#personDetails').modal();
-
         },
         pagination:"local",
-        paginationSize:25,
-        /*paginationSizeSelector:[25, 50, 100, 200],
+        paginationSize:15,
+        paginationSizeSelector:[15, 30, 50, 100, 200],
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
@@ -150,76 +144,82 @@ $(function () {
                     "next_title":"Page Suivante",
                 },
             }
-        }*/
+        }
     });
+
+	$('#nom').on('keyup', function () {
+		var foo = $(this).val();
+
+		foo = foo.toUpperCase();
+
+		$(this).val(foo);
+	});
+
+	$('#prenoms').on('keyup', function () {
+		var foo = $(this).val();
+
+		if (typeof foo === 'string')
+			foo = foo.charAt(0).toUpperCase() + foo.slice(1);
+
+        $(this).val(foo);
+    });
+    
+	$('.cin_personne').on('keypress', function (event) {
+        if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
+            event.preventDefault(); // ne pas permettre la saisie de character lettre
+        } else {
+            var foo = $(this).val().split(" ").join("");
+
+            if (foo.length > 0)
+                foo = foo.match(new RegExp('.{1,3}', 'g')).join(" ");
+
+            $(this).val(foo);
+        }
+	});
+
+    $('.speed_access').on('keyup change', function(e){
+        var data = $('#speedForm').serializeArray();
+
+        $.get('recherche_rapide', data, function(res){
+            if(res.success == 1){
+                citizens.setData(res.citizens);
+                households.setData(res.households);
+
+                if(res.citizens.length == 0) $('#createHousehold').show();
+                else $('#createHousehold').hide();
+            }
+            else alert(res.msg);
+        }, 'JSON');
+    });
+
+    $(document).ready(function () {
+        $('#phone').usPhoneFormat({
+            format: 'xxx xx xxx xx',
+        });
+    });
+
+    function splitDate(mydate){
+        if(mydate != 'undefined'){
+            var from = mydate.split("/");
+            return  from[2] +'-'+ from[1] +'-'+ from[0];
+        }
+        return '';
+    }
 
     $('#validEditPerson').click(function(e){
         e.preventDefault();
-        
-        
-        /*
-        //loading();
-        var data = $('#personDetails').serializeArray();
+        $('.error_field').text('');
 
-        $.post('save_citizen_from_certificat', data, function(res){
-            if(res.error === 1){
-                if(res.missing_fields){
-                    $.each( res.missing_fields, function( key, value ) {
-                        $('.error_' + value[0]).text(value[1]);
-                    });
-                }
-            }
-            if(res.success === 1){
-                $('#confirmResponse').text(res.msg);
-                $('#confirmationModal').modal();
-            }
-            if(res.failed === 1)
-                $('#failedMsg').text(res.msg);
+        var data = $('#formEditPerson').serializeArray();
 
-            //endLoading();
+        $.post('modifier_citoyen', data, function(res){
+            if(res.failed == 1){
+                $.each( res.missing_fields, function( key, value ) {
+                    $('.'+value[0]+'Error').text(value[1]);
+                });
+            }
+            if(res.error == 1) alert(res.msg);
+            if(res.success == 1) alert(res.msg);
         }, 'JSON');
-        */
-        var data =  [];
-        data.push({name: 'id_personne', value: $("#person_id").val()});
-        data.push({name: 'numero_carnet', value: $("#numero_carnet").val()});
-        data.push({name: 'lieu_de_naissance', value: $("#birth_place").val()});
-        data.push({name: 'for_person', value: "true"});
-        data.push({name: 'address', value: $("#address").val()});
-        data.push({name: 'last_name', value: $("#last_name").val()});
-        data.push({name: 'first_name', value: $("#first_name").val()});
-        data.push({name: 'marital_status', value: $("#marital_status").val()});
-        data.push({name: 'parent_link', value: $("#parent_link").val()});
-        data.push({name: 'birth', value: $("#birth").val()});
-        data.push({name: 'sexe', value: $("#sexe").val()});
-        data.push({name: 'handicapped', value: $("#handicapped").val()});
-        data.push({name: 'nationality', value: $("#nationality").val()});
-        data.push({name: 'cin', value: $("#cin").val()});
-        data.push({name: 'cin_date', value: $("#cin_date").val()});
-        data.push({name: 'cin_place', value: $("#cin_place").val()});
-        data.push({name: 'father', value: $("#father").val()});
-        data.push({name: 'father_status', value: $("#father_status").val()});
-        data.push({name: 'mother', value: $("#mother").val()});
-        data.push({name: 'mother_status', value: $("#mother_status").val()});
-        data.push({name: 'phone', value: $("#phone").val()});
-        data.push({name: 'job', value: $("#job").val()});
-        data.push({name: 'job_status', value: $("#job_status").val()});
-
-        $.post('save_citizen_from_certificat', data, function(res){
-            if(res.error === 1){
-                if(res.missing_fields){
-                    $.each( res.missing_fields, function( key, value ) {
-                        $('.error_' + value[0]).text(value[1]);
-                    });
-                }
-            }
-            if(res.success === 1){
-                $('#confirmResponse').text(res.msg);
-                $('#confirmationModal').modal();
-            }
-            if(res.failed === 1)
-                $('#failedMsg').text(res.msg);
-
-        }, 'JSON');
-
     });
 });

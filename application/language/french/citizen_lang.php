@@ -3,7 +3,7 @@
 $lang['add_citizen'] = 'Ajout d\'un citoyen';
 $lang['list_citizen'] = 'Liste des citoyens';
 
-$lang['list_household'] = 'Liste de ménages';
+$lang['list_household'] = 'Liste des ménages';
 
 $lang['info_citizen'] = 'Information du citoyen';
 $lang['info_parent'] = 'Information des parents';
@@ -16,7 +16,7 @@ $lang['citizen_supported'] = 'Certificat de prise en charge et de garde';
 $lang['citizen_move'] = 'Certificat de déménagement';
 $lang['citizen_celibacy'] = 'Certificat de célibat';
 $lang['citizen_good_behavior'] = 'Certificat de bonne conduite - bonne vie - moeurs';
-$lang['creation_certificats'] = 'Création certificats';
+$lang['creation_certificats'] = 'Création de certificats';
 
 $lang['adding_citizen'] = 'Ajouter le citoyen dans un ménage existant ou créer un nouveau ménage pour le citoyen.';
 $lang['searching_household'] = 'Entrez les critères de recherche de ménage. Cliquer sur un ménage pour ajout le nouveau citoyen';

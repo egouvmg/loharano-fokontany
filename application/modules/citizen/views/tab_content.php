@@ -55,8 +55,16 @@
                     <span class="error_field error_marital_status<?= $index;?>"></span>
                 </div>
                 <div class="form-group col-md-12">
+                    <label for="handicape<?= $index;?>"><?=$this->lang->line('handicapped');?> *</label>
+                    <select  id="handicape<?= $index;?>" name="handicape[]"  class="form-control">
+                        <option value="0"><?=$this->lang->line('no');?></option>
+                        <option value="1"><?=$this->lang->line('yes');?></option>
+                    </select>
+                    <span class="error_field error_handicape<?= $index;?>"></span>
+                </div>
+                <div class="form-group col-md-12">
                     <label for="phone<?= $index;?>"><?=$this->lang->line('phone');?> *</label>
-                    <input type="text" class="form-control" id="phone<?= $index;?>" name="phone[]" placeholder="...">
+                    <input type="text" class="form-control phone_number" id="phone<?= $index;?>" name="phone[]" placeholder="...">
                     <span class="error_field error_phone<?= $index;?>"></span>
                 </div>
             </div>
@@ -133,7 +141,7 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                 <label for="nationality<?= $index;?>"><?=$this->lang->line('nationality');?> *</label>
-                    <select name="nationality_id[]" class="form-control" id="nationality<?= $index;?>">
+                    <select name="nationality_id[]" class="form-control nationality" id="nationality<?= $index;?>">
                     <?php foreach($nationalities as $nationality) : ?>
                         <option value="<?= $nationality->id;?>"><?= $this->lang->line('nationality_'.$nationality->id);?></option>
                     <?php endforeach;?>
@@ -199,6 +207,24 @@
             </div>
         </div>
         <!-- END Passport -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-row">
+            <div class="form-group col-md-12 orange">
+                Observations
+            </div>
+            </div> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-row">
+            <div class="form-group col-md-12">
+                <textarea name="observation[]" class="form-control" id="observation<?= $index;?>" cols="30" rows="2"></textarea>
+            </div>
+            </div> 
+        </div>
     </div>
 </div>
 <?php

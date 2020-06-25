@@ -51,35 +51,21 @@
       </div>
   </nav>
 
-  <div class="container-fluid">
+  <div class="container">
     <div class=row>
-      <div class="main-side-bar">
-      <ul class="main-menu">
-          <li>
-            <a href="gestion_citoyens"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> <?=$this->lang->line('citizens');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="recherche_menage"><?=$this->lang->line('add_citizen');?></a></li>
-              <li><a href="liste_citoyens"><?=$this->lang->line('list_citizen');?></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="fa-solid:user" data-inline="false"></span> <?=$this->lang->line('households');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
-              <li><a href="#">Créer nouveau menage</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> <?=$this->lang->line('certificates');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="residence">Résidence</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
       <div class="main-container">
         <!-- Page title --> 
-        <div class="container-fluid page-title">
+        <div class="text-center">
+          <p class="info-fokontany">
+            <span>Province : </span><?= $info_fokontany->province_name;?>
+            <span>Région : </span><?= $info_fokontany->region_name;?>
+            <span>District : </span><?= $info_fokontany->district_name;?>
+            <span>Commune : </span><?= $info_fokontany->common_name;?>
+            <span>Arrondissement : </span><?= $info_fokontany->borough_name;?>
+            <span>Fokontany : </span><?= $info_fokontany->fokontany_name;?>
+          </p>
+        </div>
+        <div class="container page-title">
           <h1><?= $title;?></h1>
         </div>
         <!-- End Page title -->
@@ -91,7 +77,7 @@
                 <button type="button" class="btn btn-primary" id="pdf"> Générer pdf</button>
           </div>
         </div>
-        <div class="container-fluid" id="content">
+        <div class="container" id="content">
         <div >          
           <!--REPOBLIKAN'I MADAGASIKARA-->
           <div class="row">
@@ -122,8 +108,8 @@
           <div class="row"><!-- https://codepen.io/pen/ style="background-color:lavender;"-->
             <div class="col-sm-8"  style="background-color:white;">
               <div class="form-group row" style="margin-bottom: 0px;">
-               <label for="fokontany" class="col-sm-2 col-form-label font-weight-bold">FOKONTANY :</label>
-               <div class="col-sm-10">
+               <label for="fokontany" class="col-sm-4 col-form-label font-weight-bold">FOKONTANY :</label>
+               <div class="col-sm-8">
                  <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="fokontany" value=<?= "'".addslashes($citizen_data[0]->libelle_fokontany)."'" ?>> 
                 </div>
               </div>
@@ -161,11 +147,11 @@
                 <div class="col-sm-4"></div>
                   <div class="col-sm-3"> 
                     <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-4 col-form-label">
+                      <div class="col-sm-5 col-form-label">
                         <label for="Asa" class="font-weight-bold" style="margin-bottom: 0px;">Asa :</label>
                         <p class="font-italic">Profession</p>
                       </div>
-                      <div class="col-sm-8">
+                      <div class="col-sm-7">
                         <input readonly type="text" class="form-control border-0" style="margin-left:-75px;padding-bottom: 2px;" id="Asa" value=<?= "'".$citizen_data[0]->job."'" ?>> 
                       </div>
                     </div>
@@ -249,10 +235,10 @@
 
 
                 <div class="form-group row" style="margin-bottom: 0px;">
-                        <div class="col-sm-5 col-form-label">
+                        <div class="col-sm-6 col-form-label">
                           <label for="sy" style="margin-bottom: 0px;"><span class="font-weight-bold">Antony ilàna azy</span> (<span class="font-italic">Motif d'usage</span>): </label>
                         </div>
-                        <div class="col-sm-7">
+                        <div class="col-sm-6">
                           <input type="text" class="form-control border-0" style="margin-left:-300px;padding-bottom: 2px;" id="sy" value="" placeholder="Antony ilàna azy" autofocus> 
                         </div>
                     </div>

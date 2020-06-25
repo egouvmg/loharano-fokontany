@@ -46,52 +46,45 @@
       </div>
   </nav>
 
-  <div class="container-fluid">
+  <div class="container">
     <div class=row>
-      <div class="main-side-bar">
-        <ul class="main-menu">
-          <li>
-            <a href="gestion_citoyens"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> <?=$this->lang->line('citizens');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="liste_citoyens"><?=$this->lang->line('list_citizen');?></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="fa-solid:user" data-inline="false"></span> <?=$this->lang->line('households');?></a>
-            <ul class="sub-main-menu">
-              <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
-              <li><a href="aide_menage">Liste des aides</a></li>
-              <li><a href="nouveau_menage_fokontany" class="active">Création ménage</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="ant-design:setting-filled" data-inline="false"></span> <?=$this->lang->line('settings');?></a>
-          </li>
-        </ul>
-      </div>
       <div class="main-container">
         <!-- Page title -->
-        <p class="info-fokontany"><span>Province : </span><?= $info_fokontany->province_name;?> <span>Région : </span><?= $info_fokontany->region_name;?> <span>District : </span><?= $info_fokontany->district_name;?> <span>Commune : </span><?= $info_fokontany->common_name;?></p>
-        
-        <div class="container-fluid page-title">
+        <div class="text-center">
+          <p class="info-fokontany">
+            <span>Province : </span><?= $info_fokontany->province_name;?>
+            <span>Région : </span><?= $info_fokontany->region_name;?>
+            <span>District : </span><?= $info_fokontany->district_name;?>
+            <span>Commune : </span><?= $info_fokontany->common_name;?>
+            <span>Arrondissement : </span><?= $info_fokontany->borough_name;?>
+            <span>Fokontany : </span><?= $info_fokontany->fokontany_name;?>
+          </p>
+        </div>
+        <div class="container page-title">
           <h1>Création de nouveau ménage</h1>
         </div>
         <!-- End Page title -->
 
         <!-- Page Content -->
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-lg-12 orange">
                     <p><?= $this->lang->line('locality_household');?></p>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-12">
                     <form id="localityHousehold">
-                        <div class="form-group col-md-12">
+                      <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="locality">Localité *</label>
+                            <input type="text" class="form-control" id="locality" value="<?= $address;?>" name="locality" placeholder="...">
+                            <span class="error_field error_locality"></span>
+                        </div>
+                        <div class="form-group col-md-4">
                             <label for="address"><?=$this->lang->line('address');?> *</label>
                             <input type="text" class="form-control" id="address" value="<?= $address;?>" name="address" placeholder="...">
                             <span class="error_field error_address"></span>
                         </div>
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-4">
                             <label for="household_size"><?=$this->lang->line('household_size');?> *</label>
                             <input type="text" class="form-control" id="household_size" value="<?= $household_size;?>" name="household_size" placeholder="...">
                             <span class="error_field error_household_size"></span>
@@ -102,6 +95,7 @@
                             <img class="loading" src="<?= img('pulse.gif');?>"/>
                             Enregistrement ...
                         </div>
+                      </div>
                     </form>
                 </div>
             </div>

@@ -17,11 +17,6 @@
 	<?= css('admin');?>
 
 	<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
-  <style>
-    #citizens{
-      display:none;
-    }
-  </style>
 </head>
 
 
@@ -51,9 +46,9 @@
       </div>
   </nav>
 
-  <div class="container-fluid">
+  <div class="container">
     <div class=row>
-      <div class="main-side-bar">
+      <!-- <div class="main-side-bar">
         <ul class="main-menu">
           <li>
             <a href="gestion_citoyens"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> <?=$this->lang->line('citizens');?></a>
@@ -76,20 +71,90 @@
             </ul>
           </li>
         </ul>
-      </div>
+      </div> -->
       <div class="main-container">
         <!-- Page title -->
-        <p class="info-fokontany"><span>Province : </span><?= $info_fokontany->province_name;?> > <span>Région : </span><?= $info_fokontany->region_name;?> > <span>District : </span><?= $info_fokontany->district_name;?> > <span>Commune : </span><?= $info_fokontany->common_name;?> > <span>Arrondissement : </span><?= $info_fokontany->borough_name;?></p>
-        <div class="container-fluid page-title">
+        <div class="text-center">
+          <p class="info-fokontany">
+            <span>Province : </span><?= $info_fokontany->province_name;?>
+            <span>Région : </span><?= $info_fokontany->region_name;?>
+            <span>District : </span><?= $info_fokontany->district_name;?>
+            <span>Commune : </span><?= $info_fokontany->common_name;?>
+            <span>Arrondissement : </span><?= $info_fokontany->borough_name;?>
+            <span>Fokontany : </span><?= $info_fokontany->fokontany_name;?></p>
+        </div>
+        <div class="container page-title">
           <h1><?= $title;?></h1>
         </div>
         <!-- End Page title -->
 
         <!-- Page Content -->
-        <div class="container-fluid">
-          <div class="row">
-            <h6>Recherche rapide</h6>
+        <div class="container">
+          <div class="row mt-3">
             <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="line-bloc">
+                    <h6>Rapport global</h6>
+                    <div class="container-bloc-link">
+                      <a href="#" class="bloc-link color-7">
+                        <span class="count"><?= $household_count;?></span> <?=$this->lang->line('count_citizen');?> Ménages
+                      </a>
+                      <a href="#" class="bloc-link color-7">
+                        <span class="count"><?= $citizen_count;?></span> <?=$this->lang->line('count_household');?> Citoyens
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="line-bloc">
+                    <h6>Indicateurs démographiques</h6>
+                    <div class="container-bloc-link">
+                      <a href="#" class="bloc-link color-6">
+                        <span class="pourcent"><?= $female_ratio;?>% / <?= $male_ratio;?>%</span> <?=$this->lang->line('count_citizen');?> Hommes/Femmes
+                      </a>
+                      <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" title="Tooltip on top">
+                        <span class="pourcent">70% / 30%</span> <?=$this->lang->line('count_household');?> Majeurs/Mineurs
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="line-bloc">
+                    <h6>Gestion citoyens</h6>
+                    <div class="container-bloc-link">
+                      <a href="liste_citoyens" class="bloc-link color-2">
+                        <span class="iconify" data-icon="bi:person-lines-fill" data-inline="false"></span> <?=$this->lang->line('list_citizen');?>
+                      </a>
+                      <a href="liste_menage_fokontany" class="bloc-link color-3">
+                        <span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> <?=$this->lang->line('list_household');?>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="line-bloc">
+                    <h6>Services administrifs</h6>
+                    <div class="container-bloc-link">
+                      <a href="residence" class="bloc-link color-4">
+                        <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Générer un certificat
+                      </a>
+                      <a href="aide_menage" class="bloc-link color-5">
+                        <span class="iconify" data-icon="dashicons:products" data-inline="false"></span> Aides sociales
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 line-bloc">
+              <h6>Recherche rapide</h6>
               <form id="speedForm">
                 <div class="form-row">
                   <div class="form-group col-lg-4">
@@ -111,56 +176,8 @@
               <a href="nouveau_menage_fokontany"><button id="createHousehold" class="btn btn-color-1" style="display:none;">Créer un nouveau ménage</button></a>
             </div>
             <div class="col-lg-12">
+              <h6>Liste des individus</h6>
               <div id="citizens"></div>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-lg-5">
-              <div class="line-bloc">
-                <h6>Rapport global</h6>
-                <div class="container-bloc-link">
-                  <a href="#" class="bloc-link-counter">
-                    <span class="iconify">0</span> <?=$this->lang->line('count_citizen');?>
-                  </a>
-                  <a href="#" class="bloc-link-counter">
-                    <span class="iconify">0</span> <?=$this->lang->line('count_household');?>
-                  </a>
-                </div>
-                <h6>Rapport quotidienne</h6>
-                <div class="container-bloc-link">
-                  <a href="#" class="bloc-link-counter">
-                    <span class="iconify">0</span> <?=$this->lang->line('count_citizen');?>
-                  </a>
-                  <a href="#" class="bloc-link-counter">
-                    <span class="iconify">0</span> <?=$this->lang->line('count_household');?>
-                  </a>
-                </div>
-                <h6>Rapport Aide</h6>
-                <div class="container-bloc-link">
-                  <a href="#" class="bloc-link-counter">
-                    <span class="iconify">0</span> Vola be
-                  </a>
-                  <a href="#" class="bloc-link-counter">
-                    <span class="iconify">0</span> PPN
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-7">
-              <div class="line-bloc">
-                <h6>Accès rapide</h6>
-                <div class="container-bloc-link">
-                  <a href="recherche_menage" class="bloc-link color-1">
-                    <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> <?=$this->lang->line('add_citizen');?>
-                  </a>
-                  <a href="liste_citoyens" class="bloc-link color-2">
-                    <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> <?=$this->lang->line('list_citizen');?>
-                  </a>
-                  <a href="liste_menage_fokontany" class="bloc-link color-3">
-                    <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> <?=$this->lang->line('list_household');?>
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -345,28 +362,47 @@
                               <div class="error_field job_statusError"></div>
                           </div>
                       </div>
+                      <div class="form-row">
+                          <div class="form-group col-md-12">
+                              <label for="observation">Observations</label>
+                              <textarea class="form-control" name="observation" id="observation"></textarea>
+                              <div class="error_field observationError"></div>
+                          </div>
+                      </div>
                     </form>
                   </div>
                   <div class="col-lg-5">
                     <h6>Cliquez sur un bouton pour générer un certificat</h6>
-                    <a id="certificat_residence" href="">
-                      <button class="btn btn-color-2 mb-1 mr-1">Certificat de Résidence</button>
-                    </a>
-                    <a id="certificat_move" href="">
-                      <button class="btn btn-color-6 mb-1 mr-1">Certificat de Démnagement</button>
-                    </a>
-                    <a id="certificat_celibat" href="">
-                      <button class="btn btn-color-3 mb-1 mr-1">Certificat de Célibat</button>
-                    </a>
-                    <a id="certificat_life" href="">
-                      <button class="btn btn-color-4 mb-1 mr-1">Certificat de Vie Individuelle</button>
-                    </a>
-                    <a id="certificat_supported" href="">
-                      <button class="btn btn-color-5 mb-1 mr-1">Certificat de Prise en charge et de garde</button>
-                    </a>
-                    <a id="certificat_behavior" href="">
-                      <button class="btn btn-color-7 mb-1 mr-1">Certificat de Bonne conduite - de Bonne Vie - Moeurs</button>
-                    </a>                  
+                    <div>
+                      <a id="certificat_residence" href="">
+                        <button class="btn btn-color-2 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Résidence</button>
+                      </a>
+                    </div>
+                    <div>
+                      <a id="certificat_move" href="">
+                        <button class="btn btn-color-6 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Démnagement</button>
+                      </a>
+                    </div>
+                    <div>
+                      <a id="certificat_celibat" href="">
+                        <button class="btn btn-color-3 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Célibat</button>
+                      </a>
+                    </div>
+                    <div>
+                      <a id="certificat_life" href="">
+                        <button class="btn btn-color-4 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Vie Individuelle</button>
+                      </a>
+                    </div>
+                    <div>
+                      <a id="certificat_supported" href="">
+                        <button class="btn btn-color-5 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Prise en charge et de garde</button>
+                      </a>
+                    </div>
+                    <div>
+                      <a id="certificat_behavior" href="">
+                        <button class="btn btn-color-7 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Bonne conduite - de Bonne Vie - Moeurs</button>
+                      </a>
+                    </div>                  
                   </div>
                 </div>
               </div>

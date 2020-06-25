@@ -46,50 +46,34 @@
       </div>
   </nav>
 
-  <div class="container-fluid">
+  <div class="container">
     <div class=row>
-      <div class="main-side-bar">
-      <ul class="main-menu">
-          <li>
-            <a href="gestion_citoyens"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> <?=$this->lang->line('citizens');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="recherche_menage"><?=$this->lang->line('add_citizen');?></a></li>
-              <li><a href="liste_citoyens"><?=$this->lang->line('list_citizen');?></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="fa-solid:user" data-inline="false"></span> <?=$this->lang->line('households');?></a>
-            <ul class="sub-main-menu">
-              <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
-              <li><a href="aide_menage" class="active">Liste des aides</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> <?=$this->lang->line('certificates');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="residence">Résidence</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
       <div class="main-container">
         <!-- Page title -->
-        <p class="info-fokontany"><span>Province : </span><?= $info_fokontany->province_name;?> > <span>Région : </span><?= $info_fokontany->region_name;?> > <span>District : </span><?= $info_fokontany->district_name;?> > <span>Commune : </span><?= $info_fokontany->common_name;?> > <span>Arrondissement : </span><?= $info_fokontany->borough_name;?></p>
-        <div class="container-fluid page-title">
+        <div class="text-center">
+          <p class="info-fokontany">
+            <span>Province : </span><?= $info_fokontany->province_name;?>
+            <span>Région : </span><?= $info_fokontany->region_name;?>
+            <span>District : </span><?= $info_fokontany->district_name;?>
+            <span>Commune : </span><?= $info_fokontany->common_name;?>
+            <span>Arrondissement : </span><?= $info_fokontany->borough_name;?>
+            <span>Fokontany : </span><?= $info_fokontany->fokontany_name;?></p>
+        </div>
+        <div class="container page-title">
           <h1><?= $title;?></h1>
         </div>
         <!-- End Page title -->
 
         <!-- Page Content -->
-        <div class="container-fluid">
+        <div class="container">
           <div class="row">
-            <div class="col-lg-7">
+            <div class="col-lg-12">
               <p><?= $this->lang->line('household_aid_for_details');?></p>
               <div id="households"></div>
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-12">
               <p><?= $this->lang->line('household_aid_content');?> : <strong class="household">...</strong></p>
-              <button id="addAid">Ajout aide</button>
+              <button id="addAid" class="btn btn-color-2 mb-1">Ajout une aide</button>
               <div id="aidsContent"></div>
             </div>
           </div>           

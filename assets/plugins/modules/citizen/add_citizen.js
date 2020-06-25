@@ -40,7 +40,7 @@ $(function () {
         else $('#job_other').hide();
     });
     
-    $('#nationality').change(function(e){
+    $('.nationality').change(function(e){
         e.preventDefault();
         
         if($(this).val() == 1){
@@ -81,8 +81,14 @@ $(function () {
 
             $(this).val(foo);
         }
-	});
- 
+    });
+    
+    $(document).ready(function () {
+        $('.phone_number').usPhoneFormat({
+            format: 'xxx xx xxx xx',
+        });
+    });
+
     function loading(){
         $(this).prop('disabled', true);
         $('#loadingSave').show();

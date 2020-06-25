@@ -13,7 +13,6 @@
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
 	<link href="<?= plugin('bootstrap', 'css', 'bootstrap.min.css');?>" rel="stylesheet">
-	<link href="<?= plugin('tabulator', 'css', 'tabulator.min.css');?>" rel="stylesheet">
 	<?= css('admin');?>
 
 	<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
@@ -46,42 +45,30 @@
       </div>
   </nav>
 
-  <div class="container-fluid">
+  <div class="container">
     <div class=row>
-      <div class="main-side-bar">
-        <ul class="main-menu">
-          <li>
-            <a href="gestion_citoyens"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> <?=$this->lang->line('citizens');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="liste_citoyens"><?=$this->lang->line('list_citizen');?></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="fa-solid:user" data-inline="false"></span> <?=$this->lang->line('households');?></a>
-            <ul class="sub-main-menu">
-              <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
-              <li><a href="aide_menage">Liste des aides</a></li>
-              <li><a href="nouveau_menage_fokontany" class="active">Création ménage</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="ant-design:setting-filled" data-inline="false"></span> <?=$this->lang->line('settings');?></a>
-          </li>
-        </ul>
-      </div>
       <div class="main-container">
         <!-- Page title -->
-        <p class="info-fokontany"><span>Province : </span><?= $info_fokontany->province_name;?> <span>Région : </span><?= $info_fokontany->region_name;?> <span>District : </span><?= $info_fokontany->district_name;?> <span>Commune : </span><?= $info_fokontany->common_name;?></p>
-        <div class="container-fluid page-title">
+        <div class="text-center">
+          <p class="info-fokontany">
+            <span>Province : </span><?= $info_fokontany->province_name;?>
+            <span>Région : </span><?= $info_fokontany->region_name;?>
+            <span>District : </span><?= $info_fokontany->district_name;?>
+            <span>Commune : </span><?= $info_fokontany->common_name;?>
+            <span>Arrondissement : </span><?= $info_fokontany->borough_name;?>
+            <span>Fokontany : </span><?= $info_fokontany->fokontany_name;?>
+          </p>
+        </div>
+        <div class="container page-title">
           <h1><?= $title;?></h1>
         </div>
         <!-- End Page title -->
 
         <!-- Page Content -->
-        <div class="container-fluid">
+        <div class="container">
           <div class="row">
             <div class="col-lg-12">
-              <?= $this->lang->line('address');?> : <?= $this->session->address;?> <?= $this->lang->line('household_size');?> : <?= $this->session->household_size;?>
+              Localité : <?= $this->session->locality;?> - <?= $this->lang->line('address');?> : <?= $this->session->address;?> - <?= $this->lang->line('household_size');?> : <?= $this->session->household_size;?>
             </div>
           </div>
           <form id="addCitizen">
@@ -115,7 +102,7 @@
                 <span class="iconify" data-inline="false" data-icon="uil:check" style="font-size: 32px;"></span>
                 </span>
                 <p id="confirmResponse"></p>
-                <a href="recherche_menage"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
+                <a href="/"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
               </div>
             </div>
           </div>
@@ -140,7 +127,7 @@
 
 	<script src="<?= js('jquery.min');?>"></script>
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
-	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
+  <script src="<?= plugin('phone', 'js', 'jquery-input-mask-phone-number.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
 	<script src="<?= plugin('modules', 'citizen', 'add_citizen.js');?>"></script>
 </body>

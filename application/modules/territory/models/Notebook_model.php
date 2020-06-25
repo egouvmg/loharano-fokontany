@@ -4,6 +4,7 @@ class Notebook_model extends CI_Model
 {
 	private $_table = "carnet_fokontany";
 	private $_v_notebook_citizen = "v_notebook_citizen";
+	private $_v_household_count = "v_household_count";
 
 	public function __construct(){      
         $this->load->database();
@@ -38,6 +39,32 @@ class Notebook_model extends CI_Model
 	public function citizens($criteria = array()) {
 		$this->db->select('*');
 		$this->db->from($this->_v_notebook_citizen);
+		
+		if(!empty($criteria)){
+			$this->db->where($criteria);
+		}
+		
+		$query = $this->db->get();
+
+		return $query->result();
+	}
+
+	public function household_count($criteria = array()) {
+		$this->db->select('*');
+		$this->db->from($this->_v_household_count);
+		
+		if(!empty($criteria)){
+			$this->db->where($criteria);
+		}
+		
+		$query = $this->db->get();
+
+		return  ($query->num_rows() > 0) ? $query->first_row() : false;
+	}
+
+	public function households_count($criteria = array()) {
+		$this->db->select('*');
+		$this->db->from($this->_v_household_count);
 		
 		if(!empty($criteria)){
 			$this->db->where($criteria);

@@ -709,7 +709,7 @@ body.login {
     margin: 0 3px 16px;
 }
 .tabulator .tabulator-header .tabulator-col {
-    background: #F26122 !important;
+    background: #06d6a0 !important;
     color: #000 !important;
 }
 
@@ -735,7 +735,6 @@ body.login {
 .main-container{
     padding-left: 15px;
     padding-top: 15px;
-    margin-left: 230px;
     width: 100%;
 }
 .main-side-bar ul.main-menu{
@@ -760,7 +759,7 @@ body.login {
 }
 .bloc-link {
     color: #fff;
-    padding: 25px;
+    padding: 25px 0;
     border-radius: 5px;
     margin: 0 15px 10px;
     display: inline-block;
@@ -777,6 +776,17 @@ body.login {
     font-size: 40pt;
     display: block;
     margin: 0 auto;
+}
+.bloc-link .count {
+    font-size: 23pt;
+    padding: 19px 0px 15px;
+    display: block;
+}
+.bloc-link .pourcent {
+    font-size: 12pt;
+    font-weight: bold;
+    padding: 19px 0px 15px;
+    display: block;
 }
 .bloc-link.color-1{
     background-color: #F26122;
@@ -795,6 +805,9 @@ body.login {
 }
 .bloc-link.color-6{
     background-color: #540d6e;
+}
+.bloc-link.color-7{
+    background-color: #84a59d;
 }
 .bloc-link-counter {
     background-color: #118ab2;
@@ -864,26 +877,34 @@ img.loading{
     width: 100%;
 }
 .btn-color-1{
-    background-color: #FFADAD;
+    background-color: #3a0ca3;
+    color: #fff;
 }
 .btn-color-2{
-    background-color: #FFD6A5;
+    background-color: #247ba0;
+    color: #fff;
 }
 .btn-color-3{
-    background-color: #FDFFB6;
+    background-color: #619b8a;
+    color: #fff;
 }
 .btn-color-4{
-    background-color: #CAFFBF;
+    background-color: #c44536;
+    color: #fff;
 }
 .btn-color-5{
-    background-color: #9BF6FF;
+    background-color: #540d6e;
+    color: #fff;
 }
 .btn-color-6{
-    background-color: #A0C4FF;
+    background-color: #aa4465;
+    color: #fff;
 }
 .btn-color-7{
-    background-color: #BDB2FF;
+    background-color: #1ea896;
+    color: #fff;
 }
 .btn-color-8{
-    background-color: #FFC6FF;
+    background-color: #69585f;
+    color: #fff;
 }

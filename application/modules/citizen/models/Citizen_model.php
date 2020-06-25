@@ -3,7 +3,9 @@
 class Citizen_model extends CI_Model
 {
 	private $_table = "personne";
+
 	private $_v_certificate = "v_certificate";
+	private $_v_ratio_sexe = "v_ratio_sexe";
 
 	public function __construct(){      
         $this->load->database();
@@ -69,4 +71,16 @@ class Citizen_model extends CI_Model
 		return $query->result();
 	}
 
+	public function ratio_sexe($criteria = array()){
+		$this->db->select('*');
+		$this->db->from($this->_v_ratio_sexe);
+		
+		if(!empty($criteria)){
+			$this->db->where($criteria);
+		}
+		
+		$query = $this->db->get();
+	
+		return $query->result();
+	}
 }

@@ -33,6 +33,9 @@ $lang['next'] = 'Manaraka';
 $lang['dead'] = 'Maty';
 $lang['alive'] = 'Velona';
 $lang['number_notebook'] = 'Numéro carnet Fokontany';
+$lang['handicapped'] = 'Manana fahasembanana';
+$lang['no'] = 'Eny';
+$lang['yes'] = 'Tsia';
 
 $lang['sexe_male'] = 'Lahy';
 $lang['sexe_female'] = 'Vavy';

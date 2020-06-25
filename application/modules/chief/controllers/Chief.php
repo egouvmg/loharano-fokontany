@@ -37,7 +37,7 @@ class Chief extends Chief_Controller
 
 	public function index()
 	{
-        $this->data['title'] = "Tableau de bords";
+        $this->data['title'] = "Tableau de bord";
         $this->load->view('index', $this->data);
 	}
 

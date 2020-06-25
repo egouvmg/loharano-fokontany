@@ -40,7 +40,7 @@ class Citizen extends Operator_Controller
 
 	public function index_household()
 	{
-		$this->data['title'] = "Tableau de bords";
+		$this->data['title'] = "Tableau de bord";
         $this->load->view('index', $this->data);
 	}
 
@@ -66,13 +66,38 @@ class Citizen extends Operator_Controller
 
 		$this->data['nationalities'] = $this->nationality->all();
         $this->data['jobs'] = $this->job->all();
+
+        //Count household/citizen
+        $citizen_count = count($this->notebook->citizens(['fokontany_id' => $this->fokontany_id]));
+        $household_count = $this->notebook->household_count(['fokontany_id' => $this->fokontany_id]);
+
+        $this->data['household_count'] = ($household_count) ? number_format($household_count->household_count, 0, '', ' ') : 0;
+        $this->data['citizen_count'] = number_format($citizen_count, 0, '', ' ');
+
+        
+        //Ration sexe
+        $this->data['female_ratio'] = 0;
+        $this->data['male_ratio'] = 0;
+
+        if($citizen_count){
+            $ratio_sexe = $this->citizen->ratio_sexe(['fokontany_id' => $this->fokontany_id]);
+            foreach($ratio_sexe as $value){
+                if($value->sexe == 0)
+                    $this->data['female_ratio'] = number_format(($value->number/$citizen_count)*100, 2, ',', '');
+                if($value->sexe == 1)
+                    $this->data['male_ratio'] =  number_format(($value->number/$citizen_count)*100, 2, ',', '');
+            }
+        }
         
         $this->load->view('index', $this->data);
 	}
 
 	public function list_citizens()
 	{
-        $this->data['title'] = $this->lang->line('dashboard');
+        $this->data['title'] = $this->lang->line('list_citizen');
+
+		$this->data['nationalities'] = $this->nationality->all();
+        $this->data['jobs'] = $this->job->all();
 
         $this->load->view('list_citizen_fk', $this->data);
     }
@@ -80,6 +105,8 @@ class Citizen extends Operator_Controller
     public function list_households()
     {
         $this->data['title'] = 'Liste des ménages';
+
+		$this->data['nationalities'] = $this->nationality->all();
         $this->data['jobs'] = $this->job->all();
 
         $this->load->view('list_household', $this->data);
@@ -345,6 +372,8 @@ class Citizen extends Operator_Controller
                     'phone' => $data['phone'][$i],
                     'father' => $data['father'][$i],
                     'father_status' => $data['father_status'][$i],
+                    'handicape' => $data['handicape'][$i],
+                    'observation' => $data['observation'][$i],
                     'mother' => $data['mother'][$i],
                     'mother_status' => $data['mother_status'][$i],
                     'job_id' => ($data['job_id'][$i]) ? $data['job_id'][$i] : 53,
@@ -372,6 +401,7 @@ class Citizen extends Operator_Controller
 
             $this->session->unset_userdata('address');
             $this->session->unset_userdata('household_size');
+            $this->session->unset_userdata('locality');
 
             if(empty($citizens_index)){
                 echo json_encode(['success' => 1, 'msg' => $this->lang->line('success_save')]);
@@ -560,17 +590,20 @@ class Citizen extends Operator_Controller
      * Vérification des inputs Adresse et Taille du ménage
      */
 
-    public function check_household(Type $var = null)
+    public function check_household()
     {
         if (!$this->input->is_ajax_request()) {
             exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
         }
 
         $address = $this->input->post('address');
+        $locality = $this->input->post('locality');
         $household_size = (int) $this->input->post('household_size');
 
         $missing_fields = [];
         
+        if(empty($locality))
+            $missing_fields[] = ['locality', 'Champs requis'];
         if(empty($address))
             $missing_fields[] = ['address', 'Champs requis'];
         if(empty($household_size))
@@ -611,7 +644,7 @@ class Citizen extends Operator_Controller
         $data = [
             'numero_carnet' => $reference,
             'adresse_actuelle' => $address,
-            'id_registre' => 1
+            'id_registre' => $this->fokontany_id
         ];
 
         if($this->notebook->insert($data))
@@ -1057,17 +1090,22 @@ class Citizen extends Operator_Controller
                 if(!empty($value)) $criteria['LOWER('.$key . ') LIKE '] = '%'.strtolower($value).'%';
 
             if(empty($criteria)){
-                echo json_encode(['success' => 1, 'data' => []]);
+                echo json_encode(['success' => 1, 'citizens' => [], 'households' => []]);
                 return TRUE;
             }
 
             $criteria['fokontany_id'] = $this->fokontany_id;
             $citizens = $this->notebook->citizens($criteria);
+            
+            $criteria['chef_menage'] = TRUE;
+            $households = $this->notebook->citizens($criteria);
 
-            if($citizens) echo json_encode(['success' => 1, 'data' => $citizens]);
-            else echo json_encode(['success' => 1, 'data' => []]);
+            if(!empty($citizens) && !empty($households)){
+                echo json_encode(['success' => 1, 'citizens' => $citizens, 'households' => $households]);
+            }
+            else echo json_encode(['success' => 1, 'citizens' => [], 'households' => []]);
         }
-        else echo json_encode(['success' => 1, 'data' => []]);
+        else echo json_encode(['success' => 1, 'citizens' => [], 'households' => []]);
     }
 
 }

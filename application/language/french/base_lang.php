@@ -35,6 +35,9 @@ $lang['alive'] = 'Vivant(e)';
 $lang['next_citizen'] = 'Citoyen suivant';
 $lang['previous_citizen'] = 'Citoyen précédent';
 $lang['number_notebook'] = 'Numéro carnet Fokontany';
+$lang['handicapped'] = 'Handicapé(e)';
+$lang['no'] = 'Non';
+$lang['yes'] = 'Oui';
 
 $lang['sexe_male'] = 'Homme';
 $lang['sexe_female'] = 'Femme';
@@ -45,7 +48,7 @@ $lang['login'] = 'Se connecter';
 $lang['administrator'] = 'Administrateur';
 $lang['user_account'] = 'Mon compte';
 $lang['logout'] = 'Se déconnecter';
-$lang['dashboard'] = 'Tableau de bords';
+$lang['dashboard'] = 'Tableau de bord';
 $lang['settings'] = 'Paramètres';
 
 $lang['manage_users'] = 'Gestion des utilisateurs';

@@ -8,7 +8,7 @@ $(function () {
 			{column:"nom", dir:"asc"}
 		],
         columns:[ //Define Table Columns 
-            {title:"Numéro Cranet", field:"numero_carnet", headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"Numéro carnet", field:"numero_carnet", headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Adresse", field:"adresse_actuelle", headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Nom", field:"nom",headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Prénoms", field:"prenoms",headerFilterPlaceholder:"..." , headerFilter:"input"},

@@ -1,17 +1,24 @@
 $(function () {
+    var household_head = function (cell, formatterParams) {
+		return cell.getRow().getData().nom + ' ' + cell.getRow().getData().prenoms;
+    };
+
+    var is_household_head = function (cell, formatterParams) {
+        return (cell.getValue()) ? 'Oui' : 'Non';
+    };
+
 	var citizens = new Tabulator("#citizens", {
         layout:"fitColumns",
 		initialSort:[
-			{column:"nom", dir:"asc"}
+			{column:"chef_menage", dir:"desc"}
 		],
         columns:[ //Define Table Columns
-            {title:"Numéro Cranet", field:"numero_carnet", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Adresse", field:"adresse_actuelle", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Nom", field:"nom",headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Prénoms", field:"prenoms",headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Date de Naissance", field:"date_de_naissance", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Lieu de Naissance", field:"lieu_de_naissance", headerFilterPlaceholder:"..." , headerFilter:"input"}, 
-            {title:"Numéro cin", field:"cin_personne", headerFilterPlaceholder:"..." , headerFilter:"input"},          
+            {title:"Chef", width:80, formatter: is_household_head, field:"chef_menage"},
+            {title:"Nom", field:"nom"},
+            {title:"Prénoms", field:"prenoms"},
+            {title:"Date de Naissance", field:"date_de_naissance"},
+            {title:"Lieu de Naissance", field:"lieu_de_naissance"}, 
+            {title:"Numéro cin", field:"cin_personne"}      
         ],
         rowClick:function(e, row){
             $('.error_field').text('');
@@ -22,9 +29,6 @@ $(function () {
             $('#prenoms_info').val(row.getData().prenoms);
             $('#sexe').val(row.getData().sexe);
             $('#cin_personne_info').val(row.getData().cin_personne);
-            $('#date_delivrance_cin').val(splitDate(row.getData().cin_date));
-            $('#lieu_delivrance_cin').val(row.getData().cin_place);
-            $('#date_de_naissance').val(splitDate(row.getData().date_de_naissance));
             $('#lieu_de_naissance').val(row.getData().lieu_de_naissance);
             $('#father').val(row.getData().father);
             $('#father_status').val(row.getData().father_status);
@@ -35,6 +39,22 @@ $(function () {
             $('#job_status').val(row.getData().job_status);
             $('#situation_matrimoniale').val(row.getData().situation_matrimoniale);
             $('#id_personne').val(row.getData().id_personne);
+            $('#observation').val(row.getData().observation);
+
+            if(row.getData().date_de_naissance){
+                console.log('cin_date ' + row.getData().cin_date);
+                $('#date_de_naissance').val(splitDate(row.getData().date_de_naissance));
+            }
+            if(row.getData().cin_date){
+                console.log('cin_date ' + row.getData().cin_date);
+                $('#date_delivrance_cin').val(splitDate(row.getData().cin_date));
+                $('#lieu_delivrance_cin').val(row.getData().cin_place);
+            }         
+            if(row.getData().date_delivrance_cin){
+                console.log('date_delivrance_cin ' + row.getData().date_delivrance_cin);
+                $('#date_delivrance_cin').val(splitDate(row.getData().date_delivrance_cin));
+                $('#lieu_delivrance_cin').val(splitDate(row.getData().lieu_delivrance_cin));
+            }
 
             $('#certificat_residence').attr("href", "certificate?id_personne="+row.getData().id_personne);
             $('#certificat_move').attr("href", "certificate_move?id_personne="+row.getData().id_personne);
@@ -76,11 +96,10 @@ $(function () {
         var data = $('#speedForm').serializeArray();
 
         $.get('recherche_rapide', data, function(res){
-            $('#citizens').show();
             if(res.success == 1){
-                citizens.setData(res.data);
+                citizens.setData(res.citizens);
 
-                if(res.data.length == 0) $('#createHousehold').show();
+                if(res.citizens.length == 0) $('#createHousehold').show();
                 else $('#createHousehold').hide();
             }
             else alert(res.msg);
@@ -124,8 +143,7 @@ $(function () {
     });
 
     function splitDate(mydate){
-        console.log(mydate);
-        if(mydate != ''){
+        if(mydate != 'undefined'){
             var from = mydate.split("/");
             return  from[2] +'-'+ from[1] +'-'+ from[0];
         }
@@ -148,4 +166,6 @@ $(function () {
             if(res.success == 1) alert(res.msg);
         }, 'JSON');
     });
+
+    $('.bloc-link').tooltip({ boundary: 'window' });
 });
