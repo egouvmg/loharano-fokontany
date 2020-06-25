@@ -79,7 +79,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div id="users"></div>
-                <button type="button" class="btn btn-primary" id="pdf"> Générer pdf</button>
+                <button type="button" class="btn btn-primary" id="pdf"> Imprimer pdf</button>
           </div>
         </div>
         <div class="container-fluid" id="content">
