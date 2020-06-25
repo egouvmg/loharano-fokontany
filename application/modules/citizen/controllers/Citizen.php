@@ -708,59 +708,9 @@ class Citizen extends Operator_Controller
         $requireds = ['last_name', 'birth', 'birth_place'];
 
         if($data){
-            $missing_fields = [];
-
-            for ($i=0; $i < $this->session->household_size ; $i++) {
-                $index = $i +1;
-
-                foreach($requireds as $required)
-                    if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
-            }
-
-
-                if($data['nationality_id'] == 1){  
-                    $requireds_cin = ['cin', 'cin_date', 'cin_place'];            
-                    $cin = [$data['cin'], $data['cin_date'], $data['cin_place']];
-                    
-                    if($cin != ['', '', '']){
-                        foreach($requireds_cin as $required)
-                            if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
-                    }
-                }else if($data['nationality_id'] > 1){   
-                    $requireds_passport = ['passport', 'passport_date', 'passport_place'];   
-                    $passport = [$data['passport'], $data['passport_date'], $data['passport_place']];  
-                    
-                    foreach($requireds_passport as $required)
-                        if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
-                }
-            
-
-            if(!empty($missing_fields)){
-                echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
-                return FALSE;
-            }
-
-            /*
-             *  Insertion Personnes
-             */
-
             $citizens_index = [];
 
-            $cin = [$data['cin'][$i], $data['cin_date'][$i], $data['cin_place'][$i]];
-            $passport = [$data['passport'][$i], $data['passport_date'][$i], $data['passport_place'][$i]];
-
             $data_tmp = [];
-
-            if ($cin != ['', '', '']){
-                $data_tmp['cin_personne'] = $data['cin'];
-                $data_tmp['date_delivrance_cin'] = $data['cin_date'];
-                $data_tmp['lieu_delivrance_cin'] = $data['cin_place'];
-            }
-            if ($passport != ['', '', '']){
-                $data_tmp['passport'] = $data['passport'];
-                $data_tmp['passport_date'] = $data['passport_date'];
-                $data_tmp['passport_place'] = $data['passport_place'];
-            }
 
             $data_personne = $this->fokontany->get_fokotany_by_id((int)$data['fokontany_id']);
 
@@ -852,6 +802,9 @@ class Citizen extends Operator_Controller
                 }
                 if(isset($data['job_status'])){
                     $data_tmp['job_status']= $data['job_status'];
+                }
+                if(isset($data['observation'])){
+                    $data_tmp['observation']= $data['observation'];
                 }
                
                 $this->citizen->update($data_tmp);  
