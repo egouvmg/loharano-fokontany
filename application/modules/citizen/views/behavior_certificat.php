@@ -50,35 +50,20 @@
       </div>
   </nav>
 
-  <div class="container-fluid">
+  <div class="container">
     <div class=row>
-    <div class="main-side-bar">
-      <ul class="main-menu">
-          <li>
-            <a href="gestion_citoyens"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> <?=$this->lang->line('citizens');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="recherche_menage"><?=$this->lang->line('add_citizen');?></a></li>
-              <li><a href="liste_citoyens"><?=$this->lang->line('list_citizen');?></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="fa-solid:user" data-inline="false"></span> <?=$this->lang->line('households');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="liste_menage_fokontany">Liste des ménages</a></li>
-              <li><a href="#">Créer nouveau menage</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> <?=$this->lang->line('certificates');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="residence">Résidence</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
       <div class="main-container">
         <!-- Page title --> 
-        <div class="container-fluid page-title">
+        <div class="text-center">
+          <p class="info-fokontany">
+            <span>Province : </span><?= $info_fokontany->province_name;?>
+            <span>Région : </span><?= $info_fokontany->region_name;?>
+            <span>District : </span><?= $info_fokontany->district_name;?>
+            <span>Commune : </span><?= $info_fokontany->common_name;?>
+            <span>Arrondissement : </span><?= $info_fokontany->borough_name;?>
+            <span>Fokontany : </span><?= $info_fokontany->fokontany_name;?></p>
+        </div>
+        <div class="container page-title">
           <h1><?= $title;?></h1>
         </div>
         <!-- End Page title -->
@@ -90,7 +75,7 @@
                 <button type="button" class="btn btn-primary" id="pdf"> Imprimer pdf</button>
           </div>
         </div>
-        <div class="container-fluid" id="content">
+        <div class="container" id="content">
         <div >          
           <!--REPOBLIKAN'I MADAGASIKARA-->
           <div class="row">
