@@ -76,8 +76,9 @@ $(function () {
             { title: "father_status", field: "father_status", visible: false },
             { title: "job_id", field: "job_id", visible: false },
             { title: "job_status", field: "job_status", visible: false },
-            { title: "mother_status", field: "mother_status", visible: false }           
-        ],
+            { title: "mother_status", field: "mother_status", visible: false },           
+            { title: "observation", field: "observation", visible: false }
+           ],
         rowClick:function(e, row){
             $('.error_field').text('');
             $('#nom_complet').text(row.getData().nom + ' ' + row.getData().prenoms);

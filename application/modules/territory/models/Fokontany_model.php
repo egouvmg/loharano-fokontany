@@ -26,4 +26,25 @@ class Fokontany_model extends CI_Model
 
 		return $query->result();
 	}
+
+	public function get_fokotany_by_id($id = 0){
+		$this->db->select('*');
+		$this->db->from($this->_table);
+	
+		if(!empty($id)){
+			$this->db->where('id', $id);
+		}
+	
+		$query = $this->db->get();
+		
+		return $query ->result();
+	}
+
+	public function update($data) {
+		$fokontany_id = $data["fokontany_id"];
+		$this->db->where('id', $fokontany_id);
+		unset($data["fokontany_id"]);
+		$this->db->update($this->_table, $data);
+		return $fokontany_id;
+	}
 }
