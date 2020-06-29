@@ -110,6 +110,8 @@ $route['nouveau_menage_fokontany'] = 'citizen/new_household';
 $route['liste_menage_fokontany'] = 'citizen/list_households';
 $route['residence'] = 'citizen/certificate_residence';
 $route['certificat_residence'] = 'citizen/generate_residence';
+$route['migration_vers_menage'] = 'citizen/migration_citizen';
+$route['nouveau_citoyen_fokontany'] = 'citizen/add_new_citizen';
 
 //Aid
 $route['aide_menage'] = 'aid/index';
@@ -141,6 +143,11 @@ $route['insertion_citoyen_dans_menage'] = 'citizen/insert_in_household';
 $route['modifier_citoyen'] = 'citizen/edit_citizen';
 $route['citoyens_list'] = 'citizen/citizens_list';
 $route['save_citizen_from_certificat'] = 'citizen/save_citizen_from_certificat';
+$route['migrer_vers_menage'] = 'citizen/migrate_to_household';
+$route['migrer_vers_nouveau_menage'] = 'citizen/migrate_to_new_household';
+$route['valider_migration_vers_menage'] = 'citizen/valid_migration_citizen';
+$route['historique_migration'] = 'citizen/history_migration';
+$route['verifier_localite_nouveau_menage'] = 'citizen/check_new_household';
 
 //Certificat
 $route['certificate'] = 'citizen/load_citizen_certificate';

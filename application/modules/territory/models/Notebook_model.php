@@ -49,6 +49,18 @@ class Notebook_model extends CI_Model
 		return $query->result();
 	}
 
+	public function citizen($criteria = array()) {
+		$this->db->select('*');
+		$this->db->from($this->_v_notebook_citizen);
+		
+		if(!empty($criteria)){
+			$this->db->where($criteria);
+		}
+		
+		$query = $this->db->get();
+		return  ($query->num_rows() > 0) ? $query->first_row() : false;
+	}
+
 	public function household_count($criteria = array()) {
 		$this->db->select('*');
 		$this->db->from($this->_v_household_count);

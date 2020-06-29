@@ -14,6 +14,7 @@ class Citizen extends Operator_Controller
         $this->load->model('territory/common_model', 'common');
         $this->load->model('territory/borough_model', 'borough');
         $this->load->model('territory/notebook_model', 'notebook');
+        $this->load->model('territory/migration_model', 'migration');
 
         $this->load->model('register/register_model', 'register');
 
@@ -166,6 +167,22 @@ class Citizen extends Operator_Controller
         }
     }
 
+    public function add_new_citizen()
+	{
+        if($this->session->migration_id){
+            $this->data['jobs'] = $this->job->all();
+            $this->data['nationalities'] = $this->nationality->all();
+            
+            $person_notebook = $this->notebook->citizen(['id_personne' => $this->session->migration_id]);
+            $this->data['title'] = 'Création du ménage du citoyen : ' . $person_notebook->nom . ' ' . $person_notebook->prenoms;
+            
+            $this->load->view('add_new_citizen', $this->data);
+        }
+        else{
+            redirect('/', 'refresh');
+        }
+    }
+
 	public function search_household()
 	{
         $this->data['title'] = $this->lang->line('add_citizen');
@@ -249,6 +266,18 @@ class Citizen extends Operator_Controller
         $this->data['citizen_data'] = $citizen_data;
 		
         $this->load->view('residence_certificat', $this->data);
+    }
+
+    public function migration_citizen()
+    {
+        if(!isset($this->session->migration_id)) redirect('/', 'refresh');
+
+        $person = $this->citizen->one(['id_personne'=>$this->session->migration_id]);
+
+        $this->data['person'] = $person;
+		$this->data['title'] = "Migration de ". $person->nom . " " . $person->prenoms . " dans un ménage existant";
+
+        $this->load->view('migration_citizen', $this->data);
     }
 
     /*
@@ -660,6 +689,57 @@ class Citizen extends Operator_Controller
         $this->session->set_userdata($this->input->post());
         
         echo json_encode(['success' => 1, 'link' => 'ajout_citoyen']);
+    }
+
+    public function check_new_household()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $address = $this->input->post('address');
+        $locality = $this->input->post('locality');
+        $household_size = (int) $this->input->post('household_size');
+
+        $missing_fields = [];
+        
+        if(empty($locality))
+            $missing_fields[] = ['locality', 'Champs requis'];
+        if(empty($address))
+            $missing_fields[] = ['address', 'Champs requis'];
+        if(empty($household_size))
+            $missing_fields[] = ['household_size', 'Champs requis'];     
+
+        if(!empty($missing_fields)){
+            echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
+            return false;
+        }
+        
+        $this->session->set_userdata($this->input->post());
+
+        $reference = $this->createNotebook($address);
+
+        if($reference){
+            $data = [
+                'id_personne' => $this->session->migration_id,
+                'numero_carnet' => $reference
+            ];
+            
+            $person_notebook = $this->notebook->citizen(['id_personne' => $this->session->migration_id]);
+
+            if($this->citizen->update($data)){
+                $data_migration = [
+                    'fokontany_start' => $this->fokontany_id,
+                    'fokontany_end' => $person_notebook->fokontany_id,
+                    'id_person' => $this->session->migration_id
+                ];
+                
+                $this->migration->insert($data_migration);
+            }
+
+            echo json_encode(['success' => 1, 'msg' => 'Migration terminée']);
+        }else echo json_encode(['error' => 1, 'msg' => 'Erreur de migration']);
+        
     }
 
     /*
@@ -1116,6 +1196,85 @@ class Citizen extends Operator_Controller
      return $reference;   
     }
 
+    public function migrate_to_household()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Very ianao :O');
+        }
+
+
+        $id_person = $this->input->get('id_person');
+        if($id_person){
+            $this->session->set_userdata(['migration_id' => $id_person]);
+            echo json_encode(['success' => 1, 'link' => 'migration_vers_menage']);
+        }
+        else echo json_encode(['error' => 1, 'msg' => 'Personne non identifiée']);
+    }
+
+    public function migrate_to_new_household()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Very ianao :O');
+        }
+
+
+        $id_person = $this->input->get('id_person');
+        if($id_person){
+            $this->session->set_userdata(['migration_id' => $id_person]);
+            echo json_encode(['success' => 1, 'link' => 'nouveau_citoyen_fokontany']);
+        }
+        else echo json_encode(['error' => 1, 'msg' => 'Personne non identifiée']);
+    }
+
+    public function valid_migration_citizen(Type $var = null)
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Very ianao :O');
+        }
+        $id_personne = $this->input->post('id_personne');
+        $numero_carnet = $this->input->post('numero_carnet');
+
+        if(empty($id_person) && empty($numero_carnet)){
+            echo json_encode(['error' => 1, 'msg' => 'Information incorrecte']);
+            return false;
+        }
+
+        $data = [
+            'id_personne' => $id_personne,
+            'numero_carnet' => $numero_carnet
+        ];
+        
+        $person_notebook = $this->notebook->citizen(['id_personne' => $id_personne]);
+
+        if($this->citizen->update($data)){
+            $data_migration = [
+                'fokontany_start' => $this->fokontany_id,
+                'fokontany_end' => $person_notebook->fokontany_id,
+                'id_person' => $id_personne
+            ];
+            
+            $this->migration->insert($data_migration);
+
+            echo json_encode(['success' => 1, 'msg' => 'Migration terminée']);
+        }
+        else echo json_encode(['error' => 1, 'msg' => 'Migration impossible']);
+
+    }
+
+    public function history_migration()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Very ianao :O');
+        }
+
+        $id_person = $this->input->get('id_person');
+
+        $histories = $this->migration->all_details(['id_person' => $id_person]);
+        
+        if($histories) echo json_encode($histories);
+        else echo json_encode([]);
+    }
+
     public function speed_search()
     {
         if (!$this->input->is_ajax_request()) {
@@ -1152,6 +1311,7 @@ class Citizen extends Operator_Controller
                 $criteria['fokontany_id !='] = $this->fokontany_id;
                 
                 $other_citizens = $this->notebook->citizens($criteria);
+
                 if($other_citizens)
                     echo json_encode(['success' => 1, 'citizens' => [], 'households' => [], 'other_citizens' => $other_citizens]);
                 else echo json_encode(['success' => 1, 'citizens' => [], 'households' => [], 'other_citizens' => []]);

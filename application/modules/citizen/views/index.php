@@ -382,12 +382,9 @@
                       <a id="certificat_behavior" target="_blank"  href="">
                         <button class="btn btn-color-7 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Bonne conduite - de Bonne Vie - Moeurs</button>
                       </a>
-                    </div> 
-                    <div class="btn-migration" style="display:none;">
-                      <a id="certificat_behavior" target="_blank"  href="">
-                        <button class="btn btn-color-8 mb-1 mr-1"><span class="iconify" data-icon="mdi:file-move-outline" data-inline="false"></span> Migrer le citoyen</button>
-                      </a>
-                    </div>                  
+                    </div>
+                    <p>Historique de migration</p>
+                    <div id="historyMigration"></div>                
                   </div>
                 </div>
               </div>
@@ -410,6 +407,226 @@
           </div>
         </div>
         <!-- END Person details -->
+        <!-- Other Citizen details -->
+        <div class="modal fade" id="otherCitizenDetails" tabindex="-1" role="dialog" aria-labelledby="newRegisterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="newRegisterTitle">
+                  Détails de   :  <span id="nom_complet_autre"></span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-lg-7">
+                    <form id="formEditPerson">
+                      <input id="o_id_personne" name="id_personne" type="hidden"/>
+                      <div class="form-row">
+                          <div class="form-group col-md-4">
+                              <label for="fokontany_name">Fokontany<span class="text-red">*</span></label>
+                              <input type="text" readonly class="form-control o_fokontany_name" id="fokontany_name"/>
+                              <div class="error_field fokontany_nameError"></div>
+                          </div>
+                          <div class="form-group col-md-4">
+                              <label for="o_adresse_actuelle">Adresse<span class="text-red">*</span></label>
+                              <input type="text" name="adresse_actuelle" class="form-control o_adresse_actuelle" id="o_adresse_actuelle"/>
+                              <div class="error_field o_adresse_actuelleError"></div>
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-md-4">
+                              <label for="o_nom_info">Nom<span class="text-red">*</span></label>
+                              <input type="text" name="nom" class="form-control nom" id="o_nom_info"/>
+                              <div class="error_field o_nomError"></div>
+                          </div>
+                          <div class="form-group col-md-4">
+                              <label for="o_prenoms_info">Prénom(s)</label>
+                              <input type="text" name="prenoms" class="form-control o_prenoms" id="o_prenoms_info"/>
+                              <div class="error_field o_prenomsError"></div>
+                          </div>
+                          <div class="form-group col-md-4">
+                              <label for="o_situation_matrimoniale">Situation matrimoniale</label>
+                              <select id="o_situation_matrimoniale" class="form-control"  name="situation_matrimoniale">
+                                  <option value="5"></option>
+                                  <option value="1">Célibataire</option>
+                                  <option value="2">Marié(e)</option>
+                                  <option value="3">Veuf/Veuve</option>
+                                  <option value="4">Divorcé(e)</option>
+                              </select>
+                              <div class="error_field situation_matrimonialeError"></div>
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-md-3">
+                              <label for="o_sexe">Sexe (H/F)</label>
+                              <select id="o_sexe" class="form-control" name="sexe">
+                                  <option value="2"></option>
+                                  <option value="1">Homme</option>
+                                  <option value="0">Femme</option>
+                              </select>
+                              <div class="error_field o_sexeError"></div>
+                          </div>
+                          <div class="form-group col-md-3">
+                              <label for="o_date_de_naissance">Date naissance<span class="text-red">*</span></label>
+                              <input type="date" class="form-control date_type" placeholder="jj/mm/aaaa" name="date_de_naissance" id="o_date_de_naissance"/>
+                              <div class="error_field o_date_de_naissanceError"></div>
+                          </div>
+                          <div class="form-group col-md-4">
+                              <label for="o_lieu_de_naissance">Lieu de naissance<span class="text-red">*</span></label>
+                              <input type="text" class="form-control" name="lieu_de_naissance" id="o_lieu_de_naissance"/>
+                              <div class="error_field o_lieu_de_naissanceError"></div>
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-md-3">
+                              <label for="o_handicape">Handicapé(e)</label>
+                              <select id="o_handicape" class="form-control" name="handicape">
+                                  <option value="0">Non</option>
+                                  <option value="1">Oui</option>
+                              </select>
+                              <div class="error_field o_handicapeError"></div>
+                          </div>
+                          <div class="form-group col-md-4">
+                              <label for="o_nationality">Nationalité</label>
+                              <select class="form-control" name="nationality_id" id="o_nationality">
+                                  <?php foreach($nationalities as $nationality) : ?>
+                                      <option value="<?= $nationality->id;?>"><?= $this->lang->line('nationality_'.$nationality->id);?></option>
+                                  <?php endforeach;?>
+                              </select>
+                              <div class="error_field o_nationality_idError"></div>
+                          </div>
+                      </div>
+                      <div class="form-row cin-container">
+                        <div class="form-group col-md-4">
+                            <label for="o_cin_personne_info">Numéro CIN</label>
+                            <input type="text" maxlength="15" placeholder="000 000 000 000" class="form-control cin o_cin_personne" name="cin_personne" id="o_cin_personne_info"/>
+                            <div class="error_field o_cin_personneError"></div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="o_date_delivrance_cin">Date CIN</label>
+                            <input type="date" class="form-control date_type" placeholder="jj/mm/aaaa" name="date_delivrance_cin" id="o_date_delivrance_cin"/>
+                            <div class="error_field o_date_delivrance_cinError"></div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="o_lieu_delivrance_cin">Lieu CIN</label>
+                            <input type="text" class="form-control" name="lieu_delivrance_cin" id="o_lieu_delivrance_cin"/>
+                            <div class="error_field o_lieu_delivrance_cinError"></div>
+                        </div>
+                      </div>
+                      <div class="form-row passport-container"  style="display:none;">
+                        <div class="form-group col-md-4">
+                          <label for="o_passport">Numéro CIN/Passeport/Carte de résident</label>
+                          <input type="text" class="form-control" maxlenght="20" placeholder="xxxxxxxxxxxxxxxxxxxx" name="passport" id="o_passport"/>
+                          <div class="error_field o_passportError"></div>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="o_passport_date">Date CIN/Passeport/Carte de résident</label>
+                          <input type="date" class="form-control date_type" placeholder="jj/mm/aaaa" name="passport_date" id="o_passport_date"/>
+                          <div class="error_field o_passport_dateError"></div>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="o_passport_place">Lieu CIN/Passeport/Carte de résident</label>
+                          <input type="text" class="form-control" placeholder="..." name="passport_place" id="o_passport_place"/>
+                          <div class="error_field o_passport_placeError"></div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-md-4">
+                              <label for="o_father">Père</label>
+                              <input type="text" class="form-control father" name="father" id="o_father"/>
+                              <div class="error_field o_fatherError"></div>
+                          </div>
+                          <div class="form-group col-md-2">
+                              <label for="o_father_status">Mention</label>
+                              <select name="father_status"  class="form-control" id="o_father_status">
+                                  <option value="2"></option>
+                                  <option value="0">Vivant</option>
+                                  <option value="1">Mort</option>
+                              </select>
+                              <div class="error_field o_father_statusError"></div>
+                          </div>
+                          <div class="form-group col-md-4">
+                              <label for="o_mother">Mère</label>
+                              <input type="text" class="form-control" name="mother" id="o_mother"/>
+                              <div class="error_field o_motherError"></div>
+                          </div>
+                          <div class="form-group col-md-2">
+                              <label for="o_mother_status">Mention</label>
+                              <select name="mother_status"  class="form-control" id="o_mother_status">
+                                  <option value="2"></option>
+                                  <option value="0">Vivante</option>
+                                  <option value="1">Morte</option>
+                              </select>
+                              <div class="error_field o_mother_statusError"></div>
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-md-6">
+                              <label for="o_phone">Téléphone(s)</label>
+                              <input type="text" placeholder="032 00 000 00; 033 00 000 00; 034 00 000 00" class="form-control" name="phone" id="o_phone"/>
+                              <div class="error_field o_phoneError"></div>
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-md-6">
+                              <label for="o_job">Profession</label>
+                              <select id="o_job" class="form-control job" name="job_id">      
+                                <?php foreach($jobs as $job) : ?>
+                                    <option value="<?= $job->id;?>"><?= $this->lang->line('job_'.$job->id);?></option>
+                                <?php endforeach;?>
+                              </select>
+                              <input type="text" name="job_other" id="otherJob" placeholder="Préciser la profession" style="display: none; margin-top: 3px;" class="form-control" />
+                              <div class="error_field o_job_idError"></div>
+                          </div>
+                          <div class="form-group col-md-6">
+                              <label for="o_job_status">Situation actuelle dans l'emploi</label>
+                              <input type="text" class="form-control" name="job_status" id="o_job_status"/>
+                              <div class="error_field o_job_statusError"></div>
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-md-12">
+                              <label for="o_observation">Observations</label>
+                              <textarea class="form-control" name="observation" id="o_observation"></textarea>
+                              <div class="error_field o_observationError"></div>
+                          </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-lg-5">
+                    <h6>Cliquez sur le bouton ci-dessus pour migrer le citoyen vers un ménage existant dans votre Fokontany</h6>
+                    <div class="btn-migration">
+                        <button id="migrationCitizenToHousehold" class="btn btn-color-8 mb-1 mr-1"><span class="iconify" data-icon="mdi:file-move-outline" data-inline="false"></span> Migrer le citoyen</button>
+                    </div>                  
+                    <h6>Cliquez sur le bouton ci-dessus pour migrer le citoyen vers votre Fokontany</h6>
+                    <div class="btn-migration">
+                        <button id="migrateCitizen" class="btn btn-color-5 mb-1 mr-1"><span class="iconify" data-icon="mdi:file-move-outline" data-inline="false"></span> Migrer le citoyen</button>
+                    </div>                  
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div id="loadingSaveData" style="display: none;">
+                  <center>
+                    <img style="width: 50px;" src="http://loharano.gov.mg:7010/assets/img/loading.gif"> Chargement ...
+                  </center>
+                </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  Fermer
+                  <span class="iconify" data-icon="uil:times-circle" data-inline="false"></span>
+                </button>
+                <button type="button" class="btn btn-primary" id="validEditPerson">
+                  Valider les modifications
+                  <span class="iconify" data-icon="uil:arrow-right" data-inline="false"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END Other Citizen details -->
       </div>
     </div>
   </div>
