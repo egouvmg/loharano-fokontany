@@ -107,23 +107,22 @@
           <!--FOKONTANY-->
           <div class="row"><!-- https://codepen.io/pen/ style="background-color:lavender;"-->
             <div class="col-sm-8"  style="background-color:white;">
+
               <div class="form-group row" style="margin-bottom: 0px;">
-               <label for="fokontany" class="col-sm-4 col-form-label font-weight-bold">FOKONTANY :</label>
-               <div class="col-sm-8">
-                 <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="fokontany" value=<?= "'".addslashes($citizen_data[0]->libelle_fokontany)."'" ?>> 
+                <div class="col-sm-8">
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">FOKONTANY :</span><?=" ".$citizen_data[0]->libelle_fokontany?>
                 </div>
               </div>
 
               <div class="form-group row" style="margin-bottom: 0px;">
-                <label for="Lf" class="col-sm-2 col-form-label font-weight-bold">Lf :</label>
                 <div class="col-sm-10">
-                  <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->lf_residence+1).' . '.date('y')."'" ?>> 
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">Lf :</span><?= " ".addslashes($citizen_data[0]->lf_residence+1).' . '.date('y')."" ?>
                   </div>
               </div>
 
             </div>
             <div class="col-sm-4 text-center" style="background-color:white;">
-              <span class="font-weight-bold"><h5>NY SEFO FOKONTANY DIA MANAMARINA FA :</h5></span>
+              <span class="font-weight-bold"><h6>NY SEFO FOKONTANY DIA MANAMARINA FA :</h6></span>
               <span class="font-weight-bold"><h5>LE CHEF FOKONTANY CERTIFIE QUE :</h5></span>
             </div>
           </div>
@@ -133,100 +132,53 @@
             <div class="col-sm-12" style="background-color:white;">
              <div class="row">
                 <div class="col-sm-5">
-                  <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-3 col-form-label">
-                      <label for="Atoa" class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</label>
-                      <p class="font-italic">M./Mme/Mlle</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <input readonly type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Atoa" value=<?= "'".$citizen_data[0]->nom." ".$citizen_data[0]->prenoms."'" ?>> 
-                    </div>
-                  </div>
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</span><?= " ".$citizen_data[0]->nom." ".$citizen_data[0]->prenoms."" ?>
+                  <p class="font-italic">M./Mme/Mlle</p>
                 </div>
 
                 <div class="col-sm-4"></div>
+                
+
                   <div class="col-sm-3"> 
-                    <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-5 col-form-label">
-                        <label for="Asa" class="font-weight-bold" style="margin-bottom: 0px;">Asa :</label>
-                        <p class="font-italic">Profession</p>
-                      </div>
-                      <div class="col-sm-7">
-                        <input readonly type="text" class="form-control border-0" style="margin-left:-75px;padding-bottom: 2px;" id="Asa" value=<?= "'".$citizen_data[0]->job."'" ?>> 
-                      </div>
-                    </div>
+                    <span class="font-weight-bold" style="margin-bottom: 0px;">Asa :</span><?=" ".$citizen_data[0]->job."" ?>
+                    <p class="font-italic">Profession</p>
                   </div>
 
               </div>
 
              <div class="row">
                 <div class="col-sm-4">
-                  <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-5 col-form-label">
-                      <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Teraka tamin'ny :</label>
-                      <p class="font-italic">Né(e) le </p>
-                    </div>
-                    <div class="col-sm-7">
-                      <input readonly type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value=<?= "'".$citizen_data[0]->date_de_naissance."'" ?>> 
-                    </div>
-                  </div>
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">Teraka tamin'ny :</span><?=" ".$citizen_data[0]->date_de_naissance?>
+                  <p class="font-italic">Né(e) le </p>
                 </div>
 
                 <div class="col-sm-4">
-                    <span class="font-weight-bold" style="margin-bottom: 0px;">tao :</span><?=$citizen_data[0]->lieu_de_naissance?>
-                    <p class="font-italic">à</p>
-                  </div>
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">tao :</span><?=" ".$citizen_data[0]->lieu_de_naissance?>
+                  <p class="font-italic">à</p>
+                </div>
                 
                   <div class="col-sm-4">
-                    <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-5 col-form-label">
-                        <label for="Zom" class="font-weight-bold" style="margin-bottom: 0px;">Zom-pirenena :</label>
-                        <p class="font-italic">Nationalité</p>
-                      </div>
-                      <div class="col-sm-7">
-                        <input readonly type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value=<?= "'".$citizen_data[0]->nationalite."'" ?>> 
-                      </div>
-                    </div>
+                    <span class="font-weight-bold" style="margin-bottom: 0px;">Zom-pirenena :</span><?=" ".$citizen_data[0]->nationalite?>
+                    <p class="font-italic">Nationalité</p>
                   </div> 
              </div>
 
              <div class="row">
                 <div class="col-sm-6">
-                  <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-5 col-form-label">
-                      <label for="Zanak" class="font-weight-bold" style="margin-bottom: 0px;">Zanak'i :</label>
-                      <p class="font-italic">Fils ou fille de </p>
-                    </div>
-                    <div class="col-sm-7">
-                      <input readonly type="text" class="form-control border-0" style="margin-left:-200px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->father."'" ?>> 
-                    </div>
-                  </div>
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">Zanak'i :</span><?=" ".$citizen_data[0]->father?>
+                  <p class="font-italic">Fils ou fille de</p>
                 </div>
 
                 <div class="col-sm-6">
-                  <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-5 col-form-label">
-                        <label for="sy" class="font-weight-bold" style="margin-bottom: 0px;">sy :</label>
-                        <p class="font-italic">et de</p>
-                      </div>
-                      <div class="col-sm-7">
-                        <input readonly type="text" class="form-control border-0" style="margin-left:-240px;padding-bottom: 2px;" id="sy" value=<?= "'".$citizen_data[0]->mother."'" ?>> 
-                      </div>
-                  </div>
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">sy :</span><?=" ".$citizen_data[0]->mother?>
+                  <p class="font-italic">et de</p>
                 </div>
               </div>
 
              <div class="row">
                 <div class="col-sm-12">
-                    <div class="form-group row" style="margin-bottom: 0px;">
-                        <div class="col-sm-5 col-form-label">
-                          <label for="Monina" class="font-weight-bold" style="margin-bottom: 0px;">Dia monina ao amin'ny :</label>
-                          <p class="font-italic">Réside au</p>
-                        </div>
-                        <div class="col-sm-7">
-                          <input readonly type="text" class="form-control border-0" style="margin-left:-350px;padding-bottom: 2px;" id="Monina" value=<?= "'".$citizen_data[0]->adresse_actuelle."'" ?>> 
-                        </div>
-                    </div>
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">Dia monina ao amin'ny :</span><?=" ".$citizen_data[0]->adresse_actuelle?>
+                  <p class="font-italic">Réside au</p>
                 </div>
              </div>
 
@@ -264,29 +216,23 @@
               </div>
 
               <div class="form-group row" style="margin-bottom: 0px;">
-                <label for="Lf" class="col-sm-7 col-form-label font-weight-bold">CIN-Passeport N°:</label>
-                <div class="col-sm-5">
-                  <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->cin_personne)."'" ?>> 
+                <div class="col-sm-12">
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">CIN-Passeport N° :</span><?=" ".$citizen_data[0]->cin_personne?>
                 </div>
               </div>
 
               <div class="form-group row" style="margin-bottom: 0px;">
-                <label for="Lf" class="col-sm-7 col-form-label font-weight-bold">du:</label>
-                <div class="col-sm-5">
-                  <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= " ".$citizen_data[0]->date_delivrance_cin. " " ?>> 
-                  
+                <div class="col-sm-12">
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">du :</span><?=" ".$citizen_data[0]->date_delivrance_cin?>
                 </div>
-                <label for="Lf" class="col-sm-7 col-form-label font-weight-bold">à</label>
-                <div class="col-sm-5">
-                  <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= " ".$citizen_data[0]->lieu_delivrance_cin. " " ?>> 
-
+                <div class="col-sm-12">
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">à</span><?=" ".$citizen_data[0]->lieu_delivrance_cin?>
                 </div>
               </div>
 
               <div class="form-group row" style="margin-bottom: 0px;">
-                <label for="Lf" class="col-sm-5 col-form-label font-weight-bold">N°:</label>
-                <div class="col-sm-7">
-                  <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($reference).'  ./'.date('y')."'" ?>> 
+                <div class="col-sm-12">
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">N° :</span><?= " ".addslashes($reference).'  ./'.date('y')."" ?>
                 </div>
               </div>
 
@@ -299,28 +245,11 @@
             <div class="col-sm-6" style="background-color:white;">
             <div class="row">
                 <div class="col-sm-6">
-                  <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-5 col-form-label">
-                      <label for="Zanak" class="font-weight-bold" style="margin-bottom: 0px;">Natao teto :</label>
-                      <p class="font-italic">Fait à </p>
-                    </div>
-                    <div class="col-sm-7">
-                      <input readonly type="text" class="form-control border-0" style="margin-left:-30px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->libelle_fokontany."'" ?>> 
-                    </div>
-                  </div>
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">Natao teto :</span><?= " ".$citizen_data[0]->libelle_fokontany."" ?>
                 </div>
 
                 <div class="col-sm-6">
-                  <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-6 col-form-label">
-                        <label for="sy" class="font-weight-bold" style="margin-bottom: 0px;">androany faha</label>
-                        <p class="font-italic">le</p>
-                      </div>
-                      <div class="col-sm-6">
-                        <input readonly type="text" class="form-control border-0" style="margin-left: -40px;padding-bottom: 2px;" id="sy" value=<?= "'".date('d-m-Y')."'" ?>> 
-                      </div>
-                  </div>
-                </div>
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">androany faha</span><?= " ".date('d-m-Y')."" ?>
               </div>           
             </div>
           </div>
