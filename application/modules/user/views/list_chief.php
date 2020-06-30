@@ -79,6 +79,12 @@
               <li><a href="la_liste_citoyens"><?=$this->lang->line('list');?></a></li>
             </ul>
           </li>
+          <li>
+            <a href="#"><span class="iconify" data-icon="fa-solid:hands-helping" data-inline="false"></span> Aides</a>
+            <ul class="sub-main-menu" style="display:none;">              
+              <li><a href="gestion_aide_menage">Liste</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
       <div class="main-container admin-container">
@@ -160,7 +166,7 @@
             </div>
             <div class="form-group col-md-6">
               <label for="first_name">Nom</label>
-              <input type="text" class="form-control" id="first_name" readonly name="first_name" placeholder="...">
+              <input type="text" class="form-control" id="first_name" name="first_name" placeholder="...">
               <span class="error_field error_first_name"></span>
             </div>
             <div class="form-group col-md-6">
@@ -170,12 +176,12 @@
             </div>
             <div class="form-group col-md-6">
               <label for="phone">Téléphones</label>
-                <input type="text" class="form-control" id="phone" readonly name="phone" placeholder="...">
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="...">
                 <span class="error_field error_phone"></span>
             </div>
             <div class="form-group col-md-6">
               <label for="address">Adresse</label>
-              <input type="text" class="form-control" id="address" readonly name="address" placeholder="...">  
+              <input type="text" class="form-control" id="address" name="address" placeholder="...">  
               <span class="error_field error_address"></span>
             </div>
             <input type="hidden" name="email" id="currentEmail"/>

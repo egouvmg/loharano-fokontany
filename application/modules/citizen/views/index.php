@@ -215,7 +215,7 @@
                           </div>
                       </div>
                       <div class="form-row">
-                          <div class="form-group col-md-3">
+                          <div class="form-group col-md-4">
                               <label for="sexe">Sexe (H/F)</label>
                               <select id="sexe" class="form-control" name="sexe">
                                   <option value="2"></option>
@@ -224,7 +224,7 @@
                               </select>
                               <div class="error_field sexeError"></div>
                           </div>
-                          <div class="form-group col-md-3">
+                          <div class="form-group col-md-4">
                               <label for="date_de_naissance">Date naissance<span class="text-red">*</span></label>
                               <input type="date" class="form-control date_type" placeholder="jj/mm/aaaa" name="date_de_naissance" id="date_de_naissance"/>
                               <div class="error_field date_de_naissanceError"></div>
@@ -236,7 +236,7 @@
                           </div>
                       </div>
                       <div class="form-row">
-                          <div class="form-group col-md-3">
+                          <div class="form-group col-md-4">
                               <label for="handicape">Handicapé(e)</label>
                               <select id="handicape" class="form-control" name="handicape">
                                   <option value="0">Non</option>
@@ -360,7 +360,7 @@
                     </div>
                     <div class="btn-certificate">
                       <a id="certificat_move" target="_blank"  href="">
-                        <button class="btn btn-color-6 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Démnagement</button>
+                        <button class="btn btn-color-6 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Déménagement</button>
                       </a>
                     </div>
                     <div class="btn-certificate">
@@ -383,8 +383,8 @@
                         <button class="btn btn-color-7 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Bonne conduite - de Bonne Vie - Moeurs</button>
                       </a>
                     </div>
-                    <p>Historique de migration</p>
-                    <div id="historyMigration"></div>                
+                    <p>Historique des actions</p>
+                    <div id="historyMigration1"></div>                
                   </div>
                 </div>
               </div>
@@ -432,7 +432,7 @@
                           </div>
                           <div class="form-group col-md-4">
                               <label for="o_adresse_actuelle">Adresse<span class="text-red">*</span></label>
-                              <input type="text" name="adresse_actuelle" class="form-control o_adresse_actuelle" id="o_adresse_actuelle"/>
+                              <input type="text" name="adresse_actuelle" readonly class="form-control o_adresse_actuelle" id="o_adresse_actuelle"/>
                               <div class="error_field o_adresse_actuelleError"></div>
                           </div>
                       </div>
@@ -460,7 +460,7 @@
                           </div>
                       </div>
                       <div class="form-row">
-                          <div class="form-group col-md-3">
+                          <div class="form-group col-md-4">
                               <label for="o_sexe">Sexe (H/F)</label>
                               <select id="o_sexe" class="form-control" name="sexe">
                                   <option value="2"></option>
@@ -469,7 +469,7 @@
                               </select>
                               <div class="error_field o_sexeError"></div>
                           </div>
-                          <div class="form-group col-md-3">
+                          <div class="form-group col-md-4">
                               <label for="o_date_de_naissance">Date naissance<span class="text-red">*</span></label>
                               <input type="date" class="form-control date_type" placeholder="jj/mm/aaaa" name="date_de_naissance" id="o_date_de_naissance"/>
                               <div class="error_field o_date_de_naissanceError"></div>
@@ -481,7 +481,7 @@
                           </div>
                       </div>
                       <div class="form-row">
-                          <div class="form-group col-md-3">
+                          <div class="form-group col-md-4">
                               <label for="o_handicape">Handicapé(e)</label>
                               <select id="o_handicape" class="form-control" name="handicape">
                                   <option value="0">Non</option>
@@ -604,7 +604,9 @@
                     <h6>Cliquez sur le bouton ci-dessus pour migrer le citoyen vers votre Fokontany</h6>
                     <div class="btn-migration">
                         <button id="migrateCitizen" class="btn btn-color-5 mb-1 mr-1"><span class="iconify" data-icon="mdi:file-move-outline" data-inline="false"></span> Migrer le citoyen</button>
-                    </div>                  
+                    </div>
+                    <p>Historique des actions</p>
+                    <div id="historyMigration2"></div>                   
                   </div>
                 </div>
               </div>

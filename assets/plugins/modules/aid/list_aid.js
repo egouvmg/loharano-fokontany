@@ -99,6 +99,8 @@ $(function () {
     $('#validAid').click(function(e){
         e.preventDefault();
         
+        $('.error_field').text('');
+
         $(this).prop('disabled', true);
         $('#loadingSave').show();
 

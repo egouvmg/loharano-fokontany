@@ -139,7 +139,7 @@ $(function () {
 	var users = new Tabulator("#users", {
         layout:"fitColumns",
 		initialSort:[
-			{column:"medal", dir:"asc"}
+			{column:"first_name", dir:"asc"}
 		],
         columns:[ //Define Table Columns
             {title:"Nom", field:"first_name", headerFilterPlaceholder:"..." , headerFilter:"input"},

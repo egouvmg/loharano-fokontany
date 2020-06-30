@@ -149,7 +149,7 @@
                           </div>
                       </div>
                       <div class="form-row">
-                          <div class="form-group col-md-3">
+                          <div class="form-group col-md-4">
                               <label for="sexe">Sexe (H/F)</label>
                               <select id="sexe" class="form-control" name="sexe">
                                   <option value="2"></option>
@@ -158,7 +158,7 @@
                               </select>
                               <div class="error_field sexeError"></div>
                           </div>
-                          <div class="form-group col-md-3">
+                          <div class="form-group col-md-4">
                               <label for="date_de_naissance">Date naissance<span class="text-red">*</span></label>
                               <input type="date" class="form-control date_type" placeholder="jj/mm/aaaa" name="date_de_naissance" id="date_de_naissance"/>
                               <div class="error_field date_de_naissanceError"></div>
@@ -170,7 +170,7 @@
                           </div>
                       </div>
                       <div class="form-row">
-                          <div class="form-group col-md-3">
+                          <div class="form-group col-md-4">
                               <label for="handicape">Handicapé(e)</label>
                               <select id="handicape" class="form-control" name="handicape">
                                   <option value="0">Non</option>
@@ -294,7 +294,7 @@
                     </div>
                     <div>
                       <a id="certificat_move" href="">
-                        <button class="btn btn-color-6 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Démnagement</button>
+                        <button class="btn btn-color-6 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Déménagement</button>
                       </a>
                     </div>
                     <div>
@@ -316,7 +316,9 @@
                       <a id="certificat_behavior" href="">
                         <button class="btn btn-color-7 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Bonne conduite - de Bonne Vie - Moeurs</button>
                       </a>
-                    </div>                  
+                    </div>
+                    <p>Historique des actions</p>
+                    <div id="historyMigration"></div>                  
                   </div>
                 </div>
               </div>

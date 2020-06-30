@@ -23,7 +23,7 @@ class Aid_model extends CI_Model
 	}
 
 	public function one($criteria = array()) {
-		$this->db->select('*');
+		$this->db->select("id, name, type, description, to_char(created_on, 'dd/MM/yyyy') as created_on");
 		$this->db->from($this->_table);
 		
 		if(!empty($criteria)){
@@ -36,7 +36,7 @@ class Aid_model extends CI_Model
 	}
 
 	public function all($criteria = array()) {
-		$this->db->select('*');
+		$this->db->select("id, name, type, description, to_char(created_on, 'dd/MM/yyyy') as created_on");
 		$this->db->from($this->_table);
 		
 		if(!empty($criteria)){

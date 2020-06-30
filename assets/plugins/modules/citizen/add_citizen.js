@@ -90,6 +90,23 @@ $(function () {
         });
     });
 
+    $('#nextCitizen').click(function(e){
+        e.preventDefault();
+        var index = $('#pills-tab .nav-link.active').data('index');
+        var next = index + 1;
+
+        $( "#pills-"+next+"-tab" ).first().trigger("click");
+    });
+
+    $('#previousCitizen').click(function(e){
+        e.preventDefault();
+
+        var index = $('#pills-tab .nav-link.active').data('index');
+        var previous = index - 1;
+
+        $( "#pills-"+previous+"-tab" ).first().trigger("click");
+    });
+
     function loading(){
         $(this).prop('disabled', true);
         $('#loadingSave').show();

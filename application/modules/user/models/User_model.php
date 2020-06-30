@@ -51,4 +51,13 @@ class User_model extends CI_Model
 		return $query->first_row();
 	}
 
+	public function update($data) {
+		$email = $data["email"];
+		$this->db->where('email', $email);
+
+		unset($data["email"]);
+		
+		return $this->db->update($this->_user, $data);
+	}
+
 }

@@ -911,3 +911,16 @@ img.loading{
     background-color: #69585f;
     color: #fff;
 }
+.btn-color-1,
+.btn-color-2,
+.btn-color-3,
+.btn-color-4,
+.btn-color-5,
+.btn-color-6,
+.btn-color-7,
+.btn-color-8{
+    width: 100%;
+}
+.locality-details svg{
+    color: red;
+}

@@ -49,6 +49,43 @@ $(function () {
         }
     });
 
+    var histories = new Tabulator('#historyMigration', {
+        layout:"fitColumns",
+		initialSort:[
+			{column:"date_migration", dir:"desc"}
+		],
+        columns:[ //Define Table Columns
+            {title:"Date", field:"date_migration"},
+            {title:"Avant", field:"fokontany_name_start"},
+            {title:"Après", field:"fokontany_name_end"}     
+        ],
+        pagination:"local",
+        paginationSize:10,
+        paginationSizeSelector:[10, 20, 50, 100, 200],
+        langs:{
+            "fr-fr":{ //French language definition
+                "columns":{
+                    "name":"Nom",
+                    "progress":"Progression",
+                    "gender":"Genre",
+                    "rating":"Évaluation",
+                    "col":"Couleur",
+                    "dob":"Date de Naissance",
+                },
+                "pagination":{
+                    "first":"Premier",
+                    "first_title":"Première Page",
+                    "last":"Dernier",
+                    "last_title":"Dernière Page",
+                    "prev":"Précédent",
+                    "prev_title":"Page Précédente",
+                    "next":"Suivant",
+                    "next_title":"Page Suivante",
+                },
+            }
+        }
+    });
+
 	var citizens = new Tabulator("#citizens", {
         layout:"fitColumns",
 		initialSort:[
@@ -80,6 +117,10 @@ $(function () {
             { title: "observation", field: "observation", visible: false }
            ],
         rowClick:function(e, row){
+            var id_peron = (row.getData().id_personne) ? row.getData().id_personne: row.getData().person_id;
+
+            histories.setData('historique_migration', {id_person:id_peron});
+            
             $('.error_field').text('');
             $('#nom_complet').text(row.getData().nom + ' ' + row.getData().prenoms);
             $('#numero_carnet').val(row.getData().numero_carnet);
@@ -111,8 +152,6 @@ $(function () {
                 $('#date_delivrance_cin').val(splitDate(row.getData().date_delivrance_cin));
                 $('#lieu_delivrance_cin').val(splitDate(row.getData().lieu_delivrance_cin));
             }
-
-            var id_peron = (row.getData().id_personne) ? row.getData().id_personne: row.getData().person_id;
 
             $('#certificat_residence').attr("href", "certificate?id_personne="+id_peron);
             $('#certificat_move').attr("href", "certificate_move?id_personne="+id_peron);

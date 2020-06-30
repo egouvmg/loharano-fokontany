@@ -13,6 +13,7 @@ class Superadmin extends SuperAdmin_Controller
 		$this->load->model('territory/borough_model', 'borough');
         $this->load->model('territory/fokontany_model', 'fokontany');
         $this->load->model('territory/notebook_model', 'notebook');
+        $this->load->model('aid/aid_model', 'aid');
         
         $this->load->model('citizen/citizen_model', 'citizen');
         
@@ -54,7 +55,14 @@ class Superadmin extends SuperAdmin_Controller
         $this->data['citizen_data'] = $citizen_data;
 		
         $this->load->view('residence_certificat', $this->data);
-	}
+    }
+
+    public function manage_aid()
+    {
+		$this->data['title'] = "Gestion des aides";
+
+        $this->load->view('manage_aid', $this->data);
+    }
 
     /*
      * AJAX Requests
@@ -199,6 +207,45 @@ class Superadmin extends SuperAdmin_Controller
         if($this->notebook->insert($data))
             return $reference;
         else return false;
+    }
+
+    public function add_aid()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $data = $this->input->post();
+        $name = $this->input->post('name');
+        $type = $this->input->post('type');
+        $description = $this->input->post('description');
+
+        if(empty($name))
+            $missing_fields[] = ['name', 'Champs requis'];
+        if(empty($type))
+            $missing_fields[] = ['type', 'Champs requis'];
+        if(empty($description))
+            $missing_fields[] = ['description', 'Champs requis'];    
+
+        if(!empty($missing_fields)){
+            echo json_encode(['failed' => 1, 'missing_fields' => $missing_fields]);
+            return false;
+        }
+
+        if($this->aid->insert($data))
+            echo json_encode(['success' => 1]);
+        else echo json_encode(['error' => 1, 'msg' => 'Impossible d\'enregistrer l\'aide.']);
+    }
+
+    public function list_aid()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $aids = $this->aid->all();
+        if($aids) echo json_encode($aids);
+        else echo json_encode([]);
     }
 }
 

@@ -14,7 +14,9 @@ class User extends SuperAdmin_Controller
 		$this->load->model('territory/common_model', 'common');
 		$this->load->model('territory/borough_model', 'borough');
         $this->load->model('territory/fokontany_model', 'fokontany');
+        $this->load->model('territory/notebook_model', 'notebook');
         $this->load->model('chief/chief_model', 'chief');
+        $this->load->model('citizen/citizen_model', 'citizen');
 
 		$this->load->model('auth/ion_auth_model', 'ion_auth');
 
@@ -23,7 +25,63 @@ class User extends SuperAdmin_Controller
 
 	public function index()
 	{
-		$this->data['title'] = "Tableau de bord";
+        $this->data['title'] = "Tableau de bord";
+        
+        $this->data['female_ratio'] = 0;
+        $this->data['male_ratio'] = 0;
+        $this->data['minor_ratio'] = 0;
+        $this->data['major_ratio'] = 0;
+        $this->data['minor_female'] = 0;
+        $this->data['major_female'] = 0;
+        $this->data['female_avg_age'] = 0;
+        $this->data['male_avg_age'] = 0;
+        $this->data['minor_male'] = 0;
+        $this->data['major_male'] = 0;
+
+        //Count household/citizen
+        $citizen_count = count($this->notebook->citizens());
+        $household_count = $this->notebook->household_count();
+
+        $this->data['household_count'] = ($household_count) ? number_format($household_count->household_count, 0, '', ' ') : 0;
+        $this->data['citizen_count'] = number_format($citizen_count, 0, '', ' ');
+
+        if($citizen_count){
+            $ratio_sexe = $this->citizen->ratio_sexe();
+
+            $_minor = 0;
+            $_major = 0;
+            $_total = 0;
+
+            foreach($ratio_sexe as $value){
+                $_total += $value->minor + $value->major;
+
+                if($value->sexe == 0){
+                    $this->data['female_ratio'] = number_format(($value->number/$citizen_count)*100, 2, ',', '');
+                    $this->data['female_avg_age'] = number_format($value->avg_age, 0, ',', '');
+                    $this->data['minor_female'] = number_format($value->minor, 0, ',', ' ');
+                    $this->data['major_female'] = number_format($value->major, 0, ',', ' ');
+
+                    $_minor += $value->minor;
+                    $_major += $value->major;
+                }
+                if($value->sexe == 1){
+                    $this->data['male_ratio'] =  number_format(($value->number/$citizen_count)*100, 2, ',', '');
+                    $this->data['male_avg_age'] = number_format($value->avg_age, 0, ',', '');
+                    $this->data['minor_male'] = number_format($value->minor, 0, ',', ' ');
+                    $this->data['major_male'] = number_format($value->major, 0, ',', ' ');
+
+                    $_minor += $value->minor;
+                    $_major += $value->major;
+                }
+            }
+
+            if($_total != 0){
+                $this->data['minor_ratio'] = number_format(($_minor/$_total)*100, 2, ',', '');
+                $this->data['major_ratio'] = number_format(($_major/$_total)*100, 2, ',', '');
+            }
+
+        }
+
         $this->load->view('index', $this->data);
 	}
 
@@ -202,20 +260,33 @@ class User extends SuperAdmin_Controller
             echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
             return false;
         }
-        
-        if($n_password == $old_pwd){
-            echo json_encode(['success'=>1, 'msg'=>'Aucune modification faite.']);
-            return TRUE;
-        }
 
-        try{
-            if($this->ion_auth->change_password($n_email, $old_pwd, $n_password)){
-                echo json_encode(['success'=>1, 'msg'=>'Modification réussie']);
-            }else echo json_encode(['failed' => 1, 'msg' => 'Impossible de modifier le compte.']);
+        $data_updated = [
+            'email' => $n_email,
+            'first_name' => $n_firstname,
+            'phone' => $phone,
+            'address' => $address,
+            'current_pwd' => $n_password
+        ];
+
+        if( $this->user->update($data_updated) ){
+            
+        
+            if($n_password == $old_pwd){
+                echo json_encode(['success'=>1, 'msg'=>'Modification terminée.']);
+                return TRUE;
+            }
+
+            try{
+                if($this->ion_auth->change_password($n_email, $old_pwd, $n_password)){
+                    echo json_encode(['success'=>1, 'msg'=>'Modification réussie']);
+                }else echo json_encode(['failed' => 1, 'msg' => 'Impossible de modifier le compte.']);
+            }
+            catch(Exception $e){
+                echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer le compte.']);
+            }
         }
-        catch(Exception $e){
-            echo json_encode(['failed' => 1, 'msg' => 'Impossible de créer le compte.']);
-        }
+        else echo json_encode(['failed' => 1, 'msg' => 'Impossible de modifier les coordonnées de l\'utilisateur.']);
     }
 
 	public function save_chief()

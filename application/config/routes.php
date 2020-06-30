@@ -65,6 +65,7 @@ $route['recuperer_liste_citoyen'] = 'superadmin/citizens_list';
 $route['les_membres_menage'] = 'superadmin/list_citizen_by_carnet_id';
 $route['gerener_certificat'] = 'superadmin/load_citizen_certificate';
 $route['8165461654ssdsdq498z'] = 'superadmin/f45644548';
+$route['gestion_aide_menage'] = 'superadmin/manage_aid';
 
 //User
 $route['tableau_de_bords'] = 'user/index';
@@ -83,6 +84,7 @@ $route['enregistrer_utilisateur_fokontany'] = 'chief/save_user';
 $route['liste_utilisateur_fokontany'] = 'chief/list_users';
 $route['chef_liste_menage'] = 'chief/list_households';
 $route['chef_liste_citoyen'] = 'chief/list_citizens';
+$route['chef_changer_operateur'] = 'chief/edit_user';
 
 //Admin
 $route['create_account'] = 'admin/save_operateur_sefo_account';
@@ -161,3 +163,7 @@ $route['verifier_personnne'] = "citizen/check_fields";
 //Aid
 $route['aide_par_menage'] = 'aid/aid_by_household';
 $route['ajout_aide'] = 'aid/add_household_aid';
+
+//SuperAdmin
+$route['ajouter_aide'] = 'superadmin/add_aid';
+$route['liste_aides'] = 'superadmin/list_aid';

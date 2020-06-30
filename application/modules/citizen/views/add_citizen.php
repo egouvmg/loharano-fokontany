@@ -67,8 +67,11 @@
         <!-- Page Content -->
         <div class="container">
           <div class="row">
-            <div class="col-lg-12">
-              Localité : <?= $this->session->locality;?> - <?= $this->lang->line('address');?> : <?= $this->session->address;?> - <?= $this->lang->line('household_size');?> : <?= $this->session->household_size;?>
+            <div class="col-lg-12 locality-details">
+              <span class="iconify" data-icon="bx:bx-book-content" data-inline="false"></span> Numéro carnet : <strong><?=$potential_reference;?></strong>
+              <span class="iconify" data-icon="entypo:location-pin" data-inline="false"></span> Secteur/Localité : <strong><?= $this->session->locality;?></strong>
+              <span class="iconify" data-icon="entypo:address" data-inline="false"></span> <?= $this->lang->line('address');?> : <strong><?= $this->session->address;?></strong>
+              <span class="iconify" data-icon="ic:twotone-family-restroom" data-inline="false"></span> <?= $this->lang->line('household_size');?> : <strong><?= $this->session->household_size;?></strong>
             </div>
           </div>
           <form id="addCitizen">
@@ -79,10 +82,10 @@
                 <?= $tabs_content;?>
               </div>
           </form>
-          <button id="nextCitizen" class="btn btn-primary"><?= $this->lang->line('next_citizen');?></button>
-          <button id="previousCitizen" class="btn btn-primary"><?= $this->lang->line('previous_citizen');?></button>
+          <button id="previousCitizen" class="btn btn-info"><span class="iconify" data-icon="bi:arrow-left-short" data-inline="false"></span><?= $this->lang->line('previous_citizen');?></button>
+          <button id="nextCitizen" class="btn btn-info"><?= $this->lang->line('next_citizen');?><span class="iconify" data-icon="bi:arrow-right-short" data-inline="false"></span></button>
           <div class="float-right">
-            <a href="nouveau_menage_fokontany"><button class="btn btn-primary">Retour au localité</button></a>
+            <a href="nouveau_menage_fokontany"><button class="btn btn-secondary">Retour au localité</button></a>
             <button id="saveOperator" class="btn btn-primary">Enregistrer</button>
             <span id="failedMsg" class="error_field"></span>
             <div id="loadingSave" style="display:none;">

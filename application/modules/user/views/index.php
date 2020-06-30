@@ -79,6 +79,12 @@
               <li><a href="la_liste_citoyens"><?=$this->lang->line('list');?></a></li>
             </ul>
           </li>
+          <li>
+            <a href="#"><span class="iconify" data-icon="fa-solid:hands-helping" data-inline="false"></span> Aides</a>
+            <ul class="sub-main-menu" style="display:none;">              
+              <li><a href="gestion_aide_menage">Liste</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
       <div class="main-container admin-container">
@@ -91,38 +97,39 @@
         <!-- Page Content -->
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-5">
-              <div class="line-bloc">
-                <h6>Rapport global</h6>
-                <div class="container-bloc-link">
-                  <a href="#" class="bloc-link-counter">
-                    <span class="iconify">0</span> <?=$this->lang->line('count_citizen');?>
-                  </a>
-                  <a href="#" class="bloc-link-counter">
-                    <span class="iconify">0</span> <?=$this->lang->line('count_household');?>
-                  </a>
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="line-bloc">
+                    <h6>Rapport global</h6>
+                    <div class="container-bloc-link">
+                      <a href="#" class="bloc-link color-7">
+                        <span class="count"><?= $household_count;?></span> <?=$this->lang->line('count_citizen');?> Ménages
+                      </a>
+                      <a href="#" class="bloc-link color-7">
+                        <span class="count"><?= $citizen_count;?></span> <?=$this->lang->line('count_household');?> Citoyens
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                <h6>Rapport quotidien</h6>
-                <div class="container-bloc-link">
-                  <a href="#" class="bloc-link-counter">
-                    <span class="iconify">0</span> <?=$this->lang->line('count_citizen');?>
-                  </a>
-                  <a href="#" class="bloc-link-counter">
-                    <span class="iconify">0</span> <?=$this->lang->line('count_household');?>
-                  </a>
-                </div>
-                <h6>Rapport Aide</h6>
-                <div class="container-bloc-link">
-                  <a href="#" class="bloc-link-counter">
-                    <span class="iconify">0</span> Vola be
-                  </a>
-                  <a href="#" class="bloc-link-counter">
-                    <span class="iconify">0</span> PPN
-                  </a>
+                <div class="col-lg-6">
+                  <div class="line-bloc">
+                    <h6>Indicateurs démographiques</h6>
+                    <div class="container-bloc-link">
+                      <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<ul class='m-0'><li>Moyenne d'age des hommes : <strong><?=$male_avg_age;?></strong></li><li>Moyenne d'age des femmes : <strong><?=$female_avg_age;?></strong></li></ul>">
+                        <span class="pourcent"><?= $female_ratio;?>% / <?= $male_ratio;?>%</span> <?=$this->lang->line('count_citizen');?> Hommes/Femmes
+                      </a>
+                      <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<ul class='m-0'><li>Nombre de mineurs masculins : <strong><?=$minor_male;?></strong></li><li>Nombre de mineurs féminins : <strong><?=$minor_female;?></strong></li><li>Nombre de majeurs masculins : <strong><?=$major_male;?></strong></li><li>Nombre de majeurs féminins : <strong><?=$major_female;?></strong></li></ul>">
+                        <span class="pourcent"><?= $minor_ratio;?>% / <?= $major_ratio;?>%</span> <?=$this->lang->line('count_household');?> Majeurs/Mineurs
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-7">
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
               <div class="line-bloc">
                 <h6>Accès rapide</h6>
                 <div class="container-bloc-link">
@@ -143,6 +150,9 @@
                   </a>
                   <a href="la_liste_citoyens" class="bloc-link color-5">
                     <span class="iconify" data-icon="ant-design:unordered-list-outlined" data-inline="false"></span> Liste des Citoyens
+                  </a>
+                  <a href="gestion_aide_menage" class="bloc-link color-7">
+                    <span class="iconify" data-icon="dashicons:products" data-inline="false"></span> Aides sociales
                   </a>
                 </div>
               </div>
@@ -246,5 +256,8 @@
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
+  <script>
+    $('.bloc-link').tooltip({ boundary: 'window' });
+  </script>
 </body>
 </html>

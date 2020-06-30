@@ -80,6 +80,12 @@ class Citizen extends Operator_Controller
         $this->data['male_ratio'] = 0;
         $this->data['minor_ratio'] = 0;
         $this->data['major_ratio'] = 0;
+        $this->data['minor_female'] = 0;
+        $this->data['major_female'] = 0;
+        $this->data['female_avg_age'] = 0;
+        $this->data['male_avg_age'] = 0;
+        $this->data['minor_male'] = 0;
+        $this->data['major_male'] = 0;
 
         if($citizen_count){
             $ratio_sexe = $this->citizen->ratio_sexe(['fokontany_id' => $this->fokontany_id]);
@@ -159,6 +165,7 @@ class Citizen extends Operator_Controller
 
             $this->data['tabs_link'] = $tabs_link;
             $this->data['tabs_content'] = $tabs_content;
+            $this->data['potential_reference'] = $this->potentialNotebook();
             
             $this->load->view('add_citizen', $this->data);
         }
@@ -773,6 +780,27 @@ class Citizen extends Operator_Controller
         if($this->notebook->insert($data))
             return $reference;
         else return false;
+    }
+
+    private function potentialNotebook()
+    {
+        $reference = dechex($this->fokontany_id);
+        $reference = str_pad($reference, 5, '0', STR_PAD_LEFT);
+
+        //2020 is index 1
+        $index_year = (int) date("Y");
+        $index_year = $index_year - 2019;
+
+        $reference .= $index_year;
+        $reference .= date("ymd");
+
+        $notebooks = $this->notebook->all(['numero_carnet like' => $reference.'%']);
+
+        $index = ($notebooks) ? count($notebooks) + 1 : 1;
+
+        $reference .= str_pad($index, 4, '0', STR_PAD_LEFT);
+        
+        return $reference;
     }
 
     /**

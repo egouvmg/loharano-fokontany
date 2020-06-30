@@ -79,6 +79,12 @@
               <li><a href="la_liste_citoyens"><?=$this->lang->line('list');?></a></li>
             </ul>
           </li>
+          <li>
+            <a href="#"><span class="iconify" data-icon="fa-solid:hands-helping" data-inline="false"></span> Aides</a>
+            <ul class="sub-main-menu" style="display:none;">              
+              <li><a href="gestion_aide_menage">Liste</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
       <div class="main-container admin-container">

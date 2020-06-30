@@ -71,7 +71,7 @@
           </li>
         </ul>
       </div>
-      <div class="main-container">
+      <div class="main-container admin-container">
         <!-- Page title -->
         <div class="container-fluid">
           <p class="info-fokontany">
@@ -117,11 +117,11 @@
                     </div>
                   </div>
               </div>
-            <div class="col-lg-4">
+            <div class="col-lg-12">
               <p><?= $this->lang->line('household_click_for_details');?></p>
               <div id="households"></div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-12">
               <p><?= $this->lang->line('household_content');?></p>
               <div id="householdContent"></div>
             </div>

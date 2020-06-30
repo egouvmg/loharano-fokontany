@@ -19,7 +19,7 @@ $(function () {
     var carnets = new Tabulator("#carnets", {
         layout: "fitColumns",
         initialSort: [
-            { column: "medal", dir: "asc" }
+            { column: "adresse_actuelle", dir: "asc" }
         ],
         columns: [ //Define Table Columns
             { title: "Numéro carnet", field: "numero_carnet", headerFilterPlaceholder: "...", headerFilter: "input" },
@@ -30,8 +30,8 @@ $(function () {
             citizens.setData('les_membres_menage', { numero_carnet:  numero_carnet});
         },
         pagination:"local",
-        paginationSize:20,
-        paginationSizeSelector:[20, 50, 100, 200],
+        paginationSize:5,
+        paginationSizeSelector:[5, 10, 20, 50, 100, 200],
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
@@ -60,7 +60,7 @@ $(function () {
     var citizens = new Tabulator("#citizens", {
         layout: "fitColumns",
         initialSort: [
-            { column: "medal", dir: "asc" }
+            { column: "nom", dir: "asc" }
         ],
         columns: [ //Define Table Columns
             { title: "Numéro cin", field: "cin_personne", headerFilterPlaceholder: "...", headerFilter: "input" },
@@ -71,8 +71,8 @@ $(function () {
             { title: "Id personne", field: "id_personne", headerFilterPlaceholder: "...", headerFilter: "input" }
         ],
         pagination:"local",
-        paginationSize:25,
-        paginationSizeSelector:[25, 50, 100, 200],
+        paginationSize:10,
+        paginationSizeSelector:[10, 20, 50, 100, 200],
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{

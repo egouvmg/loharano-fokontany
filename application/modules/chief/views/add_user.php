@@ -70,7 +70,7 @@
           </li>
         </ul>
       </div>
-      <div class="main-container">
+      <div class="main-container admin-container">
         <!-- Page title -->
         <div class="container-fluid">
             <p class="info-fokontany">

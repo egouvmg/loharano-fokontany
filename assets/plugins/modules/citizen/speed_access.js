@@ -7,7 +7,44 @@ $(function () {
         return (cell.getValue()) ? 'Oui' : 'Non';
     };
 
-    var histories = new Tabulator('#historyMigration', {
+    var histories2 = new Tabulator('#historyMigration2', {
+        layout:"fitColumns",
+		initialSort:[
+			{column:"date_migration", dir:"desc"}
+		],
+        columns:[ //Define Table Columns
+            {title:"Date", field:"date_migration"},
+            {title:"Avant", field:"fokontany_name_start"},
+            {title:"Après", field:"fokontany_name_end"}     
+        ],
+        pagination:"local",
+        paginationSize:10,
+        paginationSizeSelector:[10, 20, 50, 100, 200],
+        langs:{
+            "fr-fr":{ //French language definition
+                "columns":{
+                    "name":"Nom",
+                    "progress":"Progression",
+                    "gender":"Genre",
+                    "rating":"Évaluation",
+                    "col":"Couleur",
+                    "dob":"Date de Naissance",
+                },
+                "pagination":{
+                    "first":"Premier",
+                    "first_title":"Première Page",
+                    "last":"Dernier",
+                    "last_title":"Dernière Page",
+                    "prev":"Précédent",
+                    "prev_title":"Page Précédente",
+                    "next":"Suivant",
+                    "next_title":"Page Suivante",
+                },
+            }
+        }
+    });
+
+    var histories = new Tabulator('#historyMigration1', {
         layout:"fitColumns",
 		initialSort:[
 			{column:"date_migration", dir:"desc"}
@@ -58,6 +95,8 @@ $(function () {
             {title:"Numéro cin", field:"cin_personne"}      
         ],
         rowClick:function(e, row){
+            histories.setData('historique_migration', {id_person:row.getData().id_personne});
+
             $('.error_field').text('');
             $('#nom_complet').text(row.getData().nom + ' ' + row.getData().prenoms);
             $('#numero_carnet').val(row.getData().numero_carnet);
@@ -96,8 +135,6 @@ $(function () {
             $('#certificat_life').attr("href", "certificate_life?id_personne="+row.getData().id_personne);
             $('#certificat_supported').attr("href", "certificate_supported?id_personne="+row.getData().id_personne);
             $('#certificat_behavior').attr("href", "certificate_behavior?id_personne="+row.getData().id_personne);
-            
-            histories.setData('historique_migration', {id_person:row.getData().id_personne});
             
             $('#personDetails').modal();
         },
@@ -142,6 +179,8 @@ $(function () {
             {title:"Fokontany", field:"fokontany_name"}     
         ],
         rowClick:function(e, row){
+            histories2.setData('historique_migration', {id_person:row.getData().id_personne});
+
             $('.error_field').text('');
             $('#nom_complet_autre').text(row.getData().nom + ' ' + row.getData().prenoms);
             $('#o_adresse_actuelle').val(row.getData().adresse_actuelle);
@@ -160,6 +199,7 @@ $(function () {
             $('#o_situation_matrimoniale').val(row.getData().situation_matrimoniale);
             $('#o_id_personne').val(row.getData().id_personne);
             $('#o_observation').val(row.getData().observation);
+            $('#fokontany_name').val(row.getData().fokontany_name);
 
             if(row.getData().date_de_naissance){
                 $('#o_date_de_naissance').val(splitDate(row.getData().date_de_naissance));
@@ -172,7 +212,7 @@ $(function () {
                 $('#o_date_delivrance_cin').val(splitDate(row.getData().date_delivrance_cin));
                 $('#o_lieu_delivrance_cin').val(splitDate(row.getData().lieu_delivrance_cin));
             }
-
+            
             $('#otherCitizenDetails').modal();
         },
         pagination:"local",

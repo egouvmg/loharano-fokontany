@@ -33,7 +33,7 @@
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <?=$this->lang->line('administrator');?>
+              <?= $this->lang->line('administrator');?>
               <span class="iconify" data-icon="uil:ellipsis-v" data-inline="false"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -69,8 +69,8 @@
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménage</a>
-            <ul class="sub-main-menu">              
-              <li><a href="list_menage" class="active"><?=$this->lang->line('list');?></a></li>
+            <ul class="sub-main-menu" style="display:none;">              
+              <li><a href="list_menage"><?=$this->lang->line('list');?></a></li>
             </ul>
           </li>
           <li>
@@ -81,8 +81,8 @@
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="fa-solid:hands-helping" data-inline="false"></span> Aides</a>
-            <ul class="sub-main-menu" style="display:none;">              
-              <li><a href="gestion_aide_menage">Liste</a></li>
+            <ul class="sub-main-menu">              
+              <li><a href="gestion_aide_menage" class="active">Liste</a></li>
             </ul>
           </li>
         </ul>
@@ -98,77 +98,46 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <!-- Location Filter-->
-                    <div class="form-row">
-                        <div class="form-group col-md-2">
-                            <label>Province</label>
-                            <select id="province" class="form-control">
-                                <?php foreach ($provinces as $province): ?>
-                                    <option value="<?= $province->id;?>"><?= $province->name;?></option>
-                                <?php endforeach ?>
-                            </select>
+                    <form id="addAid">
+                        <h6>Ajout d'une aide</h6>
+                        <div class="form-row">
+                            <div class="form-group col-lg-6">
+                                <label for="name"><?= $this->lang->line('last_name');?>*</label>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="...">
+                                <div class="error_field error_name"></div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="type">Type*</label>
+                                <select class="form-control" name="type" id="type" placeholder="...">
+                                    <option value="1">Vivres</option>
+                                    <option value="1">Cash</option>
+                                </select>
+                                <div class="error_field error_type"></div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label for="description">Description*</label>
+                                <textarea name="description" id="description" cols="30" class="form-control" rows="3"></textarea>
+                                <div class="error_field error_description"></div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <button class="btn btn-info" id="validAid">Ajouter</button>
+                                <div id="loadingSave" style="display:none;">
+                                    <img class="loading" src="<?= img('pulse.gif');?>"/>
+                                    Enregistrement ...
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group col-md-2">
-                            <label>Région</label>
-                            <select id="region" class="form-control">
-                                <?php foreach ($regions as $region): ?>
-                                    <option value="<?= $region->id;?>"><?= $region->name;?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label>District</label>
-                            <select id="district" class="form-control">
-                                <?php foreach ($districts as $district): ?>
-                                    <option value="<?= $district->id;?>"><?= $district->name;?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label>Commune</label>
-                            <select id="common" class="form-control">
-                                <?php foreach ($commons as $common): ?>
-                                    <option value="<?= $common->id;?>"><?= $common->name;?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label>Arrondissement</label>
-                            <select id="borough" class="form-control">
-                                <?php foreach ($boroughs as $borough): ?>
-                                    <option value="<?= $borough->id;?>"><?= $borough->name;?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label>Fokontany</label>
-                            <select id="fokontany" class="form-control">
-                                <?php foreach ($fokontanies as $fokontany): ?>
-                                    <option value="<?= $fokontany->id;?>"><?= $fokontany->name;?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- Location -->
+                    </form>
                 </div>
-            </div>
-            
-            <div class="row">  
-              <div class="col-lg-12">
-                  <h6>Cliquer sur un ménage pour voir ses membres.</p>
-                  <div id="carnets"></div>
-              </div>
-              <div class="col-lg-12">
-                <p>Membres du ménage : </p>
-                  <div id="citizens"></div>
-              </div>
+                <div class="col-lg-12">
+                    <h6>Liste des aides</h6>
+                    <div id="aids"></div>
+                </div>
             </div>
         </div>
         <!-- End Page Content -->
       </div>
     </div>
-
-                             
   </div>
 
   <!-- Modal -->
@@ -186,11 +155,10 @@
 		</div>
   	</div>
   <!-- Modal END -->
-	<script src="<?= js('jquery.min');?>"></script>
-  <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
-	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
-	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
-	<script src="<?= plugin('modules', 'common', 'full_localization.js');?>"></script>
-	<script src="<?= plugin('modules', 'superadmin', 'list_menage.js');?>"></script>
+    <script src="<?= js('jquery.min');?>"></script>
+    <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
+    <script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
+    <script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
+    <script src="<?= plugin('modules', 'superadmin', 'aids.js');?>"></script>
 </body>
 </html>
