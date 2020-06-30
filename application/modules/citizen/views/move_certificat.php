@@ -132,11 +132,11 @@
             <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-8 col-form-label">
+                    <div class="col-sm-4 col-form-label">
                       <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</label>
                       <p class="font-italic">M./Mme/Mlle </p>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-8">
                       <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Atoa/Rtoa"> 
                     </div>
                   </div>
@@ -144,11 +144,11 @@
 
                 <div class="col-sm-4">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-8 col-form-label">
+                    <div class="col-sm-7 col-form-label">
                       <label for="tao" class="font-weight-bold" style="margin-bottom: 0px;">Teraka ny </label>
                       <p class="font-italic">né(e) le</p>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                       <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value="" placeholder="Daty....."> 
                     </div>
                   </div>
@@ -156,10 +156,10 @@
 
                   <div class="col-sm-4">
                     <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-8 col-form-label">
+                      <div class="col-sm-4 col-form-label">
                         <label for="Zom" class="font-weight-bold" style="margin-bottom: 0px;">CNI </label>
                       </div>
-                      <div class="col-sm-4">
+                      <div class="col-sm-8">
                         <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="CIN....."> 
                       </div>
                     </div>
@@ -169,11 +169,11 @@
              <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-8 col-form-label">
+                    <div class="col-sm-4 col-form-label">
                       <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</label>
                       <p class="font-italic">M./Mme/Mlle </p>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-8">
                       <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Atoa/Rtoa"> 
                     </div>
                   </div>
@@ -181,11 +181,11 @@
 
                 <div class="col-sm-4">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-8 col-form-label">
+                    <div class="col-sm-7 col-form-label">
                       <label for="tao" class="font-weight-bold" style="margin-bottom: 0px;">Teraka ny </label>
                       <p class="font-italic">né(e) le</p>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                       <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value="" placeholder="Daty....."> 
                     </div>
                   </div>
@@ -193,10 +193,10 @@
 
                   <div class="col-sm-4">
                     <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-8 col-form-label">
+                      <div class="col-sm-4 col-form-label">
                         <label for="Zom" class="font-weight-bold" style="margin-bottom: 0px;">CNI </label>
                       </div>
-                      <div class="col-sm-4">
+                      <div class="col-sm-8">
                         <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="CIN....."> 
                       </div>
                     </div>
@@ -206,11 +206,11 @@
              <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-8 col-form-label">
+                    <div class="col-sm-4 col-form-label">
                       <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</label>
                       <p class="font-italic">M./Mme/Mlle </p>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-8">
                       <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Atoa/Rtoa"> 
                     </div>
                   </div>
@@ -218,11 +218,11 @@
 
                 <div class="col-sm-4">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-8 col-form-label">
+                    <div class="col-sm-7 col-form-label">
                       <label for="tao" class="font-weight-bold" style="margin-bottom: 0px;">Teraka ny </label>
                       <p class="font-italic">né(e) le</p>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                       <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value="" placeholder="Daty....."> 
                     </div>
                   </div>
@@ -230,10 +230,10 @@
 
                   <div class="col-sm-4">
                     <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-8 col-form-label">
+                      <div class="col-sm-4 col-form-label">
                         <label for="Zom" class="font-weight-bold" style="margin-bottom: 0px;">CNI </label>
                       </div>
-                      <div class="col-sm-4">
+                      <div class="col-sm-8">
                         <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="CIN....."> 
                       </div>
                     </div>
@@ -243,11 +243,11 @@
              <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-8 col-form-label">
+                    <div class="col-sm-4 col-form-label">
                       <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</label>
                       <p class="font-italic">M./Mme/Mlle </p>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-8">
                       <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Atoa/Rtoa"> 
                     </div>
                   </div>
@@ -255,11 +255,11 @@
 
                 <div class="col-sm-4">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-8 col-form-label">
+                    <div class="col-sm-7 col-form-label">
                       <label for="tao" class="font-weight-bold" style="margin-bottom: 0px;">Teraka ny </label>
                       <p class="font-italic">né(e) le</p>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                       <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value="" placeholder="Daty....."> 
                     </div>
                   </div>
@@ -267,10 +267,10 @@
 
                   <div class="col-sm-4">
                     <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-8 col-form-label">
+                      <div class="col-sm-4 col-form-label">
                         <label for="Zom" class="font-weight-bold" style="margin-bottom: 0px;">CNI </label>
                       </div>
-                      <div class="col-sm-4">
+                      <div class="col-sm-8">
                         <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="CIN....."> 
                       </div>
                     </div>
@@ -280,11 +280,11 @@
              <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-8 col-form-label">
+                    <div class="col-sm-4 col-form-label">
                       <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</label>
                       <p class="font-italic">M./Mme/Mlle </p>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-8">
                       <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Atoa/Rtoa"> 
                     </div>
                   </div>
@@ -292,11 +292,11 @@
 
                 <div class="col-sm-4">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-8 col-form-label">
+                    <div class="col-sm-7 col-form-label">
                       <label for="tao" class="font-weight-bold" style="margin-bottom: 0px;">Teraka ny </label>
                       <p class="font-italic">né(e) le</p>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                       <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value="" placeholder="Daty....."> 
                     </div>
                   </div>
@@ -304,10 +304,10 @@
 
                   <div class="col-sm-4">
                     <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-8 col-form-label">
+                      <div class="col-sm-4 col-form-label">
                         <label for="Zom" class="font-weight-bold" style="margin-bottom: 0px;">CNI </label>
                       </div>
-                      <div class="col-sm-4">
+                      <div class="col-sm-8">
                         <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="CIN....."> 
                       </div>
                     </div>
@@ -317,11 +317,11 @@
              <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-8 col-form-label">
+                    <div class="col-sm-4 col-form-label">
                       <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</label>
                       <p class="font-italic">M./Mme/Mlle </p>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-8">
                       <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Atoa/Rtoa"> 
                     </div>
                   </div>
@@ -329,11 +329,11 @@
 
                 <div class="col-sm-4">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-8 col-form-label">
+                    <div class="col-sm-7 col-form-label">
                       <label for="tao" class="font-weight-bold" style="margin-bottom: 0px;">Teraka ny </label>
                       <p class="font-italic">né(e) le</p>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                       <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value="" placeholder="Daty....."> 
                     </div>
                   </div>
@@ -341,10 +341,10 @@
 
                   <div class="col-sm-4">
                     <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-5 col-form-label">
+                      <div class="col-sm-4 col-form-label">
                         <label for="Zom" class="font-weight-bold" style="margin-bottom: 0px;">CNI </label>
                       </div>
-                      <div class="col-sm-7">
+                      <div class="col-sm-8">
                         <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="CIN....."> 
                       </div>
                     </div>
@@ -382,7 +382,7 @@
                         <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Adiresy taloha (Ancienne adresse) :</label>
                       </div>
                       <div class="col-sm-4">
-                        <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Adiresy Taloha....."> 
+                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Adiresy Taloha....."> 
                       </div>
                     </div>
                 </div>
@@ -393,7 +393,7 @@
                       <label for="tao" class="font-weight-bold" style="margin-bottom: 0px;">Daty hifindrana (date de déménagement) :</label>
                     </div>
                     <div class="col-sm-3">
-                      <input type="text" class="form-control border-0" style="margin-left:-150px;padding-bottom: 2px;" id="tao" value="" placeholder="Daty hifindrana....."> 
+                      <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="tao" value="" placeholder="Daty hifindrana....."> 
                     </div>
                   </div>
                 </div>
@@ -406,7 +406,7 @@
                         <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Adiresy vaovao (Nouvelle adresse) :</label>
                       </div>
                       <div class="col-sm-4">
-                        <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Adiresy vaovao....."> 
+                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Adiresy vaovao....."> 
                       </div>
                     </div>
                 </div>
@@ -423,9 +423,9 @@
           <div class="row">
             <div class="col-sm-5" style="background-color:white;">
             <div class="form-group row" style="margin-bottom: 0px;">
-                <label for="Lf" class="col-sm-5 col-form-label font-weight-bold">N°:</label>
+                <label for="Lf" class="col-sm-5 col-form-label font-weight-bold">N° :</label>
                 <div class="col-sm-7">
-                  <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($reference).'  ./'.date('y')."'" ?>> 
+                  <input readonly type="text" class="form-control border-0" style="margin-left:-150px;" id="Lf" value=<?= "'".addslashes($reference).'  ./'.date('y')."'" ?>> 
                 </div>
               </div>
             </div>

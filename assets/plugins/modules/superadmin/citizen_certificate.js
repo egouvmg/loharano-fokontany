@@ -37,6 +37,9 @@ $(function () {
         data.push({name: 'fokontany_id', value: $("#fokontany_id").val()});
         
         $.post("save_citizen_from_certificat", data, function(){
+
+            createPdf();
+          /*      
            var pdf = new jsPDF('l','px','a5');
            var specialElementHandlers = {
                 '#editor': function (element, renderer) {
@@ -48,6 +51,20 @@ $(function () {
             pdf.addHTML($('#content'),0,0, config,function() {
             pdf.save('test.pdf');
            });
+           */
         });
+    }
+
+    function createPdf(){
+        html2canvas($('#content'), {
+            onrendered: function( canvas ) {
+                var img1 = canvas.toDataURL('image/png');
+                var doc = new jsPDF('p','px','a4');//'p', 'mm'
+                doc.addImage( img1, 'JPEG', 0, 0, 450, 316); // A5 sizes
+                //doc.addImage( img1, 'PNG', 0, 296, 420, 296); // A5 sizes
+                doc.save("file.pdf");
+            }
+        });
+
     }
 });

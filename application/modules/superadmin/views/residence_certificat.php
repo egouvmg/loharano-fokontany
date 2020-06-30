@@ -102,9 +102,9 @@
               <hr class="font-weight-bold">
               <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO II</span>
             </div>
-            <div class="col-sm-4" style="background-color:lavender;">
+            <div class="col-sm-2" style="background-color:lavender;">
             </div>
-            <div class="col-sm-4 text-center" style="background-color:lavender;">
+            <div class="col-sm-6 text-center" style="background-color:lavender;">
             <span class="font-weight-bold">FANAMARINAM-PONENANA</span><br>
             <span class="font-weight-bold">CERTIFICAT DE RESIDENCE</span>
             </div>

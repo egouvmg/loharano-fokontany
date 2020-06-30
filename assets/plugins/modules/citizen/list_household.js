@@ -264,4 +264,57 @@ $(function () {
             if(res.success == 1) alert(res.msg);
         }, 'JSON');
     });
+
+    $('#carnet_id').click(function(e){
+        e.preventDefault();
+        data={};
+        data["numero_carnet"]="0054312006190002";
+
+        $.get('membres_menage', data, function(res){
+            createCarnet(res);
+        }, 'JSON');
+    });
+
+
+    function createCarnet(membres_menage){
+        var pdf = new jsPDF('l','px','a5');
+        var specialElementHandlers = {
+             '#editor': function (element, renderer) {
+                 return true;
+             }
+         };
+        var margins = {top: 90, bottom: 60, left: 90, width: 1748};//{top: 90, bottom: 60, left: 90, width: 900};
+        var config = {pagesplit: false, background: '#fff', margin: {top: 0, right: 10, bottom: 0, left: 50}};
+
+        //******************************Couverture*************************** */
+        pdf.text(20, 20, "KARINE");
+        
+        //******************************End Couverture*************************/
+        
+        //******************************Liste membres ménages**************** */
+        pdf.addPage();
+        pdf.setFont("helvetica");
+        pdf.setFontType("normal");
+
+        line = 20;    
+
+        $.each(membres_menage, function(index, membre){
+            pdf.text(100, line, membre.nom);
+            line += 40;
+        }
+
+        );
+
+
+
+
+        //******************************End Liste membres ménages************* */
+        
+        //******************************Liste membres ménages 3 par page *****/
+        //******************************End Liste membres ménages 3 par page **/
+
+        pdf.save('test.pdf');
+    }
+
+
 });

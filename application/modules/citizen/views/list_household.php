@@ -92,7 +92,16 @@
               <div id="households"></div>
             </div>
             <div class="col-lg-12 line-bloc">
-              <h6><?= $this->lang->line('household_content');?></h6>
+              <div class="row">
+                <div class="col-lg-4">
+                  <h6><?= $this->lang->line('household_content');?></h6>
+                </div>
+                <div class="col-lg-5">
+                </div>
+                <div class="col-lg-3">
+                  <button id="carnet_id" type="button">Créer Carnet pokontany</button>
+                </div>
+              </div>
               <div id="citizens"></div>
             </div>
           </div>           
@@ -349,6 +358,8 @@
   <script src="<?= plugin('phone', 'js', 'jquery-input-mask-phone-number.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+  <script src="<?= plugin('modules', 'common', 'jspdf.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'citizen', 'list_household.js');?>"></script>
 </body>
 </html>
