@@ -13,7 +13,7 @@ class Auth extends MY_Controller {
 	{
 		if ($this->egmauth->is_superadmin())
 		{
-			redirect('tableau_de_bords', 'refresh');
+			redirect('tableau_de_bord', 'refresh');
 		}
 		else if ($this->egmauth->is_admin())
 		{

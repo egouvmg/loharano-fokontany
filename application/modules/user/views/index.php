@@ -101,10 +101,10 @@
                     <h6>Rapport global</h6>
                     <div class="container-bloc-link">
                       <a href="#" class="bloc-link color-7">
-                        <span class="count"><?= $household_count;?></span> <?=$this->lang->line('count_citizen');?> Ménages
+                        <span class="count"><?= $household_count;?></span> Ménages
                       </a>
                       <a href="#" class="bloc-link color-7">
-                        <span class="count"><?= $citizen_count;?></span> <?=$this->lang->line('count_household');?> Citoyens
+                        <span class="count"><?= $citizen_count;?></span> Citoyens
                       </a>
                     </div>
                   </div>

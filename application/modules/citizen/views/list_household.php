@@ -100,7 +100,7 @@
                 <div class="col-lg-5">
                 </div>
                 <div class="col-lg-3">
-                  <button id="carnet_id" type="button">Créer Carnet pokontany</button>
+                  <button id="carnet_id" class="btn btn-info my-2"type="button">Créer Carnet pokontany</button>
                 </div>
               </div>
               <div id="citizens"></div>

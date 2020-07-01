@@ -68,7 +68,7 @@ $route['8165461654ssdsdq498z'] = 'superadmin/f45644548';
 $route['gestion_aide_menage'] = 'superadmin/manage_aid';
 
 //User
-$route['tableau_de_bords'] = 'user/index';
+$route['tableau_de_bord'] = 'user/index';
 $route['ajout_utilisateur'] = 'user/add_user';
 $route['ajout_de_chef'] = 'user/add_chief';
 $route['liste_utilisateur'] = 'user/list_user';

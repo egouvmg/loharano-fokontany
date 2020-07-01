@@ -53,7 +53,7 @@
         <li>
             <a href="#"><span class="iconify" data-icon="bar-chart-outline" data-inline="false"></span> Main</a>
             <ul class="sub-main-menu">
-              <li><a href="tableau_de_bords"><span class="iconify" data-icon="clarity:dashboard-outline-badged" data-inline="false"></span> Dashboard</a></li>
+              <li><a href="tableau_de_bord"><span class="iconify" data-icon="clarity:dashboard-outline-badged" data-inline="false"></span> Dashboard</a></li>
               <li><a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> Utilisateurs</a>
             <ul class="sub-main-menu">
               <li><a class="active" href="ajout_utilisateur">Ajout utilisateur</a></li>
