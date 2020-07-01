@@ -9,6 +9,7 @@ $(function () {
     
 	var households = new Tabulator("#households", {
         layout:"fitColumns",
+        selectable: 1,
 		ajaxURL: "liste_menages_fokontany",
 		ajaxConfig: "GET",
 		initialSort:[
@@ -51,6 +52,7 @@ $(function () {
 
     var histories = new Tabulator('#historyMigration', {
         layout:"fitColumns",
+        selectable: 1,
 		initialSort:[
 			{column:"date_migration", dir:"desc"}
 		],
@@ -88,6 +90,7 @@ $(function () {
 
 	var citizens = new Tabulator("#citizens", {
         layout:"fitColumns",
+        selectable: 1,
 		initialSort:[
 			{column:"chef_menage", dir:"asc"}
 		],
@@ -122,6 +125,7 @@ $(function () {
             histories.setData('historique_migration', {id_person:id_peron});
             
             $('.error_field').text('');
+            $('#id_personne').val(id_peron);
             $('#nom_complet').text(row.getData().nom + ' ' + row.getData().prenoms);
             $('#numero_carnet').val(row.getData().numero_carnet);
             $('#adresse_actuelle').val(row.getData().adresse_actuelle);
@@ -138,7 +142,6 @@ $(function () {
             $('#job').val(row.getData().job);
             $('#job_status').val(row.getData().job_status);
             $('#situation_matrimoniale').val(row.getData().situation_matrimoniale);
-            $('#id_personne').val(row.getData().id_personne);
             $('#observation').val(row.getData().observation);
 
             if(row.getData().date_de_naissance){

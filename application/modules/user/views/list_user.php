@@ -51,13 +51,6 @@
       <div class="main-side-bar">
         <ul class="main-menu">
           <li>
-            <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_fokontany');?></a>
-            <ul class="sub-main-menu">
-              <li><a href="ajout_utilisateur"><?=$this->lang->line('add');?></a></li>
-              <li><a href="liste_utilisateur" class="active"><?=$this->lang->line('list');?></a></li>
-            </ul>
-          </li>
-          <li>
             <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_chief');?></a>
             <ul class="sub-main-menu" style="display:none;">
               <li><a href="ajout_de_chef"><?=$this->lang->line('add');?></a></li>
@@ -65,18 +58,22 @@
             </ul>
           </li>
           <li>
-            <a href="#"><span class="iconify" data-icon="ic:round-place" data-inline="false"></span> Fokontany</a>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménage</a>
-            <ul class="sub-main-menu"  style="display:none;">              
-              <li><a href="list_menage"><?=$this->lang->line('list');?></a></li>
+            <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_fokontany');?></a>
+            <ul class="sub-main-menu">
+              <li><a href="ajout_utilisateur"><?=$this->lang->line('add');?></a></li>
+              <li><a href="liste_utilisateur" class="active"><?=$this->lang->line('list');?></a></li>
             </ul>
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> Citoyens</a>
             <ul class="sub-main-menu" style="display:none;">              
               <li><a href="la_liste_citoyens"><?=$this->lang->line('list');?></a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménages</a>
+            <ul class="sub-main-menu"  style="display:none;">              
+              <li><a href="list_menage"><?=$this->lang->line('list');?></a></li>
             </ul>
           </li>
           <li>

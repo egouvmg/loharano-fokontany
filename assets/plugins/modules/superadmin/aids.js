@@ -11,6 +11,7 @@ $(function () {
  
 	var users = new Tabulator("#aids", {
         layout:"fitColumns",
+        selectable: 1,
 		ajaxURL: "liste_aides",
 		ajaxConfig: "GET",
 		initialSort:[
@@ -21,6 +22,14 @@ $(function () {
             { title: "Type", field: "type", width:100, formatter: types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
             { title: "Description", field: "description", headerFilterPlaceholder: "...", headerFilter: "input" }
         ],
+        rowClick:function(e, row){
+            $('#aid_id').val(row.getData().id);
+            $('#ename').val(row.getData().name);
+            $('#etype').val(row.getData().type);
+            $('#edescription').val(row.getData().description);
+
+            $('#editModal').modal();
+        },
         pagination:"local",
         paginationSize:5,
         paginationSizeSelector:[5, 10, 20, 50, 100, 200],
@@ -54,7 +63,7 @@ $(function () {
         $('.error_field').text('');
         
         $(this).prop('disabled', true);
-        $('#loadingSave').show();
+        $('.loadingSave').show();
 
         var data = $('#addAid').serializeArray();
 
@@ -68,16 +77,50 @@ $(function () {
             }
 
             if(res.success === 1){
+                document.getElementById("addAid").reset();
                 users.setData();
             }
             if(res.error === 1) alert(res.msg);
         
             $('#validAid').prop('disabled', false);
-            $('#loadingSave').hide();
+            $('.loadingSave').hide();
         }, 'JSON')
         .fail(function(){
             alert('Erreur sur serveur. Veuillez réessayer ultérieurement.');
         });
+    });
 
+    $("#validEditAid").click(function (e) {
+        e.preventDefault();
+        
+        $('.error_field').text('');
+        
+        $(this).prop('disabled', true);
+        $('.loadingSave').show();
+
+        var data = $('#editAid').serializeArray();
+
+        $.post('modifier_aide', data, function(res){
+            if(res.failed === 1){
+                if(res.missing_fields){
+                    $.each( res.missing_fields, function( key, value ) {
+                        $('.error_' + value[0]).text(value[1]);
+                    });
+                }
+            }
+
+            if(res.success === 1){
+                $('#editModal').modal('hide');
+                users.setData();
+            }
+
+            if(res.error === 1) alert(res.msg);
+        
+            $('#validEditAid').prop('disabled', false);
+            $('.loadingSave').hide();
+        }, 'JSON')
+        .fail(function(){
+            alert('Erreur sur serveur. Veuillez réessayer ultérieurement.');
+        });
     });
 });

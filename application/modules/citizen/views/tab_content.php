@@ -15,7 +15,7 @@
                     <span class="error_field error_last_name<?= $index;?>"></span>
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="first_name<?= $index;?>"><?=$this->lang->line('first_name');?> *</label>
+                    <label for="first_name<?= $index;?>"><?=$this->lang->line('first_name');?></label>
                     <input type="text" class="form-control first_name" id="first_name<?= $index;?>" name="first_name[]" placeholder="...">
                     <span class="error_field error_first_name<?= $index;?>"></span>
                 </div>
@@ -63,7 +63,7 @@
                     <span class="error_field error_handicape<?= $index;?>"></span>
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="phone<?= $index;?>"><?=$this->lang->line('phone');?> *</label>
+                    <label for="phone<?= $index;?>"><?=$this->lang->line('phone');?></label>
                     <input type="text" class="form-control phone_number" id="phone<?= $index;?>" name="phone[]" placeholder="...">
                     <span class="error_field error_phone<?= $index;?>"></span>
                 </div>
@@ -80,7 +80,7 @@
                     <span class="error_field error_father<?= $index;?>"></span>
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="father_status<?= $index;?>"><?=$this->lang->line('father_status');?> *</label>
+                    <label for="father_status<?= $index;?>"><?=$this->lang->line('father_status');?></label>
                     <select name="father_status[]" id="father_status<?= $index;?>" class="form-control">
                         <option value="1"><?=$this->lang->line('alive');?></option>
                         <option value="2"><?=$this->lang->line('dead');?></option>
@@ -93,7 +93,7 @@
                     <span class="error_field error_mother"></span>
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="mother_status<?= $index;?>"><?=$this->lang->line('mother_status');?> *</label>
+                    <label for="mother_status<?= $index;?>"><?=$this->lang->line('mother_status');?></label>
                     <select name="mother_status[]" id="mother_status<?= $index;?>" class="form-control">
                         <option value="1"><?=$this->lang->line('alive');?></option>
                         <option value="2"><?=$this->lang->line('dead');?></option>
@@ -120,7 +120,7 @@
                     <span class="error_field error_job_id<?= $index;?>"></span>
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="job_status<?= $index;?>"><?=$this->lang->line('job_description');?> *</label>
+                    <label for="job_status<?= $index;?>"><?=$this->lang->line('job_description');?></label>
                     <textarea class="form-control" id="job_status<?= $index;?>" name="job_status[]" placeholder="..."></textarea>
                     <span class="error_field error_job_status<?= $index;?>"></span>
                 </div>

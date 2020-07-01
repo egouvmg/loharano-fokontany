@@ -96,4 +96,19 @@ class Citizen_model extends CI_Model
 	
 		return $query->result();
 	}
+
+	public function global_ratio_sexe($criteria = array()){
+		$this->db->select('SUM("number") AS "number", SUM(minor) AS minor, SUM(major) AS major, SUM(avg_age)/COUNT(avg_age) AS avg_age, sexe');
+		$this->db->from($this->_v_ratio_sexe);
+		
+		if(!empty($criteria)){
+			$this->db->where($criteria);
+		}
+
+		$this->db->group_by('sexe');
+		
+		$query = $this->db->get();
+	
+		return $query->result();
+	}
 }

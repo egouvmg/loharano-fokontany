@@ -166,4 +166,5 @@ $route['ajout_aide'] = 'aid/add_household_aid';
 
 //SuperAdmin
 $route['ajouter_aide'] = 'superadmin/add_aid';
+$route['modifier_aide'] = 'superadmin/edit_aid';
 $route['liste_aides'] = 'superadmin/list_aid';

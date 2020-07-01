@@ -51,13 +51,6 @@
       <div class="main-side-bar">
         <ul class="main-menu">
           <li>
-            <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_fokontany');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="ajout_utilisateur"><?=$this->lang->line('add');?></a></li>
-              <li><a href="liste_utilisateur"><?=$this->lang->line('list');?></a></li>
-            </ul>
-          </li>
-          <li>
             <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_chief');?></a>
             <ul class="sub-main-menu" style="display:none;">
               <li><a href="ajout_de_chef"><?=$this->lang->line('add');?></a></li>
@@ -65,18 +58,22 @@
             </ul>
           </li>
           <li>
-            <a href="#"><span class="iconify" data-icon="ic:round-place" data-inline="false"></span> Fokontany</a>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménage</a>
-            <ul class="sub-main-menu"  style="display:none;">              
-              <li><a href="list_menage"><?=$this->lang->line('list');?></a></li>
+            <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_fokontany');?></a>
+            <ul class="sub-main-menu" style="display:none;">
+              <li><a href="ajout_utilisateur"><?=$this->lang->line('add');?></a></li>
+              <li><a href="liste_utilisateur"><?=$this->lang->line('list');?></a></li>
             </ul>
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> Citoyens</a>
             <ul class="sub-main-menu" style="display:none;">              
               <li><a href="la_liste_citoyens"><?=$this->lang->line('list');?></a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménages</a>
+            <ul class="sub-main-menu"  style="display:none;">              
+              <li><a href="list_menage"><?=$this->lang->line('list');?></a></li>
             </ul>
           </li>
           <li>
@@ -133,23 +130,23 @@
               <div class="line-bloc">
                 <h6>Accès rapide</h6>
                 <div class="container-bloc-link">
-                  <a href="ajout_utilisateur" class="bloc-link color-1">
-                    <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> <?=$this->lang->line('add_user');?>
-                  </a>
-                  <a href="liste_utilisateur" class="bloc-link color-3">
-                  <span class="iconify" data-icon="ant-design:unordered-list-outlined" data-inline="false"></span> <?=$this->lang->line('list_users');?>
-                  </a>
                   <a href="ajout_de_chef" class="bloc-link color-2">
                     <span class="iconify" data-icon="ri:user-add-line" data-inline="false"></span> Ajout Chef District
                   </a>
                   <a href="liste_des_chefs" class="bloc-link color-6">
                     <span class="iconify" data-icon="ant-design:unordered-list-outlined" data-inline="false"></span> <?=$this->lang->line('list_chiefs');?>
                   </a>
-                  <a href="list_menage" class="bloc-link color-4">
-                    <span class="iconify" data-icon="ant-design:unordered-list-outlined" data-inline="false"></span> Liste des Ménages
+                  <a href="ajout_utilisateur" class="bloc-link color-1">
+                    <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> <?=$this->lang->line('add_user');?>
+                  </a>
+                  <a href="liste_utilisateur" class="bloc-link color-3">
+                  <span class="iconify" data-icon="ant-design:unordered-list-outlined" data-inline="false"></span> <?=$this->lang->line('list_users');?>
                   </a>
                   <a href="la_liste_citoyens" class="bloc-link color-5">
                     <span class="iconify" data-icon="ant-design:unordered-list-outlined" data-inline="false"></span> Liste des Citoyens
+                  </a>
+                  <a href="list_menage" class="bloc-link color-4">
+                    <span class="iconify" data-icon="ant-design:unordered-list-outlined" data-inline="false"></span> Liste des Ménages
                   </a>
                   <a href="gestion_aide_menage" class="bloc-link color-7">
                     <span class="iconify" data-icon="dashicons:products" data-inline="false"></span> Aides sociales

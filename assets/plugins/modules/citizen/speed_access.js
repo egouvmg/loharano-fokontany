@@ -9,6 +9,7 @@ $(function () {
 
     var histories2 = new Tabulator('#historyMigration2', {
         layout:"fitColumns",
+        selectable: 1,
 		initialSort:[
 			{column:"date_migration", dir:"desc"}
 		],
@@ -46,6 +47,7 @@ $(function () {
 
     var histories = new Tabulator('#historyMigration1', {
         layout:"fitColumns",
+        selectable: 1,
 		initialSort:[
 			{column:"date_migration", dir:"desc"}
 		],
@@ -83,6 +85,7 @@ $(function () {
 
 	var citizens = new Tabulator("#citizens", {
         layout:"fitColumns",
+        selectable: 1,
 		initialSort:[
 			{column:"chef_menage", dir:"desc"}
 		],
@@ -151,6 +154,10 @@ $(function () {
                     "col":"Couleur",
                     "dob":"Date de Naissance",
                 },
+                "ajax":{
+                    "loading":"Recherche encours...", //ajax loader text
+                    "error":"Une erreur du serveur", //ajax error text
+                },
                 "pagination":{
                     "first":"Premier",
                     "first_title":"Première Page",
@@ -167,6 +174,7 @@ $(function () {
 
 	var other_citizens = new Tabulator("#other_citizens", {
         layout:"fitColumns",
+        selectable: 1,
 		initialSort:[
 			{column:"nom", dir:"desc"}
 		],
@@ -243,6 +251,7 @@ $(function () {
     });
 
     $('.speed_access').on('keyup change', function(e){
+        if($(this).val().length < 5) return false;
         var data = $('#speedForm').serializeArray();
 
         $.get('recherche_rapide', data, function(res){

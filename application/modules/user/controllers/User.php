@@ -46,7 +46,7 @@ class User extends SuperAdmin_Controller
         $this->data['citizen_count'] = number_format($citizen_count, 0, '', ' ');
 
         if($citizen_count){
-            $ratio_sexe = $this->citizen->ratio_sexe();
+            $ratio_sexe = $this->citizen->global_ratio_sexe();
 
             $_minor = 0;
             $_major = 0;

@@ -145,6 +145,7 @@ class Superadmin extends SuperAdmin_Controller
             // [22] => sexe
             // [23] => situation_matrimoniale
             // [24] => handicape
+            // [25] => address
 
             $fokontany_id = (int) $csv_value[1];
             $address = utf8_encode($csv_value[25]);
@@ -157,24 +158,28 @@ class Superadmin extends SuperAdmin_Controller
                 'prenoms' => utf8_encode($csv_value[4]),
                 'date_de_naissance' => $csv_value[5],
                 'lieu_de_naissance' => utf8_encode($csv_value[6]),
-                'date_delivrance_cin' => ($csv_value[7] == 'NULL') ? '01/01/1900': $csv_value[7],
-                'lieu_delivrance_cin' => utf8_encode($csv_value[8]),
-                'nationality_id' => (empty($csv_value[20])) ? 1 : $csv_value[20],
+                'nationality_id' => 1,//(empty($csv_value[20])) ? 1 : $csv_value[20],
                 'qr_code' => $csv_value[10],
                 'numero_carnet' => $reference,
                 'father' => utf8_encode($csv_value[12]),
                 'mother' => utf8_encode($csv_value[13]),
-                'father_status' => $csv_value[14],
-                'mother_status' => $csv_value[15],
-                'job_id' => $csv_value[16],
+                'father_status' => (empty($csv_value[14])) ? 0 : 1,
+                'mother_status' => (empty($csv_value[15])) ? 0 : 1,
+                'job_id' => ($csv_value[16] == -1 || $csv_value[16] == 0) ? 52 : $csv_value[16],
                 'job_status' => utf8_encode($csv_value[17]),
                 'job_other' => utf8_encode($csv_value[18]),
                 'phone' => $csv_value[19],
-                'cin_personne' => $csv_value[21],
-                'sexe' => $csv_value[22],
+                'sexe' => (empty($csv_value[22])) ? 0 : 1,
                 'situation_matrimoniale' => utf8_encode($csv_value[23]),
-                'handicape' => $csv_value[24]
+                'handicape' => (empty($csv_value[24])) ? FALSE : TRUE
             ];
+
+            if(!empty($csv_value[21])){
+                
+                $tmp_data['date_delivrance_cin'] = ($csv_value[7] == 'NULL') ? '01/01/1900': $csv_value[7];
+                $tmp_data['lieu_delivrance_cin'] = utf8_encode($csv_value[8]);
+                $tmp_data['cin_personne'] = $csv_value[21];
+            }
        
             $this->citizen->insert($tmp_data);
         }
@@ -235,6 +240,44 @@ class Superadmin extends SuperAdmin_Controller
         if($this->aid->insert($data))
             echo json_encode(['success' => 1]);
         else echo json_encode(['error' => 1, 'msg' => 'Impossible d\'enregistrer l\'aide.']);
+    }
+
+    public function edit_aid()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $id = $this->input->post('id');
+        $name = $this->input->post('name');
+        $type = $this->input->post('type');
+        $description = $this->input->post('description');
+
+        if(empty($name))
+            $missing_fields[] = ['ename', 'Champs requis'];
+        if(empty($type))
+            $missing_fields[] = ['etype', 'Champs requis'];
+        if(empty($description))
+            $missing_fields[] = ['edescription', 'Champs requis'];
+        if(empty($id))
+            $missing_fields[] = ['ename', 'Aide non définie'];
+              
+
+        if(!empty($missing_fields)){
+            echo json_encode(['failed' => 1, 'missing_fields' => $missing_fields]);
+            return false;
+        }
+        
+        $data_update = [
+            'id' => $id,
+            'name' => $name,
+            'type' => $type,
+            'description' => $description
+        ];
+
+        if($this->aid->update($data_update))
+            echo json_encode(['success' => 1]);
+        else echo json_encode(['error' => 1, 'msg' => 'Impossible de modifier l\'aide.']);
     }
 
     public function list_aid()

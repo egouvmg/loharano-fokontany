@@ -18,6 +18,15 @@ class Aid_model extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	public function update($data) {
+		$id = $data["id"];
+
+		$this->db->where('id', $id);
+		unset($data["id"]);
+		
+		return $this->db->update($this->_table, $data);
+	}
+
 	public function save_household_aid($data) {
 		return $this->db->insert($this->_household_aid, $data);
 	}

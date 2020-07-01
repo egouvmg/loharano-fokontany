@@ -2,6 +2,15 @@ $(function () {
     var household_head = function (cell, formatterParams) {
 		return cell.getRow().getData().nom + ' ' + cell.getRow().getData().prenoms;
     };
+
+    var types = function (cell, formatterParams) {
+        var value = cell.getValue();
+
+        switch (value) {
+            case "1": return "Vivres"; break;
+            case "2": return "Cash"; break;
+        }
+    };
     
 	var households = new Tabulator("#households", {
         layout:"fitColumns",
@@ -57,6 +66,7 @@ $(function () {
 		],
         columns:[ //Define Table Columns
             {title:"Aide reçue", field:"name",headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title: "Type", field: "type", width:100, formatter: types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
             {title:"Date", field:"created_on", headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Description", field:"description", headerFilterPlaceholder:"..." , headerFilter:"input"}       
         ],

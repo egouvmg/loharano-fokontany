@@ -51,13 +51,6 @@
       <div class="main-side-bar">
         <ul class="main-menu">
           <li>
-            <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_fokontany');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="ajout_utilisateur"><?=$this->lang->line('add');?></a></li>
-              <li><a href="liste_utilisateur"><?=$this->lang->line('list');?></a></li>
-            </ul>
-          </li>
-          <li>
             <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_chief');?></a>
             <ul class="sub-main-menu" style="display:none;">
               <li><a href="ajout_de_chef"><?=$this->lang->line('add');?></a></li>
@@ -65,18 +58,22 @@
             </ul>
           </li>
           <li>
-            <a href="#"><span class="iconify" data-icon="ic:round-place" data-inline="false"></span> Fokontany</a>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménage</a>
-            <ul class="sub-main-menu" style="display:none;">              
-              <li><a href="list_menage"><?=$this->lang->line('list');?></a></li>
+            <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_fokontany');?></a>
+            <ul class="sub-main-menu" style="display:none;">
+              <li><a href="ajout_utilisateur"><?=$this->lang->line('add');?></a></li>
+              <li><a href="liste_utilisateur"><?=$this->lang->line('list');?></a></li>
             </ul>
           </li>
           <li>
             <a href="#"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> Citoyens</a>
             <ul class="sub-main-menu" style="display:none;">              
               <li><a href="la_liste_citoyens"><?=$this->lang->line('list');?></a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménages</a>
+            <ul class="sub-main-menu" style="display:none;">              
+              <li><a href="list_menage"><?=$this->lang->line('list');?></a></li>
             </ul>
           </li>
           <li>
@@ -110,7 +107,7 @@
                                 <label for="type">Type*</label>
                                 <select class="form-control" name="type" id="type" placeholder="...">
                                     <option value="1">Vivres</option>
-                                    <option value="1">Cash</option>
+                                    <option value="2">Cash</option>
                                 </select>
                                 <div class="error_field error_type"></div>
                             </div>
@@ -121,7 +118,7 @@
                             </div>
                             <div class="form-group col-lg-12">
                                 <button class="btn btn-info" id="validAid">Ajouter</button>
-                                <div id="loadingSave" style="display:none;">
+                                <div class="loadingSave" style="display:none;">
                                     <img class="loading" src="<?= img('pulse.gif');?>"/>
                                     Enregistrement ...
                                 </div>
@@ -140,6 +137,49 @@
     </div>
   </div>
 
+  
+  <!-- Modal -->
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+          <h5 class="modal-title" id="newRegisterTitle">Modification d'aide</h5>
+          <form id="editAid">
+            <div class="form-row">
+                <div class="form-group col-lg-6">
+                    <label for="ename"><?= $this->lang->line('last_name');?>*</label>
+                    <input type="text" class="form-control" name="name" id="ename" placeholder="...">
+                    <div class="error_field error_ename"></div>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label for="etype">Type*</label>
+                    <select class="form-control" name="type" id="etype" placeholder="...">
+                        <option value="1">Vivres</option>
+                        <option value="2">Cash</option>
+                    </select>
+                    <div class="error_field error_etype"></div>
+                </div>
+                <input type="hidden" name="id" id="aid_id"/>
+                <div class="form-group col-lg-12">
+                    <label for="edescription">Description*</label>
+                    <textarea name="description" id="edescription" cols="30" class="form-control" rows="3"></textarea>
+                    <div class="error_field error_edescription"></div>
+                </div>
+                <div class="form-group col-lg-12">
+                    <button class="btn btn-info" id="validEditAid">Ajouter</button>
+                    <div class="loadingSave" style="display:none;">
+                        <img class="loading" src="<?= img('pulse.gif');?>"/>
+                        Enregistrement ...
+                    </div>
+                </div>
+            </div>
+          </form>
+        </div>
+			</div>
+		</div>
+  </div>
+  <!-- End Modad -->
+
   <!-- Modal -->
 	<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -155,6 +195,7 @@
 		</div>
   	</div>
   <!-- Modal END -->
+  
     <script src="<?= js('jquery.min');?>"></script>
     <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
     <script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
