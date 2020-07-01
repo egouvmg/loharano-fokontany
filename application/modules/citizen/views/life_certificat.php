@@ -92,7 +92,7 @@
             <div class="col-sm-4 text-center" style="background-color:white;">
               <span class="">MINISTERAN'NY ATITANY SY NY FITSINJARAM-PAHEFANA</span><br>
               <hr>
-              <span class="">PREFECTIORAN'NY POLISIN'ANTANANARIVO</span><br>
+              <span class="">PREFEKITORAN'NY POLISIN'ANTANANARIVO</span><br>
               <hr class="font-weight-bold">
               <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO II</span>
             </div>

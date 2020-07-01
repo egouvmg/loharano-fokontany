@@ -28,6 +28,7 @@
         <a href="/"><img src="<?= img('Logo-Loharano-mini.png');?>"/></a>
       </div>
       
+      <input id="numero_carnet_hidden" name="numero_carnet_hidden" type="hidden"/>
       <img src="<?= img('sautRep.png');?>">
       <div class="menu">
         <ul class="navbar-nav">
@@ -360,6 +361,7 @@
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
   <script src="<?= plugin('modules', 'common', 'jspdf.min.js');?>"></script>
+	<script src="<?= plugin('modules', 'citizen', 'alignement.js');?>"></script>
 	<script src="<?= plugin('modules', 'citizen', 'list_household.js');?>"></script>
 </body>
 </html>

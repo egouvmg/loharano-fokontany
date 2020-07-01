@@ -21,6 +21,7 @@ $(function () {
             {title:"Chef ménage", width:300, field:"chef_menage", formatter: household_head}         
         ],
         rowClick:function(e, row){
+            $('#numero_carnet_hidden').val(row.getData().numero_carnet);
             citizens.setData('membres_menage', {numero_carnet:row.getData().numero_carnet});
         },
         pagination:"local",
@@ -271,16 +272,17 @@ $(function () {
     $('#carnet_id').click(function(e){
         e.preventDefault();
         data={};
-        data["numero_carnet"]="0054312006190002";
+        data["numero_carnet"]= $('#numero_carnet_hidden').val();//"0054312006190002"
 
         $.get('membres_menage', data, function(res){
             createCarnet(res);
         }, 'JSON');
     });
-
+    
+    var pdf = new jsPDF('l','px','a4');
+    line = 20;
 
     function createCarnet(membres_menage){
-        var pdf = new jsPDF('l','px','a5');
         var specialElementHandlers = {
              '#editor': function (element, renderer) {
                  return true;
@@ -290,34 +292,95 @@ $(function () {
         var config = {pagesplit: false, background: '#fff', margin: {top: 0, right: 10, bottom: 0, left: 50}};
 
         //******************************Couverture*************************** */
-        pdf.text(20, 20, "KARINE");
+        
+        pdf.setFontSize(12);
+        pdf.setFont("helvetica");
+        pdf.setFontType("normal");
+        
+        pdf.setFontType("italic");
+        pdf.setFontStyle("bold");
+        addText("REPOBLIKAN'I MADAGASIKARA", 300, null, 'center');
+        addText("Fitiavana - Tanindrazana - Fandrosoana", 300, null, 'center');
+        pdf.setFontSize(16);
+        
+        addText("KARINE", 300, 200, 'center');
+        
+        
+        addText("FOKONTANY", 300, 400, 'center');
+        addText(membres_menage[0].libelle_fokontany, 300, 420, 'center');
         
         //******************************End Couverture*************************/
         
         //******************************Liste membres ménages**************** */
         pdf.addPage();
+        pdf.setFontSize(12);
         pdf.setFont("helvetica");
         pdf.setFontType("normal");
-
-        line = 20;    
-
+        
+        pdf.setFontType("italic");
+        pdf.setFontStyle("bold");
+        addText("REPOBLIKAN'I MADAGASIKARA", 300, null, 'center');
+        addText("Fitiavana - Tanindrazana - Fandrosoana", 300, null, 'center');
+        
+        pdf.setFontStyle("normal");
+        pdf.setFontType("normal");
+        addText("Faritra : " + membres_menage[0].region_name, null, null, null);
+        addText("Distrika : " + membres_menage[0].district_name, null, null, null);
+        addText("Kaominina : " + membres_menage[0].common_name, null, null, null);
+        addText("Fokontany : " + membres_menage[0].libelle_fokontany, null, null, null);
+        addText("", null, null, null);
+        
+        pdf.setFontStyle("bold");
+        addText("KARA-POKONOLONA", null, null, null);
+        pdf.setFontStyle("normal");
+        addText("N° ", membres_menage[0].numero_carnet, null, null);
+        addText("Lot " + membres_menage[0].adresse_actuelle, null, null, null);
+        addText("Ankohonana:", null, null, null);
+        addImageToPdf();
         $.each(membres_menage, function(index, membre){
-            pdf.text(100, line, membre.nom);
-            line += 40;
-        }
-
-        );
-
-
-
-
+            index += 1;
+            pdf.text(10, line, index + " " +membre.nom + " " + membre.prenoms);
+            line += 10;
+        });
         //******************************End Liste membres ménages************* */
         
         //******************************Liste membres ménages 3 par page *****/
+        pdf.setFontSize(12);
+        pdf.addPage();
+        line = 20;
+        $.each(membres_menage, function(index, membre){
+            addText("Anarana : " + membre.nom, null, null, null);
+            addText("Fanampiny : " + membre.prenoms, null, null, null);
+            addText("Teraka tamin'ny : " + membre.date_de_naissance, null, null, null);
+            addText("Zanak'i : " + membre.father, null, null, null);
+            addText("Sy : " + membre.mother, null, null, null);
+            addText("CIN N° : " + membre.cin_personne, null, null, null);
+            addText("Natao ny : " + membre.lieu_delivrance_cin, null, null, null);
+            addText("Asa : " + (!membre.job?"                   ":membre.job) +"   FKT : " + membre.libelle_fokontany, null, null, null);
+            
+            if((index + 1)%3 === 0){
+                pdf.addPage();
+                line = 8;
+            }
+
+            line += 12;
+        });
         //******************************End Liste membres ménages 3 par page **/
 
         pdf.save('test.pdf');
     }
 
+    function addText(texte, x, y, alignemnt){
+      pdf.text(texte, x==null?10:x, y==null?line:y, null, null, alignemnt);
+      line += 12;  
+    }
+    
+    function addImageToPdf(){
+        var img = new Image();
+        img.src = "assets/ecusson.png";
+        img.addEventListener('load', function(){
+            pdf.addImage(img, 'png', 10, 50);
+        });
+    }
 
 });
