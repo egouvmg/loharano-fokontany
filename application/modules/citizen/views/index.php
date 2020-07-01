@@ -73,10 +73,10 @@
                   <div class="line-bloc">
                     <h6>Rapport global</h6>
                     <div class="container-bloc-link">
-                      <a href="#" class="bloc-link color-7">
+                      <a href="liste_menage_fokontany" class="bloc-link color-7">
                         <span class="count"><?= $household_count;?></span> <?=$this->lang->line('count_citizen');?> Ménages
                       </a>
-                      <a href="#" class="bloc-link color-7">
+                      <a href="liste_citoyens" class="bloc-link color-7">
                         <span class="count"><?= $citizen_count;?></span> <?=$this->lang->line('count_household');?> Citoyens
                       </a>
                     </div>
@@ -155,8 +155,8 @@
               <h6>Liste des individus</h6>
               <div id="citizens"></div>
             </div>
-            <div class="col-lg-12">
-              <h6>Visible dans d'autres Fokontany :</h6>
+            <div class="col-lg-12 mt-3">
+              <h6>Visible dans d'autres Fokontany</h6>
               <div id="other_citizens"></div>
             </div>
           </div>

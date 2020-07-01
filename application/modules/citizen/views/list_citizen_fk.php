@@ -61,7 +61,7 @@
           </p>
         </div>
         <div class="container page-title">
-          <h1><?= $title;?></h1>
+          <h1><?= $title;?></h1><a href="gestion_citoyens"><button class="btn float-right btn-warning"><span class="iconify" data-icon="ion:caret-back-circle-outline" data-inline="false"></span> Retour</button></a>
         </div>
         <!-- End Page title -->
 
