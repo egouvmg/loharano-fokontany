@@ -290,7 +290,7 @@
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-  <script src="<?= plugin('modules', 'common', 'jspdf.min.js');?>"></script>
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 	<script src="<?= plugin('modules', 'superadmin', 'citizen_certificate.js');?>"></script>
 </body>
 </html>
