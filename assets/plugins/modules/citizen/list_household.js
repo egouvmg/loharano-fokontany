@@ -157,12 +157,12 @@ $(function () {
                 $('#lieu_delivrance_cin').val(splitDate(row.getData().lieu_delivrance_cin));
             }
 
-            $('#certificat_residence').attr("href", "certificate?id_personne="+id_peron);
-            $('#certificat_move').attr("href", "certificate_move?id_personne="+id_peron);
-            $('#certificat_celibat').attr("href", "certificate_celibat?id_personne="+id_peron);
-            $('#certificat_life').attr("href", "certificate_life?id_personne="+id_peron);
-            $('#certificat_supported').attr("href", "certificate_supported?id_personne="+id_peron);
-            $('#certificat_behavior').attr("href", "certificate_behavior?id_personne="+id_peron);
+            $('#certificat_residence').attr("href", "certificate?id_personne="+id_peron).attr("target", "_blank");
+            $('#certificat_move').attr("href", "certificate_move?id_personne="+id_peron).attr("target", "_blank");
+            $('#certificat_celibat').attr("href", "certificate_celibat?id_personne="+id_peron).attr("target", "_blank");
+            $('#certificat_life').attr("href", "certificate_life?id_personne="+id_peron).attr("target", "_blank");
+            $('#certificat_supported').attr("href", "certificate_supported?id_personne="+id_peron).attr("target", "_blank");
+            $('#certificat_behavior').attr("href", "certificate_behavior?id_personne="+id_peron).attr("target", "_blank");
 
             $('#personDetails').modal();
         },
