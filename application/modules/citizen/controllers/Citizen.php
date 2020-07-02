@@ -838,6 +838,19 @@ class Citizen extends Operator_Controller
             $origin_page = $data['origin_page'];
             if($origin_page==="residence"){
                 ++$lf_residence;
+
+                // save into historique
+                $data_historique_residence = [];
+                //$data_historique_residence['id'] = 2;
+                $data_historique_residence['date_generation'] = date('Y-m-d H:i:s');
+                $data_historique_residence['motif'] = $data['motif'];
+                $data_historique_residence['fanisana'] = $data['fanisana'];
+                $data_historique_residence['id_personne'] = gmp_intval(gmp_init($data['id_personne']));
+                $data_historique_residence['lf'] = gmp_intval(gmp_init($lf_residence));
+
+                $this->citizen->insertHistoriqueResidence($data_historique_residence);
+                
+                // save into historique
                 $data_tmp['lf_residence']= $lf_residence;
             }
             if($origin_page==="vie"){++$lf_vie;$data_tmp ['lf_vie']=$lf_vie;}

@@ -35,6 +35,8 @@ $(function () {
         data.push({name: 'id_personne', value: $("#id_personne").val()});
         data.push({name: 'origin_page', value: $("#origin_page").val()});
         data.push({name: 'fokontany_id', value: $("#fokontany_id").val()});
+        data.push({name: 'motif', value: $("#motif").val()});
+        data.push({name: 'fanisana', value: $("#fanisana").val()});
         
         $.post("save_citizen_from_certificat", data, function(){
 
@@ -60,9 +62,13 @@ $(function () {
             onrendered: function( canvas ) {
                 var img1 = canvas.toDataURL('image/png');
                 var doc = new jsPDF('p','px','a4');//'p', 'mm'
+                var namepdf = "file.pdf";
                 doc.addImage( img1, 'JPEG', 0, 0, 450, 316); // A5 sizes
                 //doc.addImage( img1, 'PNG', 0, 296, 420, 296); // A5 sizes
-                doc.save("file.pdf");
+                var today = new Date();
+                var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+                namepdf =  "certificat résidence"+'_'+$("#name").text()+'_'+date;  
+                doc.save(namepdf);
             }
         });
 

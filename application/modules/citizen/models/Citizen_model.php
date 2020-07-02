@@ -3,6 +3,7 @@
 class Citizen_model extends CI_Model
 {
 	private $_table = "personne";
+	private $_table_historique_residence = "historique_certificat";
 
 	private $_v_certificate = "v_certificate";
 	private $_v_ratio_sexe = "v_ratio_sexe";
@@ -39,6 +40,10 @@ class Citizen_model extends CI_Model
 
 	public function insert($data) {
 		$this->db->insert($this->_table, $data);
+		return $this->db->insert_id();
+	}
+	public function insertHistoriqueResidence($data) {
+		$this->db->insert($this->_table_historique_residence, $data);
 		return $this->db->insert_id();
 	}
 

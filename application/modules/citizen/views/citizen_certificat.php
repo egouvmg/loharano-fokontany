@@ -93,7 +93,7 @@
             <div class="col-sm-4 text-center" style="background-color:white;">
               <span class="">MINISTERAN'NY ATITANY SY NY FITSINJARAM-PAHEFANA</span><br>
               <hr>
-              <span class="">PREFECTIORAN'NY POLISIN'ANTANANARIVO</span><br>
+              <span class="">PREFEKITORAN'NY POLISIN'ANTANANARIVO</span><br>
               <hr class="font-weight-bold">
               <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO II</span>
             </div>
@@ -132,7 +132,7 @@
             <div class="col-sm-12" style="background-color:white;">
              <div class="row">
                 <div class="col-sm-5">
-                  <span class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</span><?= " ".$citizen_data[0]->nom." ".$citizen_data[0]->prenoms."" ?>
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</span><span id="name"><?= " ".$citizen_data[0]->nom." ".$citizen_data[0]->prenoms."" ?></span>
                   <p class="font-italic">M./Mme/Mlle</p>
                 </div>
 
@@ -188,10 +188,10 @@
 
                 <div class="form-group row" style="margin-bottom: 0px;">
                         <div class="col-sm-6 col-form-label">
-                          <label for="sy" style="margin-bottom: 0px;"><span class="font-weight-bold">Antony ilàna azy</span> (<span class="font-italic">Motif d'usage</span>): </label>
+                          <label for="sy" style="margin-bottom: 0px;"><span class="font-weight-bold">Antony ilàna azy</span> (<span class="font-italic">Motif d'usage</span>) : </label>
                         </div>
                         <div class="col-sm-6">
-                          <input type="text" class="form-control border-0" style="margin-left:-300px;padding-bottom: 2px;" id="sy" value="" placeholder="Antony ilàna azy" autofocus> 
+                          <input type="text" class="form-control border-0" style="margin-left:-300px;padding-bottom: 2px;" id="motif" value="" placeholder="Antony ilàna azy" autofocus> 
                         </div>
                     </div>
                 </div>
@@ -199,7 +199,7 @@
 
              <div class="row">
                 <div class="col-sm-12">
-                  <span class="font-weight-bold">Noho izany, dia nomena azy ity fanamarinana ity, mba hampiasainy sy hanan-kery amin'izay rehetra mety ilàna: azy.</span>
+                  <span class="font-weight-bold">Noho izany, dia nomena azy ity fanamarinana ity, mba hampiasainy sy hanan-kery amin'izay rehetra mety ilàna azy.</span>
                   <p class="font-italic">En foi de quoi, le présent certificat lui est délivré pour servir et valoir ce que de droit.</p>
                 </div>
              </div>
@@ -211,7 +211,7 @@
               <div class="form-group row" style="margin-bottom: 0px;">
                 <label for="Lf" class="col-sm-7 col-form-label font-weight-bold">Fanisam-bahoaka lf :</label>
                 <div class="col-sm-5">
-                  <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value="" placeholder="Fanisana...">
+                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="fanisana" value="" placeholder="Fanisana...">
                 </div>
               </div>
 
@@ -226,7 +226,7 @@
                   <span class="font-weight-bold" style="margin-bottom: 0px;">du :</span><?=" ".$citizen_data[0]->date_delivrance_cin?>
                 </div>
                 <div class="col-sm-12">
-                  <span class="font-weight-bold" style="margin-bottom: 0px;">à</span><?=" ".$citizen_data[0]->lieu_delivrance_cin?>
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">À</span><?=" ".$citizen_data[0]->lieu_delivrance_cin?>
                 </div>
               </div>
 
@@ -249,7 +249,7 @@
                 </div>
 
                 <div class="col-sm-6">
-                  <span class="font-weight-bold" style="margin-bottom: 0px;">androany faha</span><?= " ".date('d-m-Y')."" ?>
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">Androany faha</span><?= " ".date('d-m-Y')."" ?>
               </div>           
             </div>
           </div>
