@@ -367,8 +367,11 @@ $(function () {
             line += 12;
         });
         //******************************End Liste membres ménages 3 par page **/
-
-        pdf.save('test.pdf');
+        var namepdf = "file.pdf";
+        var today = new Date();
+        var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+        namepdf =  "Karine_pokontany"+'_'+membres_menage[0].numero_carnet+'_'+date;  
+        pdf.save(namepdf);
     }
 
     function addText(texte, x, y, alignemnt){
