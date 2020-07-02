@@ -24,14 +24,16 @@ $(function () {
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
-                    "name":"Nom",
-                    "progress":"Progression",
-                    "gender":"Genre",
-                    "rating":"Évaluation",
-                    "col":"Couleur",
-                    "dob":"Date de Naissance",
+                    "date_migration":"Date",
+                    "fokontany_name_start":"Avant",
+                    "fokontany_name_end":"Après"
+                },
+                "ajax": {
+                    "loading": "Chargement",
+                    "error": "Erreur"
                 },
                 "pagination":{
+                    "page_size":"Taille de page",
                     "first":"Premier",
                     "first_title":"Première Page",
                     "last":"Dernier",
@@ -62,14 +64,16 @@ $(function () {
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
-                    "name":"Nom",
-                    "progress":"Progression",
-                    "gender":"Genre",
-                    "rating":"Évaluation",
-                    "col":"Couleur",
-                    "dob":"Date de Naissance",
+                    "date_migration":"Date",
+                    "fokontany_name_start":"Avant",
+                    "fokontany_name_end":"Après"
+                },
+                "ajax": {
+                    "loading": "Chargement",
+                    "error": "Erreur"
                 },
                 "pagination":{
+                    "page_size":"Taille de page",
                     "first":"Premier",
                     "first_title":"Première Page",
                     "last":"Dernier",
@@ -87,7 +91,7 @@ $(function () {
         layout:"fitColumns",
         selectable: 1,
 		initialSort:[
-			{column:"chef_menage", dir:"desc"}
+			{column:"Nom", dir:"asc"}
 		],
         columns:[ //Define Table Columns
             {title:"Chef", width:80, formatter: is_household_head, field:"chef_menage"},
@@ -143,22 +147,27 @@ $(function () {
         },
         pagination:"local",
         paginationSize:10,
+        pageLoaded:function(pageno){
+            console.log(pageno);
+        },
         paginationSizeSelector:[10, 20, 50, 100, 200],
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
-                    "name":"Nom",
-                    "progress":"Progression",
-                    "gender":"Genre",
-                    "rating":"Évaluation",
-                    "col":"Couleur",
-                    "dob":"Date de Naissance",
+                    "chef_menage":"Chef de ménage",
+                    "nom":"Nom",
+                    "prenoms":"Prénom(s)",
+                    "date_de_naissance":"Date de naissance",
+                    "lieu_de_naissance":"Lieu de naissance",
+                    "cin_personne":"Numéro CIN",
+                    "fokontany_name":"Fokontany",
                 },
-                "ajax":{
-                    "loading":"Recherche encours...", //ajax loader text
-                    "error":"Une erreur du serveur", //ajax error text
+                "ajax": {
+                    "loading": "Chargement",
+                    "error": "Erreur"
                 },
                 "pagination":{
+                    "page_size":"Taille de page",
                     "first":"Premier",
                     "first_title":"Première Page",
                     "last":"Dernier",
@@ -176,7 +185,7 @@ $(function () {
         layout:"fitColumns",
         selectable: 1,
 		initialSort:[
-			{column:"nom", dir:"desc"}
+			{column:"nom", dir:"asc"}
 		],
         columns:[ //Define Table Columns
             {title:"Nom", field:"nom"},
@@ -229,14 +238,19 @@ $(function () {
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
-                    "name":"Nom",
-                    "progress":"Progression",
-                    "gender":"Genre",
-                    "rating":"Évaluation",
-                    "col":"Couleur",
-                    "dob":"Date de Naissance",
+                    "nom":"Nom",
+                    "prenoms":"Prénom(s)",
+                    "date_de_naissance":"Date de naissance",
+                    "lieu_de_naissance":"Lieu de naissance",
+                    "cin_personne":"Numéro CIN",
+                    "fokontany_name":"Fokontany",
+                },
+                "ajax": {
+                    "loading": "Chargement",
+                    "error": "Erreur"
                 },
                 "pagination":{
+                    "page_size":"Taille de page",
                     "first":"Premier",
                     "first_title":"Première Page",
                     "last":"Dernier",
@@ -249,6 +263,11 @@ $(function () {
             }
         }
     });
+
+    histories2.setLocale("fr-fr");
+    histories.setLocale("fr-fr");
+    citizens.setLocale("fr-fr");
+    other_citizens.setLocale("fr-fr");
 
     $('.speed_access').on('keyup change', function(e){
         if($(this).val().length < 4) return false;
@@ -326,7 +345,10 @@ $(function () {
                 });
             }
             if(res.error == 1) alert(res.msg);
-            if(res.success == 1) alert(res.msg);
+            if(res.success == 1){
+                alert(res.msg);
+                citizens.setData();
+            }
         }, 'JSON');
     });
 

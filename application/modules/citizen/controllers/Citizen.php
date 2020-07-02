@@ -1280,6 +1280,8 @@ class Citizen extends Operator_Controller
         $first_name = $this->input->get('prenoms');
         $cin = $this->input->get('cin_personne');
 
+        unset($data['page']);
+
         if($data){
             $criteria = [];
             foreach($data as $key => $value)
@@ -1298,6 +1300,9 @@ class Citizen extends Operator_Controller
 
             if(!empty($citizens) && !empty($households)){
                 echo json_encode(['success' => 1, 'citizens' => $citizens, 'households' => $households, 'other_citizens' => []]);
+            }
+            else if(!empty($citizens)){
+                echo json_encode(['success' => 1, 'citizens' => $citizens, 'households' => [], 'other_citizens' => []]);
             }
             else if(empty($citizens)){
                 unset($criteria['fokontany_id']);

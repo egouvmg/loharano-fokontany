@@ -75,7 +75,12 @@ $(function () {
                     "col":"Couleur",
                     "dob":"Date de Naissance",
                 },
+                "ajax": {
+                    "loading": "Chargement",
+                    "error": "Erreur"
+                },
                 "pagination":{
+                    "page_size":"Taille de page",
                     "first":"Premier",
                     "first_title":"Première Page",
                     "last":"Dernier",
@@ -112,7 +117,12 @@ $(function () {
                     "col":"Couleur",
                     "dob":"Date de Naissance",
                 },
+                "ajax": {
+                    "loading": "Chargement",
+                    "error": "Erreur"
+                },
                 "pagination":{
+                    "page_size":"Taille de page",
                     "first":"Premier",
                     "first_title":"Première Page",
                     "last":"Dernier",
@@ -125,6 +135,9 @@ $(function () {
             }
         }
     });
+    
+    histories.setLocale("fr-fr");
+    citizens.setLocale("fr-fr");
 
 	$('#nom').on('keyup', function () {
 		var foo = $(this).val();
@@ -198,7 +211,10 @@ $(function () {
                 });
             }
             if(res.error == 1) alert(res.msg);
-            if(res.success == 1) alert(res.msg);
+            if(res.success == 1){
+                alert(res.msg);
+                citizens.setData();
+            }
         }, 'JSON');
     });
 });

@@ -45,7 +45,12 @@ $(function () {
                     "col":"Couleur",
                     "dob":"Date de Naissance",
                 },
+                "ajax": {
+                    "loading": "Chargement",
+                    "error": "Erreur"
+                },
                 "pagination":{
+                    "page_size":"Taille de page",
                     "first":"Premier",
                     "first_title":"Première Page",
                     "last":"Dernier",
@@ -85,7 +90,12 @@ $(function () {
                     "col":"Couleur",
                     "dob":"Date de Naissance",
                 },
+                "ajax": {
+                    "loading": "Chargement",
+                    "error": "Erreur"
+                },
                 "pagination":{
+                    "page_size":"Taille de page",
                     "first":"Premier",
                     "first_title":"Première Page",
                     "last":"Dernier",
@@ -98,6 +108,9 @@ $(function () {
             }
         }
     });
+
+    households.setLocale("fr-fr");
+    aids.setLocale("fr-fr");
 
     $('#addAid').click(function(e){
         e.preventDefault();

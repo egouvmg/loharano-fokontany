@@ -100,7 +100,12 @@ $(function () {
                     "col":"Couleur",
                     "dob":"Date de Naissance",
                 },
+                "ajax": {
+                    "loading": "Chargement",
+                    "error": "Erreur"
+                },
                 "pagination":{
+                    "page_size":"Taille de page",
                     "first":"Premier",
                     "first_title":"Première Page",
                     "last":"Dernier",
@@ -119,7 +124,7 @@ $(function () {
         ajaxURL: "citoyens_list",
         ajaxConfig: "GET",
         initialSort: [
-            { column: "medal", dir: "asc" }
+            { column: "nom", dir: "asc" }
         ],
         rowContextMenu: rowMenu, //add context menu to rows
         columns: [ //Define Table Columns
@@ -156,16 +161,13 @@ $(function () {
             $('#observation').val(row.getData().observation);
 
             if(row.getData().date_de_naissance){
-                console.log('cin_date ' + row.getData().cin_date);
                 $('#date_de_naissance').val(splitDate(row.getData().date_de_naissance));
             }
             if(row.getData().cin_date){
-                console.log('cin_date ' + row.getData().cin_date);
                 $('#date_delivrance_cin').val(splitDate(row.getData().cin_date));
                 $('#lieu_delivrance_cin').val(row.getData().cin_place);
             }         
             if(row.getData().date_delivrance_cin){
-                console.log('date_delivrance_cin ' + row.getData().date_delivrance_cin);
                 $('#date_delivrance_cin').val(splitDate(row.getData().date_delivrance_cin));
                 $('#lieu_delivrance_cin').val(splitDate(row.getData().lieu_delivrance_cin));
             }
@@ -192,7 +194,12 @@ $(function () {
                     "col":"Couleur",
                     "dob":"Date de Naissance",
                 },
+                "ajax": {
+                    "loading": "Chargement",
+                    "error": "Erreur"
+                },
                 "pagination":{
+                    "page_size":"Taille de page",
                     "first":"Premier",
                     "first_title":"Première Page",
                     "last":"Dernier",
@@ -205,6 +212,9 @@ $(function () {
             }
         }
     });
+    
+    histories.setLocale("fr-fr");
+    citizens.setLocale("fr-fr");
 
 	$('#nom').on('keyup', function () {
 		var foo = $(this).val();
@@ -277,7 +287,10 @@ $(function () {
                 });
             }
             if(res.error == 1) alert(res.msg);
-            if(res.success == 1) alert(res.msg);
+            if(res.success == 1){ 
+                alert(res.msg);
+                citizens.setData();
+            }
         }, 'JSON');
     });
 
