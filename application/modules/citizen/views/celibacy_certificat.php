@@ -92,7 +92,7 @@
             <div class="col-sm-4 text-center" style="background-color:white;">
               <span class="">MINISTERAN'NY ATITANY SY NY FITSINJARAM-PAHEFANA</span><br>
               <hr>
-              <span class="">PREFECTIORAN'NY POLISIN'ANTANANARIVO</span><br>
+              <span class="">PREFEKITORAN'NY POLISIN'ANTANANARIVO</span><br>
               <hr class="font-weight-bold">
               <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO II</span>
             </div>
@@ -349,7 +349,7 @@
                   <p class="font-italic">Recensement n°</p>
                 </div>
                 <div class="col-sm-5">
-                  <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value="" placeholder="Fanisana...">
+                  <input type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value="" placeholder="Fanisana...">
                 </div>
               </div>
 
