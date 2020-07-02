@@ -1051,6 +1051,7 @@ class Citizen extends Operator_Controller
         $this->data['id_personne'] = $id_personne;
         $this->data['origin_page'] = "move";
         $this->data['fokontany_id'] = $citizen_data[0]->fokontany_id;
+        $this->data['adresse_actuelle'] = $citizen_data[0]->adresse_actuelle;
 		
         $this->load->view('move_certificat', $this->data);
 	}

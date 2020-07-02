@@ -67,7 +67,8 @@ $(function () {
                 //doc.addImage( img1, 'PNG', 0, 296, 420, 296); // A5 sizes
                 var today = new Date();
                 var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-                namepdf =  "certificat résidence"+'_'+$("#name").text()+'_'+date;  
+                namepdf =  ($("#origin_page").val()=="move"?"demenagement":$("#origin_page").val())+"_"+$("#name").text()+"_"+date;  
+                namepdf = "certificat"+"_"+namepdf;
                 doc.save(namepdf);
             }
         });
