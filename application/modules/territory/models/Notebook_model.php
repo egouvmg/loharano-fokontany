@@ -74,6 +74,19 @@ class Notebook_model extends CI_Model
 		return  ($query->num_rows() > 0) ? $query->first_row() : false;
 	}
 
+	public function household_sum($criteria = array()) {
+		$this->db->select('SUM(household_count) AS household_count');
+		$this->db->from($this->_v_household_count);
+		
+		if(!empty($criteria)){
+			$this->db->where($criteria);
+		}
+		
+		$query = $this->db->get();
+
+		return  ($query->num_rows() > 0) ? $query->first_row() : false;
+	}
+
 	public function households_count($criteria = array()) {
 		$this->db->select('*');
 		$this->db->from($this->_v_household_count);

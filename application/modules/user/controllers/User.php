@@ -40,7 +40,7 @@ class User extends SuperAdmin_Controller
 
         //Count household/citizen
         $citizen_count = count($this->notebook->citizens());
-        $household_count = $this->notebook->household_count();
+        $household_count = $this->notebook->household_sum();
 
         $this->data['household_count'] = ($household_count) ? number_format($household_count->household_count, 0, '', ' ') : 0;
         $this->data['citizen_count'] = number_format($citizen_count, 0, '', ' ');

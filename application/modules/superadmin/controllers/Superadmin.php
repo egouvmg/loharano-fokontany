@@ -103,13 +103,13 @@ class Superadmin extends SuperAdmin_Controller
 		function read($csv){
 			$file = fopen($csv, 'r');
 			while (!feof($file) ) {
-                $line[] = fgetcsv($file, 1024,';');
+                $line[] = fgetcsv($file, 1024,',');
 			}
 			fclose($file);
 			return $line;
 		}
 		// Définir le chemin d'accès au fichier CSV
-		$csv = 'application/migrate/personne.csv';
+		$csv = 'application/migrate/personne.txt';
         $csv = read($csv);
 
         unset($csv[0]);
@@ -117,7 +117,7 @@ class Superadmin extends SuperAdmin_Controller
         $reference = '';
         $household = 0;
         $data_citizens = [];
-		
+        
 		foreach($csv as $key => $csv_value){
 
             // [0] => id_personne
@@ -148,29 +148,29 @@ class Superadmin extends SuperAdmin_Controller
             // [25] => address
 
             $fokontany_id = (int) $csv_value[1];
-            $address = utf8_encode($csv_value[25]);
+            $address = $csv_value[25];
             
             $reference = ($csv_value[2]==1) ? $this->createNotebook($address, $fokontany_id) : $reference;
 
             $tmp_data = [
                 'chef_menage' => $csv_value[2],
-                'nom' => utf8_encode($csv_value[3]),
-                'prenoms' => utf8_encode($csv_value[4]),
+                'nom' => $csv_value[3],
+                'prenoms' => $csv_value[4],
                 'date_de_naissance' => $csv_value[5],
-                'lieu_de_naissance' => utf8_encode($csv_value[6]),
+                'lieu_de_naissance' => $csv_value[6],
                 'nationality_id' => 1,//(empty($csv_value[20])) ? 1 : $csv_value[20],
                 'qr_code' => $csv_value[10],
                 'numero_carnet' => $reference,
-                'father' => utf8_encode($csv_value[12]),
-                'mother' => utf8_encode($csv_value[13]),
+                'father' => $csv_value[12],
+                'mother' => $csv_value[13],
                 'father_status' => (empty($csv_value[14])) ? 0 : 1,
                 'mother_status' => (empty($csv_value[15])) ? 0 : 1,
                 'job_id' => ($csv_value[16] == -1 || $csv_value[16] == 0) ? 52 : $csv_value[16],
-                'job_status' => utf8_encode($csv_value[17]),
-                'job_other' => utf8_encode($csv_value[18]),
+                'job_status' => $csv_value[17],
+                'job_other' => $csv_value[18],
                 'phone' => $csv_value[19],
                 'sexe' => (empty($csv_value[22])) ? 0 : 1,
-                'situation_matrimoniale' => utf8_encode($csv_value[23]),
+                'situation_matrimoniale' => $csv_value[23],
                 'handicape' => (empty($csv_value[24])) ? FALSE : TRUE
             ];
 
