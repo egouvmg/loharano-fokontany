@@ -103,7 +103,7 @@
               <div class=" col-md-12">
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="aid">Type d'aide</label>
+                    <label for="aid">Programme d'aide</label>
                     <select id="aid" class="form-control"  name="aid_id">
                       <?php foreach ($aids as $aid): ?>
                         <option value="<?= $aid->id;?>"><?= $aid->name;?></option>

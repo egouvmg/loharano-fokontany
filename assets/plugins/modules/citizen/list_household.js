@@ -93,7 +93,7 @@ $(function () {
         layout:"fitColumns",
         selectable: 1,
 		initialSort:[
-			{column:"chef_menage", dir:"asc"}
+			{column:"chef_menage", dir:"desc"}
 		],
         columns:[ //Define Table Columns
             {title:"Chef", field:"chef_menage", formatter: is_household_head},
@@ -224,6 +224,7 @@ $(function () {
 	});
 
     $('.speed_access').on('keyup change', function(e){
+        if($(this).val().length < 4) return false;
         var data = $('#speedForm').serializeArray();
 
         $.get('recherche_rapide', data, function(res){

@@ -37,8 +37,6 @@
               <span class="iconify" data-icon="uil:ellipsis-v" data-inline="false"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#"><?= $this->lang->line('settings');?></a>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="se_deconnecter"><?= $this->lang->line('logout');?></a>
             </div>
           </li>
@@ -114,7 +112,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="line-bloc">
-                    <h6>Services administrifs</h6>
+                    <h6>Services administratifs</h6>
                     <div class="container-bloc-link">
                       <a href="residence" class="bloc-link color-4">
                         <span class="iconify" data-icon="bi:card-list" data-inline="false"></span> Générer un certificat

@@ -157,6 +157,7 @@ $(function () {
 	});
 
     $('.speed_access').on('keyup change', function(e){
+        if($(this).val().length < 4) return false;
         var data = $('#speedForm').serializeArray();
 
         $.get('recherche_rapide', data, function(res){
