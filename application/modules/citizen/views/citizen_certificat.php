@@ -95,7 +95,8 @@
               <hr>
               <span class="">PREFEKITORAN'NY POLISIN'ANTANANARIVO</span><br>
               <hr class="font-weight-bold">
-              <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO VI</span>
+              <span class="font-weight-bold">DISTRIKAN'<?=$district_name?>
+              </span>
             </div>
             <div class="col-sm-4" style="background-color:white;">
             </div>

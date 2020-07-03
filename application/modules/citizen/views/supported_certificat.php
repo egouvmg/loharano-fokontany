@@ -94,7 +94,7 @@
                 <hr>
                 <span class="">PREFECTIORAN'NY POLISIN'ANTANANARIVO</span><br>
                 <hr class="font-weight-bold">
-                <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO VI</span>
+                <span class="font-weight-bold">DISTRIKAN'<?=$district_name?></span>
               </div>
               <div class="col-sm-4" style="background-color:white;">
             </div>
@@ -106,7 +106,7 @@
           
           <div class="row">
             <div class="col-sm-8"  style="background-color:white;">
-              <span class="font-weight-bold">Le président du fokontany Ankazotokona Ambony, Commune Urbaine 
+              <span class="font-weight-bold">Le président du fokontany <?= " ".$citizen_data[0]->libelle_fokontany."" ?>, Commune Urbaine 
               d'Antananarivo, 2éme Arrondissement, selon la déclaration de l'intéressé(e), confirmé par deux témoins
               soussignés :
               </span>
@@ -199,7 +199,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">CIN N°</label>
                       </div>
                       <div class="col-sm-8">
-                        <input readonly type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="CIN du Témoin 1" value=""> 
+                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="CIN du Témoin 1" value=""> 
                       </div>
                   </div>
                 </div>
@@ -223,7 +223,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">le</label>
                     </div>
                     <div class="col-sm-8">
-                      <input readonly type="text" class="form-control border-0" style="margin-left:-170px;padding-bottom: 2px;" id="tao" placeholder="Date obtention CIN du Témoin 1" value=""> 
+                      <input type="text" class="form-control border-0" style="margin-left:-170px;padding-bottom: 2px;" id="tao" placeholder="Date obtention CIN du Témoin 1" value=""> 
                     </div>
                   </div>
                 </div>
@@ -247,7 +247,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">CIN N°</label>
                       </div>
                       <div class="col-sm-8">
-                        <input readonly type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="CIN du Témoin 2" value=""> 
+                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="CIN du Témoin 2" value=""> 
                       </div>
                   </div>
                 </div>
@@ -271,7 +271,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">le</label>
                     </div>
                     <div class="col-sm-8">
-                      <input readonly type="text" class="form-control border-0" style="margin-left:-170px;padding-bottom: 2px;" id="tao" placeholder="Date obtention CIN du Témoin 2" value=""> 
+                      <input type="text" class="form-control border-0" style="margin-left:-170px;padding-bottom: 2px;" id="tao" placeholder="Date obtention CIN du Témoin 2" value=""> 
                     </div>
                   </div>
                 </div>
@@ -290,7 +290,7 @@
              <div class="row">
                 <div class="col-sm-12">
                     <span>déclarant, ainsi que les deux témoins sont des ressortissants de Fokontany 
-                    <?= "'".$citizen_data[0]->libelle_fokontany."'" ?>.</span>
+                    <?= " ".$citizen_data[0]->libelle_fokontany."" ?>.</span>
                   </div>
              </div>
 

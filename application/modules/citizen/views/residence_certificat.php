@@ -110,7 +110,7 @@
               <hr>
               <span class="">PREFECTIORAN'NY POLISIN'ANTANANARIVO</span><br>
               <hr class="font-weight-bold">
-              <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO VI</span>
+              <span class="font-weight-bold">DISTRIKAN'<?=$citizen_data[0]->district_name?></span>
             </div>
             <div class="col-sm-4" style="background-color:lavender;">
             </div>

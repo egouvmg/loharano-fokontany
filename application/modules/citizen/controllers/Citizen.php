@@ -958,6 +958,15 @@ class Citizen extends Operator_Controller
         $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
         
         $this->data['citizen_data'] = $citizen_data;
+
+        $district_name = $this->data["info_fokontany"]->district_name;
+        if(strpos($district_name, "ANTANANARIVO")===false)
+        {
+            $this->data['district_name'] = str_replace("TANA","ANTANANARIVO", $district_name);
+        }
+        else{
+            $this->data['district_name'] = $district_name;
+        }
         
         $reference = $this->nomenclature->generate_certificat_reference("residence",$this->fokontany_id, $citizen_data[0]->lf_residence);
         
@@ -986,6 +995,15 @@ class Citizen extends Operator_Controller
 
         $this->data['citizen_data'] = $citizen_data;
 
+        $district_name = $this->data["info_fokontany"]->district_name;
+        if(strpos($district_name, "ANTANANARIVO")===false)
+        {
+            $this->data['district_name'] = str_replace("TANA","ANTANANARIVO", $district_name);
+        }
+        else{
+            $this->data['district_name'] = $district_name;
+        }
+
         $reference = $this->nomenclature->generate_certificat_reference("life",$this->fokontany_id, $citizen_data[0]->lf_vie);
         
         $this->data['reference'] = $reference;
@@ -1010,8 +1028,18 @@ class Citizen extends Operator_Controller
         $id_personne = gmp_intval($bigInt);
 
         $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
-
+        
         $this->data['citizen_data'] = $citizen_data;
+        
+        $district_name = $this->data["info_fokontany"]->district_name;
+
+        if(strpos($district_name, "ANTANANARIVO")===false)
+        {
+            $this->data['district_name'] = str_replace("TANA","ANTANANARIVO", $district_name);
+        }
+        else{
+            $this->data['district_name'] = $district_name;
+        }
 
         $reference = $this->nomenclature->generate_certificat_reference("support",$this->fokontany_id, $citizen_data[0]->lf_support);
         
@@ -1039,6 +1067,15 @@ class Citizen extends Operator_Controller
         $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
 
         $this->data['citizen_data'] = $citizen_data;
+
+        $district_name = $this->data["info_fokontany"]->district_name;
+        if(strpos($district_name, "ANTANANARIVO")===false)
+        {
+            $this->data['district_name'] = str_replace("TANA","ANTANANARIVO", $district_name);
+        }
+        else{
+            $this->data['district_name'] = $district_name;
+        }
 
         $reference = $this->nomenclature->generate_certificat_reference("move",$this->fokontany_id, $citizen_data[0]->lf_move);
         
@@ -1068,6 +1105,15 @@ class Citizen extends Operator_Controller
 
         $this->data['citizen_data'] = $citizen_data;
 
+        $district_name = $this->data["info_fokontany"]->district_name;
+        if(strpos($district_name, "ANTANANARIVO")===false)
+        {
+            $this->data['district_name'] = str_replace("TANA","ANTANANARIVO", $district_name);
+        }
+        else{
+            $this->data['district_name'] = $district_name;
+        }
+
         $reference = $this->nomenclature->generate_certificat_reference("celibacy",$this->fokontany_id, $citizen_data[0]->lf_celibacy);
         
         $this->data['reference'] = $reference;
@@ -1094,6 +1140,15 @@ class Citizen extends Operator_Controller
         $citizen_data = $this->citizen->get_citizen_certificate(['person_id'=>$id_personne]);
 
         $this->data['citizen_data'] = $citizen_data;
+
+        $district_name = $this->data["info_fokontany"]->district_name;
+        if(strpos($district_name, "ANTANANARIVO")===false)
+        {
+            $this->data['district_name'] = str_replace("TANA","ANTANANARIVO", $district_name);
+        }
+        else{
+            $this->data['district_name'] = $district_name;
+        }
 
         $reference = $this->nomenclature->generate_certificat_reference("behavior",$this->fokontany_id, $citizen_data[0]->lf_behavior);
         
