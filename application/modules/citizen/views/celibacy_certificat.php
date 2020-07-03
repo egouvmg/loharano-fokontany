@@ -94,7 +94,7 @@
               <hr>
               <span class="">PREFEKITORAN'NY POLISIN'ANTANANARIVO</span><br>
               <hr class="font-weight-bold">
-              <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO II</span>
+              <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO VI</span>
             </div>
             <div class="col-sm-2" style="background-color:white;">
             </div>
@@ -129,7 +129,7 @@
             <div class="col-sm-12" style="background-color:white;">
              <div class="row">
                 <div class="col-sm-5">
-                    <span class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</span><?= " ".$citizen_data[0]->nom." ".$citizen_data[0]->prenoms."" ?>
+                    <span class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</span><span id="name"><?= " ".$citizen_data[0]->nom." ".$citizen_data[0]->prenoms."" ?></span>
                     <p class="font-italic">M./Mme/Mlle</p>
                 </div>
 
@@ -427,7 +427,7 @@
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-  <script src="<?= plugin('modules', 'common', 'jspdf.min.js');?>"></script>
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 	<script src="<?= plugin('modules', 'superadmin', 'citizen_certificate.js');?>"></script>
 </body>
 </html>

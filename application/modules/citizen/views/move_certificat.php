@@ -94,7 +94,7 @@
               <hr>
               <span class="">PREFEKITORAN'NY POLISIN'ANTANANARIVO</span><br>
               <hr class="font-weight-bold">
-              <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO II</span>
+              <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO VI</span>
             </div>
             <div class="col-sm-2" style="background-color:white;">
             </div>
@@ -377,14 +377,7 @@
           <!--FOOTER-->
              <div class="row">
                 <div class="col-sm-6">
-                    <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-8 col-form-label">
-                        <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Adiresy taloha (Ancienne adresse) :</label>
-                      </div>
-                      <div class="col-sm-4">
-                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Adiresy Taloha....."> 
-                      </div>
-                    </div>
+                <span class="font-weight-bold" style="margin-bottom: 0px;">Adiresy taloha (Ancienne adresse) : </span><?=" ".$citizen_data[0]->adresse_actuelle ?>
                 </div>
 
                 <div class="col-sm-6">
@@ -500,7 +493,7 @@
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-  <script src="<?= plugin('modules', 'common', 'jspdf.min.js');?>"></script>
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 	<script src="<?= plugin('modules', 'superadmin', 'citizen_certificate.js');?>"></script>
 </body>
 </html>

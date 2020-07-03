@@ -95,7 +95,7 @@
               <hr>
               <span class="">PREFEKITORAN'NY POLISIN'ANTANANARIVO</span><br>
               <hr class="font-weight-bold">
-              <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO II</span>
+              <span class="font-weight-bold">DISTRIKAN'ANTANANARIVO VI</span>
             </div>
             <div class="col-sm-4" style="background-color:white;">
             </div>
