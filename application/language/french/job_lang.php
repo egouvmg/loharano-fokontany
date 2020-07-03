@@ -51,6 +51,8 @@ $lang['job_48'] = 'Sagefemme';
 $lang['job_49'] = 'Sécurité';
 $lang['job_50'] = 'Secrétaire';
 $lang['job_51'] = 'Chômeur(se)';
+$lang['job_52'] = 'Autres';
+$lang['job_53'] = 'Ne travaille pas';
 
 $lang['fr_job_1'] = 'Artisan';
 $lang['fr_job_2'] = 'Chauffeur particulier';
@@ -103,3 +105,5 @@ $lang['fr_job_48'] = 'Sagefemme';
 $lang['fr_job_49'] = 'Sécurité';
 $lang['fr_job_50'] = 'Secrétaire';
 $lang['fr_job_51'] = 'Chômeur(se)';
+$lang['fr_job_52'] = 'Autres';
+$lang['fr_job_53'] = 'Ne travaille pas';

@@ -36,8 +36,6 @@
               <span class="iconify" data-icon="uil:ellipsis-v" data-inline="false"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#"><?= $this->lang->line('settings');?></a>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="se_deconnecter"><?= $this->lang->line('logout');?></a>
             </div>
           </li>

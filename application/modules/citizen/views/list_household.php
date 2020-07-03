@@ -38,8 +38,6 @@
               <span class="iconify" data-icon="uil:ellipsis-v" data-inline="false"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#"><?= $this->lang->line('settings');?></a>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="se_deconnecter"><?= $this->lang->line('logout');?></a>
             </div>
           </li>
@@ -89,20 +87,17 @@
               </form>
             </div>
             <div class="col-lg-12 line-bloc">
-              <h6><?= $this->lang->line('household_click_for_details');?></h6>
+              <h6 class="float-left"><?= $this->lang->line('household_click_for_details');?></h6>
+              <a href="nouveau_menage_fokontany"><button class="float-right btn btn-info my-2"type="button">Nouveau ménage</button></a>
+            </div>
+            <div class="col-lg-12 line-bloc">
               <div id="households"></div>
             </div>
             <div class="col-lg-12 line-bloc">
-              <div class="row">
-                <div class="col-lg-4">
-                  <h6><?= $this->lang->line('household_content');?></h6>
-                </div>
-                <div class="col-lg-5">
-                </div>
-                <div class="col-lg-3">
-                  <button id="carnet_id" class="btn btn-info my-2"type="button">Créer Carnet pokontany</button>
-                </div>
-              </div>
+              <h6 class="float-left"><?= $this->lang->line('household_content');?></h6>
+              <button id="carnet_id" class="float-right btn btn-info my-2"type="button">Créer Carnet Fokontany</button>
+            </div>
+            <div class="col-lg-12 line-bloc">
               <div id="citizens"></div>
             </div>
           </div>           

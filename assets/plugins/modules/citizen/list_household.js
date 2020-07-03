@@ -160,11 +160,9 @@ $(function () {
             }
             if(row.getData().cin_date){
                 $('#date_delivrance_cin').val(splitDate(row.getData().cin_date));
-                $('#lieu_delivrance_cin').val(row.getData().cin_place);
             }         
             if(row.getData().date_delivrance_cin){
                 $('#date_delivrance_cin').val(splitDate(row.getData().date_delivrance_cin));
-                $('#lieu_delivrance_cin').val(splitDate(row.getData().lieu_delivrance_cin));
             }
 
             $('#certificat_residence').attr("href", "certificate?id_personne="+id_peron).attr("target", "_blank");

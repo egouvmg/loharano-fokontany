@@ -122,7 +122,9 @@ $(function () {
     var citizens = new Tabulator("#citizens", {
         layout: "fitColumns",
         ajaxURL: "citoyens_list",
-        ajaxConfig: "GET",
+        ajaxConfig: "GET",    
+        columnVertAlign:"bottom", //align header contents to bottom of cell
+        cellVertAlign:"middle", //vertically center cell contents
         initialSort: [
             { column: "nom", dir: "asc" }
         ],

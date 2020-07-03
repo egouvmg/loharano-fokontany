@@ -37,8 +37,6 @@
               <span class="iconify" data-icon="uil:ellipsis-v" data-inline="false"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#"><?= $this->lang->line('settings');?></a>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="se_deconnecter"><?= $this->lang->line('logout');?></a>
             </div>
           </li>
@@ -61,8 +59,10 @@
           </p>
         </div>
         <div class="container page-title">
-          <h1>Création de nouveau ménage</h1>
+          <h1 class="float-left">Création de nouveau ménage</h1>
         </div>
+          <a href="/" class="float-right mx-2"><button class="btn btn-warning"><span class="iconify" data-icon="ion:caret-back-circle-outline" data-inline="false"></span> Tableau de bord</button></a>
+          <a href="liste_menage_fokontany" class="float-right"><button class="btn btn-warning"><span class="iconify" data-icon="ion:caret-back-circle-outline" data-inline="false"></span> Liste de ménages</button></a>
         <!-- End Page title -->
 
         <!-- Page Content -->

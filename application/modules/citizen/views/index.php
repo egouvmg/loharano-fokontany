@@ -87,7 +87,7 @@
                       <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<ul class='m-0'><li>Moyenne d'age des hommes : <strong><?=$male_avg_age;?></strong></li><li>Moyenne d'age des femmes : <strong><?=$female_avg_age;?></strong></li></ul>">
                         <span class="pourcent"><?= $male_ratio;?>% / <?= $female_ratio;?>%</span> <?=$this->lang->line('count_citizen');?> Hommes/Femmes
                       </a>
-                      <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<ul class='m-0'><li>Nombre de mineurs masculins : <strong><?=$minor_male;?></strong></li><li>Nombre de mineurs féminins : <strong><?=$minor_female;?></strong></li><li>Nombre de majeurs masculins : <strong><?=$major_male;?></strong></li><li>Nombre de majeurs féminins : <strong><?=$major_female;?></strong></li></ul>">
+                      <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<ul class='m-0'><li><strong><?=$minor_male;?></strong> mineurs masculins</li><li><strong><?=$minor_female;?></strong> mineurs féminins</li><li><strong><?=$major_male;?></strong> majeurs masculins</li><li><strong><?=$major_female;?></strong> majeurs féminins</li></ul>">
                         <span class="pourcent"><?= $minor_ratio;?>% / <?= $major_ratio;?>%</span> <?=$this->lang->line('count_household');?> Mineurs/Majeurs
                       </a>
                     </div>

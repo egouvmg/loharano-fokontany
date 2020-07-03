@@ -114,7 +114,6 @@
                     <?php foreach($jobs as $job) : ?>
                         <option value="<?= $job->id;?>"><?= $this->lang->line('job_'.$job->id);?></option>
                     <?php endforeach;?>
-                    <option value="-1"><?= $this->lang->line('others');?></option>
                     </select>
                     <input type="text" style="margin-top: 20px;display:none;" class="form-control" id="job_other" name="job_other[]" placeholder="<?= $this->lang->line('job_other');?>">
                     <span class="error_field error_job_id<?= $index;?>"></span>
@@ -164,7 +163,7 @@
                 <div class="form-group col-md-12">
                 <label for="cin_date<?= $index;?>"><?=$this->lang->line('cin_date');?> *</label>
                 <input type="date" class="form-control" id="cin_date<?= $index;?>" name="cin_date[]">
-                <span class="error_field error_cin_date"></span>
+                <span class="error_field error_cin_date<?= $index;?>"></span>
                 </div>
             </div>
         </div>

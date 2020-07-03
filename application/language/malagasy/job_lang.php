@@ -51,6 +51,8 @@ $lang['job_48'] = 'Mpampiteraka';
 $lang['job_49'] = 'Mpiambina tanàna';
 $lang['job_50'] = 'Sekretera';
 $lang['job_51'] = 'Tsy miasa';
+$lang['job_52'] = 'Hafa';
+$lang['job_53'] = 'Tsy mbola miasa';
 
 $lang['mg_job_1'] = 'Asatanana';
 $lang['mg_job_2'] = 'Mpamily fiara';
@@ -103,3 +105,5 @@ $lang['mg_job_48'] = 'Mpampiteraka';
 $lang['mg_job_49'] = 'Mpiambina tanàna';
 $lang['mg_job_50'] = 'Sekretera';
 $lang['mg_job_51'] = 'Tsy miasa';
+$lang['mg_job_52'] = 'Hafa';
+$lang['mg_job_53'] = 'Tsy mbola miasa';

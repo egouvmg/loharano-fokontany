@@ -387,23 +387,18 @@ class Citizen extends Operator_Controller
                     $requireds_cin = ['cin', 'cin_date', 'cin_place'];            
                     $cin = [$data['cin'][$i], $data['cin_date'][$i], $data['cin_place'][$i]];
                     
-                    if($cin != ['', '', '']){
+                    if($data['cin'][$i] != '' || $data['cin_date'][$i] != '' || $data['cin_place'][$i] != ''){
                         foreach($requireds_cin as $required)
                             if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
+                        
+                        if($data['cin_date'][$i] != ''){
+                            $d1 = new DateTime($data['cin_date'][$i]);
+                            $d2 = new DateTime();
 
-                        //Check if cin is >= 16
-                        for ($j=0; $j < $this->session->household_size ; $j++) {
-                            $_index = $j +1;
+                            $diff = $d2->diff($d1);
 
-                            foreach($requireds as $required){
-                                $d1 = new DateTime($data['cin_date'][$i]);
-                                $d2 = new DateTime();
-
-                                $diff = $d2->diff($d1);
-
-                                if($diff->y < 16)
-                                    $missing_fields[] = ['cin'.$_index ,'Le citoyen doit avoir plus de 16 ans pour avoir une CIN.'];
-                            }
+                            if($diff->y < 16)
+                                $missing_fields[] = ['cin'.$index ,'Le citoyen doit avoir plus de 16 ans pour avoir une CIN.'];
                         }
                     }
                 }else if($data[$i]['nationality_id'] > 1){   
