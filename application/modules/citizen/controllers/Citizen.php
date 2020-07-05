@@ -1355,6 +1355,8 @@ class Citizen extends Operator_Controller
 
             $criteria['fokontany_id'] = $this->fokontany_id;
             $citizens = $this->notebook->citizens($criteria);
+
+            $count_citizen
             
             $criteria['chef_menage'] = TRUE;
             $households = $this->notebook->citizens($criteria);
