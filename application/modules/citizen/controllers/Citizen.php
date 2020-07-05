@@ -320,8 +320,18 @@ class Citizen extends Operator_Controller
             exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
         }
 
-        $citizens = $this->notebook->citizens(['fokontany_id' => $this->fokontany_id]);
-        echo json_encode($citizens);
+        $page = $this->input->get('page');
+        $size = $this->input->get('size');
+
+        $limit = $size;
+        $offset = ($page == 1) ? 0 : $page * $size;
+
+        $count_citizen = count($this->notebook->citizens(['fokontany_id' => $this->fokontany_id]));
+
+        $data['last_page'] = floor($count_citizen/$limit);
+
+        $data['data'] = $this->notebook->citizensPerPage(['fokontany_id' => $this->fokontany_id], $offset, $limit);
+        echo json_encode($data);
     }
 
     public function households_list()

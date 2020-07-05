@@ -4,7 +4,7 @@ $(function () {
 		ajaxURL: "citoyens_list",
 		ajaxConfig: "GET",
 		initialSort:[
-			{column:"medal", dir:"asc"}
+			{column:"nom", dir:"asc"}
 		],
         columns:[ //Define Table Columns
             {title:"Numéro carnet", field:"numero_carnet"},
@@ -62,7 +62,7 @@ $(function () {
 
             $('#personDetails').modal();
         },
-        pagination:"local",
+        pagination:"remote", //enable remote pagination
         paginationSize:15,
         paginationSizeSelector:[15, 30, 50, 100, 200],
         langs:{
