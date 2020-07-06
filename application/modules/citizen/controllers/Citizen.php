@@ -322,15 +322,32 @@ class Citizen extends Operator_Controller
 
         $page = $this->input->get('page');
         $size = $this->input->get('size');
+        $nom = $this->input->get('nom');
+        $prenoms = $this->input->get('prenoms');
+        $cin_personne = $this->input->get('cin_personne');
 
         $limit = $size;
         $offset = ($page == 1) ? 0 : $page * $size;
 
-        $count_citizen = count($this->notebook->citizens(['fokontany_id' => $this->fokontany_id]));
+        
+        $criteria = [];
+        
+        if(!empty($nom)) $criteria['LOWER(nom) LIKE '] = '%'.strtolower($nom).'%';
+        if(!empty($prenoms)) $criteria['LOWER(prenoms) LIKE '] = '%'.strtolower($prenoms).'%';
+        if(!empty($cin_personne)) $criteria['LOWER(cin_personne) LIKE '] = '%'.strtolower($cin_personne).'%';
+
+        if(empty($criteria)){
+            echo json_encode(['success' => 1, 'citizens' => [], 'households' => [], 'other_citizens' => []]);
+            return TRUE;
+        }
+
+        $criteria['fokontany_id'] = $this->fokontany_id;
+
+        $count_citizen = count($this->notebook->citizens($criteria));
 
         $data['last_page'] = floor($count_citizen/$limit);
 
-        $data['data'] = $this->notebook->citizensPerPage(['fokontany_id' => $this->fokontany_id], $offset, $limit);
+        $data['data'] = $this->notebook->citizensPerPage($criteria, $offset, $limit);
         echo json_encode($data);
     }
 
@@ -1356,7 +1373,7 @@ class Citizen extends Operator_Controller
             $criteria['fokontany_id'] = $this->fokontany_id;
             $citizens = $this->notebook->citizens($criteria);
 
-            $count_citizen
+            $count_citizen = count($citizens);
             
             $criteria['chef_menage'] = TRUE;
             $households = $this->notebook->citizens($criteria);

@@ -65,6 +65,7 @@ $(function () {
         pagination:"remote", //enable remote pagination
         paginationSize:15,
         paginationSizeSelector:[15, 30, 50, 100, 200],
+        ajaxFiltering:true,
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
@@ -171,17 +172,25 @@ $(function () {
 
     $('.speed_access').on('keyup change', function(e){
         if($(this).val().length < 4) return false;
-        var data = $('#speedForm').serializeArray();
 
-        $.get('recherche_rapide', data, function(res){
-            if(res.success == 1){
-                citizens.setData(res.citizens);
+        var data = {
+            nom:$('#nom').val(),
+            prenoms:$('#prenoms').val(),
+            cin_personne:$('#cin_personne').val()
+        }
 
-                if(res.citizens.length == 0) $('#createHousehold').show();
-                else $('#createHousehold').hide();
-            }
-            else alert(res.msg);
-        }, 'JSON');
+        citizens.setData('citoyens_list', data);
+
+        // $.get('recherche_rapide', data, function(res){
+        //     if(res.success == 1){
+                
+        //         citizens.replaceData(res.citizens);
+
+        //         if(res.citizens.length == 0) $('#createHousehold').show();
+        //         else $('#createHousehold').hide();
+        //     }
+        //     else alert(res.msg);
+        // }, 'JSON');
     });
 
     $(document).ready(function () {
