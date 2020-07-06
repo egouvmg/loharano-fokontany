@@ -180,17 +180,6 @@ $(function () {
         }
 
         citizens.setData('citoyens_list', data);
-
-        // $.get('recherche_rapide', data, function(res){
-        //     if(res.success == 1){
-                
-        //         citizens.replaceData(res.citizens);
-
-        //         if(res.citizens.length == 0) $('#createHousehold').show();
-        //         else $('#createHousehold').hide();
-        //     }
-        //     else alert(res.msg);
-        // }, 'JSON');
     });
 
     $(document).ready(function () {

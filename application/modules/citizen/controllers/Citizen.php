@@ -329,19 +329,17 @@ class Citizen extends Operator_Controller
         $limit = $size;
         $offset = ($page == 1) ? 0 : $page * $size;
 
-        
         $criteria = [];
         
         if(!empty($nom)) $criteria['LOWER(nom) LIKE '] = '%'.strtolower($nom).'%';
         if(!empty($prenoms)) $criteria['LOWER(prenoms) LIKE '] = '%'.strtolower($prenoms).'%';
         if(!empty($cin_personne)) $criteria['LOWER(cin_personne) LIKE '] = '%'.strtolower($cin_personne).'%';
+        $criteria['fokontany_id'] = $this->fokontany_id;
 
         if(empty($criteria)){
             echo json_encode(['success' => 1, 'citizens' => [], 'households' => [], 'other_citizens' => []]);
             return TRUE;
         }
-
-        $criteria['fokontany_id'] = $this->fokontany_id;
 
         $count_citizen = count($this->notebook->citizens($criteria));
 
