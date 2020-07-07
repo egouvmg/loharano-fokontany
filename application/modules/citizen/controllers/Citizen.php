@@ -1104,6 +1104,8 @@ class Citizen extends Operator_Controller
 
         $reference = $this->nomenclature->generate_certificat_reference("move",$this->fokontany_id, $citizen_data[0]->lf_move);
         
+        $this->data['membres_menage'] = $this->citizen->get_citizen(['numero_carnet'=>$citizen_data[0]->numero_carnet]);
+
         $this->data['reference'] = $reference;
         $this->data['id_personne'] = $id_personne;
         $this->data['origin_page'] = "move";
