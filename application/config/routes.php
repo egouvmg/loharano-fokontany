@@ -149,6 +149,7 @@ $route['migrer_vers_menage'] = 'citizen/migrate_to_household';
 $route['migrer_vers_nouveau_menage'] = 'citizen/migrate_to_new_household';
 $route['valider_migration_vers_menage'] = 'citizen/valid_migration_citizen';
 $route['historique_migration'] = 'citizen/history_migration';
+$route['historique_certificat'] = 'citizen/history_certificate';
 $route['verifier_localite_nouveau_menage'] = 'citizen/check_new_household';
 
 //Certificat
@@ -163,6 +164,7 @@ $route['verifier_personnne'] = "citizen/check_fields";
 //Aid
 $route['aide_par_menage'] = 'aid/aid_by_household';
 $route['ajout_aide'] = 'aid/add_household_aid';
+$route['typa_aide'] = 'aid/type';
 
 //SuperAdmin
 $route['ajouter_aide'] = 'superadmin/add_aid';

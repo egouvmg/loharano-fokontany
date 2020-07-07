@@ -70,8 +70,8 @@
               <div id="households"></div>
             </div>
             <div class="col-lg-12">
-              <p><?= $this->lang->line('household_aid_content');?> : <strong class="household">...</strong></p>
-              <button id="addAid" class="btn btn-color-2 mb-1">Ajout une aide</button>
+              <p class="mt-2"><?= $this->lang->line('household_aid_content');?> : <strong class="household">...</strong></p>
+              <button id="addAid" class="btn btn-color-2 mb-1">Ajout d'une aide</button>
               <div id="aidsContent"></div>
             </div>
           </div>           
@@ -100,19 +100,72 @@
               <!--Form at left side -->
               <div class=" col-md-12">
                 <div class="form-row">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-12">
                     <label for="aid">Programme d'aide</label>
-                    <select id="aid" class="form-control"  name="aid_id">
+                    <select id="aid" class="form-control" name="aid_id">
                       <?php foreach ($aids as $aid): ?>
                         <option value="<?= $aid->id;?>"><?= $aid->name;?></option>
                       <?php endforeach ?>
                     </select>
                     <div class="error_field error_aid"></div>
                   </div>
+                </div>
+                <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="created_on">Reçu le<span class="text-red">*</span></label>
                     <input type="date" name="created_on" class="form-control" id="created_on"/>
                     <div class="error_field error_created_on"></div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="type">Type d'aide<span class="text-red"></span></label>
+                    <input type="text" readonly class="form-control" id="type"/>
+                    <div class="error_field error_type"></div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="description">Description du programme<span class="text-red"></span></label>
+                    <textarea id="description" class="form-control" readonly rows="3"></textarea>
+                  </div>
+                </div>
+
+                <div class="form-row" style="display:none;" id="aidType">
+                  <div class="form-group col-md-12">
+                    <label for="payment_type">Mode de paiement<span class="text-red">*</span></label>
+                    <select name="type" id="payment_type" class="form-control">
+                        <option value="1">M'Vola</option>
+                        <option value="2">Orange Money</option>
+                        <option value="3">Airtel Money</option>
+                        <option value="4">Virement bancaire</option>
+                    </select>
+                    <div class="error_field error_type"></div>
+                  </div>
+                </div>
+                <div class="form-row" style="display:none;" id="aidMobileMoney">
+                  <div class="form-group col-md-12">
+                    <label for="phone">Numéro téléphone<span class="text-red">*</span></label>
+                    <input type="text" name="phone" placeholder="030 00 000 00" class="form-control" id="phone"/>
+                    <div class="error_field error_phone"></div>
+                  </div>
+                </div>
+                <div class="form-row" style="display:none;" id="aidBank">
+                  <div class="form-group col-md-6">
+                    <label for="bank">Banque<span class="text-red">*</span></label>
+                    <select name="bank" id="bank" class="form-control">
+                        <option value="1">BNI</option>
+                        <option value="2">BFV</option>
+                        <option value="3">BOA</option>
+                        <option value="4">Access Banque</option>
+                        <option value="5">BMOI</option>
+                        <option value="6">BGFI</option>
+                        <option value="7">Sipem Banque</option>
+                    </select>
+                    <div class="error_field error_bank"></div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="rib">Numéro de compte<span class="text-red">*</span></label>
+                    <input type="text" class="form-control" name="rib" id="rib"/>
+                    <div class="error_field error_rib"></div>
                   </div>
                 </div>
               </div>
@@ -141,6 +194,7 @@
 
 	<script src="<?= js('jquery.min');?>"></script>
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
+  <script src="<?= plugin('phone', 'js', 'jquery-input-mask-phone-number.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
 	<script src="<?= plugin('modules', 'aid', 'list_aid.js');?>"></script>

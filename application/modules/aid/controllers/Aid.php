@@ -70,13 +70,22 @@ class Aid extends Operator_Controller
         $numero_carnet = $this->input->post('numero_carnet');
         $aid_id = $this->input->post('aid_id');
         $created_on = $this->input->post('created_on');
+        $type = $this->input->post('type');
+        $phone = $this->input->post('phone');
+        $bank = $this->input->post('bank');
+        $rib = $this->input->post('rib');
 
         if(empty($numero_carnet))
             $missing_fields[] = ['numero_carnet', 'Champs requis'];
         if(empty($aid_id))
             $missing_fields[] = ['aid_id', 'Champs requis'];
         if(empty($created_on))
-            $missing_fields[] = ['created_on', 'Champs requis'];    
+            $missing_fields[] = ['created_on', 'Champs requis'];
+            
+        if($type < 4)
+            if(empty($phone)) $missing_fields[] = ['phone', 'Champs requis'];
+        if($type == 4)
+            if(empty($rib)) $missing_fields[] = ['rib', 'Champs requis'];
 
         if(!empty($missing_fields)){
             echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
@@ -87,10 +96,47 @@ class Aid extends Operator_Controller
             'numero_carnet' => $numero_carnet,
             'aid_id' => $aid_id,
             'created_on' => $created_on,
+            'type' => $type,
         ];
+
+        if($type < 4)
+            $data['phone'] = $phone;
+        if($type == 4){
+            $data['bank'] = $bank;
+            $data['rib'] = $rib;
+        }
 
         if($this->aid->save_household_aid($data)) echo json_encode(['success'=>1, 'msg'=>'Enregistrement réussi']);
         else echo json_encode(['error' => 1, 'msg' => 'Impossible d\'enregistrer l\'aide']);
+    }
+
+    public function type()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $aid_id = $this->input->get('aid_id');
+
+
+        if(empty($aid_id))
+            $missing_fields[] = ['aid', 'Champs requis'];   
+
+        if(!empty($missing_fields)){
+            echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
+            return false;
+        }
+
+        $aid = $this->aid->one(['id' => $aid_id]);
+        $aid_type = '';
+
+        if($aid){
+            if($aid->type == 1) $aid_type = 'Vivres';
+            if($aid->type == 2) $aid_type = 'Cash';
+        }
+
+        if(empty($aid_type)) echo json_encode(['error' => 1, 'msg' => 'Le type du programme d\'aide est non défini. Impossible de poursuivre le processus.']);
+        else echo json_encode(['success' => 1, 'type_name' => $aid_type, 'type' => $aid->type, 'description' => $aid->description]);
     }
 }
 

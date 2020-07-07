@@ -324,8 +324,10 @@
                         <button class="btn btn-color-7 mb-1 mr-1"><span class="iconify" data-icon="carbon:certificate" data-inline="false"></span> Certificat de Bonne conduite - de Bonne Vie - Moeurs</button>
                       </a>
                     </div> 
-                    <p>Historique des actions</p>
-                    <div id="historyMigration"></div>                  
+                    <p class="mt-2">Historique des actions</p>
+                    <div id="historyCertificate"></div>
+                    <p class="mt-2">Historique de migration</p>
+                    <div id="historyMigration"></div>                 
                   </div>
                 </div>
               </div>
@@ -342,6 +344,31 @@
                 <button type="button" class="btn btn-primary" id="validEditPerson">
                   Valider les modifications
                   <span class="iconify" data-icon="uil:arrow-right" data-inline="false"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END Person details -->
+        <!-- Person details -->
+        <div class="modal fade" id="aidDetails" tabindex="-1" role="dialog" aria-labelledby="newRegisterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="newRegisterTitle">
+                  Aides reçues par le ménage de <span id="nom_complet_chef"></span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div id="citizenAids"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  Fermer
+                  <span class="iconify" data-icon="uil:times-circle" data-inline="false"></span>
                 </button>
               </div>
             </div>

@@ -15,6 +15,7 @@ class Citizen extends Operator_Controller
         $this->load->model('territory/borough_model', 'borough');
         $this->load->model('territory/notebook_model', 'notebook');
         $this->load->model('territory/migration_model', 'migration');
+        $this->load->model('certificate/certificate_model', 'certificate');
 
         $this->load->model('register/register_model', 'register');
 
@@ -1340,6 +1341,20 @@ class Citizen extends Operator_Controller
         $id_person = $this->input->get('id_person');
 
         $histories = $this->migration->all_details(['id_person' => $id_person]);
+        
+        if($histories) echo json_encode($histories);
+        else echo json_encode([]);
+    }
+
+    public function history_certificate()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Very ianao :O');
+        }
+
+        $id_person = $this->input->get('id_person');
+
+        $histories = $this->certificate->historiques_certificats(['id_personne' => $id_person]);
         
         if($histories) echo json_encode($histories);
         else echo json_encode([]);

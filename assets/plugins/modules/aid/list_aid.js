@@ -11,6 +11,31 @@ $(function () {
             case "2": return "Cash"; break;
         }
     };
+
+    var payment_types = function (cell, formatterParams) {
+        var value = cell.getValue();
+
+        switch (value) {
+            case 1: return "M'Vola"; break;
+            case 2: return "Orange Money"; break;
+            case 3: return "Airtel Money"; break;
+            case 4: return "Virement bancaire"; break;
+        }
+    };
+
+    var banks = function (cell, formatterParams) {
+        var value = cell.getValue();
+
+        switch (value) {
+            case 1: return "BNI"; break;
+            case 2: return "BFV"; break;
+            case 3: return "BOA"; break;
+            case 4: return "Access Banque"; break;
+            case 5: return "BMOI"; break;
+            case 6: return "BGFI"; break;
+            case 7: return "Sipem Banque"; break;
+        }
+    };
     
 	var households = new Tabulator("#households", {
         layout:"fitColumns",
@@ -71,8 +96,12 @@ $(function () {
 		],
         columns:[ //Define Table Columns
             {title:"Aide reçue", field:"name",headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title: "Type", field: "type", width:100, formatter: types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
-            {title:"Date", field:"created_on", headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"Type", field: "type", width:100, formatter: types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
+            {title:"Date", field:"created_on", width:100, headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"Type de paiement", field: "payment_type", width:160, formatter: payment_types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
+            {title:"Téléphone", field:"phone", headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"Banque", field:"bank", width:100, formatter: banks, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
+            {title:"RIB", field:"rib", headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Description", field:"description", headerFilterPlaceholder:"..." , headerFilter:"input"}       
         ],
         rowClick:function(e, row){
@@ -115,8 +144,33 @@ $(function () {
     $('#addAid').click(function(e){
         e.preventDefault();
 
+        $('#aidType').hide();
+        $('#aidMobileMoney').hide();
+        $('#aidBank').hide();
+
         if($('#numero_carnet').val() == '') alert('Choisissez un ménage');
-        else $('#aidModal').modal();
+        else{
+            var aid_id = $('#aid').val();
+
+            $.get('typa_aide', {aid_id:aid_id}, function(res){
+                if(res.success == 1){
+                    $('#type').val(res.type_name);
+                    $('#description').val(res.description);
+
+                    if(res.type == 2){
+                        $('#aidType').show();
+                        $('#aidMobileMoney').show();
+                    }
+                }
+                if(res.error == 1){
+                    alert(res.msg);
+                }
+                $('#aidModal').modal();
+            }, 'JSON')
+            .fail(function(){
+                alert('Erreur sur le serveur. Veuillez réessayer ultérieurement.');
+            });
+        }
     });
 
     $('#validAid').click(function(e){
@@ -146,5 +200,53 @@ $(function () {
             $('#loadingSave').hide();
 
         }, 'JSON');
+    });
+    
+    $(document).on('change', '#payment_type', function(e){
+        e.preventDefault();
+
+        if($(this).val() < 4){
+            $('#aidMobileMoney').show();
+            $('#aidBank').hide();
+        }
+        else if($(this).val() == 4){
+            $('#aidMobileMoney').hide();
+            $('#aidBank').show();
+        }
+    });
+
+    $(document).on('change', '#aid', function(e){
+        e.preventDefault();
+
+        $('#aidType').hide();
+        $('#aidMobileMoney').hide();
+        $('#aidBank').hide();
+
+        var aid_id = $(this).val();
+
+        $.get('typa_aide', {aid_id:aid_id}, function(res){
+            if(res.success == 1){
+                $('#type').val(res.type_name);
+                $('#description').val(res.description);
+
+                if(res.type == 2){
+                    $('#aidType').show();
+                    $('#aidMobileMoney').show();
+                }
+            }
+            if(res.error == 1){
+                alert(res.msg);
+            }
+            $('#aidModal').modal();
+        }, 'JSON')
+        .fail(function(){
+            alert('Erreur sur le serveur. Veuillez réessayer ultérieurement.');
+        });
+    });
+
+    $(document).ready(function () {
+        $('#phone').usPhoneFormat({
+            format: 'xxx'
+        });
     });
 });

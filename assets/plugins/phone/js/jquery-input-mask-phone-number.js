@@ -82,6 +82,39 @@
                 }
             });
 
+        } else if (params.format === 'xxx') {
+            $(this).on('keydown touchend', function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)  && (e.which > 105 || e.which < 96)) {
+                    return false;
+                }
+
+                var curchr = this.value.length % modulo;
+                var curval = $(this).val();
+
+                if (curchr == 3 && e.which != 8 && e.which != 0) {
+                    $(this).val( curval + " ");
+                } else if (curchr == 6 && e.which != 8 && e.which != 0) {
+                    $(this).val( curval + " ");
+                } else if (curchr == 10 && e.which != 8 && e.which != 0) {
+                    $(this).val( curval + " ");
+                }
+
+                $(this).attr('maxlength', '13');
+            });
+            $(this).bind('paste', function (e) {
+                e.preventDefault();
+                var inputValue = e.originalEvent.clipboardData.getData('Text');
+                if (!$.isNumeric(inputValue)) {
+                    return false;
+                } else {
+                    inputValue = String(inputValue.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3"));
+                    $(this).val(inputValue);
+                    $(this).val('');
+                    inputValue = inputValue.substring(0, 14);
+                    $(this).val(inputValue);
+                }
+            });
+
         }
     }
 }(jQuery));

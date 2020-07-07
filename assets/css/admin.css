@@ -924,3 +924,25 @@ img.loading{
 .locality-details svg{
     color: red;
 }
+.citizen-full-details{
+    background-color: #e8e8e8;
+    padding: 15px;
+    border-radius: 5px;
+}
+#citizen-details-tabs li a.active {
+    background: #06d6a0;
+    border-radius: 0;
+}
+#citizen-details-tabs li a {
+    background: #e8e8e8;
+    border-radius: 0;
+    color: #fff;
+}
+a.extrem-left{
+    border-top-left-radius: 35px !important;
+    border-bottom-left-radius: 35px !important;
+}
+a.extrem-right{
+    border-top-right-radius: 35px !important;
+    border-bottom-right-radius: 35px !important;
+}
