@@ -74,6 +74,7 @@ class Aid extends Operator_Controller
         $phone = $this->input->post('phone');
         $bank = $this->input->post('bank');
         $rib = $this->input->post('rib');
+        $paositra_account = $this->input->post('paositra_account');
 
         if(empty($numero_carnet))
             $missing_fields[] = ['numero_carnet', 'Champs requis'];
@@ -86,6 +87,8 @@ class Aid extends Operator_Controller
             if(empty($phone)) $missing_fields[] = ['phone', 'Champs requis'];
         if($type == 4)
             if(empty($rib)) $missing_fields[] = ['rib', 'Champs requis'];
+        if($type == 5)
+            if(empty($paositra_account)) $missing_fields[] = ['paositra_account', 'Champs requis'];
 
         if(!empty($missing_fields)){
             echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
@@ -105,6 +108,8 @@ class Aid extends Operator_Controller
             $data['bank'] = $bank;
             $data['rib'] = $rib;
         }
+        if($type == 5)
+            $data['paositra_account'] = $paositra_account;
 
         if($this->aid->save_household_aid($data)) echo json_encode(['success'=>1, 'msg'=>'Enregistrement réussi']);
         else echo json_encode(['error' => 1, 'msg' => 'Impossible d\'enregistrer l\'aide']);

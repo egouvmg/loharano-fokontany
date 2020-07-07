@@ -356,7 +356,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="newRegisterTitle">
-                  Aides reçues par le ménage de <span id="nom_complet_chef"></span>
+                  Aides sociales reçues par le ménage de <span id="nom_complet_chef"></span>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>

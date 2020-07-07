@@ -272,10 +272,11 @@ $(function () {
             {title:"Aide reçue", field:"name",headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Type", field: "type", width:100, formatter: types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
             {title:"Date", field:"created_on", width:100, headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Type de paiement", field: "payment_type", width:160, formatter: payment_types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
+            {title:"Mode de virement", field: "payment_type", width:160, formatter: payment_types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
             {title:"Téléphone", field:"phone", headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Banque", field:"bank", width:100, formatter: banks, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
-            {title:"RIB", field:"rib", headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"N° de compte", field:"rib", headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"N° de compte Paositra Money", field:"paositra_account", headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Description", field:"description", headerFilterPlaceholder:"..." , headerFilter:"input"}  
         ],
         pagination:"local",
@@ -314,6 +315,7 @@ $(function () {
     citizens.setLocale("fr-fr");
     citizenHousehold.setLocale("fr-fr");
     citizenAids.setLocale("fr-fr");
+    histories_certificates.setLocale("fr-fr");
 
 	$('#nom').on('keyup', function () {
 		var foo = $(this).val();

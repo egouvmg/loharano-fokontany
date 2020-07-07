@@ -112,7 +112,7 @@
                     <a class="nav-link active extrem-left" id="pills-certificate-tab" data-toggle="pill" href="#pills-certificate" role="tab" aria-controls="pills-certificate" aria-selected="true">Certificat et historiques</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link extrem-right" id="pills-aid-tab" data-toggle="pill" href="#pills-aid" role="tab" aria-controls="pills-aid" aria-selected="false">Aides reçues</a>
+                    <a class="nav-link extrem-right" id="pills-aid-tab" data-toggle="pill" href="#pills-aid" role="tab" aria-controls="pills-aid" aria-selected="false">Aides sociales reçues</a>
                   </li>
                 </ul>
                 <div class="tab-content citizen-full-details" id="pills-tabContent">
@@ -335,7 +335,7 @@
                   <div class="tab-pane fade" id="pills-aid" role="tabpanel" aria-labelledby="pills-aid-tab">
                     <p>Ménage</p>
                     <div id="citizenHousehold"></div>
-                    <p class="mt-2">Aides reçues</p>
+                    <p class="mt-2">Aides sociales reçues</p>
                     <div id="citizenAids"></div>
                   </div>
                 </div>

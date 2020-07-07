@@ -137,6 +137,7 @@
                         <option value="2">Orange Money</option>
                         <option value="3">Airtel Money</option>
                         <option value="4">Virement bancaire</option>
+                        <option value="5">Compte Paositra Money</option>
                     </select>
                     <div class="error_field error_type"></div>
                   </div>
@@ -149,7 +150,7 @@
                   </div>
                 </div>
                 <div class="form-row" style="display:none;" id="aidBank">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-12">
                     <label for="bank">Banque<span class="text-red">*</span></label>
                     <select name="bank" id="bank" class="form-control">
                         <option value="1">BNI</option>
@@ -162,10 +163,17 @@
                     </select>
                     <div class="error_field error_bank"></div>
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-12">
                     <label for="rib">Numéro de compte<span class="text-red">*</span></label>
                     <input type="text" class="form-control" name="rib" id="rib"/>
                     <div class="error_field error_rib"></div>
+                  </div>
+                </div>
+                <div class="form-row" style="display:none;" id="aidPaositra">
+                  <div class="form-group col-md-12">
+                    <label for="paositra_account">Numéro de compte<span class="text-red">*</span></label>
+                    <input type="text" class="form-control" name="paositra_account" id="paositra_account"/>
+                    <div class="error_field error_paositra_account"></div>
                   </div>
                 </div>
               </div>

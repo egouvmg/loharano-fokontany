@@ -1319,6 +1319,8 @@ class Citizen extends Operator_Controller
         
         $person_notebook = $this->notebook->citizen(['id_personne' => $id_personne]);
 
+        $data['chef_menage'] = FALSE;
+
         if($this->citizen->update($data)){
             $data_migration = [
                 'fokontany_start' => $this->fokontany_id,
@@ -1390,7 +1392,6 @@ class Citizen extends Operator_Controller
 
             $count_citizen = count($citizens);
             
-            $criteria['chef_menage'] = TRUE;
             $households = $this->notebook->citizens($criteria);
 
             if(!empty($citizens) && !empty($households)){
@@ -1401,8 +1402,6 @@ class Citizen extends Operator_Controller
             }
             else if(empty($citizens)){
                 unset($criteria['fokontany_id']);
-
-                $criteria['fokontany_id !='] = $this->fokontany_id;
                 
                 $other_citizens = $this->notebook->citizens($criteria);
 

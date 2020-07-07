@@ -1,4 +1,8 @@
 $(function () {
+    var is_household_head = function (cell, formatterParams) {
+        return (cell.getValue()) ? 'Oui' : 'Non';
+    };
+
     var household_head = function (cell, formatterParams) {
 		return cell.getRow().getData().nom + ' ' + cell.getRow().getData().prenoms;
     };
@@ -7,26 +11,61 @@ $(function () {
         return (cell.getValue()) ? 'Oui' : 'Non';
     };
 
-    var histories2 = new Tabulator('#historyMigration2', {
+    var types = function (cell, formatterParams) {
+        var value = cell.getValue();
+
+        switch (value) {
+            case "1": return "Vivres"; break;
+            case "2": return "Cash"; break;
+        }
+    };
+
+    var payment_types = function (cell, formatterParams) {
+        var value = cell.getValue();
+
+        switch (value) {
+            case 1: return "M'Vola"; break;
+            case 2: return "Orange Money"; break;
+            case 3: return "Airtel Money"; break;
+            case 4: return "Virement bancaire"; break;
+        }
+    };
+
+    var banks = function (cell, formatterParams) {
+        var value = cell.getValue();
+
+        switch (value) {
+            case 1: return "BNI"; break;
+            case 2: return "BFV"; break;
+            case 3: return "BOA"; break;
+            case 4: return "Access Banque"; break;
+            case 5: return "BMOI"; break;
+            case 6: return "BGFI"; break;
+            case 7: return "Sipem Banque"; break;
+        }
+    };
+
+    var histories_certificates = new Tabulator('#historyCertificate', {
         layout:"fitColumns",
-        selectable: 1,
 		initialSort:[
 			{column:"date_migration", dir:"desc"}
 		],
         columns:[ //Define Table Columns
-            {title:"Date", field:"date_migration"},
-            {title:"Avant", field:"fokontany_name_start"},
-            {title:"Après", field:"fokontany_name_end"}     
+            {title:"Date", field:"date_generation"},
+            {title:"Motif", field:"motif"}    
         ],
         pagination:"local",
-        paginationSize:10,
-        paginationSizeSelector:[10, 20, 50, 100, 200],
+        paginationSize:5,
+        paginationSizeSelector:[5, 10, 20, 50, 100, 200],
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
-                    "date_migration":"Date",
-                    "fokontany_name_start":"Avant",
-                    "fokontany_name_end":"Après"
+                    "name":"Nom",
+                    "progress":"Progression",
+                    "gender":"Genre",
+                    "rating":"Évaluation",
+                    "col":"Couleur",
+                    "dob":"Date de Naissance",
                 },
                 "ajax": {
                     "loading": "Chargement",
@@ -47,9 +86,8 @@ $(function () {
         }
     });
 
-    var histories = new Tabulator('#historyMigration1', {
+    var histories = new Tabulator('#historyMigration', {
         layout:"fitColumns",
-        selectable: 1,
 		initialSort:[
 			{column:"date_migration", dir:"desc"}
 		],
@@ -59,14 +97,17 @@ $(function () {
             {title:"Après", field:"fokontany_name_end"}     
         ],
         pagination:"local",
-        paginationSize:10,
-        paginationSizeSelector:[10, 20, 50, 100, 200],
+        paginationSize:5,
+        paginationSizeSelector:[5, 10, 20, 50, 100, 200],
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
-                    "date_migration":"Date",
-                    "fokontany_name_start":"Avant",
-                    "fokontany_name_end":"Après"
+                    "name":"Nom",
+                    "progress":"Progression",
+                    "gender":"Genre",
+                    "rating":"Évaluation",
+                    "col":"Couleur",
+                    "dob":"Date de Naissance",
                 },
                 "ajax": {
                     "loading": "Chargement",
@@ -147,9 +188,6 @@ $(function () {
         },
         pagination:"local",
         paginationSize:10,
-        pageLoaded:function(pageno){
-            console.log(pageno);
-        },
         paginationSizeSelector:[10, 20, 50, 100, 200],
         langs:{
             "fr-fr":{ //French language definition
@@ -196,7 +234,6 @@ $(function () {
             {title:"Fokontany", field:"fokontany_name"}     
         ],
         rowClick:function(e, row){
-            histories2.setData('historique_migration', {id_person:row.getData().id_personne});
 
             $('.error_field').text('');
             $('#nom_complet_autre').text(row.getData().nom + ' ' + row.getData().prenoms);
@@ -264,9 +301,100 @@ $(function () {
         }
     });
 
-    histories2.setLocale("fr-fr");
+    var citizenHousehold = new Tabulator('#citizenHousehold', {
+        layout:"fitColumns",
+		initialSort:[
+			{column:"chef_menage", dir:"desc"}
+		],
+        columns:[ //Define Table Columns
+            {title:"Chef", field:"chef_menage", formatter: is_household_head},
+            {title:"Nom", field:"nom"},
+            {title:"Prénoms", field:"prenoms"},
+            {title:"Numéro cin", field:"cin_personne"},
+            {title:"Date de Naissance", field:"date_de_naissance"},
+            {title:"Lieu de Naissance", field:"lieu_de_naissance"} ,  
+        ],
+        langs:{
+            "fr-fr":{ //French language definition
+                "columns":{
+                    "name":"Nom",
+                    "progress":"Progression",
+                    "gender":"Genre",
+                    "rating":"Évaluation",
+                    "col":"Couleur",
+                    "dob":"Date de Naissance",
+                },
+                "ajax": {
+                    "loading": "Chargement",
+                    "error": "Erreur"
+                },
+                "pagination":{
+                    "page_size":"Taille de page",
+                    "first":"Premier",
+                    "first_title":"Première Page",
+                    "last":"Dernier",
+                    "last_title":"Dernière Page",
+                    "prev":"Précédent",
+                    "prev_title":"Page Précédente",
+                    "next":"Suivant",
+                    "next_title":"Page Suivante",
+                },
+            }
+        }
+    });
+
+    var citizenAids = new Tabulator('#citizenAids', {
+        layout:"fitColumns",
+		initialSort:[
+			{column:"created_on", dir:"desc"}
+		],
+        columns:[ //Define Table Columns
+            {title:"Aide reçue", field:"name",headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"Type", field: "type", width:100, formatter: types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
+            {title:"Date", field:"created_on", width:100, headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"Mode de virement", field: "payment_type", width:160, formatter: payment_types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
+            {title:"Téléphone", field:"phone", headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"Banque", field:"bank", width:100, formatter: banks, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
+            {title:"N° de compte", field:"rib", headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"Description", field:"description", headerFilterPlaceholder:"..." , headerFilter:"input"}  
+        ],
+        pagination:"local",
+        paginationSize:5,
+        paginationSizeSelector:[5, 10, 20, 50, 100, 200],
+        langs:{
+            "fr-fr":{ //French language definition
+                "columns":{
+                    "name":"Nom",
+                    "progress":"Progression",
+                    "gender":"Genre",
+                    "rating":"Évaluation",
+                    "col":"Couleur",
+                    "dob":"Date de Naissance",
+                },
+                "ajax": {
+                    "loading": "Chargement",
+                    "error": "Erreur"
+                },
+                "pagination":{
+                    "page_size":"Taille de page",
+                    "first":"Premier",
+                    "first_title":"Première Page",
+                    "last":"Dernier",
+                    "last_title":"Dernière Page",
+                    "prev":"Précédent",
+                    "prev_title":"Page Précédente",
+                    "next":"Suivant",
+                    "next_title":"Page Suivante",
+                },
+            }
+        }
+    });
+    
     histories.setLocale("fr-fr");
     citizens.setLocale("fr-fr");
+    citizenHousehold.setLocale("fr-fr");
+    citizenAids.setLocale("fr-fr");
+    histories_certificates.setLocale("fr-fr");
     other_citizens.setLocale("fr-fr");
 
     $('.speed_access').on('keyup change', function(e){
