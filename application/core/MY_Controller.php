@@ -74,4 +74,15 @@ class Operator_Controller extends MY_Controller
 		
 	}
 }
+/**
+ * QR Code reader Controller
+ */
+class Qrcode_Controller extends MY_Controller
+{
+	function __construct()
+	{
+		parent::__construct();
+	
+	}
+}
 

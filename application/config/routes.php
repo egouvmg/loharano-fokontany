@@ -170,3 +170,6 @@ $route['typa_aide'] = 'aid/type';
 $route['ajouter_aide'] = 'superadmin/add_aid';
 $route['modifier_aide'] = 'superadmin/edit_aid';
 $route['liste_aides'] = 'superadmin/list_aid';
+
+//QRCode
+$route['index_qrcode'] = 'qrcode/index_qrcode';

@@ -486,11 +486,11 @@ $(function () {
             //background: 'green',
             backgroundAlpha: 0.8,
             //foreground: 'blue',
-            foregroundAlpha: 0.8,
+            //foregroundAlpha: 0.8,
             level: 'H',
             padding: 25,
             size: 500,
-            value: $('#numero_carnet_hidden').val()//'https://github.com/neocotic/qrious'
+            value: window.location.origin+"/index_qrcode?numero_carnet="+$('#numero_carnet_hidden').val()
           });
 
           var imgData = qr.toDataURL('image/jpeg');
