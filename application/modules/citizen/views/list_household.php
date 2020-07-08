@@ -383,7 +383,6 @@
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
   <script src="<?= plugin('modules', 'common', 'jspdf.min.js');?>"></script>
-	<script src="<?= plugin('modules', 'citizen', 'alignement.js');?>"></script>
 	<script src="<?= plugin('modules', 'citizen', 'qrious.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'citizen', 'list_household.js');?>"></script>
 </body>
