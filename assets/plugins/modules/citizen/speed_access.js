@@ -3,8 +3,27 @@ $(function () {
         return (cell.getValue()) ? 'Oui' : 'Non';
     };
 
-    var household_head = function (cell, formatterParams) {
-		return cell.getRow().getData().nom + ' ' + cell.getRow().getData().prenoms;
+    var context = function(cell, formatterParams) {
+        var value = cell.getValue();
+        var bank = '';
+
+        switch (cell.getRow().getData().bank) {
+            case 1: bank = "BNI"; break;
+            case 2: bank = "BFV"; break;
+            case 3: bank = "BOA"; break;
+            case 4: bank = "Access Banque"; break;
+            case 5: bank = "BMOI"; break;
+            case 6: bank = "BGFI"; break;
+            case 7: bank = "Sipem Banque"; break;
+        };
+
+        switch(value){
+            case 1: 
+            case 2: 
+            case 3: return "Téléphone : " + cell.getRow().getData().phone; break;
+            case 4: return "Banque : " + bank + ", n° de compte/IBAN : " + cell.getRow().getData().rib  ; break;
+            case 5: return "Compte : " + cell.getRow().getData().paositra_account; break;
+        }
     };
 
     var is_household_head = function (cell, formatterParams) {
@@ -28,20 +47,7 @@ $(function () {
             case 2: return "Orange Money"; break;
             case 3: return "Airtel Money"; break;
             case 4: return "Virement bancaire"; break;
-        }
-    };
-
-    var banks = function (cell, formatterParams) {
-        var value = cell.getValue();
-
-        switch (value) {
-            case 1: return "BNI"; break;
-            case 2: return "BFV"; break;
-            case 3: return "BOA"; break;
-            case 4: return "Access Banque"; break;
-            case 5: return "BMOI"; break;
-            case 6: return "BGFI"; break;
-            case 7: return "Sipem Banque"; break;
+            case 5: return "Paositra Money"; break;
         }
     };
 
@@ -144,6 +150,9 @@ $(function () {
         ],
         rowClick:function(e, row){
             histories.setData('historique_migration', {id_person:row.getData().id_personne});
+            histories_certificates.setData('historique_certificat', {id_person:row.getData().id_personne});
+            citizenHousehold.setData('membres_menage', {numero_carnet:row.getData().numero_carnet});
+            citizenAids.setData('aide_par_menage', {numero_carnet:row.getData().numero_carnet});
 
             $('.error_field').text('');
             $('#nom_complet').text(row.getData().nom + ' ' + row.getData().prenoms);
@@ -186,7 +195,7 @@ $(function () {
             
             $('#personDetails').modal();
         },
-        pagination:"local",
+        pagination:"remote", //enable remote pagination
         paginationSize:10,
         paginationSizeSelector:[10, 20, 50, 100, 200],
         langs:{
@@ -269,9 +278,9 @@ $(function () {
             
             $('#otherCitizenDetails').modal();
         },
-        pagination:"local",
-        paginationSize:10,
-        paginationSizeSelector:[10, 20, 50, 100, 200],
+        pagination:"remote", //enable remote pagination
+        paginationSize:5,
+        paginationSizeSelector:[5, 10, 20, 50, 100, 200],
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
@@ -349,18 +358,17 @@ $(function () {
 			{column:"created_on", dir:"desc"}
 		],
         columns:[ //Define Table Columns
-            {title:"Aide reçue", field:"name",headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Type", field: "type", width:100, formatter: types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
-            {title:"Date", field:"created_on", width:100, headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Mode de virement", field: "payment_type", width:160, formatter: payment_types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
-            {title:"Téléphone", field:"phone", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Banque", field:"bank", width:100, formatter: banks, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
-            {title:"N° de compte", field:"rib", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Description", field:"description", headerFilterPlaceholder:"..." , headerFilter:"input"}  
+            {title:"Aide reçue", field:"name"},
+            {title:"Type", field: "type", width:100, formatter: types},
+            {title:"Date", field:"created_on", width:100},
+            {title:"Mode de virement", field: "payment_type", width:160, formatter: payment_types},
+            {title:"Détails", field: "payment_type", formatter: context},
+            {title:"Description", field:"description"}  
         ],
-        pagination:"local",
+        pagination:"local", //enable remote pagination
         paginationSize:5,
         paginationSizeSelector:[5, 10, 20, 50, 100, 200],
+        ajaxFiltering:true,
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
@@ -399,21 +407,15 @@ $(function () {
 
     $('.speed_access').on('keyup change', function(e){
         if($(this).val().length < 4) return false;
-        var data = $('#speedForm').serializeArray();
 
-        $.get('recherche_rapide', data, function(res){
-            if(res.success == 1){
-                citizens.setData(res.citizens);
+        var data = {
+            nom:$('#nom').val(),
+            prenoms:$('#prenoms').val(),
+            cin_personne:$('#cin_personne').val()
+        }
 
-                if(res.citizens.length == 0){
-
-                    $('#createHousehold').show();
-                    other_citizens.setData(res.other_citizens);
-                }
-                else $('#createHousehold').hide();
-            }
-            else alert(res.msg);
-        }, 'JSON');
+        citizens.setData('citoyens_list', data);
+        other_citizens.setData('citoyens_autre_liste', data);
     });
 
 	$('#nom').on('keyup', function () {

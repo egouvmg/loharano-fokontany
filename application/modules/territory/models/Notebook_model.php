@@ -36,12 +36,16 @@ class Notebook_model extends CI_Model
 		return  ($query->num_rows() > 0) ? $query->first_row() : false;
 	}
 
-	public function citizens($criteria = array()) {
+	public function citizens($criteria = array(), $order_by = '', $direction = 'ASC') {
 		$this->db->select('*');
 		$this->db->from($this->_v_notebook_citizen);
 		
 		if(!empty($criteria)){
 			$this->db->where($criteria);
+		}
+
+		if(!empty($order_by)){
+			$this->db->order_by($order_by, $direction);
 		}
 		
 		$query = $this->db->get();

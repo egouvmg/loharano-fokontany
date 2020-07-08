@@ -337,17 +337,70 @@ class Citizen extends Operator_Controller
         if(!empty($cin_personne)) $criteria['LOWER(cin_personne) LIKE '] = '%'.strtolower($cin_personne).'%';
         $criteria['fokontany_id'] = $this->fokontany_id;
 
-        if(empty($criteria)){
-            echo json_encode(['success' => 1, 'citizens' => [], 'households' => [], 'other_citizens' => []]);
-            return TRUE;
-        }
-
         $count_citizen = count($this->notebook->citizens($criteria));
 
         $data['last_page'] = floor($count_citizen/$limit);
 
+        if(empty($criteria)){
+            $data['data'] = [];
+            echo json_encode($data);
+            return TRUE;
+        }
+
         $data['data'] = $this->notebook->citizensPerPage($criteria, $offset, $limit);
         echo json_encode($data);
+    }
+
+    public function citizens_other_list()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
+        }
+
+        $page = $this->input->get('page');
+        $size = $this->input->get('size');
+        $nom = $this->input->get('nom');
+        $prenoms = $this->input->get('prenoms');
+        $cin_personne = $this->input->get('cin_personne');
+
+        $limit = $size;
+        $offset = ($page == 1) ? 0 : $page * $size;
+
+        $criteria = [];
+        
+        if(!empty($nom)) $criteria['LOWER(nom) LIKE '] = '%'.strtolower($nom).'%';
+        if(!empty($prenoms)) $criteria['LOWER(prenoms) LIKE '] = '%'.strtolower($prenoms).'%';
+        if(!empty($cin_personne)) $criteria['LOWER(cin_personne) LIKE '] = '%'.strtolower($cin_personne).'%';
+        
+        $criteria['fokontany_id'] = $this->fokontany_id;
+
+        $count_citizen = count($this->notebook->citizens($criteria));
+
+        if(!empty($count_citizen)){
+            $data['data'] = [];
+            echo json_encode($data);
+            return TRUE;
+        }
+        
+        if(empty($criteria)){
+            $data['data'] = [];
+            echo json_encode($data);
+            return TRUE;
+        }
+
+        unset($criteria['fokontany_id']);
+
+        $criteria['fokontany_id !='] = $this->fokontany_id;
+        
+        $count_citizen = count($this->notebook->citizens($criteria));
+
+        $other_citizens = $this->notebook->citizensPerPage($criteria, $offset, $limit);
+
+        $data['last_page'] = floor($count_citizen/$limit);
+
+        $data['data'] = $other_citizens;
+        echo json_encode($data);
+
     }
 
     public function households_list()
@@ -356,19 +409,21 @@ class Citizen extends Operator_Controller
             exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
         }
 
-        $data = ['fokontany_id' => $this->fokontany_id, 'chef_menage' => TRUE];
+        $criteria = ['fokontany_id' => $this->fokontany_id, 'chef_menage' => TRUE];
         
-        if($this->input->get()){
-            if($this->input->get('last_name')) $data['nom LIKE'] = '%'.$this->input->get('last_name').'%';
-            if($this->input->get('first_name')) $data['prenoms LIKE'] = '%'.$this->input->get('first_name').'%';
-            if($this->input->get('birth')) $data['date_de_naissance'] = $this->input->get('birth');
-            if($this->input->get('birth_place')) $data['date_de_naissance'] = $this->input->get('birth_place');
-            if($this->input->get('father')) $data['father LIKE'] = '%'.$this->input->get('father').'%';
-            if($this->input->get('mother')) $data['mother LIKE'] = '%'.$this->input->get('mother').'%';
-        }
+        $page = $this->input->get('page');
+        $size = $this->input->get('size');
 
-        $citizens = $this->notebook->citizens($data);
-        echo json_encode($citizens);
+        $limit = ($size);
+        $offset = ($page == 1) ? 0 : $page * $size;
+
+        $citizens = $this->notebook->citizensPerPage($criteria, $offset, $limit);
+        $count_citizen = count($this->notebook->citizens($criteria));
+
+        $data['last_page'] = floor($count_citizen/$limit);
+        $data['data'] = $citizens;
+
+        echo json_encode($data);
     }
 
     public function list_citizen_by_carnet_id()
@@ -1299,7 +1354,7 @@ class Citizen extends Operator_Controller
         else echo json_encode(['error' => 1, 'msg' => 'Personne non identifiée']);
     }
 
-    public function valid_migration_citizen(Type $var = null)
+    public function valid_migration_citizen()
     {
         if (!$this->input->is_ajax_request()) {
             exit('Very ianao :O');
@@ -1322,6 +1377,19 @@ class Citizen extends Operator_Controller
         $data['chef_menage'] = FALSE;
 
         if($this->citizen->update($data)){
+            //Si chef de ménage migré
+            if($person_notebook->chef_menage == TRUE){
+                $old_household = $this->notebook->citizens(['id_personne != ' => $id_personne, 'numero_carnet' => $person_notebook->numero_carnet], 'date_de_naissance', 'ASC');
+
+                if($old_household){
+                    $data_chief = [
+                        'chef_menage' => TRUE,
+                        'id_personne' => $old_household[0]->id_personne
+                    ];
+                    $this->citizen->update($data_chief);
+                }
+            }
+
             $data_migration = [
                 'fokontany_start' => $this->fokontany_id,
                 'fokontany_end' => $person_notebook->fokontany_id,

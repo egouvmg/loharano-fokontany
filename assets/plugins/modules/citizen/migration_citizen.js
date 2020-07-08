@@ -27,9 +27,10 @@ $(function () {
 
             $('#personDetails').modal();
         },
-        pagination:"local",
+        pagination:"remote", //enable remote pagination
         paginationSize:10,
         paginationSizeSelector:[10, 20, 50, 100, 200],
+        ajaxFiltering:true,
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
@@ -41,6 +42,7 @@ $(function () {
                     "dob":"Date de Naissance",
                 },
                 "pagination":{
+                    "page_size":"Taille de page",
                     "first":"Premier",
                     "first_title":"Première Page",
                     "last":"Dernier",
@@ -54,15 +56,18 @@ $(function () {
         }
     });
 
-    $('.speed_access').on('keyup change', function(e){
-        var data = $('#speedForm').serializeArray();
+    households.setLocale("fr-fr");
 
-        $.get('recherche_rapide', data, function(res){
-            if(res.success == 1){
-                households.setData(res.households);
-            }
-            else alert(res.msg);
-        }, 'JSON');
+    $('.speed_access').on('keyup change', function(e){
+        if($(this).val().length < 4) return false;
+
+        var data = {
+            nom:$('#nom').val(),
+            prenoms:$('#prenoms').val(),
+            cin_personne:$('#cin_personne').val()
+        }
+
+        households.setData('liste_menages_fokontany', data);
     });
 
 	$('#nom').on('keyup', function () {

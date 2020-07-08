@@ -1,8 +1,4 @@
 $(function () {
-    var household_head = function (cell, formatterParams) {
-		return cell.getRow().getData().nom + ' ' + cell.getRow().getData().prenoms;
-    };
-
     var is_household_head = function (cell, formatterParams) {
         return (cell.getValue()) ? 'Oui' : 'Non';
     };
@@ -24,20 +20,30 @@ $(function () {
             case 2: return "Orange Money"; break;
             case 3: return "Airtel Money"; break;
             case 4: return "Virement bancaire"; break;
+            case 5: return "Paositra Money"; break;
         }
     };
 
-    var banks = function (cell, formatterParams) {
+    var context = function(cell, formatterParams) {
         var value = cell.getValue();
+        var bank = '';
 
-        switch (value) {
-            case 1: return "BNI"; break;
-            case 2: return "BFV"; break;
-            case 3: return "BOA"; break;
-            case 4: return "Access Banque"; break;
-            case 5: return "BMOI"; break;
-            case 6: return "BGFI"; break;
-            case 7: return "Sipem Banque"; break;
+        switch (cell.getRow().getData().bank) {
+            case 1: bank = "BNI"; break;
+            case 2: bank = "BFV"; break;
+            case 3: bank = "BOA"; break;
+            case 4: bank = "Access Banque"; break;
+            case 5: bank = "BMOI"; break;
+            case 6: bank = "BGFI"; break;
+            case 7: bank = "Sipem Banque"; break;
+        };
+
+        switch(value){
+            case 1: 
+            case 2: 
+            case 3: return "Téléphone : " + cell.getRow().getData().phone; break;
+            case 4: return "Banque : " + bank + ", n° de compte/IBAN : " + cell.getRow().getData().rib  ; break;
+            case 5: return "Compte : " + cell.getRow().getData().paositra_account; break;
         }
     };
     
@@ -269,15 +275,12 @@ $(function () {
 			{column:"created_on", dir:"desc"}
 		],
         columns:[ //Define Table Columns
-            {title:"Aide reçue", field:"name",headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Type", field: "type", width:100, formatter: types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
-            {title:"Date", field:"created_on", width:100, headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Mode de virement", field: "payment_type", width:160, formatter: payment_types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
-            {title:"Téléphone", field:"phone", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Banque", field:"bank", width:100, formatter: banks, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
-            {title:"N° de compte", field:"rib", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"N° de compte Paositra Money", field:"paositra_account", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Description", field:"description", headerFilterPlaceholder:"..." , headerFilter:"input"}  
+            {title:"Aide reçue", field:"name"},
+            {title:"Type", field: "type", width:100, formatter: types},
+            {title:"Date", field:"created_on", width:100},
+            {title:"Mode de virement", field: "payment_type", width:160, formatter: payment_types},
+            {title:"Détails", field: "payment_type", formatter: context},
+            {title:"Description", field:"description"} 
         ],
         pagination:"local",
         paginationSize:5,

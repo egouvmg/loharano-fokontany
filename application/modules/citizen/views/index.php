@@ -616,16 +616,14 @@
                     </form>
                   </div>
                   <div class="col-lg-5">
-                    <h6>Cliquez sur le bouton ci-dessous pour rajouter le citoyen vers un ménage existant dans votre Fokontany</h6>
+                    <h6>Cliquez sur le bouton ci-dessous pour rajouter le citoyen dans un ménage existant dans votre Fokontany</h6>
                     <div class="btn-migration">
                         <button id="migrationCitizenToHousehold" class="btn btn-color-8 mb-1 mr-1"><span class="iconify" data-icon="mdi:file-move-outline" data-inline="false"></span> Rajouter le citoyen dans un ménage existant</button>
                     </div>                  
-                    <h6>Cliquez sur le bouton ci-dessous pour rajouter le citoyen vers votre Fokontany</h6>
+                    <h6>Cliquez sur le bouton ci-dessous pour rajouter le citoyen dans votre Fokontany</h6>
                     <div class="btn-migration">
                         <button id="migrateCitizen" class="btn btn-color-5 mb-1 mr-1"><span class="iconify" data-icon="mdi:file-move-outline" data-inline="false"></span> Rajouter le citoyen dans un nouveau ménage</button>
-                    </div>
-                    <p>Historique des actions</p>
-                    <div id="historyMigration2"></div>                   
+                    </div>                   
                   </div>
                 </div>
               </div>

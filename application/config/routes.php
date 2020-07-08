@@ -151,6 +151,7 @@ $route['valider_migration_vers_menage'] = 'citizen/valid_migration_citizen';
 $route['historique_migration'] = 'citizen/history_migration';
 $route['historique_certificat'] = 'citizen/history_certificate';
 $route['verifier_localite_nouveau_menage'] = 'citizen/check_new_household';
+$route['citoyens_autre_liste'] = 'citizen/citizens_other_list';
 
 //Certificat
 $route['certificate'] = 'citizen/load_citizen_certificate';

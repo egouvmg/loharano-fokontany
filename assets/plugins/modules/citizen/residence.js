@@ -183,9 +183,10 @@ $(function () {
 
             $('#personDetails').modal();
         },
-        pagination:"local",
+        pagination:"remote", //enable remote pagination
         paginationSize:10,
-        paginationSizeSelector:[10, 20, 30, 50, 100, 200],
+        paginationSizeSelector:[10, 20, 50, 100, 200],
+        ajaxFiltering:true,
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
@@ -249,17 +250,15 @@ $(function () {
 	});
 
     $('.speed_access').on('keyup change', function(e){
-        var data = $('#speedForm').serializeArray();
+        if($(this).val().length < 4) return false;
 
-        $.get('recherche_rapide', data, function(res){
-            if(res.success == 1){
-                citizens.setData(res.citizens);
+        var data = {
+            nom:$('#nom').val(),
+            prenoms:$('#prenoms').val(),
+            cin_personne:$('#cin_personne').val()
+        }
 
-                if(res.citizens.length == 0) $('#createHousehold').show();
-                else $('#createHousehold').hide();
-            }
-            else alert(res.msg);
-        }, 'JSON');
+        citizens.setData('citoyens_list', data);
     });
 
     $(document).ready(function () {

@@ -137,7 +137,7 @@
                         <option value="2">Orange Money</option>
                         <option value="3">Airtel Money</option>
                         <option value="4">Virement bancaire</option>
-                        <option value="5">Compte Paositra Money</option>
+                        <option value="5">Paositra Money</option>
                     </select>
                     <div class="error_field error_type"></div>
                   </div>

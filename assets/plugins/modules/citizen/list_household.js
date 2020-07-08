@@ -27,17 +27,26 @@ $(function () {
         }
     };
 
-    var banks = function (cell, formatterParams) {
+    var context = function(cell, formatterParams) {
         var value = cell.getValue();
+        var bank = '';
 
-        switch (value) {
-            case 1: return "BNI"; break;
-            case 2: return "BFV"; break;
-            case 3: return "BOA"; break;
-            case 4: return "Access Banque"; break;
-            case 5: return "BMOI"; break;
-            case 6: return "BGFI"; break;
-            case 7: return "Sipem Banque"; break;
+        switch (cell.getRow().getData().bank) {
+            case 1: bank = "BNI"; break;
+            case 2: bank = "BFV"; break;
+            case 3: bank = "BOA"; break;
+            case 4: bank = "Access Banque"; break;
+            case 5: bank = "BMOI"; break;
+            case 6: bank = "BGFI"; break;
+            case 7: bank = "Sipem Banque"; break;
+        };
+
+        switch(value){
+            case 1: 
+            case 2: 
+            case 3: return "Téléphone : " + cell.getRow().getData().phone; break;
+            case 4: return "Banque : " + bank + ", n° de compte/IBAN : " + cell.getRow().getData().rib  ; break;
+            case 5: return "Compte : " + cell.getRow().getData().paositra_account; break;
         }
     };
 
@@ -77,9 +86,10 @@ $(function () {
             $('#numero_carnet_hidden').val(row.getData().numero_carnet);
             citizens.setData('membres_menage', {numero_carnet:row.getData().numero_carnet});
         },
-        pagination:"local",
+        pagination:"remote", //enable remote pagination
         paginationSize:10,
         paginationSizeSelector:[10, 20, 50, 100, 200],
+        ajaxFiltering:true,
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{
@@ -114,16 +124,13 @@ $(function () {
 		initialSort:[
 			{column:"created_on", dir:"desc"}
 		],
-        columns:[ //Define Table Columns
-            {title:"Aide reçue", field:"name",headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Type", field: "type", width:100, formatter: types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
-            {title:"Date", field:"created_on", width:100, headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Mode de virement", field: "payment_type", width:160, formatter: payment_types, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
-            {title:"Téléphone", field:"phone", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Banque", field:"bank", width:100, formatter: banks, headerFilter:true, headerFilterParams:{values:{1:"Vivres", 2:"Cash", "":""}}},
-            {title:"N° de compte", field:"rib", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"N° de compte Paositra Money", field:"paositra_account", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Description", field:"description", headerFilterPlaceholder:"..." , headerFilter:"input"}  
+        columns:[ //Define Table Columns 
+            {title:"Aide reçue", field:"name"},
+            {title:"Type", field: "type", width:100, formatter: types},
+            {title:"Date", field:"created_on", width:100},
+            {title:"Mode de virement", field: "payment_type", width:160, formatter: payment_types},
+            {title:"Détails", field: "payment_type", formatter: context},
+            {title:"Description", field:"description"} 
         ],
         pagination:"local",
         paginationSize:5,
@@ -387,18 +394,14 @@ $(function () {
 
     $('.speed_access').on('keyup change', function(e){
         if($(this).val().length < 4) return false;
-        var data = $('#speedForm').serializeArray();
 
-        $.get('recherche_rapide', data, function(res){
-            if(res.success == 1){
-                citizens.setData(res.citizens);
-                households.setData(res.households);
+        var data = {
+            nom:$('#nom').val(),
+            prenoms:$('#prenoms').val(),
+            cin_personne:$('#cin_personne').val()
+        }
 
-                if(res.citizens.length == 0) $('#createHousehold').show();
-                else $('#createHousehold').hide();
-            }
-            else alert(res.msg);
-        }, 'JSON');
+        households.setData('liste_menages_fokontany', data);
     });
 
     $(document).ready(function () {

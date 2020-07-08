@@ -932,11 +932,12 @@ img.loading{
 #citizen-details-tabs li a.active {
     background: #06d6a0;
     border-radius: 0;
+    color: #fff;
 }
 #citizen-details-tabs li a {
     background: #e8e8e8;
     border-radius: 0;
-    color: #fff;
+    color: #060606;
 }
 a.extrem-left{
     border-top-left-radius: 35px !important;
