@@ -914,7 +914,10 @@ class Citizen extends Operator_Controller
             $origin_page = $data['origin_page'];
             if($origin_page==="residence"){
                 ++$lf_residence;
+                $data['motif'] = "Certificat de Résidence :".$data['motif'];
+                $this->saveHistorique($data, $lf_residence);
 
+            /*
                 // save into historique
                 $data_historique_residence = [];
                 //$data_historique_residence['id'] = 2;
@@ -925,15 +928,40 @@ class Citizen extends Operator_Controller
                 $data_historique_residence['lf'] = gmp_intval(gmp_init($lf_residence));
 
                 $this->citizen->insertHistoriqueResidence($data_historique_residence);
-                
+            */
                 // save into historique
                 $data_tmp['lf_residence']= $lf_residence;
             }
-            if($origin_page==="vie"){++$lf_vie;$data_tmp ['lf_vie']=$lf_vie;}
-            if($origin_page==="move"){++$lf_move;$data_tmp['lf_move']= $lf_move;}
-            if($origin_page==="support"){++$lf_support;$data_tmp['lf_support']= $lf_support;}
-            if($origin_page==="celibacy"){++$lf_celibacy;$data_tmp['lf_celibacy']= $lf_celibacy;}
-            if($origin_page==="behavior"){++$lf_behavior;$data_tmp['lf_behavior']= $lf_behavior;}
+            if($origin_page==="vie"){
+                ++$lf_vie;
+                $data['motif'] = "Certificat de vie";
+                $this->saveHistorique($data, $lf_vie);
+                $data_tmp ['lf_vie']=$lf_vie;
+            }
+            if($origin_page==="move"){
+                ++$lf_move;
+                $data['motif'] = "Certificat de déménagement";
+                $this->saveHistorique($data, $lf_move);
+                $data_tmp['lf_move']= $lf_move;
+            }
+            if($origin_page==="support"){
+                ++$lf_support;
+                $data['motif'] = "Certificat de Prise en charge";
+                $this->saveHistorique($data, $lf_support);
+                $data_tmp['lf_support']= $lf_support;
+            }
+            if($origin_page==="celibacy"){
+                ++$lf_celibacy;
+                $data['motif'] = "Certificat de Célibat";
+                $this->saveHistorique($data, $lf_celibacy);
+                $data_tmp['lf_celibacy']= $lf_celibacy;
+            }
+            if($origin_page==="behavior"){
+                ++$lf_behavior;
+                $data['motif'] = "Certificat de Bonne conduite";
+                $this->saveHistorique($data, $lf_behavior);
+                $data_tmp['lf_behavior']= $lf_behavior;
+            }
 
             
             if(isset($data['for_person'])){
@@ -1481,6 +1509,20 @@ class Citizen extends Operator_Controller
         }
         else echo json_encode(['success' => 1, 'citizens' => [], 'households' => [], 'other_citizens' => []]);
     }
+
+    private function saveHistorique($arg_data, $arg_lf_residence){
+        // save into historique
+        $data_historique_residence = [];
+        //$data_historique_residence['id'] = 2;
+        $data_historique_residence['date_generation'] = date('Y-m-d H:i:s');
+        $data_historique_residence['motif'] = $arg_data['motif'];
+        $data_historique_residence['fanisana'] = isset($arg_data['fanisana'])?isset($arg_data['fanisana']):0;
+        $data_historique_residence['id_personne'] = gmp_intval(gmp_init($arg_data['id_personne']));
+        $data_historique_residence['lf'] = gmp_intval(gmp_init($arg_lf_residence));
+
+        $this->citizen->insertHistoriqueResidence($data_historique_residence);
+    }
+
 
 }
 
