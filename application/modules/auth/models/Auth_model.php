@@ -2,6 +2,12 @@
 
 class Auth_model extends CI_Model
 {
+	private $_audit = "audit";
+
+	public function __construct(){      
+        $this->load->database();
+    }
+
 	public function login($identity, $password)
 	{
 
@@ -10,12 +16,6 @@ class Auth_model extends CI_Model
 			$this->set_error('login_unsuccessful');
 			return FALSE;
 		}
-
-		// $options = [
-		// 	'cost' => 12,
-		// ];
-
-		// $crypted_pwd = password_hash($password, PASSWORD_DEFAULT, $options);
 
 		$query = $this->db->select('email, id, password, active, first_name, last_name')
 		                  ->where('email', $identity)
@@ -35,6 +35,12 @@ class Auth_model extends CI_Model
 					];
 
 					$this->session->set_userdata($data);
+					
+					/**
+					 * Audit login
+					 *   */
+					$this->login_audit();
+
 					return TRUE;
 				}
 			}
@@ -54,5 +60,32 @@ class Auth_model extends CI_Model
 			return $query->row()->group_id;
 
 		return 0;
-    }
+	}
+	
+
+	/**
+	 * Audit login
+	 *   */
+
+	public function login_audit() {
+		$data = [
+			'user' => $this->session->user_id. '-' .$this->session->user_name,
+			'action' => 'LOGIN',
+			'data' => '',
+			'old_data' => ''
+		];
+
+		return $this->db->insert($this->_audit, $data);
+	}
+
+	public function logout_audit() {
+		$data = [
+			'user' => $this->session->user_id. '-' .$this->session->user_name,
+			'action' => 'LOGOUT',
+			'data' => '',
+			'old_data' => ''
+		];
+
+		return $this->db->insert($this->_audit, $data);
+	}
 }

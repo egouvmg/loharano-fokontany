@@ -39,9 +39,12 @@ class Citizen_model extends CI_Model
 	}
 
 	public function insert($data) {
+		$data["created_by"] = $this->session->user_id;
 		$this->db->insert($this->_table, $data);
+
 		return $this->db->insert_id();
 	}
+	
 	public function insertHistoriqueResidence($data) {
 		$this->db->insert($this->_table_historique_residence, $data);
 		return $this->db->insert_id();
@@ -49,9 +52,13 @@ class Citizen_model extends CI_Model
 
 	public function update($data) {
 		$id_personne = $data["id_personne"];
+		
 		$this->db->where('id_personne', $id_personne);
 		unset($data["id_personne"]);
+
+		$data["updated_by"] = $this->session->user_id;
 		$this->db->update($this->_table, $data);
+		
 		return $id_personne;
 	}
 	

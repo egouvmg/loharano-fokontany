@@ -82,6 +82,9 @@ class Auth extends MY_Controller {
 	{
 		$this->data['title'] = "Déconnexion encours ...";
 
+		if(!empty($this->session->user_id) && !empty($this->session->user_name))
+			$this->auth->logout_audit();
+
 		// redirect them to the login page
 		$this->session->sess_destroy();
 		redirect('se_connecter', 'refresh');

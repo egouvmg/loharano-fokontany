@@ -473,7 +473,7 @@ class Citizen extends Operator_Controller
                             if(empty($data[$required][$i])) $missing_fields[] = [$required.$index ,'Champ requis.'];
                         
                         if($data['cin_date'][$i] != ''){
-                            $d1 = new DateTime($data['cin_date'][$i]);
+                            $d1 = new DateTime($data['birth'][$i]);
                             $d2 = new DateTime();
 
                             $diff = $d2->diff($d1);
