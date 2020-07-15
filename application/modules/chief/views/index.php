@@ -49,7 +49,7 @@
   <div class="container-fluid">
     <div class=row>
       <div class="main-side-bar">
-      <ul class="main-menu">
+        <ul class="main-menu">
           <li>
             <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('users');?></a>
             <ul class="sub-main-menu" style="display:none;">
@@ -81,7 +81,43 @@
 
         <!-- Page Content -->
         <div class="container-fluid">
+          
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="line-bloc">
+              <h6>Rapport global</h6>
+              <div class="container-bloc-link">
+                <a href="#" class="bloc-link color-7">
+                  <span class="count"><?= $household_count;?></span> Ménages
+                </a>
+                <a href="#" class="bloc-link color-7">
+                  <span class="count"><?= $citizen_count;?></span> Citoyens
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="line-bloc">
+              <h6>Indicateurs démographiques</h6>
+              <div class="container-bloc-link">
+                <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<ul class='m-0'><li>Moyenne d'age des hommes : <strong><?=$male_avg_age;?></strong></li><li>Moyenne d'age des femmes : <strong><?=$female_avg_age;?></strong></li></ul>">
+                  <span class="pourcent"><?= $male_ratio;?>% / <?= $female_ratio;?>%</span> Hommes/Femmes
+                </a>
+                <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<ul class='m-0'><li><strong><?=$minor_male;?></strong> mineurs masculins</li><li><strong><?=$minor_female;?></strong> mineurs féminins</li><li><strong><?=$major_male;?></strong> majeurs masculins</li><li><strong><?=$major_female;?></strong> majeurs féminins</li></ul>">
+                  <span class="pourcent"><?= $minor_ratio;?>% / <?= $major_ratio;?>%</span> Mineurs/Majeurs
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        </div>
+        <div class="container-fluid">
           <div class="line-bloc">
+                <h6>Accès rapide</h6>
             <div class="container-bloc-link">
               <a href="ajout_utilisateur_fokontany" class="bloc-link color-1">
                 <span class="iconify" data-icon="ant-design:user-add-outlined" data-inline="false"></span> <?=$this->lang->line('add_user');?>
@@ -107,5 +143,9 @@
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
+  <script>
+    $('.bloc-link').tooltip({ boundary: 'window' });
+  </script>
+<div id="appVersion"> Loharano Fokontany, version <?= APP_VERSION;?> &copy; <a href="https://digital.gov.mg" target="_blank">e-Gouvernance Madagascar</a> - <?= date("Y");?></div>
 </body>
 </html>

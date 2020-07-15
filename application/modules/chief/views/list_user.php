@@ -178,5 +178,6 @@
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
 	<script src="<?= plugin('modules', 'chief', 'list_user.js');?>"></script>
+<div id="appVersion"> Loharano Fokontany, version <?= APP_VERSION;?> &copy; <a href="https://digital.gov.mg" target="_blank">e-Gouvernance Madagascar</a> - <?= date("Y");?></div>
 </body>
 </html>

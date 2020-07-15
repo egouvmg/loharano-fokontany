@@ -408,11 +408,21 @@ class Citizen extends Operator_Controller
         if (!$this->input->is_ajax_request()) {
             exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
         }
-
-        $criteria = ['fokontany_id' => $this->fokontany_id, 'chef_menage' => TRUE];
         
+        $nom = $this->input->get('nom');
+        $prenoms = $this->input->get('prenoms');
+        $cin_personne = $this->input->get('cin_personne');
         $page = $this->input->get('page');
         $size = $this->input->get('size');
+
+        $criteria = [];
+        
+        if(!empty($nom)) $criteria['LOWER(nom) LIKE '] = '%'.strtolower($nom).'%';
+        if(!empty($prenoms)) $criteria['LOWER(prenoms) LIKE '] = '%'.strtolower($prenoms).'%';
+        if(!empty($cin_personne)) $criteria['LOWER(cin_personne) LIKE '] = '%'.strtolower($cin_personne).'%';
+        
+        $criteria['fokontany_id'] = $this->fokontany_id;
+        $criteria['chef_menage'] = TRUE;
 
         $limit = ($size);
         $offset = ($page == 1) ? 0 : $page * $size;
@@ -1419,8 +1429,8 @@ class Citizen extends Operator_Controller
             }
 
             $data_migration = [
-                'fokontany_start' => $this->fokontany_id,
-                'fokontany_end' => $person_notebook->fokontany_id,
+                'fokontany_start' => $person_notebook->fokontany_id,
+                'fokontany_end' => $this->fokontany_id,
                 'id_person' => $id_personne
             ];
             

@@ -38,6 +38,61 @@ class Chief extends Chief_Controller
 	public function index()
 	{
         $this->data['title'] = "Tableau de bord";
+        
+        $this->data['female_ratio'] = 0;
+        $this->data['male_ratio'] = 0;
+        $this->data['minor_ratio'] = 0;
+        $this->data['major_ratio'] = 0;
+        $this->data['minor_female'] = 0;
+        $this->data['major_female'] = 0;
+        $this->data['female_avg_age'] = 0;
+        $this->data['male_avg_age'] = 0;
+        $this->data['minor_male'] = 0;
+        $this->data['major_male'] = 0;
+
+        //Count household/citizen
+        $citizen_count = count($this->notebook->citizens(['borough_id' => $this->borough_id]));
+        $household_count = $this->notebook->household_sum(['borough_id' => $this->borough_id]);
+
+        $this->data['household_count'] = ($household_count) ? number_format($household_count->household_count, 0, '', ' ') : 0;
+        $this->data['citizen_count'] = number_format($citizen_count, 0, '', ' ');
+
+        if($citizen_count){
+            $ratio_sexe = $this->citizen->global_ratio_sexe();
+
+            $_minor = 0;
+            $_major = 0;
+            $_total = 0;
+
+            foreach($ratio_sexe as $value){
+                $_total += $value->minor + $value->major;
+
+                if($value->sexe == 0){
+                    $this->data['female_ratio'] = number_format(($value->number/$citizen_count)*100, 2, ',', '');
+                    $this->data['female_avg_age'] = number_format($value->avg_age, 0, ',', '');
+                    $this->data['minor_female'] = number_format($value->minor, 0, ',', ' ');
+                    $this->data['major_female'] = number_format($value->major, 0, ',', ' ');
+
+                    $_minor += $value->minor;
+                    $_major += $value->major;
+                }
+                if($value->sexe == 1){
+                    $this->data['male_ratio'] =  number_format(($value->number/$citizen_count)*100, 2, ',', '');
+                    $this->data['male_avg_age'] = number_format($value->avg_age, 0, ',', '');
+                    $this->data['minor_male'] = number_format($value->minor, 0, ',', ' ');
+                    $this->data['major_male'] = number_format($value->major, 0, ',', ' ');
+
+                    $_minor += $value->minor;
+                    $_major += $value->major;
+                }
+            }
+
+            if($_total != 0){
+                $this->data['minor_ratio'] = number_format(($_minor/$_total)*100, 2, ',', '');
+                $this->data['major_ratio'] = number_format(($_major/$_total)*100, 2, ',', '');
+            }
+
+        }
         $this->load->view('index', $this->data);
 	}
 
