@@ -74,4 +74,9 @@ $(function () {
         });
 
     }
+
+    $(".remove").click(function(e){
+        e.preventDefault();
+        $(this).parents().eq(1).remove();
+    });
 });

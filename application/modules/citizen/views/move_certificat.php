@@ -133,7 +133,7 @@
                $nombre_personnes=1;
                foreach($membres_menage as $membre){
                  echo '<div class="row">
-                <div class="col-sm-5">
+                <div class="col-sm-4">
                   <span class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</span><span id="name">'." ".$membre->nom." ".$membre->prenoms.'</span>
                   <p class="font-italic">M./Mme/Mlle</p>
                 </div>
@@ -143,9 +143,14 @@
                   <p class="font-italic">né(e) le</p>
                 </div>
 
-                  <div class="col-sm-4">
+                  <div class="col-sm-3">
                     <span class="font-weight-bold" style="margin-bottom: 0px;">CNI</span><span id="name">'." ".$membre->cin_personne.'</span>
-                  </div> 
+                  </div>
+
+                  <div class="col-sm-2">
+                   <button class="remove btn"><i class="iconify" data-icon="uil:multiply" data-inline="false" class="fon-size:24px"></i></button>
+                  </div>
+
               </div>';
                }
               ?>
