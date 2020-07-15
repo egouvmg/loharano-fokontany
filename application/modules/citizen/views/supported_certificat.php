@@ -331,7 +331,7 @@
                   </div>
                 </div>
                   <div class="col-sm-2">
-                      <span>pour</span>
+                      <span></span>
                   </div>
               </div>
 
