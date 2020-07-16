@@ -15,7 +15,6 @@
 	<link href="<?= plugin('bootstrap', 'css', 'bootstrap.min.css');?>" rel="stylesheet">
 	<link href="<?= plugin('tabulator', 'css', 'tabulator.min.css');?>" rel="stylesheet">
 	<?= css('admin');?>
-
 	<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
 </head>
 
