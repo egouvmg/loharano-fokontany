@@ -416,6 +416,9 @@ $(function () {
 
         citizens.setData('citoyens_list', data);
         other_citizens.setData('citoyens_autre_liste', data);
+
+        if(citizens.getData().length == 0 && other_citizens.getData().length == 0) $('#createHousehold').show();
+        else $('#createHousehold').hide();
     });
 
 	$('#nom').on('keyup', function () {
