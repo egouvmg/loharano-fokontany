@@ -280,8 +280,15 @@
 
              <div class="row">
                 <div class="col-sm-6">
-                    <span>Certifie que :</span>
+                    <div class="form-group row" style="margin-bottom: 0px;">
+                    <div class="col-sm-3 col-form-label">
+                      <label for="tao" class="" style="margin-bottom: 0px;">Certifie que :</label>
+                    </div>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control border-0" style="margin-left:-60px;padding-bottom: 2px;" id="tao" placeholder="Nom de la personne prise en charge" value=""> 
+                    </div>
                   </div>
+                </div>
                   <div class="col-sm-6">
                   <span>est pris en charge </span>
                   </div>
@@ -324,7 +331,7 @@
                   </div>
                 </div>
                   <div class="col-sm-2">
-                      <span>pour</span>
+                      <span></span>
                   </div>
               </div>
 
