@@ -87,9 +87,11 @@ class Citizen_model extends CI_Model
 		
 		if(!empty($criteria)){
 			$this->db->where($criteria);
+			$this->db->order_by('chef_menage', 'desc');
 		}
-	
-		$this->db->order_by('nom', 'asc');
+		else{
+		 $this->db->order_by('nom', 'asc');
+		}
 		
 		$query = $this->db->get();
 	

@@ -581,7 +581,7 @@ $(function () {
     }
 
     function addText(texte, x, y, alignemnt){
-      pdf.text(texte, x==null?row:x, y==null?line:y, null, null, alignemnt);
+      pdf.text(texte==null?'':texte, x==null?row:x, y==null?line:y, null, null, alignemnt);
       line += 12;  
     }
     
