@@ -118,7 +118,7 @@
               <div class="form-group row" style="margin-bottom: 0px;">
                 <div class="col-sm-10">
                   <span class="font-weight-bold" style="margin-bottom: 0px;">Lf :</span><?= " ".addslashes($citizen_data[0]->lf_residence+1).' . '.date('y')."" ?>
-                  </div>
+                </div>
               </div>
 
             </div>

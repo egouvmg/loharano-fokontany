@@ -79,4 +79,38 @@ $(function () {
         e.preventDefault();
         $(this).parents().eq(1).remove();
     });
+
+    $('.date_type').on('keypress keyup', function (e) {
+		var charCode = (e.which) ? e.which : e.keyCode;
+		if (charCode == 8) return false;
+		if (charCode > 31 && (charCode < 48 || charCode > 57))
+			return false;
+
+		var index = $('.tab-pane.active').data('index');
+		var foo = $(this).val();
+
+		if (foo.length >= 10) {
+			return false;
+		}
+
+		var foo_tab = foo.split('/');
+
+		if (foo_tab.length == 1 && foo_tab[0].length == 2) {
+			if (foo_tab[0] > 31 || foo_tab[0] < 1)
+				return false;
+			foo = foo_tab[0] + '/';
+			$(this).val(foo);
+		}
+		if (foo_tab.length == 2 && foo_tab[1].length == 2) {
+			if (foo_tab[1] > 12 || foo < 1)
+				return false;
+			foo = foo_tab[0] + '/' + foo_tab[1] + '/';
+			$(this).val(foo);
+		}
+
+		if (foo_tab.length == 3 && foo_tab[2]) {
+			foo = foo_tab[0] + '/' + foo_tab[1] + '/' + foo_tab[2];
+			$(this).val(foo);
+		}
+	});
 });

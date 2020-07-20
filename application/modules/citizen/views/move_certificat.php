@@ -52,7 +52,7 @@
   </nav>
 
   <div class="container">
-    <div class=row>
+    <div class="row margin-content">
       <div class="main-container">
         <!-- Page title --> 
         <div class="text-center">
@@ -70,7 +70,7 @@
         <!-- End Page title -->
 
         <!-- Page Content -->
-        <div class="row">
+        <div class="row" style=>
             <div class="col-lg-12">
                 <div id="users"></div>
                 <button type="button" class="btn btn-primary" id="pdf"> Imprimer pdf</button>
@@ -106,17 +106,16 @@
           <!--FOKONTANY-->
           <div class="row"><!-- https://codepen.io/pen/ style="background-color:lavender;"-->
             <div class="col-sm-7"  style="background-color:white;">
-              <div class="form-group row" style="margin-bottom: 0px;">
-               <label for="fokontany" class="col-sm-3 col-form-label font-weight-bold">FOKONTANY :</label>
-               <div class="col-sm-9">
-                 <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="fokontany" value=<?= "'".addslashes($citizen_data[0]->libelle_fokontany)."'" ?>> 
+
+              <div class="form-group row">
+              <div class="col-sm-8">
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">FOKONTANY :</span><?=" ".$citizen_data[0]->libelle_fokontany?>
                 </div>
               </div>
 
-              <div class="form-group row" style="margin-bottom: 0px;">
-               <label for="Lf" class="col-sm-2 col-form-label font-weight-bold">Lf :</label>
-               <div class="col-sm-10">
-                 <input readonly type="text" class="form-control border-0" style="margin-left:-50px;" id="Lf" value=<?= "'".addslashes($citizen_data[0]->lf_move+1).' . '.date('y')."'" ?>> 
+              <div class="form-group row">
+                <div class="col-sm-10">
+                    <span class="font-weight-bold" style="margin-bottom: 0px;">Lf :</span><?= " ".addslashes($citizen_data[0]->lf_residence+1).' . '.date('y')."" ?>
                 </div>
               </div>
             </div>
@@ -129,8 +128,7 @@
           <!--CONTENUS-->
           <div class="row">
             <div class="col-sm-12" style="background-color:white;">
-            <?=
-               $nombre_personnes=1;
+            <?php
                foreach($membres_menage as $membre){
                  echo '<div class="row">
                 <div class="col-sm-4">
@@ -179,31 +177,29 @@
           </div>
           </div>
           <!--FOOTER-->
-             <div class="row">
-                <div class="col-sm-6">
-                <span class="font-weight-bold" style="margin-bottom: 0px;">Adiresy taloha (Ancienne adresse) : </span><?=" ".$citizen_data[0]->adresse_actuelle ?>
+             <div class="row" style="background-color:white;">
+                <div class="col-sm-6" style="margin-bottom: 0px;">
+                  <span class="font-weight-bold">Adiresy taloha (Ancienne adresse) : </span><?=" ".$citizen_data[0]->adresse_actuelle ?>
                 </div>
 
-                <div class="col-sm-6">
-                  <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-9 col-form-label">
-                      <label for="tao" class="font-weight-bold" style="margin-bottom: 0px;">Daty hifindrana (date de déménagement) :</label>
-                    </div>
-                    <div class="col-sm-3">
-                      <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="tao" value="" placeholder="Daty hifindrana....."> 
+                <div class="col-sm-6" style="margin-bottom: 0px;">
+                  <div class="form-group row">
+                    <label for="tao" class="col-sm-7 col-form-label font-weight-bold" style="margin-bottom: 0px;">Daty hifindrana (date de déménagement) :</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control border-0 date_type" style="margin-left:-45px;padding-bottom: 2px;" id="tao" value="" placeholder="jj/mm/aaaa"> 
                     </div>
                   </div>
                 </div>
              </div> 
 
-             <div class="row">
-                <div class="col-sm-6">
+             <div class="row" style="background-color:white;">
+                <div class="col-sm-12">
                     <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-8 col-form-label">
-                        <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">Adiresy vaovao (Nouvelle adresse) :</label>
+                      <div class="col-sm-3 col-form-label">
+                        <label for="Teraka" class="font-weight-bold">Adiresy vaovao (Nouvelle adresse) :</label>
                       </div>
-                      <div class="col-sm-4">
-                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Adiresy vaovao....."> 
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control border-0" style="margin-left:-40px;" id="Teraka" value="" placeholder="Adiresy vaovao....."> 
                       </div>
                     </div>
                 </div>
@@ -219,12 +215,7 @@
 
           <div class="row">
             <div class="col-sm-5" style="background-color:white;">
-            <div class="form-group row" style="margin-bottom: 0px;">
-                <label for="Lf" class="col-sm-5 col-form-label font-weight-bold">N° :</label>
-                <div class="col-sm-7">
-                  <input readonly type="text" class="form-control border-0" style="margin-left:-150px;" id="Lf" value=<?= "'".addslashes($reference).'  ./'.date('y')."'" ?>> 
-                </div>
-              </div>
+              <span class="font-weight-bold">N° :</span><?= " ".addslashes($reference).'  ./'.date('y')?>
             </div>
 
             <!--Ecusson-->
@@ -234,29 +225,15 @@
 
             <div class="col-sm-5" style="background-color:white;">
             <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-4 col-form-label">
-                      <label for="Zanak" class="font-weight-bold" style="margin-bottom: 0px;">Natao teto :</label>
-                      <p class="font-italic">Fait à </p>
-                    </div>
-                    <div class="col-sm-8">
-                      <input readonly type="text" class="form-control border-0" style="margin-left:-30px;padding-bottom: 2px;" id="Zanak" value=<?= "'".$citizen_data[0]->libelle_fokontany."'" ?>> 
-                    </div>
-                  </div>
-                </div>
+              <div class="col-sm-6" style="margin-bottom: 0px;">
+                  <span class="font-weight-bold">Natao teto :</span><?=" ".$citizen_data[0]->libelle_fokontany ?>
+                  <p class="font-italic">le</p>
+              </div> 
 
-                <div class="col-sm-6">
-                  <div class="form-group row" style="margin-bottom: 0px;">
-                      <div class="col-sm-5 col-form-label">
-                        <label for="sy" class="font-weight-bold" style="margin-bottom: 0px;">androany faha</label>
-                        <p class="font-italic">le</p>
-                      </div>
-                      <div class="col-sm-7">
-                        <input readonly type="text" class="form-control border-0" style="margin-left: -20px;padding-bottom: 2px;" id="sy" value=<?= "'".date('d-m-Y')."'" ?>> 
-                      </div>
-                  </div>
-                </div>
+              <div class="col-sm-6" style="margin-bottom: 0px;">
+                  <span class="font-weight-bold">androany faha </span><?= " ".date('d/m/Y')?>
+                  <p class="font-italic">Fait à </p>
+              </div>   
               </div>             
             </div>
           </div>
