@@ -52,7 +52,7 @@
   </nav>
 
   <div class="container">
-    <div class=row>
+    <div class="row margin-content">
       <div class="main-container">
         <!-- Page title --> 
         <div class="text-center">
@@ -129,7 +129,7 @@
             <div class="col-sm-12" style="background-color:white;">
              <div class="row">
                 <div class="col-sm-5">
-                  <span class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</span><span id="name"><?= " ".$citizen_data[0]->nom." ".$citizen_data[0]->prenoms."'" ?></span>
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">Atoa/Rtoa :</span><span id="name"><?= " ".$citizen_data[0]->nom." ".$citizen_data[0]->prenoms ?></span>
                   <p class="font-italic">M./Mme/Mlle</p>
                 </div>
 
@@ -238,7 +238,7 @@
             <div class="col-sm-6" style="background-color:white;">
             <div class="row">
                 <div class="col-sm-6">
-                  <span class="font-weight-bold" style="margin-bottom: 0px;">Natao teto :</span><?=$citizen_data[0]->libelle_fokontany?>
+                  <span class="font-weight-bold" style="margin-bottom: 0px;">Natao teto :</span><?=" ".$citizen_data[0]->libelle_fokontany?>
                   <p class="font-italic">Fait à</p>
                 </div>
 

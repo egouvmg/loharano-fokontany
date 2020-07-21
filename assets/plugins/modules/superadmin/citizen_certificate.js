@@ -67,8 +67,8 @@ $(function () {
                 //doc.addImage( img1, 'PNG', 0, 296, 420, 296); // A5 sizes
                 var today = new Date();
                 var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-                namepdf =  ($("#origin_page").val()=="move"?"demenagement":$("#origin_page").val())+"_"+$("#name").text()+"_"+date;  
-                namepdf = "certificat"+"_"+namepdf;
+                namepdf =  ($("#origin_page").val()=="move"?"demenagement":($("#origin_page").val()=="support"?"PriseEnCharge":($("#origin_page").val()=="behavior"?"BonneConduite":($("#origin_page").val()=="celibacy"?"Celibat":($("#origin_page")).val()))))+"_"+$("#name").text()+"_"+date;  
+                namepdf = "Certificat"+"_"+namepdf;
                 doc.save(namepdf);
             }
         });
@@ -112,5 +112,18 @@ $(function () {
 			foo = foo_tab[0] + '/' + foo_tab[1] + '/' + foo_tab[2];
 			$(this).val(foo);
 		}
+    });
+    
+    $('.cin_personne').on('keypress', function (event) {
+        if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
+            event.preventDefault(); // ne pas permettre la saisie de character lettre
+        } else {
+            var foo = $(this).val().split(" ").join("");
+
+            if (foo.length > 0)
+                foo = foo.match(new RegExp('.{1,3}', 'g')).join(" ");
+
+            $(this).val(foo);
+        }
 	});
 });

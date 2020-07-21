@@ -52,7 +52,7 @@
   </nav>
 
   <div class="container">
-    <div class=row>
+    <div class="row margin-content">
       <div class="main-container">
         <!-- Page title --> 
         <div class="text-center">

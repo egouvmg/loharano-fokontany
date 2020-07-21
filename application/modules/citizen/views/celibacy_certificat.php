@@ -52,7 +52,7 @@
   </nav>
 
   <div class="container">
-    <div class=row>
+    <div class="row margin-content">
       <div class="main-container">
         <!-- Page title --> 
         <div class="text-center">
@@ -232,7 +232,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">CNI</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-130px;padding-bottom: 2px;" id="tao" value="" placeholder="Kara-panondrom-pirenena..."> 
+                      <input type="text" class="form-control border-0 cin_personne" style="margin-left:-130px;padding-bottom: 2px;" id="tao" value="" placeholder="000 000 000 000"> 
                     </div>
                   </div>
                 </div>
@@ -243,7 +243,7 @@
                         <label for="Zom" class="" style="margin-bottom: 0px;">Nomeny ny (du)</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="Daty..."> 
+                        <input type="text" class="form-control border-0 date_type" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="jj/mm/aaaa"> 
                       </div>
                     </div>
                   </div> 
@@ -291,7 +291,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">CNI</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0" style="margin-left:-130px;padding-bottom: 2px;" id="tao" value="" placeholder="Kara-panondrom-pirenena..."> 
+                      <input type="text" class="form-control border-0 cin_personne" style="margin-left:-130px;padding-bottom: 2px;" id="tao" value="" placeholder="000 000 000 000"> 
                     </div>
                   </div>
                 </div>
@@ -302,7 +302,7 @@
                         <label for="Zom" class="" style="margin-bottom: 0px;">Nomeny ny (du)</label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="Daty..."> 
+                        <input type="text" class="form-control border-0 date_type" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="jj/mm/aaaa"> 
                       </div>
                     </div>
                   </div> 

@@ -52,7 +52,7 @@
   </nav>
 
   <div class="container">
-    <div class=row>
+    <div class=row  style="background-color:white;">
       <div class="main-container">
         <!-- Page title --> 
         <div class="text-center">
@@ -105,24 +105,29 @@
           </div>
           
           <div class="row">
-            <div class="col-sm-8"  style="background-color:white;">
-              <span class="font-weight-bold">Le président du fokontany <?= " ".$citizen_data[0]->libelle_fokontany."" ?>, Commune Urbaine 
-              d'Antananarivo, 2éme Arrondissement, selon la déclaration de l'intéressé(e), confirmé par deux témoins
+            <div class="col-sm-8" style="background-color:white;">
+              <span class="font-weight-bold" style="background-color:white;">Le président du fokontany <?= " ".$citizen_data[0]->libelle_fokontany."" ?>, Commune Urbaine 
+              d'Antananarivo, Arrondissement <?= " ".$this->data["info_fokontany"]->borough_name?>, selon la déclaration de l'intéressé(e), confirmé par deux témoins
               soussignés :
               </span>
             </div>
-          </div><br>
+            <div class="col-sm-4" style="background-color:white;">
+            <br><br><br><br>
+            </div>
+          </div>
+          
+          
 
           <!--CONTENUS-->
           <div class="row">
             <div class="col-sm-12" style="background-color:white;">
              <div class="row">
-                <div class="col-sm-5">
+                <div class="col-sm-5" style="background-color:white;">
                   <span class="font-weight-bold" style="margin-bottom: 0px;">Le déclarant(e) :</span><span id="name"><?= " ".$citizen_data[0]->nom." ".$citizen_data[0]->prenoms."" ?></span>
                 </div>
 
-                <div class="col-sm-4"></div>
-                  <div class="col-sm-3">
+                <div class="col-sm-4" style="background-color:white;"></div>
+                  <div class="col-sm-3" style="background-color:white;">
                     <span class="font-weight-bold" style="margin-bottom: 0px;">CIN N° :</span><?= " ".$citizen_data[0]->cin_personne."" ?>
                   </div>
                 </div>
@@ -199,7 +204,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">CIN N°</label>
                       </div>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="CIN du Témoin 1" value=""> 
+                        <input type="text" class="form-control border-0 cin_personne" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="000 000 000 000" value=""> 
                       </div>
                   </div>
                 </div>
@@ -223,7 +228,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">le</label>
                     </div>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control border-0" style="margin-left:-170px;padding-bottom: 2px;" id="tao" placeholder="Date obtention CIN du Témoin 1" value=""> 
+                      <input type="text" class="form-control border-0 date_type" style="margin-left:-170px;padding-bottom: 2px;" id="tao" placeholder="jj/mm/aaaa" value=""> 
                     </div>
                   </div>
                 </div>
@@ -247,7 +252,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">CIN N°</label>
                       </div>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control border-0" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="CIN du Témoin 2" value=""> 
+                        <input type="text" class="form-control border-0 cin_personne" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="000 000 000 000" value=""> 
                       </div>
                   </div>
                 </div>
@@ -271,7 +276,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">le</label>
                     </div>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control border-0" style="margin-left:-170px;padding-bottom: 2px;" id="tao" placeholder="Date obtention CIN du Témoin 2" value=""> 
+                      <input type="text" class="form-control border-0 date_type" style="margin-left:-170px;padding-bottom: 2px;" id="tao" placeholder="jj/mm/aaaa" value=""> 
                     </div>
                   </div>
                 </div>
@@ -335,14 +340,14 @@
                   </div>
               </div>
 
-             <div class="row">
-                <div class="col-sm-4">
+             <div class="row" style="background-color:white;">
+                <div class="col-sm-4" style="background-color:white;">
                   <span class="font-weight-bold">Témoin 1</span>  
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="background-color:white;">
                   <span class="font-weight-bold">Témoin 2</span>  
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="background-color:white;">
                   <span class="font-weight-bold">Le déclarant(e)</span>  
                 </div>
              </div>
@@ -351,7 +356,7 @@
           </div>
           <!--FOOTER-->
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12" style="background-color:white;">
                   <br>  <br> <br>  <br> 
             </div>
           </div>
@@ -380,7 +385,7 @@
           </div>
 
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12" style="background-color:white;">
                   <br>  <br> <br>  <br> 
             </div>
           </div>
