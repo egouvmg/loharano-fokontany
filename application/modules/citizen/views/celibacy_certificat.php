@@ -217,10 +217,10 @@
              <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-5 col-form-label">
+                    <div class="col-sm-2 col-form-label">
                       <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">1- </label>
                     </div>
-                    <div class="col-sm-7">
+                    <div class="col-sm-10">
                       <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Vavolombelona voalohany..."> 
                     </div>
                   </div>
@@ -252,11 +252,11 @@
              <div class="row">
                 <div class="col-sm-5">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-7 col-form-label">
+                    <div class="col-sm-4 col-form-label">
                       <label for="Zom" class="" style="margin-bottom: 0px;"><span class="">tao <span class="font-italic">(à)</span></span></label>
                     </div>
-                    <div class="col-sm-5">
-                      <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="Toerana..."> 
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control border-0" style="margin-left:-110px;padding-bottom: 2px;" id="Zom" value="" placeholder="Toerana..."> 
                     </div>
                   </div>
                 </div> 
@@ -267,7 +267,7 @@
                         <label for="Zom" class="" style="margin-bottom: 0px;"><span class="">monina ao <span class="font-italic">domicilié(e) (au)</span></span></label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="Monina..."> 
+                        <input type="text" class="form-control border-0" style="margin-left:-190px;padding-bottom: 2px;" id="Zom" value="" placeholder="Monina..."> 
                       </div>
                     </div>
                 </div>
@@ -276,10 +276,10 @@
              <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-5 col-form-label">
+                    <div class="col-sm-2 col-form-label">
                       <label for="Teraka" class="font-weight-bold" style="margin-bottom: 0px;">2- </label>
                     </div>
-                    <div class="col-sm-7">
+                    <div class="col-sm-10">
                       <input type="text" class="form-control border-0" style="margin-left:-50px;padding-bottom: 2px;" id="Teraka" value="" placeholder="Vavolombelona faharoa..."> 
                     </div>
                   </div>
@@ -311,11 +311,11 @@
              <div class="row">
                 <div class="col-sm-5">
                   <div class="form-group row" style="margin-bottom: 0px;">
-                    <div class="col-sm-7 col-form-label">
+                    <div class="col-sm-4 col-form-label">
                       <label for="Zom" class="" style="margin-bottom: 0px;"><span class="">tao <span class="font-italic">(à)</span></span></label>
                     </div>
-                    <div class="col-sm-5">
-                      <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="Toerana..."> 
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control border-0" style="margin-left:-110px;padding-bottom: 2px;" id="Zom" value="" placeholder="Toerana..."> 
                     </div>
                   </div>
                 </div> 
@@ -326,7 +326,7 @@
                         <label for="Zom" class="" style="margin-bottom: 0px;"><span class="">monina ao <span class="font-italic">domicilié(e) (au)</span></span></label>
                       </div>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control border-0" style="margin-left:-78px;padding-bottom: 2px;" id="Zom" value="" placeholder="Monina..."> 
+                        <input type="text" class="form-control border-0" style="margin-left:-190px;padding-bottom: 2px;" id="Zom" value="" placeholder="Monina..."> 
                       </div>
                     </div>
                 </div>
