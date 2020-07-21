@@ -555,13 +555,13 @@ $(function () {
         line = 320;
         row = 10;
         $.each(membres_menage, function(index, membre){
-            addText("Anarana : " + membre.nom, null, null, null);
-            addText("Fanampiny : " + membre.prenoms, null, null, null);
-            addText("Teraka tamin'ny : " + membre.date_de_naissance, null, null, null);
-            addText("Zanak'i : " + membre.father, null, null, null);
-            addText("Sy : " + membre.mother, null, null, null);
-            addText("CIN N° : " + membre.cin_personne, null, null, null);
-            addText("Natao ny : " + membre.lieu_delivrance_cin, null, null, null);
+            addText("Anarana : " + (membre.nom==null?"":membre.nom), null, null, null);
+            addText("Fanampiny : " + (membre.prenoms==null?"":membre.prenoms), null, null, null);
+            addText("Teraka tamin'ny : " + (membre.date_de_naissance==null?"":membre.date_de_naissance), null, null, null);
+            addText("Zanak'i : " + (membre.father==null?"":membre.father), null, null, null);
+            addText("Sy : " + (membre.mother==null?"":membre.mother), null, null, null);
+            addText("CIN N° : " + (membre.cin_personne==null?"":membre.cin_personne), null, null, null);
+            addText("Natao ny : " + (membre.lieu_delivrance_cin==null?"":membre.lieu_delivrance_cin), null, null, null);
             addText("Asa : " + (!membre.job?"                   ":membre.job) +"   FKT : " + membre.libelle_fokontany, null, null, null);
             
             if((index + 1)%3 === 0){
