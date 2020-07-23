@@ -232,7 +232,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">CNI</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0 cin_personne" style="margin-left:-130px;padding-bottom: 2px;" id="tao" value="" placeholder="000 000 000 000"> 
+                      <input type="text" maxlength="15" class="form-control border-0 cin_personne" style="margin-left:-130px;padding-bottom: 2px;" id="tao" value="" placeholder="000 000 000 000"> 
                     </div>
                   </div>
                 </div>
@@ -291,7 +291,7 @@
                       <label for="tao" class="" style="margin-bottom: 0px;">CNI</label>
                     </div>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control border-0 cin_personne" style="margin-left:-130px;padding-bottom: 2px;" id="tao" value="" placeholder="000 000 000 000"> 
+                      <input type="text" maxlength="15" class="form-control border-0 cin_personne" style="margin-left:-130px;padding-bottom: 2px;" id="tao" value="" placeholder="000 000 000 000"> 
                     </div>
                   </div>
                 </div>

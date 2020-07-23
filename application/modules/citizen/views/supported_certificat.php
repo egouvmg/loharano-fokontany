@@ -204,7 +204,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">CIN N°</label>
                       </div>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control border-0 cin_personne" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="000 000 000 000" value=""> 
+                        <input type="text" maxlength="15" class="form-control border-0 cin_personne" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="000 000 000 000" value=""> 
                       </div>
                   </div>
                 </div>
@@ -252,7 +252,7 @@
                         <label for="sy" class="" style="margin-bottom: 0px;">CIN N°</label>
                       </div>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control border-0 cin_personne" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="000 000 000 000" value=""> 
+                        <input type="text" maxlength="15" class="form-control border-0 cin_personne" style="margin-left:-140px;padding-bottom: 2px;" id="sy" placeholder="000 000 000 000" value=""> 
                       </div>
                   </div>
                 </div>
