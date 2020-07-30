@@ -15,19 +15,14 @@
 	<link href="<?= plugin('bootstrap', 'css', 'bootstrap.min.css');?>" rel="stylesheet">
 	<link href="<?= plugin('tabulator', 'css', 'tabulator.min.css');?>" rel="stylesheet">
 	<?= css('admin');?>
-
 	<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
 </head>
-
-
 <body class="loharano">
-
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light static-top">
       <div class="logo-container">
         <a href="/"><img src="<?= img('Logo-Loharano-mini.png');?>"/></a>
       </div>
-      
       <img src="<?= img('sautRep.png');?>">
       <div class="menu">
         <ul class="navbar-nav">
@@ -43,7 +38,6 @@
         </ul>
       </div>
   </nav>
-
   <div class="container">
     <div class=row>
       <div class="main-container">
@@ -59,9 +53,9 @@
         </div>
         <div class="container page-title">
           <h1><?= $title;?></h1>
+          <button id="showInsightCertificate" class="btn float-right btn-warning"><span class="iconify" data-icon="gg:insights" data-inline="false"></span> Statisque des opérations</button>
         </div>
         <!-- End Page title -->
-
         <!-- Page Content -->
         <div class="container">
           <div class="row mt-3">
@@ -162,11 +156,11 @@
         <!-- End Page Content -->
         <!-- Person details -->
         
-        <div class="modal fade" id="personDetails" tabindex="-1" role="dialog" aria-labelledby="newRegisterTitle" aria-hidden="true">
+        <div class="modal fade" id="personDetails" tabindex="-1" role="dialog" aria-labelledby="personDetailsTitle" aria-hidden="true">
           <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="newRegisterTitle">
+                <h5 class="modal-title" id="personDetailsTitle">
                   Détails de   :  <span id="nom_complet"></span>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -427,11 +421,11 @@
         </div>
         <!-- END Person details -->
         <!-- Other Citizen details -->
-        <div class="modal fade" id="otherCitizenDetails" tabindex="-1" role="dialog" aria-labelledby="newRegisterTitle" aria-hidden="true">
+        <div class="modal fade" id="otherCitizenDetails" tabindex="-1" role="dialog" aria-labelledby="otherCitizenDetailsTitle" aria-hidden="true">
           <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="newRegisterTitle">
+                <h5 class="modal-title" id="otherCitizenDetailsTitle">
                   Détails de   :  <span id="nom_complet_autre"></span>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -646,6 +640,55 @@
           </div>
         </div>
         <!-- END Other Citizen details -->
+        <!-- Insight Certificate -->
+        <div class="modal fade" id="insightCertificate" tabindex="-1" role="dialog" aria-labelledby="insightCertificateTitle" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="insightCertificateTitle">
+                  Nombre d'opérations de ce mois
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-lg-12">
+                      <div class="container-bloc-link">
+                        <a href="#" class="bloc-link color-8">
+                          <span class="count"><?= $nbr_certificate[0];?></span> Résidence
+                        </a>
+                        <a href="#" class="bloc-link color-9">
+                          <span class="count"><?= $nbr_certificate[1];?></span> Déménagement
+                        </a>
+                        <a href="#" class="bloc-link color-10">
+                          <span class="count"><?= $nbr_certificate[2];?></span> Célibat
+                        </a>
+                        <a href="#" class="bloc-link color-11">
+                          <span class="count"><?= $nbr_certificate[3];?></span> Vie Individuel
+                        </a>
+                        <a href="#" class="bloc-link color-12">
+                          <span class="count"><?= $nbr_certificate[4];?></span> Prise en charge/garde
+                        </a>
+                        <a href="#" class="bloc-link color-13">
+                          <span class="count"><?=  $nbr_certificate[5];?></span> Bonne conduite
+                        </a>
+                        <a href="#" class="bloc-link color-1"><span class="count"><?= $nbr_total;?></span> Nombre total</a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  Fermer
+                  <span class="iconify" data-icon="uil:times-circle" data-inline="false"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END Insight Certificate -->
       </div>
     </div>
   </div>

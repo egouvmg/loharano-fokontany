@@ -414,11 +414,29 @@ $(function () {
             cin_personne:$('#cin_personne').val()
         }
 
-        citizens.setData('citoyens_list', data);
-        other_citizens.setData('citoyens_autre_liste', data);
+        citizens.setData('citoyens_list', data)
+        .then(function(){
+            var citizensCount = citizens.getDataCount("active");
+            var other_citizensCount = other_citizens.getDataCount("active");
 
-        if(citizens.getData().length == 0 && other_citizens.getData().length == 0) $('#createHousehold').show();
-        else $('#createHousehold').hide();
+            if(citizensCount != 0 || other_citizensCount != 0) $('#createHousehold').hide();
+            else $('#createHousehold').show();
+        })
+        .catch(function(error){
+            alert("La plateforme n'est actuellement pas disponible en raison d'une erreur inattendue. Nous regrettons tout inconvénient que cela pourrait causer. Veuillez contacter le Responsable pour obtenir de l'aide.");
+        });
+
+        other_citizens.setData('citoyens_autre_liste', data)
+        .then(function(){
+            var citizensCount = citizens.getDataCount("active");
+            var other_citizensCount = other_citizens.getDataCount("active");
+
+            if(citizensCount != 0 || other_citizensCount != 0) $('#createHousehold').hide();
+            else $('#createHousehold').show();
+        })
+        .catch(function(error){
+            alert("La plateforme n'est actuellement pas disponible en raison d'une erreur inattendue. Nous regrettons tout inconvénient que cela pourrait causer. Veuillez contacter le Responsable pour obtenir de l'aide.");
+        });
     });
 
 	$('#nom').on('keyup', function () {
@@ -507,5 +525,18 @@ $(function () {
             if(res.success == 1) window.location = res.link;
             else alert(res.msg);
         }, 'JSON');
+    });
+ 
+    $(document).on('click', '#pills-certificate-tab', function(e){
+        $('#validEditPerson').show();
+    });
+
+    $(document).on('click', '#pills-aid-tab', function(e){
+        $('#validEditPerson').hide();
+    });
+
+    $('#showInsightCertificate').click(function(e){
+        e.preventDefault();
+        $('#insightCertificate').modal();
     });
 });

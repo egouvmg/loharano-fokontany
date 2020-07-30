@@ -3,6 +3,7 @@
 class Certificate_model extends CI_Model
 {
 	private $_historique_certificat = "historique_certificat";
+	private $_v_insight = "v_insight";
 
 	public function __construct(){      
         $this->load->database();
@@ -37,4 +38,19 @@ class Certificate_model extends CI_Model
 
 		return $query->result();
 	}
+
+	public function nbrCertificats($criteria = array()) {
+		$this->db->select("*");
+		$this->db->from($this->_v_insight);
+		
+		if(!empty($criteria)){
+			$this->db->where($criteria);
+        }
+		
+		$query = $this->db->get();
+
+		return $query->result();
+	}
+
+
 }

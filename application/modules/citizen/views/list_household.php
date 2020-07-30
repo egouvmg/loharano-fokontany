@@ -95,7 +95,8 @@
             </div>
             <div class="col-lg-12 line-bloc">
               <h6 class="float-left"><?= $this->lang->line('household_content');?></h6>
-              <button id="carnet_id" class="float-right btn btn-info my-2"type="button">Créer Carnet Fokontany</button>
+              <button id="carnet_id" class="float-right btn btn-info ml-2 my-2" type="button">Créer Carnet Fokontany</button>
+              <button id="add_citizen" class="float-right btn btn-secondary my-2" type="button">Ajouter de citoyens</button>
             </div>
             <div class="col-lg-12 line-bloc">
               <div id="citizens"></div>

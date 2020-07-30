@@ -441,10 +441,29 @@ $(function () {
     $('#carnet_id').click(function(e){
         e.preventDefault();
         data={};
-        data["numero_carnet"]= $('#numero_carnet_hidden').val();//"0054312006190002"
+        data["numero_carnet"]= $('#numero_carnet_hidden').val();
+
+        if($('#numero_carnet_hidden').val() == ''){
+            alert('Veuillez choisir un ménage avant de créer un Carnet Fokontany.');
+            return false;
+        }
 
         $.get('membres_menage', data, function(res){
             createCarnet(res);
+        }, 'JSON');
+    });
+
+    $('#add_citizen').click(function(e){
+        e.preventDefault();
+
+        if($('#numero_carnet_hidden').val() == ''){
+            alert('Veuillez choisir un ménage avant de procéder à l\'ajout de citoyen.');
+            return false;
+        }
+
+        $.get('ajout_dans_menage', {numero_carnet:$('#numero_carnet_hidden').val()}, function(res){
+            if(res.success == 1) window.location = 'ajouter_dans_menage';
+            if(res.error == 1) alert(res.msg);
         }, 'JSON');
     });
     

@@ -42,7 +42,7 @@ class Citizen extends Operator_Controller
 
 	public function index_household()
 	{
-		$this->data['title'] = "Tableau de bord";
+        $this->data['title'] = "Tableau de bord";
         $this->load->view('index', $this->data);
 	}
 
@@ -124,6 +124,16 @@ class Citizen extends Operator_Controller
             }
 
         }
+        
+        $nbr_certificates = $this->certificate->nbrCertificats(['month_year' => date('m/Y')]);
+        $this->data['nbr_certificate'] = [0,0,0,0,0,0];
+        $nbr_total = 0;
+        foreach($nbr_certificates as $c){
+            $this->data['nbr_certificate'][($c->ref_certificate-1)] = $c->nbr_certificate;
+            $nbr_total += $c->nbr_certificate;;
+        }
+
+        $this->data['nbr_total'] = $nbr_total;
         
         $this->load->view('index', $this->data);
 	}
@@ -286,6 +296,38 @@ class Citizen extends Operator_Controller
 		$this->data['title'] = "Migration de ". $person->nom . " " . $person->prenoms . " dans un ménage existant";
 
         $this->load->view('migration_citizen', $this->data);
+    }
+
+    public function adding_to_household()
+    {
+        if($this->session->add_to){
+            $carnet_fokontany = $this->notebook->one(['numero_carnet' => $this->session->add_to]);
+
+            if(empty($carnet_fokontany)) redirect('/', 'refresh');
+
+            $this->data['address'] = $carnet_fokontany->adresse_actuelle;
+            $this->data['locality'] = $carnet_fokontany->locality;
+
+            $this->data['title'] = $this->lang->line('add_citizen');
+            $this->data['jobs'] = $this->job->all();
+            $this->data['nationalities'] = $this->nationality->all();
+
+            $tabs_link = '';
+            $tabs_content = '';
+
+            $this->data['index'] = 1;
+            $tabs_link .= $this->load->view('tab_list', $this->data, TRUE);
+            $tabs_content .= $this->load->view('tab_content', $this->data, TRUE);
+
+            $this->data['tabs_link'] = $tabs_link;
+            $this->data['tabs_content'] = $tabs_content;
+            $this->data['potential_reference'] = $this->potentialNotebook();
+            
+            $this->load->view('add_to_household', $this->data);
+        }
+        else{
+            redirect('/', 'refresh');
+        }
     }
 
     /*
@@ -504,6 +546,31 @@ class Citizen extends Operator_Controller
             if(!empty($missing_fields)){
                 echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
                 return FALSE;
+            }
+
+            
+            //Check if is citizen already in database
+            $citizens_exist = '';
+            for ($i=0; $i < $this->session->household_size ; $i++) {
+                $criteria = [];
+                $criteria["REPLACE(LOWER(TRIM(nom)), ' ', '') = "] = strtolower(preg_replace("/\s+/", "", $data['last_name'][$i]));
+                $criteria["REPLACE(LOWER(TRIM(prenoms)), ' ', '') = "] = strtolower(preg_replace("/\s+/", "", $data['first_name'][$i]));
+
+                $tmp_date = new DateTime($data['birth'][$i]);
+                $criteria['date_de_naissance'] = $tmp_date->format('d/m/Y');
+
+                $criteria["REPLACE(LOWER(TRIM(lieu_de_naissance)), ' ', '') = "] = strtolower(preg_replace("/\s+/", "", $data['birth_place'][$i]));
+                $criteria["REPLACE(LOWER(TRIM(mother)), ' ', '') = "] = strtolower(preg_replace("/\s+/", "", $data['mother'][$i]));
+
+                $citizen_exist = $this->notebook->searchOne($criteria);
+
+                if($citizen_exist)    
+                    $citizens_exist .= 'Le citoyen '. ($i+1) .' est déjà enregistré dans le Fokontany '. $citizen_exist->fokontany_name .'. ';
+            }
+
+            if($citizens_exist != ''){
+                echo json_encode(['failed' => 1, 'msg' => $citizens_exist]);
+                return false;
             }
 
             /*
@@ -924,51 +991,45 @@ class Citizen extends Operator_Controller
             $origin_page = $data['origin_page'];
             if($origin_page==="residence"){
                 ++$lf_residence;
-                $data['motif'] = "Certificat de Résidence :".$data['motif'];
+                $data['motif'] = "Certificat de Résidence";
+                $data['ref_certificate'] = 1;
                 $this->saveHistorique($data, $lf_residence);
 
-            /*
-                // save into historique
-                $data_historique_residence = [];
-                //$data_historique_residence['id'] = 2;
-                $data_historique_residence['date_generation'] = date('Y-m-d H:i:s');
-                $data_historique_residence['motif'] = $data['motif'];
-                $data_historique_residence['fanisana'] = $data['fanisana'];
-                $data_historique_residence['id_personne'] = gmp_intval(gmp_init($data['id_personne']));
-                $data_historique_residence['lf'] = gmp_intval(gmp_init($lf_residence));
-
-                $this->citizen->insertHistoriqueResidence($data_historique_residence);
-            */
                 // save into historique
                 $data_tmp['lf_residence']= $lf_residence;
             }
             if($origin_page==="vie"){
                 ++$lf_vie;
                 $data['motif'] = "Certificat de vie";
+                $data['ref_certificate'] = 4;
                 $this->saveHistorique($data, $lf_vie);
                 $data_tmp ['lf_vie']=$lf_vie;
             }
             if($origin_page==="move"){
                 ++$lf_move;
                 $data['motif'] = "Certificat de déménagement";
+                $data['ref_certificate'] = 2;
                 $this->saveHistorique($data, $lf_move);
                 $data_tmp['lf_move']= $lf_move;
             }
             if($origin_page==="support"){
                 ++$lf_support;
                 $data['motif'] = "Certificat de Prise en charge";
+                $data['ref_certificate'] = 5;
                 $this->saveHistorique($data, $lf_support);
                 $data_tmp['lf_support']= $lf_support;
             }
             if($origin_page==="celibacy"){
                 ++$lf_celibacy;
                 $data['motif'] = "Certificat de Célibat";
+                $data['ref_certificate'] = 3;
                 $this->saveHistorique($data, $lf_celibacy);
                 $data_tmp['lf_celibacy']= $lf_celibacy;
             }
             if($origin_page==="behavior"){
                 ++$lf_behavior;
                 $data['motif'] = "Certificat de Bonne conduite";
+                $data['ref_certificate'] = 6;
                 $this->saveHistorique($data, $lf_behavior);
                 $data_tmp['lf_behavior']= $lf_behavior;
             }
@@ -1526,13 +1587,28 @@ class Citizen extends Operator_Controller
         //$data_historique_residence['id'] = 2;
         $data_historique_residence['date_generation'] = date('Y-m-d H:i:s');
         $data_historique_residence['motif'] = $arg_data['motif'];
+        $data_historique_residence['ref_certificate'] = $arg_data['ref_certificate'];
         $data_historique_residence['fanisana'] = isset($arg_data['fanisana'])?isset($arg_data['fanisana']):0;
         $data_historique_residence['id_personne'] = gmp_intval(gmp_init($arg_data['id_personne']));
         $data_historique_residence['lf'] = gmp_intval(gmp_init($arg_lf_residence));
+        $data_historique_residence['created_by'] = $this->session->user_id;
 
         $this->citizen->insertHistoriqueResidence($data_historique_residence);
     }
 
+    public function add_to_household(){
+        if (!$this->input->is_ajax_request()) {
+            exit('Very ianao :O');
+        }
 
+        $numero_carnet = $this->input->get('numero_carnet');
+
+        if(empty($numero_carnet))
+            echo json_encode(['error' => 1, 'msg' => 'Procédure d\'ajout impossible dûe à l\'erreur : Numéro de carnet Fokontany introuvable. Veuillez choisir le bon ménage.']);
+        else{
+            $this->session->set_userdata('add_to', $numero_carnet);
+            echo json_encode(['success' => 1]);
+        }
+    }
 }
 

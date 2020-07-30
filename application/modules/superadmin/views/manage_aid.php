@@ -142,8 +142,13 @@
 	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-				<div class="modal-body">
+        <div class="modal-header">
           <h5 class="modal-title" id="newRegisterTitle">Modification d'aide</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+				<div class="modal-body">
           <form id="editAid">
             <div class="form-row">
                 <div class="form-group col-lg-6">
@@ -166,7 +171,11 @@
                     <div class="error_field error_edescription"></div>
                 </div>
                 <div class="form-group col-lg-12">
-                    <button class="btn btn-info" id="validEditAid">Ajouter</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  Fermer
+                  <span class="iconify" data-icon="uil:times-circle" data-inline="false"></span>
+                </button>
+                    <button class="btn btn-info" id="validEditAid">Valider</button>
                     <div class="loadingSave" style="display:none;">
                         <img class="loading" src="<?= img('pulse.gif');?>"/>
                         Enregistrement ...

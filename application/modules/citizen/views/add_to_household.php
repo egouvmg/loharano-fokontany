@@ -58,7 +58,7 @@
           </p>
         </div>
         <div class="container page-title">
-          <h1><?= $title;?></h1>
+          <h1><?= $title;?></h1><a href="liste_menage_fokontany"><button class="btn float-right btn-warning"><span class="iconify" data-icon="ion:caret-back-circle-outline" data-inline="false"></span> Retour</button></a>
         </div>
         <!-- End Page title -->
 
@@ -66,10 +66,9 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-12 locality-details">
-              <span class="iconify" data-icon="bx:bx-book-content" data-inline="false"></span> Numéro carnet : <strong><?=$potential_reference;?></strong>
-              <span class="iconify" data-icon="entypo:location-pin" data-inline="false"></span> Secteur/Localité : <strong><?= $this->session->locality;?></strong>
-              <span class="iconify" data-icon="entypo:address" data-inline="false"></span> <?= $this->lang->line('address');?> : <strong><?= $this->session->address;?></strong>
-              <span class="iconify" data-icon="ic:twotone-family-restroom" data-inline="false"></span> <?= $this->lang->line('household_size');?> : <strong><?= $this->session->household_size;?></strong>
+              <span class="iconify" data-icon="bx:bx-book-content" data-inline="false"></span> Numéro carnet : <strong><?= $this->session->add_to;?></strong>
+              <span class="iconify" data-icon="entypo:location-pin" data-inline="false"></span> Secteur/Localité : <strong><?= $locality;?></strong>
+              <span class="iconify" data-icon="entypo:address" data-inline="false"></span> <?= $this->lang->line('address');?> : <strong><?= $address;?></strong>
             </div>
           </div>
           <form id="addCitizen">
@@ -80,10 +79,7 @@
                 <?= $tabs_content;?>
               </div>
           </form>
-          <button id="previousCitizen" class="btn btn-info"><span class="iconify" data-icon="bi:arrow-left-short" data-inline="false"></span><?= $this->lang->line('previous_citizen');?></button>
-          <button id="nextCitizen" class="btn btn-info"><?= $this->lang->line('next_citizen');?><span class="iconify" data-icon="bi:arrow-right-short" data-inline="false"></span></button>
           <div class="float-right">
-            <a href="nouveau_menage_fokontany"><button class="btn btn-secondary">Retour au localité</button></a>
             <button id="saveOperator" class="btn btn-primary">Enregistrer</button>
             <span id="failedMsg" class="error_field"></span>
             <div id="loadingSave" style="display:none;">
@@ -103,7 +99,7 @@
                 <span class="iconify" data-inline="false" data-icon="uil:check" style="font-size: 32px;"></span>
                 </span>
                 <p id="confirmResponse"></p>
-                <a href="/"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
+                <a href="liste_menage_fokontany"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
               </div>
             </div>
           </div>
@@ -130,7 +126,7 @@
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
   <script src="<?= plugin('phone', 'js', 'jquery-input-mask-phone-number.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
-	<script src="<?= plugin('modules', 'citizen', 'add_citizen.js');?>"></script>
+	<script src="<?= plugin('modules', 'citizen', 'add_to_household.js');?>"></script>
 <div id="appVersion"> Loharano Fokontany, version <?= APP_VERSION;?> &copy; <a href="https://digital.gov.mg" target="_blank">e-Gouvernance Madagascar</a> - <?= date("Y");?></div>
 </body>
 </html>
