@@ -37,6 +37,11 @@ $(function () {
         data.push({name: 'fokontany_id', value: $("#fokontany_id").val()});
         data.push({name: 'motif', value: $("#motif").val()});
         data.push({name: 'fanisana', value: $("#fanisana").val()});
+
+        origin_page = $("#origin_page").val();
+
+        scaler = 0;
+        scaler = origin_page!=="behavior"?3:0.7;
         
         $.post("save_citizen_from_certificat", data, function(){
 
@@ -58,12 +63,20 @@ $(function () {
     }
 
     function createPdf(){
-        html2canvas($('#content'), {
-            onrendered: function( canvas ) {
+        html2canvas($('#content').get(0),{width:450, height:330, dpi:300}).then (function( canvas ) {//scale:scaler
                 var img1 = canvas.toDataURL('image/png');
                 var doc = new jsPDF('p','px','a4');//'p', 'mm'
                 var namepdf = "file.pdf";
-                doc.addImage( img1, 'JPEG', 0, 0, 450, 316); // A5 sizes
+                /*
+                var context = canvas.getContext("2d");
+                context.scale(2,2);
+                context["imageSmoothingEnabled"] = false;
+                context["mozImageSmoothingEnabled"] = false
+                context["oImageSmoothingEnabled"] = false
+                context["webkitImageSmoothingEnabled"] = false
+                context["msImageSmoothingEnabled"] = false
+                */
+                doc.addImage( img1, 'JPEG', 0, 0, 450, 330); // A5 sizes doc.addImage( img1, 'JPEG', 0, 0, 450, 316);
                 //doc.addImage( img1, 'PNG', 0, 296, 420, 296); // A5 sizes
                 var today = new Date();
                 var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
@@ -71,7 +84,7 @@ $(function () {
                 namepdf = "Certificat"+"_"+namepdf;
                 doc.save(namepdf);
             }
-        });
+);
 
     }
 

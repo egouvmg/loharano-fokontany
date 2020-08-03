@@ -96,9 +96,9 @@
                 <hr class="font-weight-bold">
                 <span class="font-weight-bold">DISTRIKAN'<?=$district_name?></span>
               </div>
-              <div class="col-sm-4" style="background-color:white;">
+              <div class="col-sm-3" style="background-color:white;">
             </div>
-            <div class="col-sm-4 text-center" style="background-color:white;">
+            <div class="col-sm-5 text-center" style="background-color:white;">
             <!--<span class="font-weight-bold"><h2>FANAMARINAM-PONENANA</h2></span>-->
             <span class="font-weight-bold"><h1>CERTIFICAT DE PRISE EN CHARGE ET DE GARDE</h1></span>
             </div>
@@ -126,8 +126,8 @@
                   <span class="font-weight-bold" style="margin-bottom: 0px;">Le déclarant(e) :</span><span id="name"><?= " ".$citizen_data[0]->nom." ".$citizen_data[0]->prenoms."" ?></span>
                 </div>
 
-                <div class="col-sm-4" style="background-color:white;"></div>
-                  <div class="col-sm-3" style="background-color:white;">
+                <div class="col-sm-1" style="background-color:white;"></div>
+                  <div class="col-sm-6" style="background-color:white;">
                     <span class="font-weight-bold" style="margin-bottom: 0px;">CIN N° :</span><?= " ".$citizen_data[0]->cin_personne."" ?>
                   </div>
                 </div>
@@ -193,7 +193,7 @@
                       <label for="Zanak" class="font-weight-bold" style="margin-bottom: 0px;">Témoin 1 :</label>
                     </div>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control border-0" style="margin-left:-120px;padding-bottom: 2px;" id="Zanak" placeholder="Non du Témoin 1" value=""> 
+                      <input type="text" class="form-control border-0" style="margin-left:-120px;padding-bottom: 2px;" id="Zanak" placeholder="Nom du Témoin 1" value=""> 
                     </div>
                   </div>
                 </div>
@@ -241,7 +241,7 @@
                       <label for="Zanak" class="font-weight-bold" style="margin-bottom: 0px;">Témoin 2 :</label>
                     </div>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control border-0" style="margin-left:-120px;padding-bottom: 2px;" id="Zanak" placeholder="Non du Témoin 2" value=""> 
+                      <input type="text" class="form-control border-0" style="margin-left:-120px;padding-bottom: 2px;" id="Zanak" placeholder="Nom du Témoin 2" value=""> 
                     </div>
                   </div>
                 </div>
@@ -420,7 +420,7 @@
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+  <script src="<?= plugin('modules', 'superadmin', 'html2canvas.js');?>"></script>
   <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 	<script src="<?= plugin('modules', 'superadmin', 'citizen_certificate.js');?>"></script>
 <div id="appVersion"> Loharano Fokontany, version <?= APP_VERSION;?> &copy; <a href="https://digital.gov.mg" target="_blank">e-Gouvernance Madagascar</a> - <?= date("Y");?></div>
