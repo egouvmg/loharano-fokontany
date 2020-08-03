@@ -63,7 +63,7 @@ $(function () {
     }
 
     function createPdf(){
-        html2canvas($('#content').get(0),{width:450, height:330, dpi:300}).then (function( canvas ) {//scale:scaler
+        html2canvas($('#content').get(0),{dpi:300}).then (function( canvas ) {//scale:scaler
                 var img1 = canvas.toDataURL('image/png');
                 var doc = new jsPDF('p','px','a4');//'p', 'mm'
                 var namepdf = "file.pdf";
