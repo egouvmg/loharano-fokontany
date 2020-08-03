@@ -961,10 +961,11 @@ class Citizen extends Operator_Controller
      */
     public function save_citizen_from_certificat()
     {
+        /*
         if (!$this->input->is_ajax_request()) {
             exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
         }
-
+        */
         $data = $this->input->post();
         $requireds = ['last_name', 'birth', 'birth_place'];
 
