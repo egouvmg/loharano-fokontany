@@ -17,6 +17,7 @@ class User extends SuperAdmin_Controller
         $this->load->model('territory/notebook_model', 'notebook');
         $this->load->model('chief/chief_model', 'chief');
         $this->load->model('citizen/citizen_model', 'citizen');
+        $this->load->model('certificate/certificate_model', 'certificate');
 
 		$this->load->model('auth/ion_auth_model', 'ion_auth');
 
@@ -81,6 +82,16 @@ class User extends SuperAdmin_Controller
             }
 
         }
+
+        $nbr_certificates = $this->certificate->totalCertificats(['month_year' => date('m/Y')]);
+        $this->data['nbr_certificate'] = [0,0,0,0,0,0];
+        $nbr_total = 0;
+        foreach($nbr_certificates as $c){
+            $this->data['nbr_certificate'][($c->ref_certificate-1)] = number_format($c->nbr_certificate, 0, ',', '');
+            $nbr_total += $c->nbr_certificate;;
+        }
+
+        $this->data['nbr_total'] = $nbr_total;
 
         $this->load->view('index', $this->data);
 	}

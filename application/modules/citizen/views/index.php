@@ -154,8 +154,7 @@
           </div>
         </div>
         <!-- End Page Content -->
-        <!-- Person details -->
-        
+        <!-- Person details -->       
         <div class="modal fade" id="personDetails" tabindex="-1" role="dialog" aria-labelledby="personDetailsTitle" aria-hidden="true">
           <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
             <div class="modal-content">
@@ -656,25 +655,25 @@
                 <div class="row">
                   <div class="col-lg-12">
                       <div class="container-bloc-link">
-                        <a href="#" class="bloc-link color-8">
+                        <a href="#" class="bloc-link color-7">
                           <span class="count"><?= $nbr_certificate[0];?></span> Résidence
                         </a>
-                        <a href="#" class="bloc-link color-9">
+                        <a href="#" class="bloc-link color-7">
                           <span class="count"><?= $nbr_certificate[1];?></span> Déménagement
                         </a>
-                        <a href="#" class="bloc-link color-10">
+                        <a href="#" class="bloc-link color-7">
                           <span class="count"><?= $nbr_certificate[2];?></span> Célibat
                         </a>
-                        <a href="#" class="bloc-link color-11">
+                        <a href="#" class="bloc-link color-7">
                           <span class="count"><?= $nbr_certificate[3];?></span> Vie Individuel
                         </a>
-                        <a href="#" class="bloc-link color-12">
+                        <a href="#" class="bloc-link color-7">
                           <span class="count"><?= $nbr_certificate[4];?></span> Prise en charge/garde
                         </a>
-                        <a href="#" class="bloc-link color-13">
+                        <a href="#" class="bloc-link color-7">
                           <span class="count"><?=  $nbr_certificate[5];?></span> Bonne conduite
                         </a>
-                        <a href="#" class="bloc-link color-1"><span class="count"><?= $nbr_total;?></span> Nombre total</a>
+                        <a href="#" class="bloc-link color-6"><span class="count"><?= $nbr_total;?></span> Nombre total</a>
                       </div>
                   </div>
                 </div>

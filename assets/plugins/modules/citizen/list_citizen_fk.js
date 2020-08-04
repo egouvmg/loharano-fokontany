@@ -350,7 +350,9 @@ $(function () {
         }
 	});
 
-    $('.speed_access').on('keyup change', function(e){
+    var timer = '';
+
+    $('.speed_access').on('keyup', function(e){
         if($(this).val().length < 4) return false;
 
         var data = {
@@ -358,8 +360,11 @@ $(function () {
             prenoms:$('#prenoms').val(),
             cin_personne:$('#cin_personne').val()
         }
-
-        citizens.setData('citoyens_list', data);
+        
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            citizens.setData('citoyens_list', data);
+        }, 1000);
     });
 
     $(document).ready(function () {

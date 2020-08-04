@@ -390,9 +390,11 @@ $(function () {
 
             $(this).val(foo);
         }
-	});
+    });
+    
+    var timer = '';
 
-    $('.speed_access').on('keyup change', function(e){
+    $('.speed_access').on('keyup', function(e){
         if($(this).val().length < 4) return false;
 
         var data = {
@@ -401,7 +403,10 @@ $(function () {
             cin_personne:$('#cin_personne').val()
         }
 
-        households.setData('liste_menages_fokontany', data);
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            households.setData('liste_menages_fokontany', data);
+        }, 1000);
     });
 
     $(document).ready(function () {

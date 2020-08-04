@@ -125,11 +125,11 @@ class Citizen extends Operator_Controller
 
         }
         
-        $nbr_certificates = $this->certificate->nbrCertificats(['month_year' => date('m/Y')]);
+        $nbr_certificates = $this->certificate->nbrCertificats(['month_year' => date('m/Y'), 'fokontany_id' => $this->fokontany_id]);
         $this->data['nbr_certificate'] = [0,0,0,0,0,0];
         $nbr_total = 0;
         foreach($nbr_certificates as $c){
-            $this->data['nbr_certificate'][($c->ref_certificate-1)] = $c->nbr_certificate;
+            $this->data['nbr_certificate'][($c->ref_certificate-1)] = number_format($c->nbr_certificate, 0, ',', '');
             $nbr_total += $c->nbr_certificate;;
         }
 
@@ -476,18 +476,6 @@ class Citizen extends Operator_Controller
         $data['data'] = $citizens;
 
         echo json_encode($data);
-    }
-
-    public function list_citizen_by_carnet_id()
-	{        
-        $numero_carnet = $this->input->get('numero_carnet');
-        
-        if(!empty($numero_carnet)){
-            //$citizen = $this->citizen->get_citizen(['numero_carnet'=>$numero_carnet]);
-            $citizen = $this->citizen->get_citizen_certificate(['numero_carnet'=>$numero_carnet]);
-        }
-        
-        echo json_encode($citizen);
     }
 
     /*
@@ -961,11 +949,10 @@ class Citizen extends Operator_Controller
      */
     public function save_citizen_from_certificat()
     {
-        /*
         if (!$this->input->is_ajax_request()) {
             exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
         }
-        */
+
         $data = $this->input->post();
         $requireds = ['last_name', 'birth', 'birth_place'];
 
@@ -1593,6 +1580,7 @@ class Citizen extends Operator_Controller
         $data_historique_residence['id_personne'] = gmp_intval(gmp_init($arg_data['id_personne']));
         $data_historique_residence['lf'] = gmp_intval(gmp_init($arg_lf_residence));
         $data_historique_residence['created_by'] = $this->session->user_id;
+        $data_historique_residence['fokontany_id'] = $this->fokontany_id;
 
         $this->citizen->insertHistoriqueResidence($data_historique_residence);
     }

@@ -44,23 +44,6 @@ class Aid extends Operator_Controller
      * AJAX Requests
      * */
 
-    public function aid_by_household()
-    {
-        if (!$this->input->is_ajax_request()) {
-            exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
-        }
-
-        $numero_carnet = $this->input->get('numero_carnet');
-
-        if($numero_carnet){
-            $aids = $this->aid->household_aids(['numero_carnet' => $numero_carnet]);
-
-            if($aids) echo json_encode($aids);
-            else echo json_encode([]);
-        }
-        else echo json_encode([]);
-    }
-
     public function add_household_aid()
     {
         if (!$this->input->is_ajax_request()) {

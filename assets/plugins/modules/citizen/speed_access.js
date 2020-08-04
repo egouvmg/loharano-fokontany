@@ -183,7 +183,7 @@ $(function () {
             }         
             if(row.getData().date_delivrance_cin){
                 $('#date_delivrance_cin').val(splitDate(row.getData().date_delivrance_cin));
-                $('#lieu_delivrance_cin').val(splitDate(row.getData().lieu_delivrance_cin));
+                $('#lieu_delivrance_cin').val(row.getData().lieu_delivrance_cin);
             }
 
             $('#certificat_residence').attr("href", "certificate?id_personne="+row.getData().id_personne).attr("target", "_blank");
@@ -405,38 +405,43 @@ $(function () {
     histories_certificates.setLocale("fr-fr");
     other_citizens.setLocale("fr-fr");
 
-    $('.speed_access').on('keyup change', function(e){
+    var timer = '';
+
+    $('.speed_access').on('keyup', function(e){
         if($(this).val().length < 4) return false;
 
-        var data = {
-            nom:$('#nom').val(),
-            prenoms:$('#prenoms').val(),
-            cin_personne:$('#cin_personne').val()
-        }
-
-        citizens.setData('citoyens_list', data)
-        .then(function(){
-            var citizensCount = citizens.getDataCount("active");
-            var other_citizensCount = other_citizens.getDataCount("active");
-
-            if(citizensCount != 0 || other_citizensCount != 0) $('#createHousehold').hide();
-            else $('#createHousehold').show();
-        })
-        .catch(function(error){
-            alert("La plateforme n'est actuellement pas disponible en raison d'une erreur inattendue. Nous regrettons tout inconvénient que cela pourrait causer. Veuillez contacter le Responsable pour obtenir de l'aide.");
-        });
-
-        other_citizens.setData('citoyens_autre_liste', data)
-        .then(function(){
-            var citizensCount = citizens.getDataCount("active");
-            var other_citizensCount = other_citizens.getDataCount("active");
-
-            if(citizensCount != 0 || other_citizensCount != 0) $('#createHousehold').hide();
-            else $('#createHousehold').show();
-        })
-        .catch(function(error){
-            alert("La plateforme n'est actuellement pas disponible en raison d'une erreur inattendue. Nous regrettons tout inconvénient que cela pourrait causer. Veuillez contacter le Responsable pour obtenir de l'aide.");
-        });
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            var data = {
+                nom:$('#nom').val(),
+                prenoms:$('#prenoms').val(),
+                cin_personne:$('#cin_personne').val()
+            }
+    
+            citizens.setData('citoyens_list', data)
+            .then(function(){
+                var citizensCount = citizens.getDataCount("active");
+                var other_citizensCount = other_citizens.getDataCount("active");
+    
+                if(citizensCount != 0 || other_citizensCount != 0) $('#createHousehold').hide();
+                else $('#createHousehold').show();
+            })
+            .catch(function(error){
+                alert("La plateforme n'est actuellement pas disponible en raison d'une erreur inattendue. Nous regrettons tout inconvénient que cela pourrait causer. Veuillez contacter le Responsable pour obtenir de l'aide.");
+            });
+    
+            other_citizens.setData('citoyens_autre_liste', data)
+            .then(function(){
+                var citizensCount = citizens.getDataCount("active");
+                var other_citizensCount = other_citizens.getDataCount("active");
+    
+                if(citizensCount != 0 || other_citizensCount != 0) $('#createHousehold').hide();
+                else $('#createHousehold').show();
+            })
+            .catch(function(error){
+                alert("La plateforme n'est actuellement pas disponible en raison d'une erreur inattendue. Nous regrettons tout inconvénient que cela pourrait causer. Veuillez contacter le Responsable pour obtenir de l'aide.");
+            });
+        }, 1000);
     });
 
 	$('#nom').on('keyup', function () {

@@ -126,6 +126,40 @@
           </div>
           <div class="row">
             <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="line-bloc">
+                    <h6>Nombre de certificats générés ce mois</h6>
+                    <div class="container-bloc-link">
+                      <a href="#" class="bloc-link color-6">
+                        <span class="count"><?= $nbr_total;?></span> Total
+                      </a>
+                      <a href="#" class="bloc-link color-7">
+                        <span class="count"><?= $nbr_certificate[0];?></span> Résidence
+                      </a>
+                      <a href="#" class="bloc-link color-7">
+                        <span class="count"><?= $nbr_certificate[1];?></span> Déménagement
+                      </a>
+                      <a href="#" class="bloc-link color-7">
+                        <span class="count"><?= $nbr_certificate[2];?></span> Célibat
+                      </a>
+                      <a href="#" class="bloc-link color-7">
+                        <span class="count"><?= $nbr_certificate[3];?></span> Vie individuelle
+                      </a>
+                      <a href="#" class="bloc-link color-7">
+                        <span class="count"><?= $nbr_certificate[4];?></span> Prise en charge/garde
+                      </a>
+                      <a href="#" class="bloc-link color-7">
+                        <span class="count"><?= $nbr_certificate[5];?></span> Bonne conduite
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
               <div class="line-bloc">
                 <h6>Accès rapide</h6>
                 <div class="container-bloc-link">

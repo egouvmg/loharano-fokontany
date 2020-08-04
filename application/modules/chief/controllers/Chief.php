@@ -23,16 +23,23 @@ class Chief extends Chief_Controller
         $this->load->model('territory/fokontany_model', 'fokontany');
 
         $this->lang->load('citizen', $this->session->site_lang);
-        $this->lang->load('job', $this->session->site_lang);
-        $this->lang->load('nationality', $this->session->site_lang);
         
         $user_borough = $this->chief->getUserBorough($this->session->user_id);
         $this->borough_id = (int) $user_borough->borough_id;
+        
+        $this->lang->load('job', $this->session->site_lang);
+        $this->lang->load('nationality', $this->session->site_lang);
 
         $this->data['info_borough'] = $user_borough;
         $this->data['user_borough'] = ($user_borough) ? $user_borough->borough_name : '...';
 
         $this->lang->load('user', $this->session->site_lang);
+
+        $this->load->model('job/job_model', 'job');
+        $this->load->model('nationality/nationality_model', 'nationality');
+        
+		$this->data['nationalities'] = $this->nationality->all();
+        $this->data['jobs'] = $this->job->all();
 	}
 
 	public function index()
@@ -311,25 +318,40 @@ class Chief extends Chief_Controller
         }
 
         $fokontany_id = $this->input->get('fokontany_id');
-        
-        if(empty($fokontany_id)){
-            echo json_encode([]);
-            return TRUE;
-        }
+        $page = $this->input->get('page');
+        $size = $this->input->get('size');
 
-        $data = ['fokontany_id' => $fokontany_id, 'chef_menage' => TRUE];
-        
-        if($this->input->get()){
-            if($this->input->get('last_name')) $data['nom LIKE'] = '%'.$this->input->get('last_name').'%';
-            if($this->input->get('first_name')) $data['prenoms LIKE'] = '%'.$this->input->get('first_name').'%';
-            if($this->input->get('birth')) $data['date_de_naissance'] = $this->input->get('birth');
-            if($this->input->get('birth_place')) $data['date_de_naissance'] = $this->input->get('birth_place');
-            if($this->input->get('father')) $data['father LIKE'] = '%'.$this->input->get('father').'%';
-            if($this->input->get('mother')) $data['mother LIKE'] = '%'.$this->input->get('mother').'%';
-        }
+        $filters = $this->input->get('filters');
 
-        $citizens = $this->notebook->citizens($data);
-        echo json_encode($citizens);
+        $criteria = [];
+        
+        if($filters){
+            foreach ($filters as $f) {
+                if($f['field'] == 'chef_menage'){
+                    $field = "LOWER(full_name) LIKE";
+                    $value = '%'.strtolower($f['value']).'%';
+                }else{
+                    $field = $f['field'].' LIKE';
+                    $value = '%'.$f['value'].'%';
+                }
+                
+                $criteria[$field] = $value;
+            }
+        }
+        
+        $criteria['fokontany_id'] = $fokontany_id;
+        $criteria['chef_menage'] = TRUE;
+
+        $limit = $size;
+        $offset = ($page == 1) ? 0 : $page * $size;
+
+        $citizens = $this->notebook->citizensPerPage($criteria, $offset, $limit);
+        $count_citizen = count($this->notebook->citizens($criteria));
+
+        $data['last_page'] = floor($count_citizen/$limit);
+        $data['data'] = $citizens;
+
+        echo json_encode($data);
     }
 
     public function citizens_list()
@@ -338,14 +360,40 @@ class Chief extends Chief_Controller
             exit('Tandremo! Voararan\'ny lalana izao atao nao izao.');
         }
         $fokontany_id = $this->input->get('fokontany_id');
+
+        $page = $this->input->get('page');
+        $size = $this->input->get('size');
+
+        $limit = $size;
+        $offset = ($page == 1) ? 0 : $page * $size;
+
+        $filters = $this->input->get('filters');
+
+        $criteria = [];
         
-        if(empty($fokontany_id)){
-            echo json_encode([]);
+        if($filters){
+            foreach ($filters as $f) {
+                $field = 'LOWER('.$f['field'].') LIKE';
+                $value = '%'.strtolower($f['value']).'%';
+                
+                $criteria[$field] = $value;
+            }
+        }
+        
+        $criteria['fokontany_id'] = $fokontany_id;
+
+        $count_citizen = count($this->notebook->citizens($criteria));
+
+        $data['last_page'] = floor($count_citizen/$limit);
+
+        if(empty($criteria)){
+            $data['data'] = [];
+            echo json_encode($data);
             return TRUE;
         }
 
-        $citizens = $this->notebook->citizens(['fokontany_id' => $fokontany_id]);
-        echo json_encode($citizens);
+        $data['data'] = $this->notebook->citizensPerPage($criteria, $offset, $limit);
+        echo json_encode($data);
     }
 
     public function list_citizen_by_carnet_id()

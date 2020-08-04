@@ -213,7 +213,7 @@ $(function () {
             }         
             if(row.getData().date_delivrance_cin){
                 $('#date_delivrance_cin').val(splitDate(row.getData().date_delivrance_cin));
-                $('#lieu_delivrance_cin').val(splitDate(row.getData().lieu_delivrance_cin));
+                $('#lieu_delivrance_cin').val(row.getData().lieu_delivrance_cin);
             }
 
             $('#certificat_residence').attr("href", "certificate?id_personne="+row.getData().id_personne).attr("target", "_blank");

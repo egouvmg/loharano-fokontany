@@ -104,7 +104,6 @@ $route['ajout_citoyen'] = 'citizen/add_citizen';
 $route['liste_citoyen'] = 'citizen/list_citizen';
 $route['enregistrement_citoyen'] = 'citizen/save_citizen';
 $route['liste_citoyens'] = 'citizen/list_citizens';
-$route['membres_menage'] = 'citizen/list_citizen_by_carnet_id';
 $route['recherche_menage'] = 'citizen/search_household';
 $route['menage_fokontany'] = 'citizen/fokontany_household';
 $route['recherche_menage_fokontany'] = 'citizen/search_household_in_list';
@@ -135,7 +134,6 @@ $route['menages_fokontany'] = 'menage/menages_fokontany';
 $route['utilisateurs_fokontany'] = 'chief/get_users';
 $route['chef_liste_menages'] = 'chief/households_list';
 $route['citoyens_liste'] = 'chief/citizens_list';
-$route['chef_membres_menage'] = 'chief/list_citizen_by_carnet_id';
 
 //Citizen
 $route['recherche_rapide'] = 'citizen/speed_search';
@@ -149,8 +147,6 @@ $route['save_citizen_from_certificat'] = 'citizen/save_citizen_from_certificat';
 $route['migrer_vers_menage'] = 'citizen/migrate_to_household';
 $route['migrer_vers_nouveau_menage'] = 'citizen/migrate_to_new_household';
 $route['valider_migration_vers_menage'] = 'citizen/valid_migration_citizen';
-$route['historique_migration'] = 'citizen/history_migration';
-$route['historique_certificat'] = 'citizen/history_certificate';
 $route['verifier_localite_nouveau_menage'] = 'citizen/check_new_household';
 $route['citoyens_autre_liste'] = 'citizen/citizens_other_list';
 $route['ajout_dans_menage'] = 'citizen/add_to_household';
@@ -168,7 +164,6 @@ $route['certificate_behavior'] = 'citizen/certificate_behavior';
 $route['verifier_personnne'] = "citizen/check_fields";
 
 //Aid
-$route['aide_par_menage'] = 'aid/aid_by_household';
 $route['ajout_aide'] = 'aid/add_household_aid';
 $route['typa_aide'] = 'aid/type';
 
@@ -179,3 +174,9 @@ $route['liste_aides'] = 'superadmin/list_aid';
 
 //QRCode
 $route['index_qrcode'] = 'qrcode/index_qrcode';
+
+//Utility
+$route['historique_migration'] = 'utility/history_migration';
+$route['historique_certificat'] = 'utility/history_certificate';
+$route['membres_menage'] = 'utility/list_citizen_by_carnet_id';
+$route['aide_par_menage'] = 'utility/aid_by_household';

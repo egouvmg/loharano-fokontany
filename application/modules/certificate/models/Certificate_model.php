@@ -52,5 +52,18 @@ class Certificate_model extends CI_Model
 		return $query->result();
 	}
 
+	public function totalCertificats($criteria = array()) {
+		$this->db->select("SUM(nbr_certificate) AS nbr_certificate, ref_certificate, certificate, month_year");
+		$this->db->from($this->_v_insight);
+		
+		if(!empty($criteria)){
+			$this->db->where($criteria);
+        }
+		$this->db->group_by(['ref_certificate', 'certificate', 'month_year']);
+		$query = $this->db->get();
+
+		return $query->result();
+	}
+
 
 }

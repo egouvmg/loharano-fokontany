@@ -34,7 +34,12 @@ $(function () {
                     "col":"Couleur",
                     "dob":"Date de Naissance",
                 },
+                "ajax": {
+                    "loading": "Chargement",
+                    "error": "Erreur"
+                },
                 "pagination":{
+                    "page_size":"Taille de page",
                     "first":"Premier",
                     "first_title":"Première Page",
                     "last":"Dernier",
@@ -58,6 +63,8 @@ $(function () {
             $('#editModal').modal();
         }
     });
+
+    users.setLocale("fr-fr");
 
     $(document).ready(function(e){
         users.setData('utilisateurs_fokontany', {fokontany_id: $('#fokontany').val()});

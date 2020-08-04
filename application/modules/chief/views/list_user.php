@@ -108,12 +108,17 @@
 	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="aidTitle">
+            Informations du compte utilisateur Fokontany
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 				<div class="modal-body">
           <form id="editForm">
           <div class="form-row">
-            <div class="form-group col-md-12">
-              Informations du compte utilisateur Fokontany
-            </div>
             <div class="form-group col-md-6">
               <label for="first_name">Nom</label>
               <input type="text" class="form-control" id="first_name" name="first_name" placeholder="...">
@@ -141,16 +146,20 @@
               <input type="text" class="form-control" id="password" name="password" placeholder="...">  
               <span class="error_field error_password"></span>
             </div>
-            <div class="col-lg-12">
-              <button type="submit" id="editOperator" class="btn btn-primary">Enregistrer</button>
-              <span id="failedMsg" class="error_field"></span>
-              <div id="loadingSave" style="display:none;">
-                <img class="loading" src="<?= img('pulse.gif');?>"/>
-                Enregistrement ...
-              </div>
-            </div>
           </div>
           </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Fermer
+            <span class="iconify" data-icon="uil:times-circle" data-inline="false"></span>
+          </button>
+          <button type="submit" id="editOperator" class="btn btn-primary">Enregistrer</button>
+          <span id="failedMsg" class="error_field"></span>
+          <div id="loadingSave" style="display:none;">
+            <img class="loading" src="<?= img('pulse.gif');?>"/>
+            Enregistrement ...
+          </div>
         </div>
 			</div>
 		</div>
