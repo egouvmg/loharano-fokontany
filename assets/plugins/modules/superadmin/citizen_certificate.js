@@ -61,9 +61,13 @@ $(function () {
            */
         });
     }
-
+//https://stackoverflow.com/questions/36472094/how-to-set-image-to-fit-width-of-the-page-using-jspdf
     function createPdf(){
-        html2canvas($('#content').get(0),{dpi:300}).then (function( canvas ) {//scale:scaler
+        const input = $('#content');
+        const divHeight = input.height();
+        const divWidth = input.width();
+        const ratio = divHeight / divWidth;
+        html2canvas($('#content').get(0),{scale:3}).then (function( canvas ) {//
                 var img1 = canvas.toDataURL('image/png');
                 var doc = new jsPDF('p','px','a4');//'p', 'mm'
                 var namepdf = "file.pdf";
@@ -76,7 +80,11 @@ $(function () {
                 context["webkitImageSmoothingEnabled"] = false
                 context["msImageSmoothingEnabled"] = false
                 */
-                doc.addImage( img1, 'JPEG', 0, 0, 450, 330); // A5 sizes doc.addImage( img1, 'JPEG', 0, 0, 450, 316);
+               const width = doc.internal.pageSize.getWidth();
+               let height = doc.internal.pageSize.getHeight();
+               height = ratio * width;
+
+                doc.addImage( img1, 'JPEG', 0, 20, width - 20, height - 10);
                 //doc.addImage( img1, 'PNG', 0, 296, 420, 296); // A5 sizes
                 var today = new Date();
                 var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
