@@ -82,7 +82,7 @@ $(function () {
             {title:"Date de réception", width:300, field:"created_on", headerFilterPlaceholder: "...", headerFilter: "input"}
         ],
         rowClick:function(e, row){
-            $('#notebookNumber').text(row.getData().numero_carnet);
+            $('#notebookNumber').text(row.getData().chief_name);
             $('#householdDetails').modal();
             citizenHousehold.setData('membres_menage', {numero_carnet:row.getData().numero_carnet});
         },
