@@ -62,6 +62,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
+                    <h6>Filtre par Fokontany.</p>
                     <!-- Location Filter-->
                     <div class="form-row">
                         <div class="form-group col-md-2">
@@ -115,67 +116,48 @@
                     </div>
                     <!-- Location -->
                 </div>
+            </div>
+            
+            <div class="row">  
                 <div class="col-lg-12">
-                    <div id="users"></div>
+                    <h6>Liste des aides distribuées.</p>
+                    <div id="aids"></div>
+                </div>
+                <div class="col-lg-12">
+                    <h6>Liste par des ménages ayant reçu l'aide : <strong id="programName">...</strong></p>
+                    <div id="household"></div>
                 </div>
             </div>
         </div>
         <!-- End Page Content -->
       </div>
-    </div>
+    </div>                   
   </div>
-  
-  <!-- Modal -->
-	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-body">
-          <form id="editForm">
-          <div class="form-row">
-            <div class="form-group col-md-12">
-              Informations du compte utilisateur Fokontany
-            </div>
-            <div class="form-group col-md-6">
-              <label for="first_name">Nom</label>
-              <input type="text" class="form-control" id="first_name" name="first_name" placeholder="...">
-              <span class="error_field error_first_name"></span>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="email">Email</label>
-              <input type="text" class="form-control" id="email" readonly placeholder="...">
-              <span class="error_field error_email"></span>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="phone">Téléphones</label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="...">
-                <span class="error_field error_phone"></span>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="address">Adresse</label>
-              <input type="text" class="form-control" id="address"  name="address" placeholder="...">  
-              <span class="error_field error_address"></span>
-            </div>
-            <input type="hidden" name="email" id="currentEmail"/>
-            <input type="hidden" name="old_pwd" id="old_pwd"/>
-            <div class="form-group col-md-6">
-              <label for="password">Mot de passe</label>
-              <input type="text" class="form-control" id="password" name="password" placeholder="...">  
-              <span class="error_field error_password"></span>
-            </div>
-            <div class="col-lg-12">
-              <button type="submit" id="editOperator" class="btn btn-primary">Enregistrer</button>
-              <span id="failedMsg" class="error_field"></span>
-              <div id="loadingSave" style="display:none;">
-                <img class="loading" src="<?= img('pulse.gif');?>"/>
-                Enregistrement ...
+        <!-- Person details -->       
+        <div class="modal fade" id="householdDetails" tabindex="-1" role="dialog" aria-labelledby="householdDetailsTitle" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="householdDetailsTitle">
+                  Membre du ménage du carnet :  <span id="notebookNumber"></span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div id="citizenHousehold"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  Fermer
+                  <span class="iconify" data-icon="uil:times-circle" data-inline="false"></span>
+                </button>
               </div>
             </div>
           </div>
-          </form>
         </div>
-			</div>
-		</div>
-  </div>
+        <!-- END Person details -->
 
   <!-- Modal -->
 	<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -186,19 +168,18 @@
 					<span class="iconify" data-inline="false" data-icon="uil:check" style="font-size: 32px;"></span>
 					</span>
 					<p id="confirmResponse"></p>
-					<a href="liste_utilisateur"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
+					<a href="ajout_utilisateur"><button type="button" class="btn btn-primary btn-lg">Ok</button></a>
 				</div>
 			</div>
 		</div>
-  </div>
+  	</div>
   <!-- Modal END -->
 	<script src="<?= js('jquery.min');?>"></script>
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
-  <script src="<?= plugin('phone', 'js', 'jquery-input-mask-phone-number.js');?>"></script>
 	<script src="<?= plugin('tabulator', 'js', 'tabulator.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'full_localization.js');?>"></script>
-	<script src="<?= plugin('modules', 'superadmin', 'list_user.js');?>"></script>
+	<script src="<?= plugin('modules', 'aidadmin', 'insight.js');?>"></script>
 <div id="appVersion"> Loharano Fokontany, version <?= APP_VERSION;?> &copy; <a href="https://digital.gov.mg" target="_blank">e-Gouvernance Madagascar</a> - <?= date("Y");?></div>
 </body>
 </html>

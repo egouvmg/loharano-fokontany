@@ -71,7 +71,7 @@
             </div>
             <div class="col-lg-12">
               <p class="mt-2"><?= $this->lang->line('household_aid_content');?> : <strong class="household">...</strong></p>
-              <button id="addAid" class="btn btn-color-2 mb-1">Ajout d'une aide</button>
+              <button id="addAid" class="btn btn-primary btn-color-1 mb-1">Ajout d'une aide</button>
               <div id="aidsContent"></div>
             </div>
           </div>           

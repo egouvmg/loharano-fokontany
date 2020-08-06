@@ -35,6 +35,7 @@ class Aid extends Operator_Controller
 	public function index()
 	{
         $this->data['title'] = $this->lang->line('aid_dashboard');
+
         $this->data['aids'] = $this->aid->all();
         $this->load->view('index', $this->data);
     }
@@ -73,11 +74,11 @@ class Aid extends Operator_Controller
                 if(empty($rib)) $missing_fields[] = ['rib', 'Champs requis'];
             if($type == 5)
                 if(empty($paositra_account)) $missing_fields[] = ['paositra_account', 'Champs requis'];
+        }
 
-            if(!empty($missing_fields)){
-                echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
-                return false;
-            }
+        if(!empty($missing_fields)){
+            echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
+            return false;
         }
 
         $data = [

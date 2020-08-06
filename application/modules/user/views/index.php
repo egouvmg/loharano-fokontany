@@ -48,40 +48,7 @@
   <div class="container-fluid">
     <div class=row>
       <div class="main-side-bar">
-        <ul class="main-menu">
-          <li>
-            <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_chief');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="ajout_de_chef"><?=$this->lang->line('add');?></a></li>
-              <li><a href="liste_des_chefs"><?=$this->lang->line('list');?></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_fokontany');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="ajout_utilisateur"><?=$this->lang->line('add');?></a></li>
-              <li><a href="liste_utilisateur"><?=$this->lang->line('list');?></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> Citoyens</a>
-            <ul class="sub-main-menu" style="display:none;">              
-              <li><a href="la_liste_citoyens"><?=$this->lang->line('list');?></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménages</a>
-            <ul class="sub-main-menu"  style="display:none;">              
-              <li><a href="list_menage"><?=$this->lang->line('list');?></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="fa-solid:hands-helping" data-inline="false"></span> Aides</a>
-            <ul class="sub-main-menu" style="display:none;">              
-              <li><a href="gestion_aide_menage">Liste</a></li>
-            </ul>
-          </li>
-        </ul>
+        <?= $side_main_menu;?>
       </div>
       <div class="main-container admin-container">
         <!-- Page title --> 
@@ -181,7 +148,7 @@
                   <a href="list_menage" class="bloc-link color-4">
                     <span class="iconify" data-icon="ant-design:unordered-list-outlined" data-inline="false"></span> Liste des Ménages
                   </a>
-                  <a href="gestion_aide_menage" class="bloc-link color-7">
+                  <a href="gestion_des_aides" class="bloc-link color-7">
                     <span class="iconify" data-icon="dashicons:products" data-inline="false"></span> Aides sociales
                   </a>
                 </div>

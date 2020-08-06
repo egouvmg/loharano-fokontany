@@ -343,7 +343,7 @@ class Chief extends Chief_Controller
         $criteria['chef_menage'] = TRUE;
 
         $limit = $size;
-        $offset = ($page == 1) ? 0 : $page * $size;
+        $offset = ($page == 1) ? 0 : ($page - 1) * $size;
 
         $citizens = $this->notebook->citizensPerPage($criteria, $offset, $limit);
         $count_citizen = count($this->notebook->citizens($criteria));
@@ -365,7 +365,7 @@ class Chief extends Chief_Controller
         $size = $this->input->get('size');
 
         $limit = $size;
-        $offset = ($page == 1) ? 0 : $page * $size;
+        $offset = ($page == 1) ? 0 : ($page - 1) * $size;
 
         $filters = $this->input->get('filters');
 

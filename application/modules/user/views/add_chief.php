@@ -48,154 +48,120 @@
   <div class="container-fluid">
     <div class=row>
     <div class="main-side-bar">
-      
-    <ul class="main-menu">
-          <li>
-            <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_chief');?></a>
-            <ul class="sub-main-menu">
-              <li><a href="ajout_de_chef" class="active"><?=$this->lang->line('add');?></a></li>
-              <li><a href="liste_des_chefs"><?=$this->lang->line('list');?></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="clarity:users-solid" data-inline="false"></span> <?=$this->lang->line('user_fokontany');?></a>
-            <ul class="sub-main-menu" style="display:none;">
-              <li><a href="ajout_utilisateur"><?=$this->lang->line('add');?></a></li>
-              <li><a href="liste_utilisateur"><?=$this->lang->line('list');?></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="bi:people-fill" data-inline="false"></span> Citoyens</a>
-            <ul class="sub-main-menu" style="display:none;">              
-              <li><a href="la_liste_citoyens"><?=$this->lang->line('list');?></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="ic:outline-family-restroom" data-inline="false"></span> Ménages</a>
-            <ul class="sub-main-menu"  style="display:none;">              
-              <li><a href="list_menage"><?=$this->lang->line('list');?></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="iconify" data-icon="fa-solid:hands-helping" data-inline="false"></span> Aides</a>
-            <ul class="sub-main-menu" style="display:none;">              
-              <li><a href="gestion_aide_menage">Liste</a></li>
-            </ul>
-          </li>
-        </ul>
+      <?= $side_main_menu;?>
+    </div>
+    <div class="main-container admin-container">
+      <!-- Page title --> 
+      <div class="container-fluid page-title">
+        <h1><?= $title;?></h1>
       </div>
-      <div class="main-container admin-container">
-        <!-- Page title --> 
-        <div class="container-fluid page-title">
-          <h1><?= $title;?></h1>
-        </div>
-        <!-- End Page title -->
+      <!-- End Page title -->
 
-        <!-- Page Content -->
-        <div class="container-fluid">
-          <form id="userForm">          
-            <div class="row">
+      <!-- Page Content -->
+      <div class="container-fluid">
+        <form id="userForm">          
+          <div class="row">
+          <div class="col-lg-12">
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  Information du compte
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="first_name">Nom</label>
+                  <input type="text" class="form-control" id="first_name" name="first_name" placeholder="...">
+                  <span class="error_field error_first_name"></span>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="phone">Téléphones</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="...">
+                    <span class="error_field error_phone"></span>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="address">Adresse</label>
+                  <input type="text" class="form-control" id="address" name="address" placeholder="...">  
+                  <span class="error_field error_address"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-3">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="user@loharano.mg">
+                  <span class="error_field error_email"></span>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="password">Mot de passe</label>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="********">
+                  <span class="error_field error_password"></span>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="confirm_password">Confirmation mot de passe</label>
+                  <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="********">
+                  <span class="error_field error_confirm_pwd"></span>
+                </div>
+              </div>
+            </div>
             <div class="col-lg-12">
                 <div class="form-row">
                   <div class="form-group col-md-12">
-                    Information du compte
+                    Choisissez le Fokontany où travail le Chef d'Arrondissement
                   </div>
-                  <div class="form-group col-md-3">
-                    <label for="first_name">Nom</label>
-                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="...">
-                    <span class="error_field error_first_name"></span>
+                  <div class="form-group col-md-4">
+                    <label for="province">Province</label>
+                    <select id="province" class="form-control">
+                      <?php foreach ($provinces as $province): ?>
+                        <option value="<?= $province->id;?>"><?= $province->name;?></option>
+                      <?php endforeach ?>
+                    </select>
                   </div>
-                  <div class="form-group col-md-3">
-                    <label for="phone">Téléphones</label>
-                      <input type="text" class="form-control" id="phone" name="phone" placeholder="...">
-                      <span class="error_field error_phone"></span>
+                  <div class="form-group col-md-4">
+                    <label for="region">Région</label>
+                    <select id="region" class="form-control">
+                      <?php foreach ($regions as $region): ?>
+                        <option value="<?= $region->id;?>"><?= $region->name;?></option>
+                      <?php endforeach ?>
+                    </select>
                   </div>
-                  <div class="form-group col-md-3">
-                    <label for="address">Adresse</label>
-                    <input type="text" class="form-control" id="address" name="address" placeholder="...">  
-                    <span class="error_field error_address"></span>
+                  <div class="form-group col-md-4">
+                    <label for="district">District</label>
+                    <select id="district" class="form-control">
+                      <?php foreach ($districts as $district): ?>
+                        <option value="<?= $district->id;?>"><?= $district->name;?></option>
+                      <?php endforeach ?>
+                    </select>
                   </div>
+                  <div class="form-group col-md-4">
+                    <label for="common">Commune</label>
+                    <select id="common" name="common_id" class="form-control">
+                      <?php foreach ($commons as $common): ?>
+                          <option value="<?= $common->id;?>"><?= $common->name;?></option>
+                        <?php endforeach ?>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="borough">Arrondissement</label>
+                    <select id="borough" name="borough_id" class="form-control">
+                      <?php foreach ($boroughs as $borough): ?>
+                          <option value="<?= $borough->id;?>"><?= $borough->name;?></option>
+                        <?php endforeach ?>
+                    </select>
+                  </div>
+                  <span class="error_field error_borough_id"></span>
+                  <input type="hidden" id="type_compte" name="type_compte" value="sefo_kontany">
                 </div>
-                <div class="form-row">
-                  <div class="form-group col-md-3">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="user@loharano.mg">
-                    <span class="error_field error_email"></span>
-                  </div>
-                  <div class="form-group col-md-3">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="********">
-                    <span class="error_field error_password"></span>
-                  </div>
-                  <div class="form-group col-md-3">
-                    <label for="confirm_password">Confirmation mot de passe</label>
-                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="********">
-                    <span class="error_field error_confirm_pwd"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
-                      Choisissez le Fokontany où travail le Chef d'Arrondissement
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="province">Province</label>
-                      <select id="province" class="form-control">
-                        <?php foreach ($provinces as $province): ?>
-                          <option value="<?= $province->id;?>"><?= $province->name;?></option>
-                        <?php endforeach ?>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="region">Région</label>
-                      <select id="region" class="form-control">
-                        <?php foreach ($regions as $region): ?>
-                          <option value="<?= $region->id;?>"><?= $region->name;?></option>
-                        <?php endforeach ?>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="district">District</label>
-                      <select id="district" class="form-control">
-                        <?php foreach ($districts as $district): ?>
-                          <option value="<?= $district->id;?>"><?= $district->name;?></option>
-                        <?php endforeach ?>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="common">Commune</label>
-                      <select id="common" name="common_id" class="form-control">
-                        <?php foreach ($commons as $common): ?>
-                            <option value="<?= $common->id;?>"><?= $common->name;?></option>
-                          <?php endforeach ?>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="borough">Arrondissement</label>
-                      <select id="borough" name="borough_id" class="form-control">
-                        <?php foreach ($boroughs as $borough): ?>
-                            <option value="<?= $borough->id;?>"><?= $borough->name;?></option>
-                          <?php endforeach ?>
-                      </select>
-                    </div>
-                    <span class="error_field error_borough_id"></span>
-                    <input type="hidden" id="type_compte" name="type_compte" value="sefo_kontany">
-                  </div>
-              </div>
-              <div class="col-lg-12">
-                  <button type="submit" id="saveOperator" class="btn btn-primary">Enregistrer</button>
-                  <span id="failedMsg" class="error_field"></span>
-                  <div id="loadingSave" style="display:none;">
-                    <img class="loading" src="<?= img('pulse.gif');?>"/>
-                    Enregistrement ...
-                  </div>
-              </div>
             </div>
-          </form>
-        </div>
-        <!-- End Page Content -->
+            <div class="col-lg-12">
+                <button type="submit" id="saveOperator" class="btn btn-primary">Enregistrer</button>
+                <span id="failedMsg" class="error_field"></span>
+                <div id="loadingSave" style="display:none;">
+                  <img class="loading" src="<?= img('pulse.gif');?>"/>
+                  Enregistrement ...
+                </div>
+            </div>
+          </div>
+        </form>
       </div>
+      <!-- End Page Content -->
+    </div>
     </div>
   </div>
 

@@ -65,7 +65,10 @@ $route['recuperer_liste_citoyen'] = 'superadmin/citizens_list';
 $route['les_membres_menage'] = 'superadmin/list_citizen_by_carnet_id';
 $route['gerener_certificat'] = 'superadmin/load_citizen_certificate';
 $route['8165461654ssdsdq498z'] = 'superadmin/f45644548';
-$route['gestion_aide_menage'] = 'superadmin/manage_aid';
+
+//Aidadmin
+$route['gestion_des_aides'] = 'aidadmin/index';
+$route['statistique_des_aides'] = 'aidadmin/insight';
 
 //User
 $route['tableau_de_bord'] = 'user/index';
@@ -127,7 +130,7 @@ $route['les_utilisateurs_fokontany'] = 'user/a_users_fokontany';
 $route['les_chefs_arrondissement'] = 'user/a_chiefs_borough';
 
 //Menage
-$route['list_menage'] = 'menage/list_menage';
+$route['liste_des_menages'] = 'menage/list_menage';
 $route['menages_fokontany'] = 'menage/menages_fokontany';
 
 //Chief
@@ -180,3 +183,7 @@ $route['historique_migration'] = 'utility/history_migration';
 $route['historique_certificat'] = 'utility/history_certificate';
 $route['membres_menage'] = 'utility/list_citizen_by_carnet_id';
 $route['aide_par_menage'] = 'utility/aid_by_household';
+
+//Aiadmin
+$route['statitique_aide_par_fokontany'] = 'aidadmin/get_insight';
+$route['menage_avec_aide'] = 'aidadmin/get_household_aid';

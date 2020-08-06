@@ -92,6 +92,9 @@ class User extends SuperAdmin_Controller
         }
 
         $this->data['nbr_total'] = $nbr_total;
+        
+        $this->data['menu_active'] = '';
+        $this->data['side_main_menu'] = $this->load->view('superadmin_menu', $this->data, TRUE);
 
         $this->load->view('index', $this->data);
 	}
@@ -106,6 +109,9 @@ class User extends SuperAdmin_Controller
 		$this->data['commons'] = $this->common->get_all(['district_id' => $this->data['districts'][0]->id]);
 		$this->data['boroughs'] = $this->borough->get_all(['common_id' => $this->data['commons'][0]->id]);
 		$this->data['fokontanies'] = $this->fokontany->get_all(['borough_id' => $this->data['boroughs'][0]->id]);
+        
+        $this->data['menu_active'] = 'add_user';
+        $this->data['side_main_menu'] = $this->load->view('superadmin_menu', $this->data, TRUE);
 		
         $this->load->view('add_user', $this->data);
 	}
@@ -120,6 +126,9 @@ class User extends SuperAdmin_Controller
 		$this->data['commons'] = $this->common->get_all(['district_id' => $this->data['districts'][0]->id]);
 		$this->data['boroughs'] = $this->borough->get_all(['common_id' => $this->data['commons'][0]->id]);
 		$this->data['fokontanies'] = $this->fokontany->get_all(['borough_id' => $this->data['boroughs'][0]->id]);
+        
+        $this->data['menu_active'] = 'add_chief';
+        $this->data['side_main_menu'] = $this->load->view('superadmin_menu', $this->data, TRUE);
 
         $this->load->view('add_chief', $this->data);
     }
@@ -134,6 +143,9 @@ class User extends SuperAdmin_Controller
 		$this->data['commons'] = $this->common->get_all(['district_id' => $this->data['districts'][0]->id]);
 		$this->data['boroughs'] = $this->borough->get_all(['common_id' => $this->data['commons'][0]->id]);
 		$this->data['fokontanies'] = $this->fokontany->get_all(['borough_id' => $this->data['boroughs'][0]->id]);
+        
+        $this->data['menu_active'] = 'list_user';
+        $this->data['side_main_menu'] = $this->load->view('superadmin_menu', $this->data, TRUE);
 
         $this->load->view('list_user', $this->data);
     }
@@ -147,6 +159,9 @@ class User extends SuperAdmin_Controller
         $this->data['districts'] = $this->district->get_all(['region_id' => $this->data['regions'][0]->id]);
 		$this->data['commons'] = $this->common->get_all(['district_id' => $this->data['districts'][0]->id]);
 		$this->data['boroughs'] = $this->borough->get_all(['common_id' => $this->data['commons'][0]->id]);
+        
+        $this->data['menu_active'] = 'list_chief';
+        $this->data['side_main_menu'] = $this->load->view('superadmin_menu', $this->data, TRUE);
 
         $this->load->view('list_chief', $this->data);
     }

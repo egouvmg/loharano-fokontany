@@ -40,6 +40,9 @@ class Superadmin extends SuperAdmin_Controller
 		$this->data['fokontanies'] = $this->fokontany->get_all(['borough_id' => $this->data['boroughs'][0]->id]);
 
         $this->data['carnet_id'] = $this->input->get('carnet_id');
+        
+        $this->data['menu_active'] = 'list_citizen';
+        $this->data['side_main_menu'] = $this->load->view('superadmin_menu', $this->data, TRUE);
 
         $this->load->view('list_citizen', $this->data);
     }
@@ -59,7 +62,9 @@ class Superadmin extends SuperAdmin_Controller
 
     public function manage_aid()
     {
-		$this->data['title'] = "Gestion des aides";
+        $this->data['title'] = "Gestion des aides";
+        $this->data['menu_active'] = 'manage_aid';
+        $this->data['side_main_menu'] = $this->load->view('superadmin_menu', $this->data, TRUE);
 
         $this->load->view('manage_aid', $this->data);
     }

@@ -53,16 +53,16 @@ $(function () {
         ajaxConfig: "GET",
         selectable:1,
 		initialSort:[
-			{column:"numero_carnet", dir:"asc"}
+			{column:"chef_menage", dir:"asc"}
 		],
         columns:[ //Define Table Columns
+            {title:"Chef ménage", field:"chef_menage", formatter: household_head ,headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Numéro Carnet", field:"numero_carnet", headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Adresse", field:"adresse_actuelle", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Date d'arrivée", field:"date_arrivee", headerFilterPlaceholder:"..." , headerFilter:"input"},
-            {title:"Chef ménage", field:"chef_menage", formatter: household_head ,headerFilterPlaceholder:"..." , headerFilter:"input"}         
+            {title:"Date d'arrivée", field:"date_arrivee", headerFilterPlaceholder:"..." , headerFilter:"input"}       
         ],
         rowClick:function(e, row){
-            $('.household').text(row.getData().numero_carnet);
+            $('.household').text(row.getData().nom + ' ' + row.getData().prenoms);
             $('#numero_carnet').val(row.getData().numero_carnet);
 
             aids.setData('aide_par_menage', {numero_carnet:row.getData().numero_carnet});

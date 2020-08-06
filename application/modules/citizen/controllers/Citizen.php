@@ -370,7 +370,7 @@ class Citizen extends Operator_Controller
         $cin_personne = $this->input->get('cin_personne');
 
         $limit = $size;
-        $offset = ($page == 1) ? 0 : $page * $size;
+        $offset = ($page == 1) ? 0 : ($page - 1) * $size;
 
         $criteria = [];
         
@@ -406,7 +406,7 @@ class Citizen extends Operator_Controller
         $cin_personne = $this->input->get('cin_personne');
 
         $limit = $size;
-        $offset = ($page == 1) ? 0 : $page * $size;
+        $offset = ($page == 1) ? 0 : ($page - 1) * $size;
 
         $criteria = [];
         
@@ -467,7 +467,7 @@ class Citizen extends Operator_Controller
         $criteria['chef_menage'] = TRUE;
 
         $limit = ($size);
-        $offset = ($page == 1) ? 0 : $page * $size;
+        $offset = ($page == 1) ? 0 : ($page - 1) * $size;
 
         $citizens = $this->notebook->citizensPerPage($criteria, $offset, $limit);
         $count_citizen = count($this->notebook->citizens($criteria));

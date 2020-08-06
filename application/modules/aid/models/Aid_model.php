@@ -8,6 +8,8 @@ class Aid_model extends CI_Model
 	private $_personne = "personne";
 
 	private $_v_household_aid = "v_household_aid";
+	private $_v_household_chief_aid = "v_household_chief_aid";
+	private $_v_insight_aid = "v_insight_aid";
 
 	public function __construct(){      
         $this->load->database();
@@ -74,6 +76,51 @@ class Aid_model extends CI_Model
 		return $query->result();
 	}
 
+	public function household_chief_aids($criteria = array()) {
+		$this->db->select('*');
+		$this->db->from($this->_v_household_chief_aid);
+		
+		if(!empty($criteria)){
+			$this->db->where($criteria);
+		}
+		
+		$query = $this->db->get();
+
+		return $query->result();
+	}
+
+	public function householdAidsPerPage($criteria = array(), $offset, $limit = 15) {
+		$this->db->select('*');
+		$this->db->from($this->_v_household_aid);
+		
+		if(!empty($criteria)){
+			$this->db->where($criteria);
+		}
+
+		$this->db->order_by('numero_carnet', 'asc');
+		$this->db->limit($limit, $offset);
+		
+		$query = $this->db->get();
+
+		return $query->result();
+	}
+	
+	public function householdChiefAidsPerPage($criteria = array(), $offset, $limit = 15) {
+		$this->db->select('*');
+		$this->db->from($this->_v_household_chief_aid);
+		
+		if(!empty($criteria)){
+			$this->db->where($criteria);
+		}
+
+		$this->db->order_by('chief_name', 'asc');
+		$this->db->limit($limit, $offset);
+		
+		$query = $this->db->get();
+
+		return $query->result();
+	}
+
 	public function aids($criteria = array()) {
 		$this->db->select('*');
 		$this->db->from($this->_household_aid);
@@ -83,6 +130,21 @@ class Aid_model extends CI_Model
 		}
 
 		$this->db->order_by('created_on', 'desc');
+		
+		$query = $this->db->get();
+
+		return $query->result();
+	}
+
+	public function insight($criteria = array()) {
+		$this->db->select('*');
+		$this->db->from($this->_v_insight_aid);
+		
+		if(!empty($criteria)){
+			$this->db->where($criteria);
+		}
+
+		$this->db->order_by('name', 'asc');
 		
 		$query = $this->db->get();
 

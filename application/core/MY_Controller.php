@@ -6,6 +6,9 @@ class MY_Controller extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		
+		header('Cache-Control: no-cache');
+		header('Pragma: no-cache');
 
 		$language = ($this->session->site_lang) ? $this->session->site_lang : $this->config->item('language');
 		
