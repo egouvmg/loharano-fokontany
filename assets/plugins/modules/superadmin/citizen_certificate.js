@@ -84,7 +84,7 @@ $(function () {
                let height = doc.internal.pageSize.getHeight();
                height = ratio * width;
 
-                doc.addImage( img1, 'JPEG', 0, 20, width - 20, height - 10);
+                doc.addImage( img1, 'JPEG', 0, 20, width - 20, height);
                 //doc.addImage( img1, 'PNG', 0, 296, 420, 296); // A5 sizes
                 var today = new Date();
                 var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
