@@ -35,7 +35,6 @@ class Aid extends Operator_Controller
 	public function index()
 	{
         $this->data['title'] = $this->lang->line('aid_dashboard');
-        
         $this->data['aids'] = $this->aid->all();
         $this->load->view('index', $this->data);
     }
@@ -52,6 +51,7 @@ class Aid extends Operator_Controller
 
         $numero_carnet = $this->input->post('numero_carnet');
         $aid_id = $this->input->post('aid_id');
+        $aid_type = $this->input->post('aid_type');
         $created_on = $this->input->post('created_on');
         $type = $this->input->post('type');
         $phone = $this->input->post('phone');
@@ -65,17 +65,19 @@ class Aid extends Operator_Controller
             $missing_fields[] = ['aid_id', 'Champs requis'];
         if(empty($created_on))
             $missing_fields[] = ['created_on', 'Champs requis'];
-            
-        if($type < 4)
-            if(empty($phone)) $missing_fields[] = ['phone', 'Champs requis'];
-        if($type == 4)
-            if(empty($rib)) $missing_fields[] = ['rib', 'Champs requis'];
-        if($type == 5)
-            if(empty($paositra_account)) $missing_fields[] = ['paositra_account', 'Champs requis'];
 
-        if(!empty($missing_fields)){
-            echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
-            return false;
+        if($aid_type == 2){
+            if($type < 4)
+                if(empty($phone)) $missing_fields[] = ['phone', 'Champs requis'];
+            if($type == 4)
+                if(empty($rib)) $missing_fields[] = ['rib', 'Champs requis'];
+            if($type == 5)
+                if(empty($paositra_account)) $missing_fields[] = ['paositra_account', 'Champs requis'];
+
+            if(!empty($missing_fields)){
+                echo json_encode(['error' => 1, 'missing_fields' => $missing_fields]);
+                return false;
+            }
         }
 
         $data = [

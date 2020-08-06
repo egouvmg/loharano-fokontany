@@ -113,8 +113,6 @@ $(function () {
             {title:"Détails", field: "payment_type", formatter: context},
             {title:"Description", field:"description"}       
         ],
-        rowClick:function(e, row){
-        },
         pagination:"local",
         paginationSize:10,
         paginationSizeSelector:[25, 50, 100, 200],
@@ -165,6 +163,7 @@ $(function () {
             $.get('typa_aide', {aid_id:aid_id}, function(res){
                 if(res.success == 1){
                     $('#type').val(res.type_name);
+                    $('#aid_type').val(res.type);
                     $('#description').val(res.description);
 
                     if(res.type == 2){
@@ -246,6 +245,7 @@ $(function () {
         $.get('typa_aide', {aid_id:aid_id}, function(res){
             if(res.success == 1){
                 $('#type').val(res.type_name);
+                $('#aid_type').val(res.type);
                 $('#description').val(res.description);
 
                 if(res.type == 2){

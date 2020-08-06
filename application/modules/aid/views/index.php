@@ -119,6 +119,7 @@
                   <div class="form-group col-md-6">
                     <label for="type">Type d'aide<span class="text-red"></span></label>
                     <input type="text" readonly class="form-control" id="type"/>
+                    <input type="hidden" name="aid_type" class="form-control" id="aid_type"/>
                     <div class="error_field error_type"></div>
                   </div>
                 </div>
