@@ -454,7 +454,10 @@ $(function () {
         data["numero_carnet"]= $('#numero_carnet_hidden').val();
 
         if($('#numero_carnet_hidden').val() == ''){
-            alert('Veuillez choisir un ménage avant de créer un Carnet Fokontany.');
+            /*$('.toast-container').css({
+                'cssText': 'bottom: 220px !important'
+            });*/
+            notify('error',"Message d'erreur!",'Veuillez choisir un ménage avant de créer un Carnet Fokontany');
             return false;
         }
 
@@ -467,7 +470,7 @@ $(function () {
         e.preventDefault();
 
         if($('#numero_carnet_hidden').val() == ''){
-            alert('Veuillez choisir un ménage avant de procéder à l\'ajout de citoyen.');
+            notify('error',"Message d'erreur!",'Veuillez choisir un ménage avant de procéder à l\'ajout de citoyen.');
             return false;
         }
 
