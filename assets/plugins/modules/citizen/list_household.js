@@ -443,7 +443,12 @@ $(function () {
         }, 'JSON');
     });
 
+    var pdf = null;
+    line = 0;
+    index_page = 0;
     $('#carnet_id').click(function(e){
+        pdf = new jsPDF('p','px','a4');
+        line = 20;
         e.preventDefault();
         data={};
         data["numero_carnet"]= $('#numero_carnet_hidden').val();
@@ -472,8 +477,8 @@ $(function () {
         }, 'JSON');
     });
     
-    var pdf = new jsPDF('p','px','a4');
-    line = 20;
+ //   var pdf = new jsPDF('p','px','a4');
+ //   line = 20;
 
     function createCarnet(membres_menage){
         var specialElementHandlers = {
@@ -589,9 +594,20 @@ $(function () {
             addText("Asa : " + (!membre.job?"                   ":membre.job) +"   FKT : " + membre.libelle_fokontany, null, null, null);
             
             if((index + 1)%3 === 0){
-                //pdf.addPage();
-                row = 230;
-                line = 308;
+                index_page++;
+                if((index_page)%2 !== 0){
+                    row = 230;
+                    line = 308;
+                }
+                else{
+                  pdf.addPage();
+                  pdf.setLineWidth(1);
+                  pdf.line(220, 0, 220, 630);      
+                  pdf.line(0 , 345, 510, 345);
+                  
+                  line = 10;
+                  row = 10;
+               }
             }
 
             line += 12;
