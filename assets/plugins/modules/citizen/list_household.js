@@ -446,7 +446,9 @@ $(function () {
     var pdf = null;
     line = 0;
     index_page = 0;
+    let a = document.createElement("a");
     $('#carnet_id').click(function(e){
+        pdf = null;
         pdf = new jsPDF('p','px','a4');
         line = 20;
         e.preventDefault();
@@ -464,6 +466,7 @@ $(function () {
         $.get('membres_menage', data, function(res){
             createCarnet(res);
         }, 'JSON');
+        index_page = 0;
     });
 
     $('#add_citizen').click(function(e){
@@ -619,9 +622,48 @@ $(function () {
         var namepdf = "file.pdf";
         var today = new Date();
         var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-        namepdf =  "Karine_pokontany"+'_'+membres_menage[0].numero_carnet+'_'+date;  
-        pdf.save(namepdf);
+        namepdf =  "Karine_pokontany"+'_'+membres_menage[0].numero_carnet+'_'+date; 
+        pdf.setProperties({
+            title: namepdf
+        });
+
+        //data = pdf.output("dataurlstring");      
+        //var blobPDF = new Blob([pdf.output('blob', {'filename':namepdf})], { type : 'application/pdf'});
+        var blobPDF = new Blob([pdf.output('blob')], { type : 'application/pdf'});
+        var blobUrl = window.URL.createObjectURL(blobPDF);
+        
+        
+        //pdfAttachment : Files; //declare the file
+        var pdfAttachment = null;
+        newName = 'new_file_name'      
+        /* pdfAttachment = new File([pdf.output('blob')], newName, {
+              type: pdf.output('blob').type,
+              lastModified: pdf.output('blob').lastModified,
+            });
+
+       */
+        a.href = blobUrl;
+        a.download = namepdf;
+        document.body.appendChild(a);
+       
+        //document.getElementById("pdf").src = data;
+        //var pdf = $('#pdf').attr('src',data);
+        pdfActu = $('#pdf');
+
+        var pdfclone=pdfActu.clone(true);
+        pdfclone.attr('src',blobUrl+"#toolbar=0&page=1");
+        //pdfclone.attr('src',data);
+        pdfActu.replaceWith(pdfclone)
+        //document.querySelector("#pdf").src = data;
+        //$("#pdf").src = data;
+        //$('#report').html("<iframe src='#{data}'></iframe>");
+        $('#myModal').modal();
+        $('#download').remove();
+        //pdf.save(namepdf);
     }
+    $('#print').click(function(e){
+        a.click();
+    });    
 
     function addText(texte, x, y, alignemnt){
       pdf.text(texte==null?'':texte, x==null?row:x, y==null?line:y, null, null, alignemnt);

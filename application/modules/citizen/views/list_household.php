@@ -378,6 +378,35 @@
         </div>
         <!-- END Person details -->
 
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog mw-100 w-75">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">KARINE</h4>
+                
+                <div class="style=display:flex;">
+                  <div class="">
+                    <button type="button" class="btn btn-lg btn-primary" id="print" >Imprimer Karine</button>
+                  </div>
+                 
+                </div>
+
+              </div>
+              <div class="modal-body">
+                <iframe id="pdf" type="application/pdf" width="100%" height="600px" download="filename.pdf"></iframe>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <!--End Modal -->
+
 	<script src="<?= js('jquery.min');?>"></script>
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
   <script src="<?= plugin('phone', 'js', 'jquery-input-mask-phone-number.js');?>"></script>
