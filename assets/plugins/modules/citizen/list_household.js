@@ -663,8 +663,26 @@ $(function () {
     }
     $('#print').click(function(e){
         a.click();
-    });    
-
+    }); 
+    
+    $('#myModal').ready(function() {
+        setTimeout(function() {
+           $('#pdf').contents().find('#download').remove();
+        }, 100);
+     });
+    /*
+     $( "#myModal" ).on('shown.bs.modal', function(){
+        setTimeout(function() {
+            var iframe = document.getElementById("pdf");
+            var content = iframe.contentDocument;
+            var elmnt = content.getElementById("toolbar");
+            //var elmnt = iframe.getElementById("download");
+            //var elmnt = iframe.contentWindow.document.getElementsByTagName("cr-icon-button")[1];
+            elmnt.style.display = "none";
+            $('#pdf').contents().find('#download').remove();
+         }, 100);
+    });
+    */
     function addText(texte, x, y, alignemnt){
       pdf.text(texte==null?'':texte, x==null?row:x, y==null?line:y, null, null, alignemnt);
       line += 12;  
