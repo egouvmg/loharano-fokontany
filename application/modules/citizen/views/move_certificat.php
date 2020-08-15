@@ -227,12 +227,12 @@
             <div class="row">
               <div class="col-sm-6" style="margin-bottom: 0px;">
                   <span class="font-weight-bold">Natao teto :</span><?=" ".$citizen_data[0]->libelle_fokontany ?>
-                  <p class="font-italic">le</p>
+                  <p class="font-italic">Fait à</p>
               </div> 
 
               <div class="col-sm-6" style="margin-bottom: 0px;">
                   <span class="font-weight-bold">androany faha </span><?= " ".date('d/m/Y')?>
-                  <p class="font-italic">Fait à </p>
+                  <p class="font-italic">le </p>
               </div>   
               </div>             
             </div>
