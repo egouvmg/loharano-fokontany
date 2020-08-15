@@ -286,7 +286,8 @@
 	<script src="<?= plugin('modules', 'common', 'index.js');?>"></script>
 	<script src="<?= plugin('modules', 'common', 'location.js');?>"></script>
   <script src="<?= plugin('modules', 'superadmin', 'html2canvas.js');?>"></script>
-  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+  <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
 	<script src="<?= plugin('modules', 'superadmin', 'citizen_certificate.js');?>"></script>
 <div id="appVersion"> Loharano Fokontany, version <?= APP_VERSION;?> &copy; <a href="https://digital.gov.mg" target="_blank">e-Gouvernance Madagascar</a> - <?= date("Y");?></div>
 </body>
