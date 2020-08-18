@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="<?= img('favicon.png');?>" />
 	<title>Loharano - <?= $title;?></title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -96,7 +97,7 @@
             <div class="col-lg-12 line-bloc">
               <h6 class="float-left"><?= $this->lang->line('household_content');?></h6>
               <button id="carnet_id" class="float-right btn btn-info ml-2 my-2" type="button">Créer Carnet Fokontany</button>
-              <button id="add_citizen" class="float-right btn btn-secondary my-2" type="button">Ajouter de citoyens</button>
+              <button id="add_citizen" class="float-right btn btn-secondary my-2" type="button">Ajouter citoyens</button>
             </div>
             <div class="col-lg-12 line-bloc">
               <div id="citizens"></div>

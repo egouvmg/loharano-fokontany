@@ -67,15 +67,16 @@ $(function () {
 		ajaxURL: "liste_menages_fokontany",
         columnVertAlign:"bottom", //align header contents to bottom of cell
         cellVertAlign:"middle", //vertically center cell contents
-		ajaxConfig: "GET",
+        ajaxConfig: "GET",
+        ajaxSorting:true,
 		initialSort:[
-			{column:"numero_carnet", dir:"asc"}
+			{column:"full_name", dir:"asc"}
 		],
         columns:[ //Define Table Columns
+            {title:"Chef ménage", width:300, field:"full_name"}, 
             {title:"Numéro Carnet", field:"numero_carnet"},
-            {title:"Adresse", field:"adresse_actuelle"},
-            {title:"Chef ménage", width:300, field:"chef_menage", formatter: household_head},   
-            {formatter: customFormatter, title: "Certificats",
+            {title:"Adresse", field:"adresse_actuelle"},  
+            {formatter: customFormatter, title: "Aides Sociales",
             cellClick:function(e, cell){
                 $('#nom_complet_chef').text(cell.getRow().getData().nom + ' ' + cell.getRow().getData().prenoms);
                 citizenAids.setData('aide_par_menage', {numero_carnet:cell.getRow().getData().numero_carnet});
@@ -88,7 +89,7 @@ $(function () {
         },
         pagination:"remote", //enable remote pagination
         paginationSize:10,
-        paginationSizeSelector:[10, 20, 50, 100, 200],
+        paginationSizeSelector:[10, 20, 50],
         ajaxFiltering:true,
         langs:{
             "fr-fr":{ //French language definition

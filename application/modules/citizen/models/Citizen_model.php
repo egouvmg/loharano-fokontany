@@ -13,7 +13,7 @@ class Citizen_model extends CI_Model
     }
 
 	public function get($criteria = array()) {
-		$this->db->select('cin_personne, id_personne, nom, prenoms, to_char(date_de_naissance, \'dd/mm/yyyy\') as date_de_naissance	, lieu_de_naissance, date_delivrance_cin, lieu_delivrance_cin, handicape, situation_matrimoniale, qr_code, numero_carnet, father, mother, father_status, mother_status, job_id, job_status, job_other, sexe, phone, nationality_id, passport, passport_date, passport_place, chef_menage');
+		$this->db->select('id_photo, cin_personne, id_personne, nom, prenoms, to_char(date_de_naissance, \'dd/mm/yyyy\') as date_de_naissance	, lieu_de_naissance, to_char(date_delivrance_cin, \'dd/mm/yyyy\') as date_delivrance_cin, lieu_delivrance_cin, handicape, situation_matrimoniale, numero_carnet, father, mother, father_status, mother_status, job_id, job_status, job_other, sexe, phone, nationality_id, passport, passport_date, passport_place, chef_menage');
 		$this->db->from($this->_table);
 		
 		if(!empty($criteria)){
@@ -26,7 +26,7 @@ class Citizen_model extends CI_Model
 	}
 
 	public function one($criteria = array()) {
-		$this->db->select('cin_personne, id_personne, nom, prenoms, to_char(date_de_naissance, \'dd/mm/yyyy\') as date_de_naissance	, lieu_de_naissance, date_delivrance_cin, lieu_delivrance_cin, handicape, situation_matrimoniale, qr_code, numero_carnet, father, mother, father_status, mother_status, job_id, job_status, job_other, sexe, phone, nationality_id, passport, passport_date, passport_place, chef_menage');
+		$this->db->select('id_photo, cin_personne, id_personne, nom, prenoms, to_char(date_de_naissance, \'dd/mm/yyyy\') as date_de_naissance	, lieu_de_naissance, to_char(date_delivrance_cin, \'dd/mm/yyyy\') as date_delivrance_cin, lieu_delivrance_cin, handicape, situation_matrimoniale, numero_carnet, father, mother, father_status, mother_status, job_id, job_status, job_other, sexe, phone, nationality_id, passport, passport_date, passport_place, chef_menage');
 		$this->db->from($this->_table);
 		
 		if(!empty($criteria)){
@@ -40,6 +40,12 @@ class Citizen_model extends CI_Model
 
 	public function insert($data) {
 		$data["created_by"] = $this->session->user_id;
+		$this->db->insert($this->_table, $data);
+
+		return $this->db->insert_id();
+	}
+
+	public function save($data) {
 		$this->db->insert($this->_table, $data);
 
 		return $this->db->insert_id();

@@ -54,7 +54,7 @@ $(function () {
     var histories_certificates = new Tabulator('#historyCertificate', {
         layout:"fitColumns",
 		initialSort:[
-			{column:"date_migration", dir:"desc"}
+			{column:"date_generation", dir:"desc"}
 		],
         columns:[ //Define Table Columns
             {title:"Date", field:"date_generation"},
@@ -138,7 +138,7 @@ $(function () {
         layout:"fitColumns",
         selectable: 1,
 		initialSort:[
-			{column:"Nom", dir:"asc"}
+			{column:"nom", dir:"asc"}
 		],
         columns:[ //Define Table Columns
             {title:"Chef", width:80, formatter: is_household_head, field:"chef_menage"},
@@ -243,7 +243,6 @@ $(function () {
             {title:"Fokontany", field:"fokontany_name"}     
         ],
         rowClick:function(e, row){
-
             $('.error_field').text('');
             $('#nom_complet_autre').text(row.getData().nom + ' ' + row.getData().prenoms);
             $('#o_adresse_actuelle').val(row.getData().adresse_actuelle);
@@ -275,12 +274,11 @@ $(function () {
                 $('#o_date_delivrance_cin').val(splitDate(row.getData().date_delivrance_cin));
                 $('#o_lieu_delivrance_cin').val(splitDate(row.getData().lieu_delivrance_cin));
             }
-            
             $('#otherCitizenDetails').modal();
         },
         pagination:"remote", //enable remote pagination
-        paginationSize:5,
-        paginationSizeSelector:[5, 10, 20, 50, 100, 200],
+        paginationSize: 10,
+        paginationSizeSelector:[10, 20, 50],
         langs:{
             "fr-fr":{ //French language definition
                 "columns":{

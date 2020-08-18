@@ -1,8 +1,4 @@
 $(function () {
-    var household_head = function (cell, formatterParams) {
-		return cell.getRow().getData().nom + ' ' + cell.getRow().getData().prenoms;
-    };
-
     var types = function (cell, formatterParams) {
         var value = cell.getValue();
 
@@ -51,12 +47,13 @@ $(function () {
         layout:"fitColumns",
 		ajaxURL: "liste_menages_fokontany",
         ajaxConfig: "GET",
+        ajaxSorting:true,
         selectable:1,
 		initialSort:[
-			{column:"chef_menage", dir:"asc"}
+			{column:"full_name", dir:"asc"}
 		],
         columns:[ //Define Table Columns
-            {title:"Chef ménage", field:"chef_menage", formatter: household_head ,headerFilterPlaceholder:"..." , headerFilter:"input"},
+            {title:"Chef ménage", field:"full_name" ,headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Numéro Carnet", field:"numero_carnet", headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Adresse", field:"adresse_actuelle", headerFilterPlaceholder:"..." , headerFilter:"input"},
             {title:"Date d'arrivée", field:"date_arrivee", headerFilterPlaceholder:"..." , headerFilter:"input"}       
@@ -69,7 +66,7 @@ $(function () {
         },
         pagination:"remote", //enable remote pagination
         paginationSize:5,
-        paginationSizeSelector:[5, 10, 20, 50, 100, 200],
+        paginationSizeSelector:[5, 10, 20, 50],
         ajaxFiltering:true,
         langs:{
             "fr-fr":{ //French language definition

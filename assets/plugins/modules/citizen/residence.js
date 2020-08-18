@@ -183,6 +183,9 @@ $(function () {
         ],
         rowClick:function(e, row){
             histories.setData('historique_migration', {id_person:row.getData().id_personne});
+            histories_certificates.setData('historique_certificat', {id_person:row.getData().id_personne});
+            citizenHousehold.setData('membres_menage', {numero_carnet:row.getData().numero_carnet});
+            citizenAids.setData('aide_par_menage', {numero_carnet:row.getData().numero_carnet});
 
             $('.error_field').text('');
             $('#nom_complet').text(row.getData().nom + ' ' + row.getData().prenoms);

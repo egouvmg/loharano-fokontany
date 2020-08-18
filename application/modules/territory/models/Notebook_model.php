@@ -66,13 +66,12 @@ class Notebook_model extends CI_Model
 		return $query->result();
 	}
 
-	public function citizensPerPage($criteria = array(), $offset, $limit = 15) {
+	public function citizensPerPage($criteria = array(), $offset, $limit = 15, $order = []) {
 		$this->db->select('*');
 		$this->db->from($this->_v_notebook_citizen);
 		
-		if(!empty($criteria)){
-			$this->db->where($criteria);
-		}
+		if(!empty($criteria)) $this->db->where($criteria);
+		if(!empty($order)) $this->db->order_by($order[0], $order[1]);
 		
 		$this->db->limit($limit, $offset);
 		

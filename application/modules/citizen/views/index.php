@@ -3,13 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="<?= img('favicon.png');?>" />
+  <link rel="shortcut icon" href="#" />
 	<title>Loharano - <?= $title;?></title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-	<!-- Ionicons -->
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
 	<link href="<?= plugin('bootstrap', 'css', 'bootstrap.min.css');?>" rel="stylesheet">
@@ -78,10 +78,10 @@
                   <div class="line-bloc">
                     <h6>Indicateurs démographiques</h6>
                     <div class="container-bloc-link">
-                      <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<ul class='m-0'><li>Moyenne d'age des hommes : <strong><?=$male_avg_age;?></strong></li><li>Moyenne d'age des femmes : <strong><?=$female_avg_age;?></strong></li></ul>">
+                      <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Moyenne d'age des hommes : <?=$male_avg_age;?>. Moyenne d'age des femmes : <?=$female_avg_age;?>">
                         <span class="pourcent"><?= $male_ratio;?>% / <?= $female_ratio;?>%</span> <?=$this->lang->line('count_citizen');?> Hommes/Femmes
                       </a>
-                      <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<ul class='m-0'><li><strong><?=$minor_male;?></strong> mineurs masculins</li><li><strong><?=$minor_female;?></strong> mineurs féminins</li><li><strong><?=$major_male;?></strong> majeurs masculins</li><li><strong><?=$major_female;?></strong> majeurs féminins</li></ul>">
+                      <a href="#" class="bloc-link color-6" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<?=$minor_male;?> mineurs masculins. <?=$minor_female;?> mineurs féminins. <?=$major_male;?> majeurs masculins. <?=$major_female;?> majeurs féminins">
                         <span class="pourcent"><?= $minor_ratio;?>% / <?= $major_ratio;?>%</span> <?=$this->lang->line('count_household');?> Mineurs/Majeurs
                       </a>
                     </div>
@@ -434,7 +434,7 @@
               <div class="modal-body">
                 <div class="row">
                   <div class="col-lg-7">
-                    <form id="formEditPerson">
+                    <form id="formOtherPerson">
                       <input id="o_id_personne" name="id_personne" type="hidden"/>
                       <div class="form-row">
                           <div class="form-group col-md-4">
@@ -590,7 +590,7 @@
                                     <option value="<?= $job->id;?>"><?= $this->lang->line('job_'.$job->id);?></option>
                                 <?php endforeach;?>
                               </select>
-                              <input type="text" name="job_other" id="otherJob" placeholder="Préciser la profession" style="display: none; margin-top: 3px;" class="form-control" />
+                              <input type="text" name="job_other" id="o_otherJob" placeholder="Préciser la profession" style="display: none; margin-top: 3px;" class="form-control" />
                               <div class="error_field o_job_idError"></div>
                           </div>
                           <div class="form-group col-md-6">
@@ -629,10 +629,6 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                   Fermer
                   <span class="iconify" data-icon="uil:times-circle" data-inline="false"></span>
-                </button>
-                <button type="button" class="btn btn-primary" id="validEditPerson">
-                  Valider les modifications
-                  <span class="iconify" data-icon="uil:arrow-right" data-inline="false"></span>
                 </button>
               </div>
             </div>

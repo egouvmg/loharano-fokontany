@@ -456,12 +456,29 @@ class Citizen extends Operator_Controller
         $cin_personne = $this->input->get('cin_personne');
         $page = $this->input->get('page');
         $size = $this->input->get('size');
-
-        $criteria = [];
+        $filters = $this->input->get('filters');
+        $sorters = $this->input->get('sorters');
         
-        if(!empty($nom)) $criteria['LOWER(nom) LIKE '] = '%'.strtolower($nom).'%';
-        if(!empty($prenoms)) $criteria['LOWER(prenoms) LIKE '] = '%'.strtolower($prenoms).'%';
-        if(!empty($cin_personne)) $criteria['LOWER(cin_personne) LIKE '] = '%'.strtolower($cin_personne).'%';
+        $criteria = [];
+
+        if($filters){
+            foreach($filters as $filter){
+                if($filter['field'] != 'chef_menage')
+                    $criteria['LOWER('.$filter['field'].') LIKE '] = '%'.strtolower($filter['value']).'%';
+                else{
+                    $criteria["LOWER(CONCAT(nom, ' ', prenoms)) LIKE "] = '%'.strtolower($filter['value']).'%';
+                }
+            }
+        }else{
+            if(!empty($nom)) $criteria['LOWER(nom) LIKE '] = '%'.strtolower($nom).'%';
+            if(!empty($prenoms)) $criteria['LOWER(prenoms) LIKE '] = '%'.strtolower($prenoms).'%';
+            if(!empty($cin_personne)) $criteria['LOWER(cin_personne) LIKE '] = '%'.strtolower($cin_personne).'%';
+        }
+        $order = [];
+        if($sorters){
+            $order[] = $sorters[0]['field'];
+            $order[] = $sorters[0]['dir'];
+        }
         
         $criteria['fokontany_id'] = $this->fokontany_id;
         $criteria['chef_menage'] = TRUE;
@@ -469,7 +486,7 @@ class Citizen extends Operator_Controller
         $limit = ($size);
         $offset = ($page == 1) ? 0 : ($page - 1) * $size;
 
-        $citizens = $this->notebook->citizensPerPage($criteria, $offset, $limit);
+        $citizens = $this->notebook->citizensPerPage($criteria, $offset, $limit, $order);
         $count_citizen = count($this->notebook->citizens($criteria));
 
         $data['last_page'] = floor($count_citizen/$limit);

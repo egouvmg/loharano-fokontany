@@ -187,3 +187,9 @@ $route['aide_par_menage'] = 'utility/aid_by_household';
 //Aiadmin
 $route['statitique_aide_par_fokontany'] = 'aidadmin/get_insight';
 $route['menage_avec_aide'] = 'aidadmin/get_household_aid';
+
+/*
+ * API
+ ** */
+$route['get_citizen'] = 'citizenapi/index_get';
+$route['save_citizen'] = 'citizenapi/index_post';
