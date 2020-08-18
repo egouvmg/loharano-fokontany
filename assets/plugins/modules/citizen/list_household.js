@@ -444,26 +444,37 @@ $(function () {
         }, 'JSON');
     });
 
+    var pdf = null;
+    line = 0;
+    index_page = 0;
+    let a = document.createElement("a");
     $('#carnet_id').click(function(e){
+        pdf = null;
+        pdf = new jsPDF('p','px','a4');
+        line = 20;
         e.preventDefault();
         data={};
         data["numero_carnet"]= $('#numero_carnet_hidden').val();
 
         if($('#numero_carnet_hidden').val() == ''){
-            alert('Veuillez choisir un ménage avant de créer un Carnet Fokontany.');
+            /*$('.toast-container').css({
+                'cssText': 'bottom: 220px !important'
+            });*/
+            notify('error',"Message d'erreur!",'Veuillez choisir un ménage avant de créer un Carnet Fokontany');
             return false;
         }
 
         $.get('membres_menage', data, function(res){
             createCarnet(res);
         }, 'JSON');
+        index_page = 0;
     });
 
     $('#add_citizen').click(function(e){
         e.preventDefault();
 
         if($('#numero_carnet_hidden').val() == ''){
-            alert('Veuillez choisir un ménage avant de procéder à l\'ajout de citoyen.');
+            notify('error',"Message d'erreur!",'Veuillez choisir un ménage avant de procéder à l\'ajout de citoyen.');
             return false;
         }
 
@@ -473,8 +484,8 @@ $(function () {
         }, 'JSON');
     });
     
-    var pdf = new jsPDF('p','px','a4');
-    line = 20;
+ //   var pdf = new jsPDF('p','px','a4');
+ //   line = 20;
 
     function createCarnet(membres_menage){
         var specialElementHandlers = {
@@ -590,9 +601,20 @@ $(function () {
             addText("Asa : " + (!membre.job?"                   ":membre.job) +"   FKT : " + membre.libelle_fokontany, null, null, null);
             
             if((index + 1)%3 === 0){
-                //pdf.addPage();
-                row = 230;
-                line = 308;
+                index_page++;
+                if((index_page)%2 !== 0){
+                    row = 230;
+                    line = 308;
+                }
+                else{
+                  pdf.addPage();
+                  pdf.setLineWidth(1);
+                  pdf.line(220, 0, 220, 630);      
+                  pdf.line(0 , 345, 510, 345);
+                  
+                  line = 10;
+                  row = 10;
+               }
             }
 
             line += 12;
@@ -601,10 +623,67 @@ $(function () {
         var namepdf = "file.pdf";
         var today = new Date();
         var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-        namepdf =  "Karine_pokontany"+'_'+membres_menage[0].numero_carnet+'_'+date;  
-        pdf.save(namepdf);
-    }
+        namepdf =  "Karine_pokontany"+'_'+membres_menage[0].numero_carnet+'_'+date; 
+        pdf.setProperties({
+            title: namepdf
+        });
 
+        //data = pdf.output("dataurlstring");      
+        //var blobPDF = new Blob([pdf.output('blob', {'filename':namepdf})], { type : 'application/pdf'});
+        var blobPDF = new Blob([pdf.output('blob')], { type : 'application/pdf'});
+        var blobUrl = window.URL.createObjectURL(blobPDF);
+        
+        
+        //pdfAttachment : Files; //declare the file
+        var pdfAttachment = null;
+        newName = 'new_file_name'      
+        /* pdfAttachment = new File([pdf.output('blob')], newName, {
+              type: pdf.output('blob').type,
+              lastModified: pdf.output('blob').lastModified,
+            });
+
+       */
+        a.href = blobUrl;
+        a.download = namepdf;
+        document.body.appendChild(a);
+       
+        //document.getElementById("pdf").src = data;
+        //var pdf = $('#pdf').attr('src',data);
+        pdfActu = $('#pdf');
+
+        var pdfclone=pdfActu.clone(true);
+        pdfclone.attr('src',blobUrl+"#toolbar=0&page=1");
+        //pdfclone.attr('src',data);
+        pdfActu.replaceWith(pdfclone)
+        //document.querySelector("#pdf").src = data;
+        //$("#pdf").src = data;
+        //$('#report').html("<iframe src='#{data}'></iframe>");
+        $('#myModal').modal();
+        $('#download').remove();
+        //pdf.save(namepdf);
+    }
+    $('#print').click(function(e){
+        a.click();
+    }); 
+    
+    $('#myModal').ready(function() {
+        setTimeout(function() {
+           $('#pdf').contents().find('#download').remove();
+        }, 100);
+     });
+    /*
+     $( "#myModal" ).on('shown.bs.modal', function(){
+        setTimeout(function() {
+            var iframe = document.getElementById("pdf");
+            var content = iframe.contentDocument;
+            var elmnt = content.getElementById("toolbar");
+            //var elmnt = iframe.getElementById("download");
+            //var elmnt = iframe.contentWindow.document.getElementsByTagName("cr-icon-button")[1];
+            elmnt.style.display = "none";
+            $('#pdf').contents().find('#download').remove();
+         }, 100);
+    });
+    */
     function addText(texte, x, y, alignemnt){
       pdf.text(texte==null?'':texte, x==null?row:x, y==null?line:y, null, null, alignemnt);
       line += 12;  

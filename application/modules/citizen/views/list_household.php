@@ -15,6 +15,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
 	<link href="<?= plugin('bootstrap', 'css', 'bootstrap.min.css');?>" rel="stylesheet">
 	<link href="<?= plugin('tabulator', 'css', 'tabulator.min.css');?>" rel="stylesheet">
+	<link href="<?= plugin('notify', 'css', 'notify.min.css');?>" rel="stylesheet">
 	<?= css('admin');?>
 
 	<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
@@ -378,6 +379,35 @@
         </div>
         <!-- END Person details -->
 
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog mw-100 w-75">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">KARINE</h4>
+                
+                <div class="style=display:flex;">
+                  <div class="">
+                    <button type="button" class="btn btn-lg btn-primary" id="print" >Imprimer Karine</button>
+                  </div>
+                 
+                </div>
+
+              </div>
+              <div class="modal-body">
+                <iframe id="pdf" type="application/pdf" width="100%" height="600px" download="filename.pdf"></iframe>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <!--End Modal -->
+
 	<script src="<?= js('jquery.min');?>"></script>
   <script src="<?= plugin('bootstrap', 'js', 'bootstrap.bundle.min.js');?>"></script>
   <script src="<?= plugin('phone', 'js', 'jquery-input-mask-phone-number.js');?>"></script>
@@ -386,6 +416,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
   <script src="<?= plugin('modules', 'common', 'jspdf.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'citizen', 'qrious.min.js');?>"></script>
+  <script src="<?= plugin('notify', 'js', 'notify.min.js');?>"></script>
 	<script src="<?= plugin('modules', 'citizen', 'list_household.js');?>"></script>
 <div id="appVersion"> Loharano Fokontany, version <?= APP_VERSION;?> &copy; <a href="https://digital.gov.mg" target="_blank">e-Gouvernance Madagascar</a> - <?= date("Y");?></div>
 </body>
