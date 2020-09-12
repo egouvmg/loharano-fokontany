@@ -74,12 +74,12 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'pgsql:host=localhost;port=5432;dbname=loharano_v2',
+	'dsn'	=> '',
 	'hostname' => '',
-	'username' => 'postgres',
-	'password' => '123456',
+	'username' => '',
+	'password' => '',
 	'database' => '',
-	'dbdriver' => 'pdo',
+	'dbdriver' => '',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
